@@ -2,9 +2,7 @@
 {
     partial class Form1
     {
-        /// <summary>
-        /// Wymagana zmienna projektanta.
-        /// </summary>
+      
         private System.ComponentModel.IContainer components = null;
 
        
