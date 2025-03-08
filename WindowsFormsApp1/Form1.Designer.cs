@@ -8,9 +8,7 @@
         private System.ComponentModel.IContainer components = null;
 
        
-        /// Wyczyść wszystkie używane zasoby.
-        /// </summary>
-        /// <param name="disposing">prawda, jeżeli zarządzane zasoby powinny zostać zlikwidowane; Fałsz w przeciwnym wypadku.</param>
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
