@@ -19,7 +19,7 @@ namespace Warsztaty_1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            testtttttttttttfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdf
+            dddddddd
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
