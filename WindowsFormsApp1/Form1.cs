@@ -32,5 +32,10 @@ namespace WindowsFormsApp1
         {
             MessageBox.Show("Witaj 2");
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
