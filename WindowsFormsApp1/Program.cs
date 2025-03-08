@@ -8,6 +8,7 @@ namespace WindowsFormsApp1
 {
     internal static class Program
     {
+        string welcome;
         /// <summary>
         /// Główny punkt wejścia dla aplikacji.
         /// </summary>
