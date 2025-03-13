@@ -1,0 +1,243 @@
+[33mcommit b107c3c522e4444d2af1b24dff46c5aba47dc936[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Andrzej <Andrzej@DESKTOP-HKDBQIC>
+Date:   Thu Mar 13 18:44:28 2025 +0100
+
+    ANdrzej
+
+[33mcommit e0f52397f1190a773ab92a79f40e3022e3382b30[m
+Author: User <User@LAPTOP>
+Date:   Wed Mar 12 18:01:10 2025 +0100
+
+    sa
+
+[33mcommit 052f66df8ab951f6747effb386648a99041ad39e[m
+Merge: 6ed52f7 30e08b8
+Author: User <User@LAPTOP>
+Date:   Wed Mar 12 17:45:50 2025 +0100
+
+    Merge branch 'master' of https://github.com/januszbyt/warsztaty2025_przychodnia
+
+[33mcommit 30e08b81408b69765c89c78d7b0108949b9e4d2f[m
+Author: Kamil Federkiewicz <s40852@s.pansjar.edu.pl>
+Date:   Sat Mar 8 11:12:15 2025 +0100
+
+    Add files via upload
+
+[33mcommit cecb87f81ac699a1f5613d4cab394e433f7f80fc[m
+Author: Kamil Federkiewicz <s40852@s.pansjar.edu.pl>
+Date:   Sat Mar 8 11:04:59 2025 +0100
+
+    Create Baza danych
+
+[33mcommit ece5a4db2b467eefdde28977f911806b3dfcbedd[m
+Merge: fc5fd06 6f7e2d4
+Author: s41145 <s41145@C45-K06>
+Date:   Sat Mar 8 10:44:09 2025 +0100
+
+    Merge branch 'master' of https://github.com/januszbyt/warsztaty2025_przychodnia
+
+[33mcommit fc5fd0635c94f797d963156607d16613587ad947[m
+Author: s41145 <s41145@C45-K06>
+Date:   Sat Mar 8 10:44:04 2025 +0100
+
+    Andrzje ANtosz
+
+[33mcommit 6ed52f7bf608c7f1552e32d2bfa0a7245ee3798b[m
+Merge: 53d9088 ece5a4d
+Author: User <User@LAPTOP>
+Date:   Sat Mar 8 10:41:48 2025 +0100
+
+    Merge branch 'master' of https://github.com/januszbyt/warsztaty2025_przychodnia
+
+[33mcommit 53d90886f4cdd592a0dd0b049e55e93cbbc4d103[m
+Merge: 360da77 6f7e2d4
+Author: User <User@LAPTOP>
+Date:   Sat Mar 8 10:39:24 2025 +0100
+
+    Merge branch 'master' of https://github.com/januszbyt/warsztaty2025_przychodnia
+
+[33mcommit 6f7e2d470331414521799c49f288ed3c29f97db3[m
+Author: Michał Budyńczuk <s40914@s.pansjar.edu.pl>
+Date:   Sat Mar 8 10:36:20 2025 +0100
+
+    michal b
+
+[33mcommit 0a3f8dd59960a27ec4ae17ffaac6acc92845244b[m
+Author: Kamil Federkiewicz <s40852@s.pwste.edu.pl>
+Date:   Sat Mar 8 10:34:48 2025 +0100
+
+    test7
+
+[33mcommit 5a87167efd2931290e7c495ae02267db4f02a8c6[m
+Merge: 5deaa3e 6893d9c
+Author: s41145 <s41145@C45-K06>
+Date:   Sat Mar 8 10:32:47 2025 +0100
+
+    Merge branch 'master' of https://github.com/januszbyt/warsztaty2025_przychodnia
+
+[33mcommit 5937df7b8f2dd992d651528d74e3f3df800b2e3e[m
+Author: Kamil Federkiewicz <s40852@s.pwste.edu.pl>
+Date:   Sat Mar 8 10:32:38 2025 +0100
+
+    cf
+
+[33mcommit 5deaa3ee8139439b1801d135ccd937c0b141ddb0[m
+Author: s41145 <s41145@C45-K06>
+Date:   Sat Mar 8 10:28:47 2025 +0100
+
+    Andrzej Antosz
+
+[33mcommit 718e9d286d43b94886ba8b1b8534714c5611489d[m
+Merge: d207abc 5a87167
+Author: Kamil Federkiewicz <s40852@s.pwste.edu.pl>
+Date:   Sat Mar 8 10:30:01 2025 +0100
+
+    Merge branch 'master' of https://github.com/januszbyt/warsztaty2025_przychodnia
+
+[33mcommit d207abc00ea650ee09b543e711cb05b0a811f5a9[m
+Author: Kamil Federkiewicz <s40852@s.pwste.edu.pl>
+Date:   Sat Mar 8 10:29:48 2025 +0100
+
+    test5
+
+[33mcommit 6893d9c3b9791b75606a263705a1d1b8642fe4ec[m
+Author: s41145 <s41145@C45-K06>
+Date:   Sat Mar 8 10:28:47 2025 +0100
+
+    Andrzej Antosz
+
+[33mcommit 56f0621f457ddd471231eb48f17fba19e05ebc7f[m
+Author: Kamil Federkiewicz <s40852@s.pwste.edu.pl>
+Date:   Sat Mar 8 10:27:42 2025 +0100
+
+    gfgf
+
+[33mcommit cc4ddc61085d3fe25abcb80967421b527d8054bf[m
+Author: Andrzej <Andrzej@DESKTOP-HKDBQIC>
+Date:   Sat Mar 8 10:23:33 2025 +0100
+
+    xd2
+
+[33mcommit eaa1e476b185fe6c9a649e427db3aa9efd471d2d[m
+Author: Dawid Kotliński <s40918@s.pansjar.edu.pl>
+Date:   Sat Mar 8 10:17:41 2025 +0100
+
+    Update Form1.cs
+
+[33mcommit 133e2fbf13ff61533decd92fb6272bcb98058b5f[m
+Author: Kamil Fedan <s40851@s.pansjar.edu.pl>
+Date:   Sat Mar 8 10:16:34 2025 +0100
+
+    xd
+
+[33mcommit 6f1f0931082f5efa0af199e907377be225c1d433[m
+Author: Kamil Fedan <s40851@s.pansjar.edu.pl>
+Date:   Sat Mar 8 10:15:11 2025 +0100
+
+    xd
+
+[33mcommit 360da77667910b76a6a889128e2fd0b626f7073c[m
+Author: User <User@LAPTOP>
+Date:   Sat Mar 8 10:12:35 2025 +0100
+
+    ones
+
+[33mcommit c74911dfdbf85dd2c5e31434b4d945497d3b13ec[m
+Author: User <User@LAPTOP>
+Date:   Sat Mar 8 09:56:40 2025 +0100
+
+    ones
+
+[33mcommit 86b12a39af009a55e81f91074342004a62fdc4e6[m
+Merge: e7c2b77 e1383af
+Author: januszbyt <82830779+januszbyt@users.noreply.github.com>
+Date:   Fri Feb 28 16:21:02 2025 +0100
+
+    Merge pull request #5 from januszbyt/JB
+    
+    Modyfiakcja funkcji2
+
+[33mcommit e1383af94872dc9e2f3a1e36487acd100193dcef[m
+Author: Janusz Bytnar <janusz.bytnar@pansjar.edu.pl>
+Date:   Fri Feb 28 16:19:46 2025 +0100
+
+    Modyfiakcja funkcji2
+
+[33mcommit e7c2b77b37ffc9723bae7d81f8a8e254fbd2f056[m
+Merge: a25466f 35811df
+Author: januszbyt <82830779+januszbyt@users.noreply.github.com>
+Date:   Fri Feb 28 16:16:55 2025 +0100
+
+    Merge pull request #4 from januszbyt/JB
+    
+    Jb
+
+[33mcommit 35811df343d4229d090b440560fb024d11dcad5d[m
+Merge: 3aef7d0 9234937
+Author: Janusz Bytnar <janusz.bytnar@pansjar.edu.pl>
+Date:   Fri Feb 28 16:14:55 2025 +0100
+
+    Witaj 2
+
+[33mcommit 3aef7d06d8c7b4a4201c99e3dd8543508d4ee16c[m
+Author: Janusz Bytnar <janusz.bytnar@pansjar.edu.pl>
+Date:   Fri Feb 28 15:28:56 2025 +0100
+
+    witaj 2
+
+[33mcommit a25466f54bee30510823511170a580ef6b0a12d3[m
+Merge: b52f925 9234937
+Author: januszbyt <82830779+januszbyt@users.noreply.github.com>
+Date:   Fri Feb 28 15:31:33 2025 +0100
+
+    Merge pull request #3 from januszbyt/JB
+    
+    #kolejna funkcja
+
+[33mcommit 92349371d31caf5f4f2cf481c61800f2bd11e551[m
+Author: Janusz Bytnar <janusz.bytnar@pansjar.edu.pl>
+Date:   Fri Feb 28 15:28:56 2025 +0100
+
+    #kolejna funkcja
+
+[33mcommit b52f925940106ef8fa93e07762203deef4875d3a[m
+Merge: 979ed90 73198e9
+Author: januszbyt <82830779+januszbyt@users.noreply.github.com>
+Date:   Fri Feb 28 15:17:54 2025 +0100
+
+    Merge pull request #2 from januszbyt/JB
+    
+    #dodane kolejne funkcje i kontrolki
+
+[33mcommit 73198e991b2f9a8e6539f440cb68e815cfb795a2[m
+Author: Janusz Bytnar <janusz.bytnar@pansjar.edu.pl>
+Date:   Fri Feb 28 15:04:49 2025 +0100
+
+    #dodane kolejne funkcje i kontrolki
+
+[33mcommit 979ed9092df4d8542855abc6ec22387eb10b2e18[m
+Merge: 1843426 22ef6f7
+Author: januszbyt <82830779+januszbyt@users.noreply.github.com>
+Date:   Fri Feb 28 15:01:07 2025 +0100
+
+    Merge pull request #1 from januszbyt/JB
+    
+    #dodanie funkcjiDodaj pliki projektów.
+
+[33mcommit 22ef6f7423545ccc7acad1448602253da46ec403[m
+Author: Janusz Bytnar <janusz.bytnar@pansjar.edu.pl>
+Date:   Fri Feb 28 14:59:10 2025 +0100
+
+    #dodanie funkcjiDodaj pliki projektów.
+
+[33mcommit 1843426858e8022d3d9e302da0b3d6fcc2b8c949[m
+Author: bytnarj <bytnarj@C43-017-KATEDRA>
+Date:   Thu Feb 27 18:57:15 2025 +0100
+
+    Dodaj pliki projektów.
+
+[33mcommit 73f06f3be78fd552c5137f43ffd2f853944520ca[m
+Author: bytnarj <bytnarj@C43-017-KATEDRA>
+Date:   Thu Feb 27 18:57:13 2025 +0100
+
+    Dodaj .gitattributes i .gitignore.
