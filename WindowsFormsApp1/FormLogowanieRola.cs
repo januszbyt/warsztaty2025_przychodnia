@@ -29,15 +29,15 @@ namespace WindowsFormsApp1
 
             if (comboBox1.SelectedIndex == 0)
             {
-                MessageBox.Show("Wybrano Pacjenta");
+                
             }
             else if (comboBox1.SelectedIndex == 1)
             {
-                MessageBox.Show("Wybrano Lekarza");
+                
             }
             else if (comboBox1.SelectedIndex == 2)
             {
-                MessageBox.Show("Wybrano Administratora");
+                
             }
 
         }
@@ -56,7 +56,7 @@ namespace WindowsFormsApp1
                 case "Pacjent":
                     Form panelPacjenta = new FormLogowaniePacjent();
                     panelPacjenta.Show();
-                    this.Hide(); // Opcjonalnie ukrywamy bieżące okno
+                    this.Hide(); 
                     break;
 
                 case "Lekarz":
