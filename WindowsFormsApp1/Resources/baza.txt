@@ -1,0 +1,63 @@
+CREATE TABLE [dbo].[uzytkownicy] (
+    [uzytkownik_id]   INT            IDENTITY (1, 1) NOT NULL,
+    [login]           NVARCHAR (255) NOT NULL,
+    [haslo]           NVARCHAR (255) NOT NULL,
+    [rola]            NVARCHAR (50)  NOT NULL,
+    [imie]            NVARCHAR (255) DEFAULT (NULL) NOT NULL,
+    [nazwisko]        NVARCHAR (255) DEFAULT (NULL) NOT NULL,
+    [pesel]           NVARCHAR (11)  NOT NULL,
+    [email]           NVARCHAR (255) DEFAULT (NULL) NOT NULL,
+    [telefon]         NVARCHAR (20)  DEFAULT (NULL) NOT NULL,
+    [adres]           NVARCHAR (MAX) DEFAULT (NULL) NOT NULL,
+    [data_urodzenia]  DATE           DEFAULT (NULL) NOT NULL,
+    [data_utworzenia] DATETIME       DEFAULT (getdate()) NOT NULL,
+    PRIMARY KEY CLUSTERED ([uzytkownik_id] ASC),
+    UNIQUE NONCLUSTERED ([pesel] ASC),
+    UNIQUE NONCLUSTERED ([login] ASC),
+    UNIQUE NONCLUSTERED ([email] ASC),
+    CHECK ([rola]='pacjent' OR [rola]='lekarz' OR [rola]='administrator'),
+    CHECK ([rola]='pacjent' OR [rola]='lekarz' OR [rola]='administrator')
+);
+
+CREATE TABLE [dbo].[administratorzy] (
+    [administrator_id]  INT  IDENTITY (1, 1) NOT NULL,
+    [uzytkownik_id]     INT  NOT NULL,
+    [data_zatrudnienia] DATE DEFAULT (NULL) NOT NULL,
+    PRIMARY KEY CLUSTERED ([administrator_id] ASC),
+    UNIQUE NONCLUSTERED ([uzytkownik_id] ASC),  
+    FOREIGN KEY ([uzytkownik_id]) REFERENCES [dbo].[uzytkownicy] ([uzytkownik_id]) ON DELETE CASCADE
+);
+
+CREATE TABLE [dbo].[lekarze] (
+    [lekarz_id]     INT            IDENTITY (1, 1) NOT NULL,
+    [uzytkownik_id] INT            NOT NULL,
+    [specjalizacja] NVARCHAR (255) DEFAULT (NULL) NULL,
+    PRIMARY KEY CLUSTERED ([lekarz_id] ASC),
+    UNIQUE NONCLUSTERED ([uzytkownik_id] ASC),
+    FOREIGN KEY ([uzytkownik_id]) REFERENCES [dbo].[uzytkownicy] ([uzytkownik_id]) ON DELETE CASCADE
+);
+
+CREATE TABLE [dbo].[pacjenci] (
+    [pacjent_id]    INT IDENTITY (1, 1) NOT NULL,
+    [uzytkownik_id] INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([pacjent_id] ASC),
+    UNIQUE NONCLUSTERED ([uzytkownik_id] ASC),
+    FOREIGN KEY ([uzytkownik_id]) REFERENCES [dbo].[uzytkownicy] ([uzytkownik_id]) ON DELETE CASCADE
+);
+
+CREATE TABLE [dbo].[wizyty] (
+    [wizyta_id]       INT             IDENTITY (1, 1) NOT NULL,
+    [pacjent_id]      INT             NOT NULL,
+    [lekarz_id]       INT             NOT NULL,
+    [data_wizyty]     DATETIME        DEFAULT (NULL) NULL,
+    [status]          VARCHAR (20)    DEFAULT ('zaplanowana') NULL,
+    [diagnoza]        VARCHAR (100)   NULL,
+    [zalecenia]       VARBINARY (100) NULL,
+    [data_utworzenia] DATETIME        DEFAULT (getdate()) NULL,
+    PRIMARY KEY CLUSTERED ([wizyta_id] ASC),
+    CONSTRAINT [FK_Wizyty_Lekarz] FOREIGN KEY ([lekarz_id]) REFERENCES [dbo].[lekarze] ([lekarz_id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_wizyty_lekarze] FOREIGN KEY ([lekarz_id]) REFERENCES [dbo].[lekarze] ([lekarz_id]),
+    CONSTRAINT [FK_wizyty_pacjenci] FOREIGN KEY ([pacjent_id]) REFERENCES [dbo].[pacjenci] ([pacjent_id]),
+    CONSTRAINT [CHK_Status] CHECK ([status]='anulowana' OR [status]='odbyta' OR [status]='zaplanowana')
+);
+
