@@ -6,18 +6,16 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    internal static class Program
+    static class Program
     {
-        string welcome;
-        /// <summary>
-        /// Główny punkt wejścia dla aplikacji.
-        /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Application.Run(new Form1());
+            Application.Run(new FormLogowanieRola());
         }
     }
+
 }
