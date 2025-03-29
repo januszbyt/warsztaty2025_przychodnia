@@ -34,7 +34,6 @@
             this.textBoxLoginAdmin = new System.Windows.Forms.TextBox();
             this.textBoxHasloAdmin = new System.Windows.Forms.TextBox();
             this.checkBoxHasloAdmin = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // Login
@@ -97,20 +96,11 @@
             this.checkBoxHasloAdmin.UseVisualStyleBackColor = true;
             this.checkBoxHasloAdmin.CheckedChanged += new System.EventHandler(this.checkBoxHasloAdmin_CheckedChanged);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(214, 392);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(148, 26);
-            this.textBox1.TabIndex = 6;
-            // 
             // FormLogowanieAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(626, 505);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.checkBoxHasloAdmin);
             this.Controls.Add(this.textBoxHasloAdmin);
             this.Controls.Add(this.textBoxLoginAdmin);
@@ -133,6 +123,5 @@
         private System.Windows.Forms.TextBox textBoxLoginAdmin;
         private System.Windows.Forms.TextBox textBoxHasloAdmin;
         private System.Windows.Forms.CheckBox checkBoxHasloAdmin;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }
