@@ -31,23 +31,26 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.buttonZatwierdz = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(131, 146);
+            this.comboBox1.Location = new System.Drawing.Point(45, 99);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.Size = new System.Drawing.Size(180, 28);
             this.comboBox1.TabIndex = 0;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // buttonZatwierdz
             // 
-            this.buttonZatwierdz.Location = new System.Drawing.Point(149, 185);
+            this.buttonZatwierdz.Location = new System.Drawing.Point(80, 137);
+            this.buttonZatwierdz.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonZatwierdz.Name = "buttonZatwierdz";
-            this.buttonZatwierdz.Size = new System.Drawing.Size(75, 23);
+            this.buttonZatwierdz.Size = new System.Drawing.Size(112, 35);
             this.buttonZatwierdz.TabIndex = 1;
             this.buttonZatwierdz.Text = "OK";
             this.buttonZatwierdz.UseVisualStyleBackColor = true;
@@ -56,22 +59,35 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(51, 149);
+            this.label1.Location = new System.Drawing.Point(76, 74);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 13);
+            this.label1.Size = new System.Drawing.Size(94, 20);
             this.label1.TabIndex = 2;
             this.label1.Text = "Zaloguj jako";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(31, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(207, 20);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "WYBÓR UŻYTKOWNIKA";
+            // 
             // FormLogowanieRola
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(388, 311);
+            this.ClientSize = new System.Drawing.Size(277, 206);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonZatwierdz);
             this.Controls.Add(this.comboBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormLogowanieRola";
-            this.Text = "FormLogowanieRola";
+            this.Text = "Wybór użytkownika";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -82,5 +98,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button buttonZatwierdz;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
