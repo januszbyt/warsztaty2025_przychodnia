@@ -46,7 +46,7 @@
             // textBoxLoginPacjent
             // 
             this.textBoxLoginPacjent.Location = new System.Drawing.Point(131, 59);
-            this.textBoxLoginPacjent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxLoginPacjent.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxLoginPacjent.Name = "textBoxLoginPacjent";
             this.textBoxLoginPacjent.Size = new System.Drawing.Size(132, 22);
             this.textBoxLoginPacjent.TabIndex = 4;
@@ -55,7 +55,7 @@
             // textBoxHasloPacjent
             // 
             this.textBoxHasloPacjent.Location = new System.Drawing.Point(131, 92);
-            this.textBoxHasloPacjent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxHasloPacjent.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxHasloPacjent.Name = "textBoxHasloPacjent";
             this.textBoxHasloPacjent.Size = new System.Drawing.Size(132, 22);
             this.textBoxHasloPacjent.TabIndex = 5;
@@ -64,8 +64,8 @@
             // checkBoxPokazHaslo
             // 
             this.checkBoxPokazHaslo.AutoSize = true;
-            this.checkBoxPokazHaslo.Location = new System.Drawing.Point(143, 119);
-            this.checkBoxPokazHaslo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxPokazHaslo.Location = new System.Drawing.Point(143, 135);
+            this.checkBoxPokazHaslo.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxPokazHaslo.Name = "checkBoxPokazHaslo";
             this.checkBoxPokazHaslo.Size = new System.Drawing.Size(106, 20);
             this.checkBoxPokazHaslo.TabIndex = 7;
@@ -75,8 +75,8 @@
             // 
             // buttonZalogujPacjent
             // 
-            this.buttonZalogujPacjent.Location = new System.Drawing.Point(152, 150);
-            this.buttonZalogujPacjent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonZalogujPacjent.Location = new System.Drawing.Point(143, 163);
+            this.buttonZalogujPacjent.Margin = new System.Windows.Forms.Padding(4);
             this.buttonZalogujPacjent.Name = "buttonZalogujPacjent";
             this.buttonZalogujPacjent.Size = new System.Drawing.Size(100, 28);
             this.buttonZalogujPacjent.TabIndex = 8;
@@ -88,7 +88,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(96, 19);
+            this.label3.Location = new System.Drawing.Point(116, 21);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(180, 20);
@@ -121,7 +121,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(50, 197);
+            this.label4.Location = new System.Drawing.Point(50, 213);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(173, 16);
             this.label4.TabIndex = 15;
@@ -131,7 +131,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(235, 197);
+            this.linkLabel1.Location = new System.Drawing.Point(235, 213);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(83, 16);
             this.linkLabel1.TabIndex = 16;
@@ -141,7 +141,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(81, 233);
+            this.label5.Location = new System.Drawing.Point(81, 249);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(223, 16);
             this.label5.TabIndex = 17;
@@ -149,8 +149,8 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(120, 253);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Location = new System.Drawing.Point(120, 269);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(143, 46);
             this.button2.TabIndex = 18;
@@ -160,7 +160,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(75, 303);
+            this.label6.Location = new System.Drawing.Point(75, 319);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(232, 16);
             this.label6.TabIndex = 19;
@@ -168,8 +168,8 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(120, 323);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Location = new System.Drawing.Point(120, 339);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(143, 46);
             this.button3.TabIndex = 20;
@@ -181,7 +181,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(395, 455);
+            this.ClientSize = new System.Drawing.Size(408, 481);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button2);
@@ -195,9 +195,9 @@
             this.Controls.Add(this.checkBoxPokazHaslo);
             this.Controls.Add(this.textBoxHasloPacjent);
             this.Controls.Add(this.textBoxLoginPacjent);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormLogowaniePacjent";
-            this.Text = "FormLogowaniePacjent";
+            this.Text = "Logowanie Pacjent";
             this.ResumeLayout(false);
             this.PerformLayout();
 
