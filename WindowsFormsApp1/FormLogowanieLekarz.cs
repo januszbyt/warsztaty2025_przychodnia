@@ -18,6 +18,8 @@ namespace WindowsFormsApp1
 
             textBoxHasloLekarz.PasswordChar = '•';
             checkBox1.Checked = false;
+
+            
         }
 
         private void textBoxLoginLekarz_TextChanged(object sender, EventArgs e)
@@ -65,6 +67,14 @@ namespace WindowsFormsApp1
         {
 
             return false;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            FormLogowanieRola logowanieRola = new FormLogowanieRola();
+            logowanieRola.Show();
+            this.Hide();
         }
     }
 }
