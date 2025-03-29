@@ -26,5 +26,13 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void buttonWyloguj_Click(object sender, EventArgs e)
+        {
+            FormLogowanieLekarz logowanielekarz = new FormLogowanieLekarz();
+            logowanielekarz.Show();
+            this.Hide();
+
+        }
     }
 }
