@@ -58,5 +58,22 @@ namespace WindowsFormsApp1
             }
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FormLogowanieRola logowanieRola = new FormLogowanieRola();
+            logowanieRola.Show();
+            this.Hide();
+        }
+
+        private void FormLogowanieAdmin_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
