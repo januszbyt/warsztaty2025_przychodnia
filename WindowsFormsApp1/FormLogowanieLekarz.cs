@@ -56,6 +56,10 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Nieprawidłowy email lub hasło!", "Błąd",
                               MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            PanelLekarza panellekarza = new PanelLekarza();
+            panellekarza.Show();
+            this.Close();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
