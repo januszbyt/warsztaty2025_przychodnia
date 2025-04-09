@@ -21,7 +21,7 @@ namespace WindowsFormsApp1
             db = new SqlConnection(connectString);
             db.Open();
 
-            var createTables = false; // Odkomentowac zeby stworzyc tablice w bazie, jesli ich nie ma obecnie.
+             var createTables = false; // Odkomentowac zeby stworzyc tablice w bazie, jesli ich nie ma obecnie.
 
             if (createTables)
             {

@@ -43,7 +43,7 @@ namespace WindowsFormsApp1
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Hide();
-                FormLogowanieAdmin panelAdmin = new FormLogowanieAdmin();
+                FormPanelAdmin panelAdmin = new FormPanelAdmin();
                 panelAdmin.ShowDialog();
                 this.Close();
 
