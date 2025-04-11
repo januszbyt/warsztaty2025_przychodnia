@@ -20,6 +20,8 @@ namespace WindowsFormsApp1
             var connectString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False";
             db = new SqlConnection(connectString);
             db.Open();
+            //W jakim formacie jest Baza danych?
+            //Jaką ma Nazwę?
 
              var createTables = true; // Odkomentowac zeby stworzyc tablice w bazie, jesli ich nie ma obecnie.
 
