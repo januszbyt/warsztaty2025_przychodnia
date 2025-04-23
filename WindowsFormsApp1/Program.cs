@@ -23,15 +23,15 @@ namespace WindowsFormsApp1
             //W jakim formacie jest Baza danych?
             //Jaką ma Nazwę?
 
-             var createTables = true; // Odkomentowac zeby stworzyc tablice w bazie, jesli ich nie ma obecnie.
+            // var createTables = true; // Odkomentowac zeby stworzyc tablice w bazie, jesli ich nie ma obecnie.
 
-            if (createTables)
-            {
-                var queryPath = "Resources/baza.txt";
-                var query = File.ReadAllText(queryPath);
-                var cmd = new SqlCommand(query, db);
-                cmd.ExecuteNonQuery();
-            }
+            //if (createTables)
+            //{
+            //    var queryPath = "Resources/baza.txt";
+            //    var query = File.ReadAllText(queryPath);
+            //    var cmd = new SqlCommand(query, db);
+            //    cmd.ExecuteNonQuery();
+            //}
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
