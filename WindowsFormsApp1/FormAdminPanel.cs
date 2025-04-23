@@ -13,7 +13,7 @@ namespace WindowsFormsApp1
         // Obsługuje kliknięcie przycisku "Zarządzaj Lekarzami"
         private void buttonZarzadzajLekarzami_Click(object sender, EventArgs e)
         {
-            // Otwarcie formularza zarządzania lekarzami
+            
             FormZarzadzajLekarzami formLekarze = new FormZarzadzajLekarzami();
             formLekarze.ShowDialog();
         }

@@ -45,16 +45,6 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-
-    <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Configuration.ConfigurationManager, Version=9.0.0.3, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Configuration.ConfigurationManager.9.0.3\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
-
     <Reference Include="Google.Protobuf, Version=3.26.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.26.1\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
@@ -70,30 +60,20 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="MySql.Data, Version=9.2.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.9.2.0\lib\net462\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
-    </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Configuration.ConfigurationManager, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Configuration.ConfigurationManager.8.0.0\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
-
+    <Reference Include="System.Configuration.ConfigurationManager, Version=9.0.0.3, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.9.0.3\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite, Version=1.0.119.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\lib\net46\System.Data.SQLite.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite.EF6, Version=1.0.119.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.119.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite.Linq, Version=1.0.119.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.119.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.8.0.1\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
@@ -122,30 +102,22 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="ZstdSharp, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8d151af33a4ad5cf, processorArchitecture=MSIL">
       <HintPath>..\packages\ZstdSharp.Port.0.8.0\lib\net462\ZstdSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-
     <Compile Include="Data\DataBaseHelper.cs" />
-
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormAdminPanel.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAdminPanel.Designer.cs">
       <DependentUpon>FormAdminPanel.cs</DependentUpon>
     </Compile>
-
     <Compile Include="FormLogowanieAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,7 +142,6 @@
     <Compile Include="FormLogowanieRola.Designer.cs">
       <DependentUpon>FormLogowanieRola.cs</DependentUpon>
     </Compile>
-
     <Compile Include="FormPacjent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,7 +168,7 @@
     </Compile>
     <Compile Include="PanelAdmina.Designer.cs">
       <DependentUpon>PanelAdmina.cs</DependentUpon>
-
+    </Compile>
     <Compile Include="FormZarzadzajLekarzami.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,7 +180,6 @@
     </Compile>
     <Compile Include="FormZarzadzajPacjentami.Designer.cs">
       <DependentUpon>FormZarzadzajPacjentami.cs</DependentUpon>
-
     </Compile>
     <Compile Include="PanelLekarza.cs">
       <SubType>Form</SubType>
@@ -249,15 +219,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-
-
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="FormAdminPanel.resx">
       <DependentUpon>FormAdminPanel.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="FormLogowanieAdmin.resx">
       <DependentUpon>FormLogowanieAdmin.cs</DependentUpon>
     </EmbeddedResource>
@@ -270,7 +236,6 @@
     <EmbeddedResource Include="FormLogowanieRola.resx">
       <DependentUpon>FormLogowanieRola.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="FormPacjent.resx">
       <DependentUpon>FormPacjent.cs</DependentUpon>
     </EmbeddedResource>
@@ -279,13 +244,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PanelAdmina.resx">
       <DependentUpon>PanelAdmina.cs</DependentUpon>
-
+    </EmbeddedResource>
     <EmbeddedResource Include="FormZarzadzajLekarzami.resx">
       <DependentUpon>FormZarzadzajLekarzami.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormZarzadzajPacjentami.resx">
       <DependentUpon>FormZarzadzajPacjentami.cs</DependentUpon>
-
     </EmbeddedResource>
     <EmbeddedResource Include="PanelLekarza.resx">
       <DependentUpon>PanelLekarza.cs</DependentUpon>
@@ -298,6 +262,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -316,11 +282,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\imagebadge.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\baza.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

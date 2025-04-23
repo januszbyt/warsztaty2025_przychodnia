@@ -48,7 +48,7 @@ namespace WindowsFormsApp1
 
                 PanelAdmina panelAdmin = new PanelAdmina();
 
-                FormPanelAdmin panelAdmin = new FormPanelAdmin();
+                
 
                 panelAdmin.ShowDialog();
                 this.Close();
