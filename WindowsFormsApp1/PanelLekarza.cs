@@ -1,150 +1,294 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Data;
+using WindowsFormsApp1.Forms;
+using WindowsFormsApp1.Models;
 
 namespace WindowsFormsApp1
 {
     public partial class PanelLekarza : Form
     {
-        private List<Pacjent> pacjenci = new List<Pacjent>{
-        new Pacjent { Id = 1, Imie = "Jan", Nazwisko = "Kowalski", Pesel = "12345678901" },
-        new Pacjent { Id = 2, Imie = "Anna", Nazwisko = "Nowak", Pesel = "23456789012" },
-        new Pacjent { Id = 3, Imie = "Piotr", Nazwisko = "Wiśniewski", Pesel = "34567890123" }
-        };
+        private readonly DataBaseHelper _dbHelper;
+        private readonly Lekarz _lekarz;
+        private int wybranaWizytaId = -1;
+        private int wybranyPacjentId = -1;
+        private int lekarzId;
+        private int wizytId;
 
-        public PanelLekarza()
+        public PanelLekarza(Lekarz lekarz, DataBaseHelper dbHelper)
         {
             InitializeComponent();
-            InitializeDataGridView();
-            
-            dataGridView1.Visible = false;
-            txtSzukaj.Visible = false;
 
+            _lekarz = lekarz ?? throw new ArgumentNullException(nameof(lekarz));
+            _dbHelper = dbHelper ?? throw new ArgumentNullException(nameof(dbHelper));
+            lekarzId = _lekarz.Id;
+            Text = $"Panel Lekarza - {_lekarz.Imie} {_lekarz.Nazwisko}";
+
+            dataGridViewWizyty.AutoGenerateColumns = true;
+            dataGridViewPacjenci.AutoGenerateColumns = true;
+
+            WczytajWizyty();
+            WyswietlDaneLekarza();
+            WczytajPacjentow();
             
-            btnPacjenci.Click+= btnPacjenci_Click_1;
-            buttonWizyty.Click += buttonWizyty_Click;
-            txtSzukaj.TextChanged += TxtSzukaj_TextChanged;
+        }
+        private void WczytajPacjentow()
+        {
+            var pacjenci = _dbHelper.PobierzPacjentow();
+            dataGridViewPacjenci.DataSource = pacjenci;
+
+           
+            if (dataGridViewPacjenci.Columns["Id"] != null)
+                dataGridViewPacjenci.Columns["Id"].Visible = false;
+
+            dataGridViewPacjenci.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+        private void WczytajWizyty()
+        {
+            var wizyty = _dbHelper.PobierzWizytyLekarza(_lekarz.Id);
+            dataGridViewWizyty.DataSource = wizyty;
+
+            if (dataGridViewWizyty.Columns["Id"] != null)
+                dataGridViewWizyty.Columns["Id"].Visible = false;
+        }
+        private void WyswietlDaneLekarza()
+        {
+            labelLekarzId.Text = $"ID: {_lekarz.Id}";
+            labelLekarzImieNazwisko.Text = $"Lekarz: {_lekarz.Imie} {_lekarz.Nazwisko}";
+            labelSpecjalizacja.Text = $"Specjalizacja: {_lekarz.Specjalizacja}";
         }
 
-       
-
-        private void buttonWyloguj_Click(object sender, EventArgs e)
+        private void dataGridViewWizyty_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            FormLogowanieLekarz logowanielekarz = new FormLogowanieLekarz();
-            logowanielekarz.Show();
-            this.Hide();
+            if (e.RowIndex >= 0)
+            {
+                var row = dataGridViewWizyty.Rows[e.RowIndex];
+                wybranaWizytaId = Convert.ToInt32(row.Cells["Id"].Value);
+                wybranyPacjentId = Convert.ToInt32(row.Cells["PacjentId"].Value);
 
+                var szczegoly = _dbHelper.PobierzSzczegolyWizyty(wybranaWizytaId);
+                if (szczegoly != null)
+                {
+                    txtRecepta.Text = szczegoly.Opis ?? string.Empty;
+                    txtSkierowanie.Text = szczegoly.Diagnoza ?? string.Empty;
+                    txtZalecenia.Text = szczegoly.Zalecenia ?? string.Empty;
+                }
+            }
+        }
+
+        private void WczytajHistoriePacjenta(int pacjentId)
+        {
+            try
+            {
+                var historia = _dbHelper.PobierzHistorieWizytPacjenta(pacjentId);
+                dataGridViewPacjenci.DataSource = historia;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd podczas ładowania historii: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonWizyty_Click(object sender, EventArgs e)
         {
-            dataGridView1.Visible = false;
-            txtSzukaj.Visible = false;
-
-            dataGridView1.Visible = !dataGridView1.Visible;
-            if (dataGridView1.Visible)
+            if (wybranyPacjentId > 0)
             {
-                LoadAppointments();
+                WczytajHistoriePacjenta(wybranyPacjentId);
             }
-
-        }
-        private void btnPacjenci_Click_1(object sender, EventArgs e)
-        {
-            bool showPatients = !dataGridView1.Visible;
-
-            dataGridView1.Visible = showPatients;
-            txtSzukaj.Visible = showPatients;
-
-            if (showPatients)
+            else
             {
-                LoadPacjenci();
+                MessageBox.Show("Najpierw wybierz wizytę pacjenta z listy.");
             }
         }
 
-
-        private void InitializeDataGridView()
+        private void btnZapisz_Click(object sender, EventArgs e)
         {
-            dataGridView1.Columns.Add("Data", "Data");
-            dataGridView1.Columns.Add("Pacjent", "Pacjent");
-
-           
-            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
-            buttonColumn.Name = "Szczegóły";
-            buttonColumn.Text = "Pokaż";
-            buttonColumn.UseColumnTextForButtonValue = true;
-            dataGridView1.Columns.Add(buttonColumn);
-
-           
-            dataGridView1.CellContentClick += DataGridView1_CellContentClick;
-        }
-
-        private void LoadAppointments()
-        {
-            dataGridView1.Columns.Clear();
-            dataGridView1.Columns.Add("Data", "Data");
-            dataGridView1.Columns.Add("Pacjent", "Pacjent");
-            dataGridView1.Rows.Add("30.01.2025", "Jan Kowalski");
-            
-        }
-        
-
-        private void LoadPacjenci(string filtr = "")
-        {
-            dataGridView1.Rows.Clear();
-
-            var wynik = string.IsNullOrEmpty(filtr)
-        ? pacjenci
-        : pacjenci.Where(p =>
-            p.Imie.IndexOf(filtr, StringComparison.OrdinalIgnoreCase) >= 0 ||
-            p.Nazwisko.IndexOf(filtr, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
-
-            foreach (var pacjent in wynik)
+            if (wybranaWizytaId == -1)
             {
-                dataGridView1.Rows.Add(
-                    pacjent.Id,
-                    pacjent.Imie,
-                    pacjent.Nazwisko,
-                    pacjent.Pesel
+                MessageBox.Show("Wybierz wizytę.");
+                return;
+            }
+
+            _dbHelper.ZaktualizujWizyte(
+                wybranaWizytaId,
+                txtRecepta.Text,
+                txtSkierowanie.Text,
+                txtZalecenia.Text
+            );
+
+            MessageBox.Show("Wizyta została zaktualizowana.");
+            WczytajWizyty();
+        }
+
+        private void btnRecepta_Click(object sender, EventArgs e)
+        {
+            if (wybranyPacjentId == -1)
+            {
+                MessageBox.Show("Wybierz wizytę.");
+                return;
+            }
+
+            string kodRecepty = Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
+            string leki = Microsoft.VisualBasic.Interaction.InputBox("Wprowadź leki:", "Recepta");
+
+            if (!string.IsNullOrWhiteSpace(leki))
+            {
+                _dbHelper.WystawRecepte(wybranyPacjentId, _lekarz.Id, kodRecepty, leki);
+                MessageBox.Show($"Recepta wystawiona. Kod: {kodRecepty}");
+            }
+        }
+
+        private void btnSkierowanie_Click(object sender, EventArgs e)
+        {
+            if (wybranyPacjentId == -1)
+            {
+                MessageBox.Show("Wybierz wizytę.");
+                return;
+            }
+
+            string specjalizacja = Microsoft.VisualBasic.Interaction.InputBox("Na jaką specjalizację kierujesz?", "Skierowanie");
+            string cel = Microsoft.VisualBasic.Interaction.InputBox("Wprowadź cel skierowania:", "Skierowanie");
+
+            if (!string.IsNullOrWhiteSpace(specjalizacja) && !string.IsNullOrWhiteSpace(cel))
+            {
+                _dbHelper.WystawSkierowanie(wybranyPacjentId, _lekarz.Id, specjalizacja, cel);
+                MessageBox.Show("Skierowanie wystawione.");
+            }
+        }
+
+        private void buttonWyloguj_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var formLogowanie = new FormLogowanieLekarz(_dbHelper);
+            formLogowanie.FormClosed += (s, args) => this.Close();
+            formLogowanie.Show();
+        }
+
+        private void btnSzukaj_Click(object sender, EventArgs e)
+        {
+            string imieNazwisko = txtSzukajPacjenta.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(imieNazwisko))
+            {
+                WczytajWizyty();
+                return;
+            }
+
+            var wyniki = _dbHelper.SzukajWizytPoImieniuNazwisku(_lekarz.Id, imieNazwisko);
+            dataGridViewWizyty.DataSource = wyniki;
+        }
+
+      
+
+        private void buttonPokazPacjentow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dataGridViewPacjenci.DataSource = _dbHelper.PobierzPacjentowhe();
+
+                
+                dataGridViewPacjenci.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dataGridViewPacjenci.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd podczas ładowania pacjentów: {ex.Message}");
+            }
+        }
+
+        private void btnRecepta_Click_1(object sender, EventArgs e)
+        {
+            txtRecepta.Visible = true;
+            buttonZatwierdzRecepte.Visible = true;
+        }
+
+        private void buttonZatwierdzRecepte_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewPacjenci.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Wybierz pacjenta.");
+                return;
+            }
+
+            int pacjentId = Convert.ToInt32(dataGridViewPacjenci.SelectedRows[0].Cells["Id"].Value);
+            string leki = txtRecepta.Text;
+            string kod = Guid.NewGuid().ToString().Substring(0, 8);
+
+            try
+            {
+                _dbHelper.WystawRecepte(
+                    wizytaId: wybranaWizytaId, 
+                    pacjentId: pacjentId,
+                    lekarzId: _lekarz.Id, 
+                    leki: leki,
+                    uwagi: null,
+                    kodRecepty: kod
                 );
+
+                MessageBox.Show("Recepta wystawiona pomyślnie!");
+                txtRecepta.Text = "";
+                txtRecepta.Visible = false;
+                buttonZatwierdzRecepte.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd podczas wystawiania recepty: {ex.Message}");
             }
         }
 
-        private void TxtSzukaj_TextChanged(object sender, EventArgs e)
+        private void btnSkierowanie_Click_1(object sender, EventArgs e)
         {
-            LoadPacjenci(txtSzukaj.Text);
+            txtSkierowanie.Visible = true;
+            buttonZatwierdzSkierowanie.Visible = true;
         }
 
-        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void buttonZatwierdzSkierowanie_Click(object sender, EventArgs e)
         {
-            if (e.ColumnIndex == dataGridView1.Columns["Szczegóły"].Index && e.RowIndex >= 0)
+            if (dataGridViewPacjenci.SelectedRows.Count == 0)
             {
-                string data = dataGridView1.Rows[e.RowIndex].Cells["Data"].Value.ToString();
-                string pacjent = dataGridView1.Rows[e.RowIndex].Cells["Pacjent"].Value.ToString();
-
-                MessageBox.Show($"Wizyta: {data}\nPacjent: {pacjent}", "Szczegóły");
+                MessageBox.Show("Wybierz pacjenta.");
+                return;
             }
 
-            if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
-            {
-                int id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["Id"].Value);
-                var pacjent = pacjenci.FirstOrDefault(p => p.Id == id);
+            int pacjentId = Convert.ToInt32(dataGridViewPacjenci.SelectedRows[0].Cells["Id"].Value);
+            string cel = txtSkierowanie.Text.Trim();
 
-                MessageBox.Show($"ID: {pacjent.Id}\nImię: {pacjent.Imie}\nNazwisko: {pacjent.Nazwisko}",
-                              "Szczegóły pacjenta");
+            if (string.IsNullOrEmpty(cel))
+            {
+                MessageBox.Show("Wprowadź cel skierowania.");
+                return;
             }
+
+            string specjalizacja = Microsoft.VisualBasic.Interaction.InputBox("Na jaką specjalizację?", "Specjalizacja");
+
+            if (string.IsNullOrEmpty(specjalizacja))
+            {
+                MessageBox.Show("Specjalizacja jest wymagana.");
+                return;
+            }
+
+            _dbHelper.WystawSkierowanie(
+                wizytaId: wizytId,
+                pacjentId: pacjentId,
+                lekarzId: _lekarz.Id,
+                typ: specjalizacja,
+                cel: cel,
+                uwagi: null
+            );
+
+            MessageBox.Show("Skierowanie zostało wystawione.");
+            txtSkierowanie.Clear();
+            txtSkierowanie.Visible = false;
+            buttonZatwierdzSkierowanie.Visible = false;
+        }
+
+        private void buttonpokapacjentow_Click(object sender, EventArgs e)
+        {
+
+            WczytajPacjentow();
+
         }
     }
-
-        public class Pacjent{
-            public int Id { get; set; }
-            public string Nazwisko { get; set; }
-            public string Pesel { get; set; }
-            public string Imie { get; set; }
-        } 
 }

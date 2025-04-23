@@ -1,65 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Configuration;
 using System.Windows.Forms;
+using WindowsFormsApp1.Data;
+using WindowsFormsApp1.Models;
 
-namespace WindowsFormsApp1
+namespace WindowsFormsApp1.Forms
 {
     public partial class FormLogowanieLekarz : Form
     {
-        public FormLogowanieLekarz()
+
+        private DataBaseHelper _dbHelper;
+
+        public FormLogowanieLekarz(DataBaseHelper dbHelper)
         {
             InitializeComponent();
+            this._dbHelper = dbHelper;
+
+            _dbHelper = new DataBaseHelper(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
             textBoxHasloLekarz.PasswordChar = '•';
             checkBox1.Checked = false;
-
-            
-        }
-
-        private void textBoxLoginLekarz_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxHasloLekarz_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string email = textBoxLoginLekarz.Text;
-            string haslo = textBoxHasloLekarz.Text;
-
-            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(haslo))
-            {
-                MessageBox.Show("Proszę wypełnić wszystkie pola!", "Błąd",
-                              MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-           
-            if (SprawdzDaneLogowania(email, haslo))
-            {
-                MessageBox.Show("Brawo! Udało Ci się zalogować!", "Sukces",
-                               MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
-            }
-            else
-            {
-                MessageBox.Show("Nieprawidłowy email lub hasło!", "Błąd",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            PanelLekarza panellekarza = new PanelLekarza();
-            panellekarza.Show();
-            this.Close();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -67,18 +27,67 @@ namespace WindowsFormsApp1
             textBoxHasloLekarz.PasswordChar = checkBox1.Checked ? '\0' : '•';
         }
 
-        private bool SprawdzDaneLogowania(string email, string haslo)
+        private void buttonZamknij_Click(object sender, EventArgs e)
         {
-
-            return false;
+            Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-
-            FormLogowanieRola logowanieRola = new FormLogowanieRola();
-            logowanieRola.Show();
+            FormRejestracja formrejestracja = new FormRejestracja(_dbHelper);
             this.Hide();
+            formrejestracja.ShowDialog();
+
+        }
+
+        private void buttonZaloguj_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_dbHelper == null)
+                {
+                    MessageBox.Show("Błąd połączenia z bazą danych");
+                    return;
+                }
+
+                string email = textBoxLoginLekarz.Text.Trim();
+                string haslo = textBoxHasloLekarz.Text.Trim();
+
+                if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(haslo))
+                {
+                    MessageBox.Show("Proszę wprowadzić email i hasło.");
+                    return;
+                }
+
+                var uzytkownik = _dbHelper.ZalogujUzytkownika(email, haslo);
+
+                if (uzytkownik?.Rola?.Nazwa == null)
+                {
+                    MessageBox.Show("Nieprawidłowe dane logowania lub brak przypisanej roli.");
+                    return;
+                }
+
+                if (!uzytkownik.Rola.Nazwa.Equals("Lekarz", StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show("Brak uprawnień lekarza.");
+                    return;
+                }
+
+                var doctor = _dbHelper.PobierzLekarza(uzytkownik.Id);
+                if (doctor == null)
+                {
+                    MessageBox.Show("Brak danych lekarza.");
+                    return;
+                }
+
+                this.Hide();
+                new PanelLekarza(doctor, _dbHelper).Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd: {ex.Message}");
+            }
         }
     }
 }
+

@@ -1,0 +1,10 @@
+﻿CREATE TABLE DokumentyPacjenta(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	PacjentId INT NOT NULL,
+	Typ NVARCHAR(50) NOT NULL,
+	NazwaPliku NVARCHAR(255) NOT NULL,
+	DataDodania DATETIME NOT NULL DEFAULT GETDATE(),
+	Uwagi TEXT,
+	SciezkaPliku TEXT,
+	FOREIGN KEY (IdPacjenta) REFERENCES Pacjenci(Id)
+);
