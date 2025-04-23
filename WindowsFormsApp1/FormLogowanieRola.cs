@@ -1,80 +1,79 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Data;
+using WindowsFormsApp1.Forms;
 
 namespace WindowsFormsApp1
 {
     public partial class FormLogowanieRola : Form
     {
-        public FormLogowanieRola()
+        private readonly DataBaseHelper _dbHelper;
+
+       
+        public FormLogowanieRola(DataBaseHelper dbHelper)
         {
             InitializeComponent();
+            _dbHelper = dbHelper ?? throw new ArgumentNullException(nameof(dbHelper));
 
-            comboBox1.Items.Add("Pacjent");
-            comboBox1.Items.Add("Lekarz");
-            comboBox1.Items.Add("Administrator");
-            comboBox1.SelectedIndex = 0;
             
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            if (comboBox1.SelectedIndex == 0)
-            {
-                
-            }
-            else if (comboBox1.SelectedIndex == 1)
-            {
-                
-            }
-            else if (comboBox1.SelectedIndex == 2)
-            {
-                
-            }
-
+            comboBox1.Items.AddRange(new[] { "Pacjent", "Lekarz", "Administrator" });
+            comboBox1.SelectedIndex = 0;
         }
 
         private void buttonZatwierdz_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedItem == null) {
-                MessageBox.Show("Proszę wybrać role!", "Blad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (comboBox1.SelectedItem == null)
+            {
+                MessageBox.Show("Proszę wybrać rolę!", "Błąd",
+                              MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             string wybranaRola = comboBox1.SelectedItem.ToString();
 
-            switch (wybranaRola)
+            
+            this.Hide();
+
+            try
             {
-                case "Pacjent":
-                    Form panelPacjenta = new FormLogowaniePacjent();
-                    panelPacjenta.Show();
-                    this.Hide(); 
-                    break;
+                switch (wybranaRola)
+                {
+                    case "Pacjent":
+                        var formPacjent = new FormLogowaniePacjent(_dbHelper);
+                        formPacjent.Closed += (s, args) => this.Close();
+                        formPacjent.Show();
+                        break;
 
-                case "Lekarz":
-                    Form panelLekarza = new FormLogowanieLekarz(); 
-                    panelLekarza.Show();
-                    this.Hide();
-                    break;
+                    case "Lekarz":
+                        var formLekarz = new FormLogowanieLekarz(_dbHelper);
+                        formLekarz.Closed += (s, args) => this.Close();
+                        formLekarz.Show();
+                        break;
 
-                case "Administrator":
-                    Form panelAdmina = new FormLogowanieAdmin(); 
-                    panelAdmina.Show();
-                    this.Hide();
-                    break;
+                    case "Administrator":
+                        var formAdmin = new FormLogowanieAdmin();
+                        formAdmin.Closed += (s, args) => this.Close();
+                        formAdmin.Show();
+                        break;
 
-                default:
-                    MessageBox.Show("Nieznana rola!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
+                    default:
+                        MessageBox.Show("Nieznana rola!", "Błąd",
+                                      MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        this.Show();
+                        break;
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd podczas otwierania formularza: {ex.Message}", "Błąd",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Show(); 
+            }
+        }
+
+        private void buttonAnuluj_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

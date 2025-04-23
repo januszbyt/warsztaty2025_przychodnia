@@ -1,43 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
+using System;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.IO;
+using WindowsFormsApp1.Data;
+using WindowsFormsApp1.Forms;
 
 namespace WindowsFormsApp1
 {
     static class Program
     {
-        static SqlConnection db;
-
         [STAThread]
         static void Main()
         {
-            var connectString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False";
-            db = new SqlConnection(connectString);
-            db.Open();
             
-
-            var createTables = true; // Odkomentowac zeby stworzyc tablice w bazie, jesli ich nie ma obecnie.
-
-            if (createTables)
-            {
-                var queryPath = "Resources/baza.db";
-                var query = File.ReadAllText(queryPath);
-                var cmd = new SqlCommand(query, db);
-                cmd.ExecuteNonQuery();
-            }
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
-            Application.Run(new PanelLekarza());
-           
+
+            
+            const string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=Przychodnia;Integrated Security=True;";
+
+            try
+            {
+                
+                var dbHelper = new DataBaseHelper(connectionString);
+
+                
+                if (!dbHelper.TestConnection())
+                {
+                    MessageBox.Show("Nie można połączyć się z bazą danych. Sprawdź połączenie.",
+                                  "Błąd połączenia",
+                                  MessageBoxButtons.OK,
+                                  MessageBoxIcon.Error);
+                    return;
+                }
+
+                
+                Application.Run(new FormRejestracja(dbHelper));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Krytyczny błąd inicjalizacji: {ex.Message}\n\nSzczegóły: {ex.StackTrace}",
+                              "Błąd aplikacji",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Error);
+            }
         }
     }
-
 }

@@ -1,0 +1,2 @@
+﻿DELETE FROM Doctors WHERE UserId IS NULL;
+

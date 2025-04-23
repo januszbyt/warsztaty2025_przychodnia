@@ -1,0 +1,1 @@
+﻿ALTER TABLE Users ADD CONSTRAINT DF_Miasto DEFAULT 'Nie podano' FOR Miasto

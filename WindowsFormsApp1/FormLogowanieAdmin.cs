@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
+using WindowsFormsApp1.Data;
 
 namespace WindowsFormsApp1
 {
     public partial class FormLogowanieAdmin : Form
     {
+        private readonly DataBaseHelper _dbHelper;
         public FormLogowanieAdmin()
         {
             InitializeComponent();
@@ -43,7 +45,11 @@ namespace WindowsFormsApp1
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Hide();
+
+                PanelAdmina panelAdmin = new PanelAdmina();
+
                 FormPanelAdmin panelAdmin = new FormPanelAdmin();
+
                 panelAdmin.ShowDialog();
                 this.Close();
 
@@ -61,7 +67,7 @@ namespace WindowsFormsApp1
 
         private void button3_Click(object sender, EventArgs e)
         {
-            FormLogowanieRola logowanieRola = new FormLogowanieRola();
+            FormLogowanieRola logowanieRola = new FormLogowanieRola(_dbHelper);
             logowanieRola.Show();
             this.Hide();
         }
