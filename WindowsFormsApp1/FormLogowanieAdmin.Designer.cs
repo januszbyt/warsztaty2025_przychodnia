@@ -37,8 +37,8 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(123, 137);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(174, 153);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 28);
             this.button1.TabIndex = 2;
@@ -49,7 +49,7 @@
             // textBoxLoginAdmin
             // 
             this.textBoxLoginAdmin.Location = new System.Drawing.Point(162, 65);
-            this.textBoxLoginAdmin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxLoginAdmin.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxLoginAdmin.Name = "textBoxLoginAdmin";
             this.textBoxLoginAdmin.Size = new System.Drawing.Size(132, 22);
             this.textBoxLoginAdmin.TabIndex = 3;
@@ -58,7 +58,7 @@
             // textBoxHasloAdmin
             // 
             this.textBoxHasloAdmin.Location = new System.Drawing.Point(162, 98);
-            this.textBoxHasloAdmin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxHasloAdmin.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxHasloAdmin.Name = "textBoxHasloAdmin";
             this.textBoxHasloAdmin.Size = new System.Drawing.Size(132, 22);
             this.textBoxHasloAdmin.TabIndex = 4;
@@ -67,7 +67,7 @@
             // 
             this.checkBoxHasloAdmin.AutoSize = true;
             this.checkBoxHasloAdmin.Location = new System.Drawing.Point(174, 125);
-            this.checkBoxHasloAdmin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxHasloAdmin.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxHasloAdmin.Name = "checkBoxHasloAdmin";
             this.checkBoxHasloAdmin.Size = new System.Drawing.Size(106, 20);
             this.checkBoxHasloAdmin.TabIndex = 5;
@@ -122,7 +122,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(151, 243);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(143, 46);
             this.button3.TabIndex = 19;
@@ -144,7 +144,7 @@
             this.Controls.Add(this.textBoxHasloAdmin);
             this.Controls.Add(this.textBoxLoginAdmin);
             this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormLogowanieAdmin";
             this.Text = "Logowanie Admin";
             this.Load += new System.EventHandler(this.FormLogowanieAdmin_Load);

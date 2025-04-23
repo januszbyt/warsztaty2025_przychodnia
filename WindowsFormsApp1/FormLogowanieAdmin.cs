@@ -45,7 +45,11 @@ namespace WindowsFormsApp1
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Hide();
+
                 PanelAdmina panelAdmin = new PanelAdmina();
+
+                FormPanelAdmin panelAdmin = new FormPanelAdmin();
+
                 panelAdmin.ShowDialog();
                 this.Close();
 
