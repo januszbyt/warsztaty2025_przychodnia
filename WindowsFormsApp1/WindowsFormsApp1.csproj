@@ -173,6 +173,30 @@
     <Compile Include="PanelLekarza.Designer.cs">
       <DependentUpon>PanelLekarza.cs</DependentUpon>
     </Compile>
+    <Compile Include="PanelLekarzaERecepty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelLekarzaERecepty.Designer.cs">
+      <DependentUpon>PanelLekarzaERecepty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PanelLekarzaESkierowania.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelLekarzaESkierowania.Designer.cs">
+      <DependentUpon>PanelLekarzaESkierowania.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PanelLekarzaEZwolnienia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelLekarzaEZwolnienia.Designer.cs">
+      <DependentUpon>PanelLekarzaEZwolnienia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PanelLekarzaPacjenci.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelLekarzaPacjenci.Designer.cs">
+      <DependentUpon>PanelLekarzaPacjenci.cs</DependentUpon>
+    </Compile>
     <Compile Include="PanelLekarzaWizyty.cs">
       <SubType>Form</SubType>
     </Compile>
