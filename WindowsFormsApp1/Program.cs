@@ -25,7 +25,7 @@ namespace WindowsFormsApp1
 
             if (createTables)
             {
-                var queryPath = "Resources/baza.txt";
+                var queryPath = "Resources/baza.db";
                 var query = File.ReadAllText(queryPath);
                 var cmd = new SqlCommand(query, db);
                 cmd.ExecuteNonQuery();
