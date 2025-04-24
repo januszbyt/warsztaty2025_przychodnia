@@ -18,10 +18,13 @@ namespace WindowsFormsApp1.Data
     {
         private readonly string _connectionString;
 
-        public DataBaseHelper()
+       
+        public DataBaseHelper(string connectionString = null)
         {
-            _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+           
+            _connectionString = connectionString ?? ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
+            
             if (string.IsNullOrEmpty(_connectionString))
             {
                 throw new Exception("Brak connection string w app.config!");

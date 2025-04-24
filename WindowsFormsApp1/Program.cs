@@ -1,5 +1,6 @@
-using System.Windows.Forms;
 using System;
+using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 using WindowsFormsApp1.Data;
 using WindowsFormsApp1.Forms;
 
@@ -10,12 +11,11 @@ namespace WindowsFormsApp1
         [STAThread]
         static void Main()
         {
-            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
             
-            const string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=Przychodnia;Integrated Security=True;";
+            const string connectionString = "Server=localhost;Port=3306;Database=przychodnia;Uid=root;Pwd=;";
 
             try
             {
@@ -32,14 +32,16 @@ namespace WindowsFormsApp1
                     return;
                 }
 
-            Application.Run(new FormRejestracja(dbHelper));
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show($"Krytyczny błąd inicjalizacji: {ex.Message}\n\nSzczegóły: {ex.StackTrace}",
+                
+                Application.Run(new FormRejestracja(dbHelper));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Krytyczny błąd inicjalizacji: {ex.Message}\n\nSzczegóły: {ex.StackTrace}",
                           "Błąd aplikacji",
                           MessageBoxButtons.OK,
                           MessageBoxIcon.Error);
+            }
         }
     }
 }
