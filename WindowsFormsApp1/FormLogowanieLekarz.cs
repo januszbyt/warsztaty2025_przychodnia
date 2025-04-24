@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Windows.Forms;
 using WindowsFormsApp1.Data;
 using WindowsFormsApp1.Models;
+using MySql.Data.MySqlClient;
 
 namespace WindowsFormsApp1.Forms
 {
@@ -16,7 +17,7 @@ namespace WindowsFormsApp1.Forms
             InitializeComponent();
             this._dbHelper = dbHelper;
 
-            _dbHelper = new DataBaseHelper(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            _dbHelper = new DataBaseHelper();
 
             textBoxHasloLekarz.PasswordChar = '•';
             checkBox1.Checked = false;

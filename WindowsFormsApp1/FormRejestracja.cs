@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using WindowsFormsApp1.Data;
 using WindowsFormsApp1.Models;
+using MySql.Data.MySqlClient;
 
 namespace WindowsFormsApp1.Forms
 {

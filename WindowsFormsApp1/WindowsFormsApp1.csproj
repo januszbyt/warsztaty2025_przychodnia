@@ -127,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DataBaseHelper.cs" />
+    <Compile Include="Data\PrzychodniaContext.cs" />
     <Compile Include="FormAdminPanel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -304,15 +305,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Microsoft\VisualBasic\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_Data\Przychodnia.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="App_Data\Przychodnia_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Przychodnia.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

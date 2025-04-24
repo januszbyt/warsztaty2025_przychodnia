@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using WindowsFormsApp1.Data;
+using MySql.Data.MySqlClient;
 
 namespace WindowsFormsApp1
 {
@@ -16,10 +17,7 @@ namespace WindowsFormsApp1
             textBoxHasloAdmin.Focus();
         }
 
-        private void textBoxLoginAdmin_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void textBoxHasloAdmin_TextChanged(object sender, KeyEventArgs e)
         {

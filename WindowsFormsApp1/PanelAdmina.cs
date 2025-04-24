@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using WindowsFormsApp1.Data;
 using WindowsFormsApp1.Forms;
 using WindowsFormsApp1.Models;
+using MySql.Data.MySqlClient;
 
 namespace WindowsFormsApp1
 {
@@ -21,7 +22,7 @@ namespace WindowsFormsApp1
             UkryjFormularzLekarza();
             try
             {
-                _dbHelper = new DataBaseHelper(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+                _dbHelper = new DataBaseHelper();
             }
             catch (Exception ex)
             {

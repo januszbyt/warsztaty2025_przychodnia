@@ -1,47 +1,37 @@
-using System;
 using System.Windows.Forms;
+using System;
 using WindowsFormsApp1.Data;
 using WindowsFormsApp1.Forms;
 
-namespace WindowsFormsApp1
+static class Program
 {
-    static class Program
+    [STAThread]
+    static void Main()
     {
-        [STAThread]
-        static void Main()
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+
+        try
         {
-            
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            var dbHelper = new DataBaseHelper();
 
-            
-            const string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=Przychodnia;Integrated Security=True;";
-
-            try
+            if (!dbHelper.TestConnection())
             {
-                
-                var dbHelper = new DataBaseHelper(connectionString);
-
-                
-                if (!dbHelper.TestConnection())
-                {
-                    MessageBox.Show("Nie można połączyć się z bazą danych. Sprawdź połączenie.",
-                                  "Błąd połączenia",
-                                  MessageBoxButtons.OK,
-                                  MessageBoxIcon.Error);
-                    return;
-                }
-
-                
-                Application.Run(new FormRejestracja(dbHelper));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Krytyczny błąd inicjalizacji: {ex.Message}\n\nSzczegóły: {ex.StackTrace}",
-                              "Błąd aplikacji",
+                MessageBox.Show("Nie można połączyć się z bazą danych MySQL. Sprawdź XAMPP i dane logowania.",
+                              "Błąd połączenia",
                               MessageBoxButtons.OK,
                               MessageBoxIcon.Error);
+                return;
             }
+
+            Application.Run(new FormRejestracja(dbHelper));
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Krytyczny błąd inicjalizacji: {ex.Message}\n\nSzczegóły: {ex.StackTrace}",
+                          "Błąd aplikacji",
+                          MessageBoxButtons.OK,
+                          MessageBoxIcon.Error);
         }
     }
 }

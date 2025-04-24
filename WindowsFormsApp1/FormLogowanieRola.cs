@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using WindowsFormsApp1.Data;
 using WindowsFormsApp1.Forms;
+using MySql.Data.MySqlClient;
 
 namespace WindowsFormsApp1
 {

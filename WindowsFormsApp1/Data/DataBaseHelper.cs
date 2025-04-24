@@ -5,9 +5,10 @@ using System;
 using WindowsFormsApp1.Models;
 using System.Security.Cryptography;
 using System.Text;
-
+using System.Data.SQLite;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using MySql.Data.MySqlClient;
 
 
 
@@ -17,7 +18,7 @@ namespace WindowsFormsApp1.Data
     {
         private readonly string _connectionString;
 
-        public DataBaseHelper(string connectionString)
+        public DataBaseHelper()
         {
             _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
@@ -25,14 +26,13 @@ namespace WindowsFormsApp1.Data
             {
                 throw new Exception("Brak connection string w app.config!");
             }
-
         }
 
         public bool TestConnection()
         {
             try
             {
-                using (var connection = new SqlConnection(_connectionString))
+                using (var connection = new MySqlConnection(_connectionString))
                 {
                     connection.Open();
                     return true;

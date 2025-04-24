@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Xml.Linq;
 using System.Diagnostics;
+using MySql.Data.MySqlClient;
 
 namespace WindowsFormsApp1
 {

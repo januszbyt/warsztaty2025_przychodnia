@@ -53,7 +53,7 @@
             this.textBoxLoginAdmin.Name = "textBoxLoginAdmin";
             this.textBoxLoginAdmin.Size = new System.Drawing.Size(132, 22);
             this.textBoxLoginAdmin.TabIndex = 3;
-            this.textBoxLoginAdmin.TextChanged += new System.EventHandler(this.textBoxLoginAdmin_TextChanged);
+            
             // 
             // textBoxHasloAdmin
             // 
