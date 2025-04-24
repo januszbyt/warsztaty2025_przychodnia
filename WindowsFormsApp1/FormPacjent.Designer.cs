@@ -2,7 +2,7 @@
 {
     partial class FormPacjent
     {
-        /// <summary>
+        /// <summary>aaaaaaaaaaaaaaaaabbbbbbbbbb
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
