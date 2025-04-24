@@ -3,26 +3,34 @@ using System;
 using WindowsFormsApp1.Data;
 using WindowsFormsApp1.Forms;
 
-static class Program
+namespace WindowsFormsApp1
 {
-    [STAThread]
-    static void Main()
+    static class Program
     {
-        Application.EnableVisualStyles();
-        Application.SetCompatibleTextRenderingDefault(false);
-
-        try
+        [STAThread]
+        static void Main()
         {
-            var dbHelper = new DataBaseHelper();
+            
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
 
-            if (!dbHelper.TestConnection())
+            
+            const string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=Przychodnia;Integrated Security=True;";
+
+            try
             {
-                MessageBox.Show("Nie można połączyć się z bazą danych MySQL. Sprawdź XAMPP i dane logowania.",
-                              "Błąd połączenia",
-                              MessageBoxButtons.OK,
-                              MessageBoxIcon.Error);
-                return;
-            }
+                
+                var dbHelper = new DataBaseHelper(connectionString);
+
+                
+                if (!dbHelper.TestConnection())
+                {
+                    MessageBox.Show("Nie można połączyć się z bazą danych. Sprawdź połączenie.",
+                                  "Błąd połączenia",
+                                  MessageBoxButtons.OK,
+                                  MessageBoxIcon.Error);
+                    return;
+                }
 
             Application.Run(new FormRejestracja(dbHelper));
         }
