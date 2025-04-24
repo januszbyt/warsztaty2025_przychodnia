@@ -1,0 +1,13 @@
+Instrukcja dla zespo³u
+
+Ka¿dy uzytkownik musi:
+
+1.Pobraæ plik przychodnia.mdf (z repo lub osobnego dysku)
+
+2.Umieœciæ go w swoim folderze App_Data
+
+3.Upewniæ siê, ¿e ma zainstalowane LocalDB:
+
+4.W VS: Tools -> Get Tools and Features -> zak³adka Individual Components -> SQL Server Express LocalDB
+
+5.Uruchomiæ projekt – baza automatycznie pod³¹czy siê do (localdb)\MSSQLLocalDB
