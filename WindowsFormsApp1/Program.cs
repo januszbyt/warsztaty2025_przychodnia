@@ -16,7 +16,7 @@ namespace WindowsFormsApp1
 
             
             const string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=Przychodnia;Integrated Security=True;";
-
+            //NIe podoba się JB
             try
             {
                 
