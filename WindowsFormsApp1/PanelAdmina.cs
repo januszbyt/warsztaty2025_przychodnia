@@ -69,29 +69,6 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void buttonFormNadaniaUprawnien_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(textBoxSpecjalizacjaUprawnienia.Text))
-            {
-                MessageBox.Show("Proszę podać specjalizację");
-                return;
-            }
-
-            try
-            {
-                _dbHelper.NadajUprawnieniaLekarza(selectedUserId, textBoxSpecjalizacjaUprawnienia.Text);
-                MessageBox.Show("Pomyślnie nadano uprawnienia lekarza");
-                textBoxSpecjalizacjaUprawnienia.Clear();
-                textBoxSpecjalizacjaUprawnienia.Visible = false;
-
-
-                RefreshGrid();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Błąd: {ex.Message}");
-            }
-        }
 
         private void buttonZabierzUprawnienia_Click(object sender, EventArgs e)
         {

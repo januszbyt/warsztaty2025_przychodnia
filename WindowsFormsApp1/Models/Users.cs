@@ -20,7 +20,7 @@ namespace WindowsFormsApp1.Models
         public string Miasto { get; set; }
         public string KodPocztowy { get; set; }
         public Role Rola { get; set; }
-        public string Salt { get; set; }
+        
     }
 }
 

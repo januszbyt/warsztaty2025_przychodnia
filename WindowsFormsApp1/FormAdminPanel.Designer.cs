@@ -69,7 +69,7 @@
             // 
             // FormPanelAdmin
             // 
-            this.ClientSize = new System.Drawing.Size(280, 210);
+            this.ClientSize = new System.Drawing.Size(404, 311);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonWyloguj);
             this.Controls.Add(this.buttonZarzadzajPacjentami);

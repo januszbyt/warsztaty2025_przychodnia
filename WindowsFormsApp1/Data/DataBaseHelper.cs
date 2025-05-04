@@ -3,12 +3,10 @@ using System.Data.SqlClient;
 using System.Data;
 using System;
 using WindowsFormsApp1.Models;
-using System.Security.Cryptography;
-using System.Text;
-using System.Data.SQLite;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
+using System.Diagnostics;
 
 
 
@@ -21,7 +19,6 @@ namespace WindowsFormsApp1.Data
        
         public DataBaseHelper(string connectionString = null)
         {
-           
             _connectionString = connectionString ?? ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
             
@@ -37,190 +34,65 @@ namespace WindowsFormsApp1.Data
             {
                 using (var connection = new MySqlConnection(_connectionString))
                 {
+                   
                     connection.Open();
-                    return true;
+
+                    
+                    using (var cmd = new MySqlCommand("SELECT 1", connection))
+                    {
+                        var result = cmd.ExecuteScalar();
+                        return result != null && result.ToString() == "1";
+                    }
                 }
             }
-            catch
+            catch (MySqlException ex)
             {
+                MessageBox.Show($"Błąd MySQL: {ex.Number}\n{ex.Message}", "Błąd połączenia");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Inny błąd: {ex.Message}", "Błąd połączenia");
                 return false;
             }
         }
 
-        private bool EmailExists(string email, SqlConnection connection)
+        public void RegisterUser(Users user, string haslo, string rola)
         {
-            var query = "SELECT COUNT(1) FROM dbo.Users WHERE Email = @Email";
-            using (var command = new SqlCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@Email", email);
-                return (int)command.ExecuteScalar() > 0;
-            }
-        }
-
-        private (string PasswordHash, string Salt) HashPasswordWithSalt(string password)
-        {
-
-            string salt = Guid.NewGuid().ToString();
-
-            using (var sha256 = SHA256.Create())
-            {
-                var combined = password + salt;
-                byte[] bytes = System.Text.Encoding.UTF8.GetBytes(combined);
-                byte[] hash = sha256.ComputeHash(bytes);
-                string passwordHash = Convert.ToBase64String(hash);
-
-                return (passwordHash, salt);
-            }
-        }
-
-
-        public void RegisterUser(Users user, string password, string rola)
-        {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
 
-                if (EmailExists(user.Email, connection))
+                var query = @"INSERT INTO Users 
+                            (Imie, Nazwisko, Email, Haslo, Rola, DateOfBirth, PESEL, PhoneNumber, Adres, Miasto, KodPocztowy) 
+                            VALUES 
+                            (@Imie, @Nazwisko, @Email, @Haslo, @Rola, @DateOfBirth, @PESEL, PhoneNumber, @Adres, @Miasto, @KodPocztowy)";
+
+                using (var command = new MySqlCommand(query, connection))
                 {
-                    throw new Exception("Email jest już zarejestrowany.");
-                }
-
-                var (passwordHash, salt) = HashPasswordWithSalt(password);
-
-                // Poprawione zapytanie - liczba kolumn zgadza się z liczbą wartości
-                var query = @"INSERT INTO dbo.Users 
-                     (Imie, Nazwisko, Email, Miasto, Adres, KodPocztowy, DateOfBirth, PESEL, PhoneNumber, PasswordHash, Salt, Rola) 
-                     VALUES 
-                     (@Imie, @Nazwisko, @Email, @Miasto, @Adres, @KodPocztowy, @DateOfBirth, @PESEL, @PhoneNumber, @PasswordHash, @Salt, @Rola)";
-
-                var queryRole = "INSERT INTO dbo.UserRoles (UserId, RoleName) VALUES (@UserId, @RoleName)";
-
-                using (var command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@Imie", user.Imie ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@Nazwisko", user.Nazwisko ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@Imie", user.Imie);
+                    command.Parameters.AddWithValue("@Nazwisko", user.Nazwisko);
                     command.Parameters.AddWithValue("@Email", user.Email);
-                    command.Parameters.AddWithValue("@Miasto", user.Miasto ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@Adres", user.Adres ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@KodPocztowy", user.KodPocztowy ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@Haslo", haslo); 
+                    command.Parameters.AddWithValue("@Rola", rola);
                     command.Parameters.AddWithValue("@DateOfBirth", user.DateOfBirth);
-                    command.Parameters.AddWithValue("@PESEL", user.PESEL ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@PhoneNumber", user.PhoneNumber ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@PasswordHash", passwordHash);
-                    command.Parameters.AddWithValue("@Salt", salt);
-                    command.Parameters.AddWithValue("@Rola", rola); 
+                    command.Parameters.AddWithValue("@PESEL", user.PESEL);
+                    command.Parameters.AddWithValue("@PhoneNumber", user.PhoneNumber);
+                    command.Parameters.AddWithValue("@Adres", user.Adres);
+                    command.Parameters.AddWithValue("@Miasto", user.Miasto);
+                    command.Parameters.AddWithValue("@KodPocztowy", user.KodPocztowy);
 
                     command.ExecuteNonQuery();
                 }
-
-                using (var commandRole = new SqlCommand(queryRole, connection))
-                {
-                    commandRole.Parameters.AddWithValue("@UserId", GetUserIdByEmail(user.Email, connection));
-                    commandRole.Parameters.AddWithValue("@RoleName", rola);
-
-                    commandRole.ExecuteNonQuery();
-                }
             }
         }
 
-        public Patient GetPatientById(int userId)
+
+
+        private int GetUserIdByEmail(string email, MySqlConnection connection)
         {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-
-                string query = @"SELECT Id, Imie, Nazwisko, DataUrodzenia, PESEL, 
-                        Adres, Miasto, KodPocztowy, Telefon, Email, IsActive
-                        FROM Patients
-                        WHERE UserId = @UserId";
-
-                using (var command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@UserId", userId);
-
-                    using (var reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            return new Patient
-                            {
-                                Id = reader.GetInt32(0),
-                                Imie = reader.GetString(1),
-                                Nazwisko = reader.GetString(2),
-                                DataUrodzenia = reader.GetDateTime(3),
-                                PESEL = reader.GetString(4),
-                                Adres = reader.GetString(5),
-                                Miasto = reader.GetString(6),
-                                KodPocztowy = reader.GetString(7),
-                                Telefon = reader.GetString(8),
-                                Email = reader.GetString(9),
-                                IsActive = reader.GetBoolean(10)
-                            };
-                        }
-                    }
-                }
-            }
-            return null;
-        }
-
-        public DataTable GetPatientAppointments(int patientId)
-        {
-            var dt = new DataTable();
-
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-
-                string query = @"SELECT a.Id, a.DataWizyty, 
-                        d.Imie + ' ' + d.Nazwisko AS Lekarz,
-                        s.Nazwa AS Specjalizacja,
-                        CASE 
-                            WHEN a.Status = 0 THEN 'Zaplanowana'
-                            WHEN a.Status = 1 THEN 'Zakończona'
-                            WHEN a.Status = 2 THEN 'Odwołana'
-                            ELSE 'Nieznany'
-                        END AS Status
-                        FROM Appointments a
-                        JOIN Doctors d ON a.DoctorId = d.Id
-                        JOIN Specializations s ON d.SpecializationId = s.Id
-                        WHERE a.PatientId = @PatientId
-                        ORDER BY a.DataWizyty DESC";
-
-                using (var command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@PatientId", patientId);
-
-                    using (var adapter = new SqlDataAdapter(command))
-                    {
-                        adapter.Fill(dt);
-                    }
-                }
-            }
-            return dt;
-        }
-
-        public bool CancelAppointment(int appointmentId)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-
-                string query = @"UPDATE Appointments 
-                        SET Status = 2 
-                        WHERE Id = @AppointmentId";
-
-                using (var command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@AppointmentId", appointmentId);
-                    return command.ExecuteNonQuery() > 0;
-                }
-            }
-        }
-
-        private int GetUserIdByEmail(string email, SqlConnection connection)
-        {
-            var query = "SELECT Id FROM dbo.Users WHERE Email = @Email";
-            using (var command = new SqlCommand(query, connection))
+            var query = "SELECT Id FROM Users WHERE Email = @Email";
+            using (var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Email", email);
                 var result = command.ExecuteScalar();
@@ -234,12 +106,12 @@ namespace WindowsFormsApp1.Data
 
         public Lekarz PobierzLekarza(int userId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
-                var query = "SELECT Id, Imie, Nazwisko, Specjalizacja FROM dbo.Doctors WHERE UserId = @UserId";
+                var query = "SELECT Id, Imie, Nazwisko, Specjalizacja FROM Doctors WHERE UserId = @UserId";
 
-                using (var command = new SqlCommand(query, connection))
+                using (var command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@UserId", userId);
 
@@ -261,86 +133,74 @@ namespace WindowsFormsApp1.Data
             return null;
         }
 
-        private bool VerifyPassword(string inputPassword, string storedPasswordHash, string salt)
+        public Users ZalogujUzytkownika(string email, string Haslo)
         {
-            if (string.IsNullOrEmpty(inputPassword) || string.IsNullOrEmpty(storedPasswordHash) || string.IsNullOrEmpty(salt))
-                return false;
-
-            using (var sha256 = SHA256.Create())
+            try
             {
-                var combined = inputPassword + salt;
-                byte[] bytes = Encoding.UTF8.GetBytes(combined);
-                byte[] hash = sha256.ComputeHash(bytes);
-                string inputPasswordHash = Convert.ToBase64String(hash);
-                return inputPasswordHash == storedPasswordHash;
-            }
-        }
-
-        public Users ZalogujUzytkownika(string email, string password)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-
-                var query = @"
-                        SELECT 
-                        u.Id, 
-                        u.Imie, 
-                        u.Nazwisko, 
-                        u.Email, 
-                        u.PasswordHash, 
-                        u.Salt,
-                        ISNULL(ur.RoleName, 'Pacjent') AS RoleName
-                        FROM dbo.Users u
-                        LEFT JOIN dbo.UserRoles ur ON u.Id = ur.UserId
-                        WHERE u.Email = @Email";
-
-                using (var command = new SqlCommand(query, connection))
+                using (var connection = new MySqlConnection(_connectionString))
                 {
-                    command.Parameters.AddWithValue("@Email", email);
+                    connection.Open();
 
-                    using (var reader = command.ExecuteReader())
+                    
+                    var query = @"
+                                SELECT u.Id, u.Imie, u.Nazwisko, u.Email, 
+                                IFNULL(ur.RoleName, 'Pacjent') AS Rola
+                                FROM users u
+                                LEFT JOIN userroles ur ON u.Id = ur.UserId
+                                WHERE u.Email = ?Email AND u.Haslo = ?Haslo
+                                LIMIT 1";
+
+                    using (var command = new MySqlCommand(query, connection))
                     {
-                        if (reader.Read())
+                        
+                        command.Parameters.Add("?Email", MySqlDbType.VarChar).Value = email;
+                        command.Parameters.Add("?Haslo", MySqlDbType.VarChar).Value = Haslo;
+
+                        using (var reader = command.ExecuteReader())
                         {
-
-                            var id = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
-                            var imie = reader.IsDBNull(1) ? string.Empty : reader.GetString(1);
-                            var nazwisko = reader.IsDBNull(2) ? string.Empty : reader.GetString(2);
-                            var emailDb = reader.IsDBNull(3) ? string.Empty : reader.GetString(3);
-                            var passwordHash = reader.IsDBNull(4) ? string.Empty : reader.GetString(4);
-                            var salt = reader.IsDBNull(5) ? string.Empty : reader.GetString(5);
-                            var roleName = reader.IsDBNull(6) ? "Pacjent" : reader.GetString(6);
-
-                            if (!string.IsNullOrEmpty(passwordHash) &&
-                                VerifyPassword(password, passwordHash, salt))
+                            if (reader.HasRows && reader.Read())
                             {
                                 return new Users
                                 {
-                                    Id = id,
-                                    Imie = imie,
-                                    Nazwisko = nazwisko,
-                                    Email = emailDb,
-                                    Rola = new Role { Nazwa = roleName }
+                                    Id = reader.GetInt32("Id"),
+                                    Imie = reader.IsDBNull(reader.GetOrdinal("Imie")) ? "" : reader.GetString("Imie"),
+                                    Nazwisko = reader.IsDBNull(reader.GetOrdinal("Nazwisko")) ? "" : reader.GetString("Nazwisko"),
+                                    Email = reader.GetString("Email"),
+                                    Rola = new Role { Nazwa = reader.GetString("Rola") }
                                 };
                             }
                         }
                     }
                 }
             }
+            catch (MySqlException ex)
+            {
+               
+                Console.WriteLine($"[{DateTime.Now}] Błąd MySQL #{ex.Number}: {ex.Message}");
+                Debug.WriteLine($"[{DateTime.Now}] Błąd MySQL #{ex.Number}: {ex.Message}");
+
+                throw new Exception("Błąd bazy danych podczas logowania. Spróbuj ponownie.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[{DateTime.Now}] Błąd: {ex}");
+                Debug.WriteLine($"[{DateTime.Now}] Błąd: {ex}");
+
+                throw new Exception("Wystąpił nieoczekiwany błąd podczas logowania.");
+            }
+
             return null;
         }
 
 
 
-
         public DataTable PobierzWszystkichLekarzy()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
-                var query = "SELECT * FROM dbo.Doctors";
-                using (var adapter = new SqlDataAdapter(query, connection))
+                var query = "SELECT * FROM Doctors";
+                using (var adapter = new MySqlDataAdapter(query, connection))
                 {
                     var table = new DataTable();
                     adapter.Fill(table);
@@ -351,72 +211,65 @@ namespace WindowsFormsApp1.Data
 
         public DataTable PobierzPacjentow()
         {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                string query = @"
-            SELECT 
-                Id,
-                Imie AS 'Imię',
-                Nazwisko,
-                CONVERT(varchar, DateOfBirth, 104) AS 'Data urodzenia',
-                PhoneNumber AS 'Numer telefonu',
-                PESEL
-            FROM Users
-            WHERE Id IN (SELECT UserId FROM UserRoles WHERE RoleName = 'Pacjent')";
+            var table = new DataTable();
 
-                using (var adapter = new SqlDataAdapter(query, connection))
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                
+                string query = @"
+                                SELECT 
+                                Id,
+                                Imie AS 'Imię',
+                                Nazwisko,
+                                DATE_FORMAT(DateOfBirth, '%d.%m.%Y') AS 'Data urodzenia',
+                                PhoneNumber AS 'Numer telefonu',
+                                PESEL
+                                FROM Users
+                                WHERE Id IN (SELECT UserId FROM UserRoles WHERE RoleName = 'Pacjent')";
+
+                using (var adapter = new MySqlDataAdapter(query, connection))
                 {
-                    DataTable table = new DataTable();
                     adapter.Fill(table);
-                    return table;
                 }
             }
+
+            return table;
         }
 
 
         public DataTable PobierzWszystkichPacjentow()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            var table = new DataTable();
+
+            using (var connection = new MySqlConnection(_connectionString))
             {
-                connection.Open();
-                var query = "SELECT * FROM dbo.Users";
-                using (var adapter = new SqlDataAdapter(query, connection))
+                string query = @"
+                SELECT 
+                u.Id,
+                u.Imie,
+                u.Nazwisko,
+                u.Email,
+                u.PhoneNumber AS 'PhoneNumber',
+                ur.RoleName AS 'Rola'
+                FROM Users u
+                LEFT JOIN UserRoles ur ON u.Id = ur.UserId
+                WHERE ur.RoleName = 'Pacjent' OR ur.RoleName IS NULL";
+
+                using (var adapter = new MySqlDataAdapter(query, connection))
                 {
-                    var table = new DataTable();
                     adapter.Fill(table);
-                    return table;
                 }
             }
+
+            return table;
         }
 
-        public DataTable PobierzPacjentowhe()
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                string query = @"
-            SELECT 
-                Id,
-                Imie AS 'Imię',
-                Nazwisko,
-                DateOfBirth AS 'Data urodzenia',
-                PhoneNumber AS 'Numer telefonu',
-                PESEL
-            FROM Users
-            WHERE Id IN (SELECT UserId FROM UserRoles WHERE RoleName = 'Pacjent')";
-
-                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                DataTable table = new DataTable();
-                adapter.Fill(table);
-                return table;
-            }
-        }
+      
 
 
         public void NadajUprawnieniaLekarza(int userId, string specjalizacja)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
@@ -424,55 +277,60 @@ namespace WindowsFormsApp1.Data
                     try
                     {
 
-                        var checkRoleQuery = @"SELECT COUNT(*) FROM dbo.UserRoles 
+                        var checkRoleQuery = @"SELECT COUNT(*) FROM UserRoles 
                                      WHERE UserId = @UserId AND RoleName = 'Lekarz'";
 
-                        using (var checkCommand = new SqlCommand(checkRoleQuery, connection, transaction))
+                        using (var checkCommand = new MySqlCommand(checkRoleQuery, connection, transaction))
                         {
                             checkCommand.Parameters.AddWithValue("@UserId", userId);
-                            if ((int)checkCommand.ExecuteScalar() > 0)
+
+                            long coutnt = Convert.ToInt64(checkCommand.ExecuteScalar());
+
+                            if(coutnt > 0)
                             {
                                 throw new Exception("Użytkownik już posiada rolę Lekarza.");
                             }
+
                         }
 
 
                         string imie = "", nazwisko = "";
-                        var queryUser = "SELECT Imie, Nazwisko FROM dbo.Users WHERE Id = @UserId";
+                       
+                        var queryUser = "SELECT Imie, Nazwisko FROM Users WHERE Id = @UserId";
 
-                        using (var command = new SqlCommand(queryUser, connection, transaction))
+                        using (var command = new MySqlCommand(queryUser, connection, transaction))
                         {
                             command.Parameters.AddWithValue("@UserId", userId);
                             using (var reader = command.ExecuteReader())
                             {
                                 if (reader.Read())
                                 {
-                                    imie = reader["Imie"].ToString();
-                                    nazwisko = reader["Nazwisko"].ToString();
+                                    imie = reader["Imie"]?.ToString() ?? "";
+                                    nazwisko = reader["Nazwisko"]?.ToString() ?? "";
                                 }
                                 else
                                 {
-                                    throw new Exception("Użytkownik nie istnieje!");
+                                    throw new Exception("user nie isniteje");
                                 }
                             }
                         }
 
 
-                        var insertRoleQuery = @"INSERT INTO dbo.UserRoles (UserId, RoleName) 
+                        var insertRoleQuery = @"INSERT INTO UserRoles (UserId, RoleName) 
                                       VALUES (@UserId, 'Lekarz')";
 
-                        using (var command = new SqlCommand(insertRoleQuery, connection, transaction))
+                        using (var command = new MySqlCommand(insertRoleQuery, connection, transaction))
                         {
                             command.Parameters.AddWithValue("@UserId", userId);
                             command.ExecuteNonQuery();
                         }
 
 
-                        var insertLekarzQuery = @"INSERT INTO dbo.Doctors 
+                        var insertLekarzQuery = @"INSERT INTO Doctors 
                                         (UserId, Imie, Nazwisko, Specjalizacja) 
                                         VALUES (@UserId, @Imie, @Nazwisko, @Specjalizacja)";
 
-                        using (var command = new SqlCommand(insertLekarzQuery, connection, transaction))
+                        using (var command = new MySqlCommand(insertLekarzQuery, connection, transaction))
                         {
                             command.Parameters.AddWithValue("@UserId", userId);
                             command.Parameters.AddWithValue("@Imie", imie);
@@ -495,14 +353,14 @@ namespace WindowsFormsApp1.Data
 
         public void ZabierzUprawnieniaLekarza(int userId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
 
 
                 string imie = "", nazwisko = "";
-                var queryLekarz = "SELECT Imie, Nazwisko FROM dbo.Doctors WHERE UserId = @UserId";
-                using (var commandLekarz = new SqlCommand(queryLekarz, connection))
+                var queryLekarz = "SELECT Imie, Nazwisko FROM Doctors WHERE UserId = @UserId";
+                using (var commandLekarz = new MySqlCommand(queryLekarz, connection))
                 {
                     commandLekarz.Parameters.AddWithValue("@UserId", userId);
                     using (var reader = commandLekarz.ExecuteReader())
@@ -520,16 +378,16 @@ namespace WindowsFormsApp1.Data
                 }
 
 
-                var queryDeleteLekarz = "DELETE FROM dbo.Doctors WHERE UserId = @UserId";
-                using (var commandDeleteLekarz = new SqlCommand(queryDeleteLekarz, connection))
+                var queryDeleteLekarz = "DELETE FROM Doctors WHERE UserId = @UserId";
+                using (var commandDeleteLekarz = new MySqlCommand(queryDeleteLekarz, connection))
                 {
                     commandDeleteLekarz.Parameters.AddWithValue("@UserId", userId);
                     commandDeleteLekarz.ExecuteNonQuery();
                 }
 
 
-                var queryDeleteRole = "DELETE FROM dbo.UserRoles WHERE UserId = @UserId AND RoleName = 'Lekarz'";
-                using (var commandDeleteRole = new SqlCommand(queryDeleteRole, connection))
+                var queryDeleteRole = "DELETE FROM UserRoles WHERE UserId = @UserId AND RoleName = 'Lekarz'";
+                using (var commandDeleteRole = new MySqlCommand(queryDeleteRole, connection))
                 {
                     commandDeleteRole.Parameters.AddWithValue("@UserId", userId);
                     commandDeleteRole.ExecuteNonQuery();
@@ -545,8 +403,8 @@ namespace WindowsFormsApp1.Data
             {
                 connection.Open();
 
-                var queryDeleteLekarz = "DELETE FROM dbo.Doctors WHERE UserId = @UserId";
-                var queryDeletePacjent = "DELETE FROM dbo.Users WHERE UserId = @UserId";
+                var queryDeleteLekarz = "DELETE FROM Doctors WHERE UserId = @UserId";
+                var queryDeletePacjent = "DELETE FROM Users WHERE UserId = @UserId";
 
                 using (var commandLekarz = new SqlCommand(queryDeleteLekarz, connection))
                 {
@@ -564,7 +422,7 @@ namespace WindowsFormsApp1.Data
 
         public int GetUserIdByEmailPublic(string email)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
                 return GetUserIdByEmail(email, connection);
@@ -573,12 +431,12 @@ namespace WindowsFormsApp1.Data
 
         public void DodajDoLekarzy(int userId, string imie, string nazwisko, string specjalizacja)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
-                var query = @"INSERT INTO dbo.Lekarze (UzytkownikId, Imie, Nazwisko, Specjalizacja)
+                var query = @"INSERT INTO Lekarze (UzytkownikId, Imie, Nazwisko, Specjalizacja)
                       VALUES (@UzytkownikId, @Imie, @Nazwisko, @Specjalizacja)";
-                using (var command = new SqlCommand(query, connection))
+                using (var command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@UzytkownikId", userId);
                     command.Parameters.AddWithValue("@Imie", imie);
@@ -592,10 +450,10 @@ namespace WindowsFormsApp1.Data
 
         public void UsunUzytkownika(int userId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand("DELETE FROM dbo.Users WHERE Id = @Id", connection);
+                var command = new MySqlCommand("DELETE FROM Users WHERE Id = @Id", connection);
                 command.Parameters.AddWithValue("@Id", userId);
                 command.ExecuteNonQuery();
             }
@@ -603,11 +461,11 @@ namespace WindowsFormsApp1.Data
 
         public int PoliczLekarzy()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
-                var query = "SELECT COUNT(*) FROM dbo.Doctors";
-                using (var command = new SqlCommand(query, connection))
+                var query = "SELECT COUNT(*) FROM Doctors";
+                using (var command = new MySqlCommand(query, connection))
                 {
                     return (int)command.ExecuteScalar();
                 }
@@ -616,11 +474,11 @@ namespace WindowsFormsApp1.Data
 
         public int PoliczPacjentow()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
-                var query = "SELECT COUNT(*) FROM dbo.UserRoles WHERE RoleName = 'Pacjent'";
-                using (var command = new SqlCommand(query, connection))
+                var query = "SELECT COUNT(*) FROM UserRoles WHERE RoleName = 'Pacjent'";
+                using (var command = new MySqlCommand(query, connection))
                 {
                     return (int)command.ExecuteScalar();
                 }
@@ -629,7 +487,7 @@ namespace WindowsFormsApp1.Data
 
         public void UsunWszystkieDane()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
@@ -638,14 +496,14 @@ namespace WindowsFormsApp1.Data
                     {
                         var zapytania = new[]
                         {
-                            "DELETE FROM dbo.UserRoles",
-                            "DELETE FROM dbo.Doctors",
-                            "DELETE FROM dbo.Users"
+                            "DELETE FROM UserRoles",
+                            "DELETE FROM Doctors",
+                            "DELETE FROM Users"
                         };
 
                         foreach (var query in zapytania)
                         {
-                            using (var command = new SqlCommand(query, connection, transaction))
+                            using (var command = new MySqlCommand(query, connection, transaction))
                             {
                                 command.ExecuteNonQuery();
                             }
@@ -662,127 +520,14 @@ namespace WindowsFormsApp1.Data
                 }
             }
         }
-
-        public DataTable GetDoctorVisits(int doctorId, bool upcomingOnly = true)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                var query = @"SELECT w.Id, w.DataWizyty, u.Imie, u.Nazwisko, u.PESEL, w.Status
-                      FROM dbo.Wizyty w
-                      INNER JOIN dbo.Users u ON w.PacjentId = u.Id
-                      WHERE w.LekarzId = @DoctorId" +
-                              (upcomingOnly ? " AND w.DataWizyty >= @Today AND w.Status = 'Zaplanowana'" : "") +
-                              " ORDER BY w.DataWizyty";
-
-                using (var command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@DoctorId", doctorId);
-                    if (upcomingOnly)
-                    {
-                        command.Parameters.AddWithValue("@Today", DateTime.Today);
-                    }
-
-                    var adapter = new SqlDataAdapter(command);
-                    var table = new DataTable();
-                    adapter.Fill(table);
-                    return table;
-                }
-            }
-        }
-
-        public DataTable GetPatientHistory(int patientId)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                var query = @"SELECT w.DataWizyty, d.Imie + ' ' + d.Nazwisko AS Lekarz, 
-                             w.Specjalizacja, w.Diagnoza, w.Zalecenia, w.Opis
-                      FROM dbo.Wizyty w
-                      INNER JOIN dbo.Doctors d ON w.LekarzId = d.Id
-                      WHERE w.PacjentId = @PatientId AND w.Status = 'Odbyta'
-                      ORDER BY w.DataWizyty DESC";
-
-                using (var command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@PatientId", patientId);
-
-                    var adapter = new SqlDataAdapter(command);
-                    var table = new DataTable();
-                    adapter.Fill(table);
-                    return table;
-                }
-            }
-        }
-
-        public bool CompleteVisit(int visitId, string diagnosis, string recommendations, string description)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                var query = @"UPDATE dbo.Wizyty 
-                      SET Status = 'Odbyta', 
-                          Diagnoza = @Diagnosis, 
-                          Zalecenia = @Recommendations, 
-                          Opis = @Description
-                      WHERE Id = @VisitId";
-
-                using (var command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@VisitId", visitId);
-                    command.Parameters.AddWithValue("@Diagnosis", diagnosis);
-                    command.Parameters.AddWithValue("@Recommendations", recommendations);
-                    command.Parameters.AddWithValue("@Description", description);
-
-                    return command.ExecuteNonQuery() > 0;
-                }
-            }
-        }
-
-        public int AddPrescription(int doctorId, int patientId, int? visitId, string medications, string notes)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                var query = @"INSERT INTO dbo.Recepty 
-                     (LekarzId, PacjentId, WizytaId, DataWystawienia, KodRecepty, Leki, Uwagi)
-                      VALUES 
-                     (@DoctorId, @PatientId, @VisitId, @IssueDate, @PrescriptionCode, @Medications, @Notes);
-                      SELECT SCOPE_IDENTITY();";
-
-                using (var command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@DoctorId", doctorId);
-                    command.Parameters.AddWithValue("@PatientId", patientId);
-                    command.Parameters.AddWithValue("@VisitId", visitId.HasValue ? (object)visitId.Value : DBNull.Value);
-                    command.Parameters.AddWithValue("@IssueDate", DateTime.Now);
-                    command.Parameters.AddWithValue("@PrescriptionCode", GeneratePrescriptionCode());
-                    command.Parameters.AddWithValue("@Medications", medications);
-                    command.Parameters.AddWithValue("@Notes", notes);
-
-                    return Convert.ToInt32(command.ExecuteScalar());
-                }
-            }
-        }
-        public DataTable PobierzDzisiejszeWizytyLekarza(int lekarzId)
-        {
-            using (var conn = new SqlConnection(_connectionString))
-            using (var cmd = new SqlCommand("SELECT w.Id, p.Imie, p.Nazwisko, w.Data, w.Opis FROM Wizyty w JOIN Pacjenci p ON w.PacjentId = p.Id WHERE w.LekarzId = @lekarzId AND CAST(w.Data AS DATE) = CAST(GETDATE() AS DATE)", conn))
-            {
-                cmd.Parameters.AddWithValue("@lekarzId", lekarzId);
-                var adapter = new SqlDataAdapter(cmd);
-                var table = new DataTable();
-                adapter.Fill(table);
-                return table;
-            }
-        }
+       
         public DataTable PobierzHistorieWizytPacjenta(int pacjentId)
         {
-            using (var conn = new SqlConnection(_connectionString))
-            using (var cmd = new SqlCommand("SELECT w.Data, l.Imie + ' ' + l.Nazwisko AS Lekarz, w.Diagnoza, w.Zalecenia FROM Wizyty w JOIN Lekarze l ON w.LekarzId = l.Id WHERE w.PacjentId = @pacjentId ORDER BY w.Data DESC", conn))
+            using (var conn = new MySqlConnection(_connectionString))
+            using (var cmd = new MySqlCommand("SELECT w.Data, l.Imie + ' ' + l.Nazwisko AS Lekarz, w.Diagnoza, w.Zalecenia FROM Wizyty w JOIN Lekarze l ON w.LekarzId = l.Id WHERE w.PacjentId = @pacjentId ORDER BY w.Data DESC", conn))
             {
                 cmd.Parameters.AddWithValue("@pacjentId", pacjentId);
-                var adapter = new SqlDataAdapter(cmd);
+                var adapter = new MySqlDataAdapter(cmd);
                 var table = new DataTable();
                 adapter.Fill(table);
                 return table;
@@ -791,13 +536,13 @@ namespace WindowsFormsApp1.Data
 
         public DataTable SzukajWizytPoImieniuNazwisku(int lekarzId, string imieNazwisko)
         {
-            using (var conn = new SqlConnection(_connectionString))
-            using (var cmd = new SqlCommand("SELECT w.Id, p.Imie, p.Nazwisko, w.Data, w.Opis FROM Wizyty w JOIN Pacjenci p ON w.PacjentId = p.Id WHERE w.LekarzId = @lekarzId AND (p.Imie + ' ' + p.Nazwisko LIKE @szukaj)", conn))
+            using (var conn = new MySqlConnection(_connectionString))
+            using (var cmd = new MySqlCommand("SELECT w.Id, p.Imie, p.Nazwisko, w.Data, w.Opis FROM Wizyty w JOIN Pacjenci p ON w.PacjentId = p.Id WHERE w.LekarzId = @lekarzId AND (p.Imie + ' ' + p.Nazwisko LIKE @szukaj)", conn))
             {
                 cmd.Parameters.AddWithValue("@lekarzId", lekarzId);
                 cmd.Parameters.AddWithValue("@szukaj", "%" + imieNazwisko + "%");
 
-                var adapter = new SqlDataAdapter(cmd);
+                var adapter = new MySqlDataAdapter(cmd);
                 var table = new DataTable();
                 adapter.Fill(table);
                 return table;
@@ -811,20 +556,20 @@ namespace WindowsFormsApp1.Data
 
         public DataTable PobierzWizytyLekarza(int lekarzId)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
                 string query = @"
-            SELECT w.Id, w.DataWizyty, w.Status, u.Imie + ' ' + u.Nazwisko AS Pacjent, u.Id AS PacjentId
-            FROM Wizyty w
-            JOIN Users u ON u.Id = w.PacjentId
-            WHERE w.LekarzId = @LekarzId
-            ORDER BY w.DataWizyty DESC";
+                                SELECT w.Id, w.DataWizyty, w.Status, u.Imie + ' ' + u.Nazwisko AS Pacjent, u.Id AS PacjentId
+                                FROM Wizyty w
+                                JOIN Users u ON u.Id = w.PacjentId
+                                WHERE w.LekarzId = @LekarzId
+                                ORDER BY w.DataWizyty DESC";
 
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@LekarzId", lekarzId);
 
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
                     DataTable table = new DataTable();
                     adapter.Fill(table);
 
@@ -836,16 +581,16 @@ namespace WindowsFormsApp1.Data
 
         public Wizyta PobierzSzczegolyWizyty(int wizytaId)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
                 string query = "SELECT * FROM Wizyty WHERE Id = @WizytaId";
 
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@WizytaId", wizytaId);
                     connection.Open();
 
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (MySqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.Read())
                         {
@@ -867,16 +612,16 @@ namespace WindowsFormsApp1.Data
 
         public void ZaktualizujWizyte(int wizytaId, string opis, string diagnoza, string zalecenia)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
                 string query = @"
-            UPDATE Wizyty
-            SET Opis = @Opis,
-                Diagnoza = @Diagnoza,
-                Zalecenia = @Zalecenia
-            WHERE Id = @WizytaId";
+                                UPDATE Wizyty
+                                SET Opis = @Opis,
+                                Diagnoza = @Diagnoza,
+                                Zalecenia = @Zalecenia
+                                WHERE Id = @WizytaId";
 
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Opis", string.IsNullOrEmpty(opis) ? DBNull.Value : (object)opis);
                     command.Parameters.AddWithValue("@Diagnoza", string.IsNullOrEmpty(diagnoza) ? DBNull.Value : (object)diagnoza);
@@ -891,13 +636,13 @@ namespace WindowsFormsApp1.Data
 
         public void WystawSkierowanie(int pacjentId, int lekarzId, string typ, string cel, int? wizytaId = null)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
                 string query = @"
             INSERT INTO Skierowania (WizytaId, PacjentId, LekarzId, DataWystawienia, Typ, Cel)
             VALUES (@WizytaId, @PacjentId, @LekarzId, @DataWystawienia, @Typ, @Cel)";
 
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@WizytaId", (object)wizytaId ?? DBNull.Value);
                     command.Parameters.AddWithValue("@PacjentId", pacjentId);
@@ -916,13 +661,13 @@ namespace WindowsFormsApp1.Data
 
         public void WystawRecepte(int pacjentId, int lekarzId, string kodRecepty, string leki, int? wizytaId = null)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
                 string query = @"
             INSERT INTO Recepty (WizytaId, PacjentId, LekarzId, DataWystawienia, KodRecepty, Leki)
             VALUES (@WizytaId, @PacjentId, @LekarzId, @DataWystawienia, @KodRecepty, @Leki)";
 
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@WizytaId", (object)wizytaId ?? DBNull.Value);
                     command.Parameters.AddWithValue("@PacjentId", pacjentId);
@@ -936,22 +681,23 @@ namespace WindowsFormsApp1.Data
                 }
             }
         }
+        
         public DataTable PobierzHistorieWizyt(int patientId)
         {
             DataTable table = new DataTable();
 
-            using (var connection = new SqlConnection(_connectionString))
-            using (var command = new SqlCommand(
+            using (var connection = new MySqlConnection(_connectionString))
+            using (var command = new MySqlCommand(
                 @"SELECT 
                 w.Id,
                 w.DataWizyty AS 'Data wizyty',
                 d.Imie + ' ' + d.Nazwisko AS 'Lekarz',
                 w.Diagnoza,
                 w.Status
-              FROM Wizyty w
-              INNER JOIN Doctors d ON w.LekarzId = d.Id
-              WHERE w.PacjentId = @PatientId
-              ORDER BY w.DataWizyty DESC", connection))
+                  FROM Wizyty w
+                  INNER JOIN Doctors d ON w.LekarzId = d.Id
+                  WHERE w.PacjentId = @PatientId
+                  ORDER BY w.DataWizyty DESC", connection))
             {
                 command.Parameters.AddWithValue("@PatientId", patientId);
 
@@ -978,8 +724,8 @@ namespace WindowsFormsApp1.Data
 
         public int DodajPacjenta(Patient patient)
         {
-            using (var connection = new SqlConnection(_connectionString))
-            using (var command = new SqlCommand(
+            using (var connection = new MySqlConnection(_connectionString))
+            using (var command = new MySqlCommand(
                 @"INSERT INTO Users (
                 Imie, Nazwisko, DateOfBirth, PESEL, 
                 Adres, Miasto, KodPocztowy, PhoneNumber, Email, IsActive
@@ -997,7 +743,7 @@ namespace WindowsFormsApp1.Data
                     connection.Open();
                     int newId = (int)command.ExecuteScalar();
 
-                    // Dodaj rolę pacjenta
+                   
                     AddUserRole(newId, "Pacjent");
 
                     return newId;
@@ -1012,8 +758,8 @@ namespace WindowsFormsApp1.Data
 
         public void AktualizujPacjenta(Patient patient)
         {
-            using (var connection = new SqlConnection(_connectionString))
-            using (var command = new SqlCommand(
+            using (var connection = new MySqlConnection(_connectionString))
+            using (var command = new MySqlCommand(
                 @"UPDATE Users SET
                 Imie = @Imie,
                 Nazwisko = @Nazwisko,
@@ -1048,16 +794,16 @@ namespace WindowsFormsApp1.Data
 
         public Patient PobierzDanePacjenta(int patientId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
                 string query = @"
-            SELECT Id, Imie, Nazwisko, Email, DateOfBirth, PESEL, 
+                   SELECT Id, Imie, Nazwisko, Email, DateOfBirth, PESEL, 
                    PhoneNumber, Adres, Miasto, KodPocztowy
-            FROM Users
-            WHERE Id = @PatientId";
+                   FROM Users
+                   WHERE Id = @PatientId";
 
-                using (var command = new SqlCommand(query, connection))
+                using (var command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@PatientId", patientId);
 
@@ -1086,7 +832,7 @@ namespace WindowsFormsApp1.Data
         }
 
 
-        private void SetPatientParameters(SqlCommand command, Patient patient)
+        private void SetPatientParameters(MySqlCommand command, Patient patient)
         {
             command.Parameters.AddWithValue("@Imie", patient.Imie);
             command.Parameters.AddWithValue("@Nazwisko", patient.Nazwisko);
@@ -1102,8 +848,8 @@ namespace WindowsFormsApp1.Data
 
         private void AddUserRole(int userId, string roleName)
         {
-            using (var connection = new SqlConnection(_connectionString))
-            using (var command = new SqlCommand(
+            using (var connection = new MySqlConnection(_connectionString))
+            using (var command = new MySqlCommand(
                 @"IF NOT EXISTS (SELECT 1 FROM UserRoles WHERE UserId = @UserId AND RoleName = @RoleName)
               BEGIN
                   INSERT INTO UserRoles (UserId, RoleName)
@@ -1122,7 +868,7 @@ namespace WindowsFormsApp1.Data
         {
             var lekarze = new List<Lekarz>();
 
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
                 string query = @"SELECT d.Id, d.Imie, d.Nazwisko, d.Specjalizacja
@@ -1131,7 +877,7 @@ namespace WindowsFormsApp1.Data
                         JOIN UserRoles ur ON u.Id = ur.UserId
                         WHERE ur.RoleName = 'Lekarz'";
 
-                using (var command = new SqlCommand(query, connection))
+                using (var command = new MySqlCommand(query, connection))
                 {
                     using (var reader = command.ExecuteReader())
                     {
@@ -1154,7 +900,7 @@ namespace WindowsFormsApp1.Data
 
         public bool CzyLekarzMaWolnyTermin(int lekarzId, DateTime dataWizyty)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
 
@@ -1164,7 +910,7 @@ namespace WindowsFormsApp1.Data
                         AND DataWizyty = @dataWizyty
                         AND Status != 'Anulowana'";
 
-                using (var command = new SqlCommand(query, connection))
+                using (var command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@lekarzId", lekarzId);
                     command.Parameters.AddWithValue("@dataWizyty", dataWizyty);
@@ -1177,7 +923,7 @@ namespace WindowsFormsApp1.Data
 
         public int DodajWizyte(Wizyta wizyta)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
                 string query = @"INSERT INTO Wizyty 
@@ -1185,7 +931,7 @@ namespace WindowsFormsApp1.Data
                         VALUES (@LekarzId, @PacjentId, @DataWizyty, @Status, @Opis, @Diagnoza, @Zalecenia, @Specjalizacja);
                         SELECT SCOPE_IDENTITY();";
 
-                using (var command = new SqlCommand(query, connection))
+                using (var command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@LekarzId", wizyta.LekarzId);
                     command.Parameters.AddWithValue("@PacjentId", wizyta.PacjentId);
@@ -1203,7 +949,7 @@ namespace WindowsFormsApp1.Data
 
         public void AktualizujWizyte(Wizyta wizyta)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
                 string query = @"UPDATE Wizyty 
@@ -1212,7 +958,7 @@ namespace WindowsFormsApp1.Data
                             Zalecenia = @Zalecenia
                         WHERE Id = @Id";
 
-                using (var command = new SqlCommand(query, connection))
+                using (var command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Id", wizyta.Id);
                     command.Parameters.AddWithValue("@Status", wizyta.Status);
@@ -1224,51 +970,10 @@ namespace WindowsFormsApp1.Data
             }
         }
 
-        public List<Wizyta> PobierzWizytyPacjenta(int pacjentId)
-        {
-            var wizyty = new List<Wizyta>();
-
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                string query = @"SELECT w.Id, w.LekarzId, w.PacjentId, w.DataWizyty, w.Status, 
-                        w.Opis, w.Diagnoza, w.Zalecenia, w.Specjalizacja,
-                        d.Imie AS LekarzImie, d.Nazwisko AS LekarzNazwisko
-                        FROM Wizyty w
-                        JOIN Doctors d ON w.LekarzId = d.Id
-                        WHERE w.PacjentId = @pacjentId
-                        ORDER BY w.DataWizyty DESC";
-
-                using (var command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@pacjentId", pacjentId);
-
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            wizyty.Add(new Wizyta
-                            {
-                                Id = reader.GetInt32(0),
-                                LekarzId = reader.GetInt32(1),
-                                PacjentId = reader.GetInt32(2),
-                                DataWizyty = reader.GetDateTime(3),
-                                Status = reader.GetString(4),
-                                Opis = reader.IsDBNull(5) ? null : reader.GetString(5),
-                                Diagnoza = reader.IsDBNull(6) ? null : reader.GetString(6),
-                                Zalecenia = reader.IsDBNull(7) ? null : reader.GetString(7),
-                                Specjalizacja = reader.IsDBNull(8) ? null : reader.GetString(8)
-                            });
-                        }
-                    }
-                }
-            }
-
-            return wizyty;
-        }
+        
         public void DodajDokument(DokumentPacjenta dokument)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
                 var cmd = connection.CreateCommand();
@@ -1287,7 +992,7 @@ namespace WindowsFormsApp1.Data
         {
             var lista = new List<DokumentPacjenta>();
 
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
                 var cmd = connection.CreateCommand();
@@ -1328,7 +1033,7 @@ namespace WindowsFormsApp1.Data
 
         public void UsunDokument(int dokumentId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
                 var cmd = connection.CreateCommand();
@@ -1340,7 +1045,7 @@ namespace WindowsFormsApp1.Data
 
         public void WyslijPowiadomienie(int pacjentId, string tresc)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
                 var cmd = connection.CreateCommand();
@@ -1354,23 +1059,26 @@ namespace WindowsFormsApp1.Data
             }
         }
 
+        //to sie przyda
 
         public void ZmienHasloLekarza(int lekarzId, string noweHaslo)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
                 var cmd = connection.CreateCommand();
                 cmd.CommandText = "UPDATE Lekarze SET Haslo = @haslo WHERE Id = @id";
-                cmd.Parameters.AddWithValue("@haslo", noweHaslo); // Można zahashować!
+                cmd.Parameters.AddWithValue("@haslo", noweHaslo); 
                 cmd.Parameters.AddWithValue("@id", lekarzId);
                 cmd.ExecuteNonQuery();
             }
         }
 
+
+        //to sie przyda
         public void UmowWizyte(int lekarzId, int pacjentId, DateTime data, string specjalizacja)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
                 var cmd = connection.CreateCommand();
@@ -1383,17 +1091,18 @@ namespace WindowsFormsApp1.Data
             }
         }
 
+       
         public  DataTable PobierzWizytyDlaLekarza(int lekarzId, DateTime data)
         {
             DataTable dt = new DataTable();
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
                 var cmd = connection.CreateCommand();
                 cmd.CommandText = "SELECT * FROM Wizyty WHERE LekarzId = @lekarzId AND CAST(DataWizyty AS DATE) = @data";
                 cmd.Parameters.AddWithValue("@lekarzId", lekarzId);
                 cmd.Parameters.AddWithValue("@data", data);
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 adapter.Fill(dt);
             }
             return dt;
@@ -1402,10 +1111,10 @@ namespace WindowsFormsApp1.Data
 
         public  void ZapiszOpisIWyniki(int wizytaId, string opis, string diagnoza, string zalecenia)
         {
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (MySqlConnection conn = new MySqlConnection(_connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE Wizyty SET Opis = @opis, Diagnoza = @diagnoza, Zalecenia = @zalecenia WHERE Id = @wizytaId", conn);
+                MySqlCommand cmd = new MySqlCommand("UPDATE Wizyty SET Opis = @opis, Diagnoza = @diagnoza, Zalecenia = @zalecenia WHERE Id = @wizytaId", conn);
                 cmd.Parameters.AddWithValue("@opis", opis);
                 cmd.Parameters.AddWithValue("@diagnoza", diagnoza);
                 cmd.Parameters.AddWithValue("@zalecenia", zalecenia);
@@ -1414,13 +1123,38 @@ namespace WindowsFormsApp1.Data
             }
         }
 
+
+        private bool SprawdzCzyLekarzIstnieje(int lekarzId, MySqlConnection connection)
+        {
+            var cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT COUNT(*) FROM Doctors WHERE Id = @Id";
+            cmd.Parameters.AddWithValue("@Id", lekarzId);
+            return (int)cmd.ExecuteScalar() > 0;
+        }
+
+        private bool SprawdzCzyPacjentIstnieje(int pacjentId, MySqlConnection connection)
+        {
+            var cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT COUNT(*) FROM Users WHERE Id = @Id AND Rola = 'Pacjent'";
+            cmd.Parameters.AddWithValue("@Id", pacjentId);
+            return (int)cmd.ExecuteScalar() > 0;
+        }
+
+        private bool SprawdzCzyWizytaIstnieje(int wizytaId, MySqlConnection connection)
+        {
+            var cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT COUNT(*) FROM Wizyty WHERE Id = @Id";
+            cmd.Parameters.AddWithValue("@Id", wizytaId);
+            return (int)cmd.ExecuteScalar() > 0;
+        }
+
         public bool WystawRecepte(int? wizytaId, int pacjentId, int lekarzId, string leki, string uwagi, string kodRecepty)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
 
-                // Najpierw sprawdź czy lekarz i pacjent istnieją
+                
                 if (!SprawdzCzyLekarzIstnieje(lekarzId, connection))
                 {
                     throw new Exception($"Lekarz o ID {lekarzId} nie istnieje w bazie danych");
@@ -1431,7 +1165,7 @@ namespace WindowsFormsApp1.Data
                     throw new Exception($"Pacjent o ID {pacjentId} nie istnieje w bazie danych");
                 }
 
-                // Jeśli podano wizytę, sprawdź czy istnieje
+               
                 if (wizytaId.HasValue && !SprawdzCzyWizytaIstnieje(wizytaId.Value, connection))
                 {
                     throw new Exception($"Wizyta o ID {wizytaId} nie istnieje w bazie danych");
@@ -1455,29 +1189,7 @@ namespace WindowsFormsApp1.Data
             }
         }
 
-        private bool SprawdzCzyLekarzIstnieje(int lekarzId, SqlConnection connection)
-        {
-            var cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT COUNT(*) FROM Doctors WHERE Id = @Id";
-            cmd.Parameters.AddWithValue("@Id", lekarzId);
-            return (int)cmd.ExecuteScalar() > 0;
-        }
-
-        private bool SprawdzCzyPacjentIstnieje(int pacjentId, SqlConnection connection)
-        {
-            var cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT COUNT(*) FROM Users WHERE Id = @Id AND Rola = 'Pacjent'";
-            cmd.Parameters.AddWithValue("@Id", pacjentId);
-            return (int)cmd.ExecuteScalar() > 0;
-        }
-
-        private bool SprawdzCzyWizytaIstnieje(int wizytaId, SqlConnection connection)
-        {
-            var cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT COUNT(*) FROM Wizyty WHERE Id = @Id";
-            cmd.Parameters.AddWithValue("@Id", wizytaId);
-            return (int)cmd.ExecuteScalar() > 0;
-        }
+        
 
 
         public  void WystawSkierowanie(int wizytaId, int pacjentId, int lekarzId, string typ, string cel, string uwagi)
@@ -1500,10 +1212,10 @@ namespace WindowsFormsApp1.Data
 
         public  void ZmienEmail(int userId, string email)
         {
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE Users SET Email = @Email WHERE Id = @Id", conn);
+                connection.Open();
+                MySqlCommand cmd = new MySqlCommand("UPDATE Users SET Email = @Email WHERE Id = @Id", connection);
                 cmd.Parameters.AddWithValue("@Email", email);
                 cmd.Parameters.AddWithValue("@Id", userId);
                 cmd.ExecuteNonQuery();
@@ -1511,10 +1223,10 @@ namespace WindowsFormsApp1.Data
         }
         public  void ZmienHaslo(int userId, string haslo)
         {
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE Users SET Haslo = @Haslo WHERE Id = @Id", conn);
+                connection.Open();
+                MySqlCommand cmd = new MySqlCommand("UPDATE Users SET Haslo = @Haslo WHERE Id = @Id", connection);
                 cmd.Parameters.AddWithValue("@Haslo", haslo);
                 cmd.Parameters.AddWithValue("@Id", userId);
                 cmd.ExecuteNonQuery();
@@ -1522,7 +1234,7 @@ namespace WindowsFormsApp1.Data
         }
         public int PobierzIdLekarza(int userId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
                 var cmd = connection.CreateCommand();

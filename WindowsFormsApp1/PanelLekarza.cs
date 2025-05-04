@@ -187,7 +187,7 @@ namespace WindowsFormsApp1
         {
             try
             {
-                dataGridViewPacjenci.DataSource = _dbHelper.PobierzPacjentowhe();
+                dataGridViewPacjenci.DataSource = _dbHelper.PobierzPacjentow();
 
                 
                 dataGridViewPacjenci.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

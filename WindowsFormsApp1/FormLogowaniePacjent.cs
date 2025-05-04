@@ -58,25 +58,25 @@ namespace WindowsFormsApp1
             catch (Exception ex)
             {
                 MessageBox.Show($"Błąd logowania: {ex.Message}\n\nSzczegóły: {ex.StackTrace}",
-                              "Krytyczny błąd",
+                              "blad jak ciul",
                               MessageBoxButtons.OK,
                               MessageBoxIcon.Error);
             }
         }
 
-        private bool ValidateLoginForm(string email, string password)
+        private bool ValidateLoginForm(string email, string haslo)
         {
             if (string.IsNullOrEmpty(email))
             {
-                MessageBox.Show("Email jest wymagany!", "Błąd",
+                MessageBox.Show("Email jest wymagany!", "powazny blad panie kolego",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textBoxLoginPacjent.Focus();
                 return false;
             }
 
-            if (string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(haslo))
             {
-                MessageBox.Show("Hasło jest wymagane!", "Błąd",
+                MessageBox.Show("Hasło jest wymagane!", "powazny blad panie kolego",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textBoxHasloPacjent.Focus();
                 return false;

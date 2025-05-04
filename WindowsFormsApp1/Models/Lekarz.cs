@@ -12,8 +12,7 @@ namespace WindowsFormsApp1.Models
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
         public string Specjalizacja { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
+       
     }
 
 }

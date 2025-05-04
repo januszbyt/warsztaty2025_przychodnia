@@ -47,7 +47,7 @@ namespace WindowsFormsApp1.Forms
             {
                 if (_dbHelper == null)
                 {
-                    MessageBox.Show("Błąd połączenia z bazą danych");
+                    MessageBox.Show("nie loncze z bazom");
                     return;
                 }
 
@@ -62,7 +62,7 @@ namespace WindowsFormsApp1.Forms
 
                 var uzytkownik = _dbHelper.ZalogujUzytkownika(email, haslo);
 
-                if (uzytkownik?.Rola?.Nazwa == null)
+                if (uzytkownik == null)
                 {
                     MessageBox.Show("Nieprawidłowe dane logowania lub brak przypisanej roli.");
                     return;

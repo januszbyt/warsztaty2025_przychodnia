@@ -56,7 +56,6 @@ namespace WindowsFormsApp1.Forms
                 Miasto = miasto,
                 Adres = adres,
                 KodPocztowy = kodPocztowy,
-
             };
 
             try
@@ -65,7 +64,7 @@ namespace WindowsFormsApp1.Forms
                 _dbHelper.RegisterUser(user, haslo, rola);
                 MessageBox.Show("Użytkownik zarejestrowany pomyślnie!");
             }
-            catch (SqlException ex) when (ex.Number == 2627) 
+            catch (MySqlException ex) when (ex.Number == 2627) 
             {
                 MessageBox.Show("Ten email jest już zarejestrowany.");
             }

@@ -8,10 +8,10 @@ namespace WindowsFormsApp1
     {
         public FormPanelAdmin()
         {
-            InitializeComponent(); // Inicjalizuje kontrolki z FormPanelAdmin.Designer.cs
+            InitializeComponent(); 
         }
 
-        // Obsługuje kliknięcie przycisku "Zarządzaj Lekarzami"
+        
         private void buttonZarzadzajLekarzami_Click(object sender, EventArgs e)
         {
             
@@ -19,23 +19,23 @@ namespace WindowsFormsApp1
             formLekarze.ShowDialog();
         }
 
-        // Obsługuje kliknięcie przycisku "Zarządzaj Pacjentami"
+        
         private void buttonZarzadzajPacjentami_Click(object sender, EventArgs e)
         {
-            // Otwarcie formularza zarządzania pacjentami
+            
             FormZarzadzajPacjentami formPacjenci = new FormZarzadzajPacjentami();
             formPacjenci.ShowDialog();
         }
 
-        // Obsługuje kliknięcie przycisku "Wyloguj"
+        
         private void buttonWyloguj_Click(object sender, EventArgs e)
         {
-            // Możesz dodać kod do wylogowania użytkownika, np. czyszczenie sesji
+           
 
-            // Otwarcie formularza logowania i zamknięcie bieżącego formularza
-            FormLogowanieAdmin formLogin = new FormLogowanieAdmin(); // Zakładając, że masz formularz logowania o nazwie FormLogin
+            
+            FormLogowanieAdmin formLogin = new FormLogowanieAdmin(); 
             formLogin.Show();
-            this.Close(); // Zamykamy formularz admina
+            this.Close(); 
         }
 
         private void FormPanelAdmin_Load(object sender, EventArgs e)
