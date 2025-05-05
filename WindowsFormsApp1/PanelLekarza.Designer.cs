@@ -49,6 +49,8 @@
             this.dataGridViewWizyty = new System.Windows.Forms.DataGridView();
             this.tabPagePacjenci = new System.Windows.Forms.TabPage();
             this.tabPageEdycjaWizyty = new System.Windows.Forms.TabPage();
+            this.buttonpokapacjentow = new System.Windows.Forms.Button();
+            this.buttonZatwierdzSkierowanie = new System.Windows.Forms.Button();
             this.buttonZatwierdzRecepte = new System.Windows.Forms.Button();
             this.dataGridViewPacjenci = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
@@ -62,8 +64,6 @@
             this.buttonZmienHaslo = new System.Windows.Forms.Button();
             this.txtHaslo = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
-            this.buttonZatwierdzSkierowanie = new System.Windows.Forms.Button();
-            this.buttonpokapacjentow = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPageWizyty.SuspendLayout();
@@ -112,7 +112,7 @@
             // buttonWyloguj
             // 
             this.buttonWyloguj.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.buttonWyloguj.Location = new System.Drawing.Point(933, 6);
+            this.buttonWyloguj.Location = new System.Drawing.Point(971, 39);
             this.buttonWyloguj.Name = "buttonWyloguj";
             this.buttonWyloguj.Size = new System.Drawing.Size(62, 26);
             this.buttonWyloguj.TabIndex = 9;
@@ -289,6 +289,27 @@
             this.tabPageEdycjaWizyty.Text = "Edycja Wizyty";
             this.tabPageEdycjaWizyty.UseVisualStyleBackColor = true;
             // 
+            // buttonpokapacjentow
+            // 
+            this.buttonpokapacjentow.Location = new System.Drawing.Point(961, 6);
+            this.buttonpokapacjentow.Name = "buttonpokapacjentow";
+            this.buttonpokapacjentow.Size = new System.Drawing.Size(75, 23);
+            this.buttonpokapacjentow.TabIndex = 27;
+            this.buttonpokapacjentow.Text = "Pokaz";
+            this.buttonpokapacjentow.UseVisualStyleBackColor = true;
+            this.buttonpokapacjentow.Click += new System.EventHandler(this.buttonpokapacjentow_Click);
+            // 
+            // buttonZatwierdzSkierowanie
+            // 
+            this.buttonZatwierdzSkierowanie.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.buttonZatwierdzSkierowanie.Location = new System.Drawing.Point(120, 505);
+            this.buttonZatwierdzSkierowanie.Name = "buttonZatwierdzSkierowanie";
+            this.buttonZatwierdzSkierowanie.Size = new System.Drawing.Size(113, 32);
+            this.buttonZatwierdzSkierowanie.TabIndex = 26;
+            this.buttonZatwierdzSkierowanie.Text = "Zatwierdz";
+            this.buttonZatwierdzSkierowanie.UseVisualStyleBackColor = false;
+            this.buttonZatwierdzSkierowanie.Click += new System.EventHandler(this.buttonZatwierdzSkierowanie_Click);
+            // 
             // buttonZatwierdzRecepte
             // 
             this.buttonZatwierdzRecepte.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -413,27 +434,6 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(100, 20);
             this.txtEmail.TabIndex = 12;
-            // 
-            // buttonZatwierdzSkierowanie
-            // 
-            this.buttonZatwierdzSkierowanie.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.buttonZatwierdzSkierowanie.Location = new System.Drawing.Point(120, 505);
-            this.buttonZatwierdzSkierowanie.Name = "buttonZatwierdzSkierowanie";
-            this.buttonZatwierdzSkierowanie.Size = new System.Drawing.Size(113, 32);
-            this.buttonZatwierdzSkierowanie.TabIndex = 26;
-            this.buttonZatwierdzSkierowanie.Text = "Zatwierdz";
-            this.buttonZatwierdzSkierowanie.UseVisualStyleBackColor = false;
-            this.buttonZatwierdzSkierowanie.Click += new System.EventHandler(this.buttonZatwierdzSkierowanie_Click);
-            // 
-            // buttonpokapacjentow
-            // 
-            this.buttonpokapacjentow.Location = new System.Drawing.Point(961, 6);
-            this.buttonpokapacjentow.Name = "buttonpokapacjentow";
-            this.buttonpokapacjentow.Size = new System.Drawing.Size(75, 23);
-            this.buttonpokapacjentow.TabIndex = 27;
-            this.buttonpokapacjentow.Text = "Pokaz";
-            this.buttonpokapacjentow.UseVisualStyleBackColor = true;
-            this.buttonpokapacjentow.Click += new System.EventHandler(this.buttonpokapacjentow_Click);
             // 
             // PanelLekarza
             // 

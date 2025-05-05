@@ -69,32 +69,45 @@ namespace WindowsFormsApp1
             }
         }
 
+       
 
         private void buttonZabierzUprawnienia_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count > 0)
+            if (dataGridView1.SelectedRows.Count == 0)
             {
-                selectedUserId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
+                MessageBox.Show("Wybierz użytkownika z listy", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                var confirm = MessageBox.Show("Czy na pewno chcesz zabrać uprawnienia lekarza?", "Potwierdzenie", MessageBoxButtons.YesNo);
-                if (confirm == DialogResult.Yes)
+            int userId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
+
+            try
+            {
+                string status = _dbHelper.SprawdzStatusLekarza(userId);
+
+                var potwierdzenie = MessageBox.Show(
+                    $"Czy na pewno chcesz odebrać uprawnienia lekarza?\n\n{status}",
+                    "Potwierdzenie",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (potwierdzenie == DialogResult.Yes)
                 {
-                    try
-                    {
-                        _dbHelper.ZabierzUprawnieniaLekarza(selectedUserId);
-                        MessageBox.Show("Zabrano uprawnienia lekarza.");
-                        RefreshGrid();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Błąd: " + ex.Message);
-                    }
+                    _dbHelper.ZabierzUprawnieniaLekarza(userId);
+                    MessageBox.Show("Pomyślnie odebrano uprawnienia lekarza.", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    OdswiezDane();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Zaznacz użytkownika z listy.");
+                MessageBox.Show($"Błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void OdswiezDane()
+        {
+            dataGridView1.DataSource = _dbHelper.PobierzListeLekarzy();
+            dataGridView1.Refresh();
         }
 
         private void buttonUsunRekordy_Click(object sender, EventArgs e)

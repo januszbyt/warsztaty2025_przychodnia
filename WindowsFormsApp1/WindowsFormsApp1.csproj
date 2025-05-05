@@ -128,12 +128,6 @@
   <ItemGroup>
     <Compile Include="Data\DataBaseHelper.cs" />
     <Compile Include="Data\PrzychodniaContext.cs" />
-    <Compile Include="FormAdminPanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAdminPanel.Designer.cs">
-      <DependentUpon>FormAdminPanel.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormLogowanieAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,43 +197,10 @@
     <Compile Include="PanelLekarza.Designer.cs">
       <DependentUpon>PanelLekarza.cs</DependentUpon>
     </Compile>
-    <Compile Include="PanelLekarzaERecepty.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PanelLekarzaERecepty.Designer.cs">
-      <DependentUpon>PanelLekarzaERecepty.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PanelLekarzaESkierowania.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PanelLekarzaESkierowania.Designer.cs">
-      <DependentUpon>PanelLekarzaESkierowania.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PanelLekarzaEZwolnienia.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PanelLekarzaEZwolnienia.Designer.cs">
-      <DependentUpon>PanelLekarzaEZwolnienia.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PanelLekarzaPacjenci.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PanelLekarzaPacjenci.Designer.cs">
-      <DependentUpon>PanelLekarzaPacjenci.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PanelLekarzaWizyty.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PanelLekarzaWizyty.Designer.cs">
-      <DependentUpon>PanelLekarzaWizyty.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FormAdminPanel.resx">
-      <DependentUpon>FormAdminPanel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormLogowanieAdmin.resx">
       <DependentUpon>FormLogowanieAdmin.cs</DependentUpon>
     </EmbeddedResource>
@@ -269,9 +230,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PanelLekarza.resx">
       <DependentUpon>PanelLekarza.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PanelLekarzaWizyty.resx">
-      <DependentUpon>PanelLekarzaWizyty.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

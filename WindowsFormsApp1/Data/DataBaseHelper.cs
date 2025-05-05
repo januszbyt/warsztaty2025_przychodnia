@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
+using System.Text;
 
 
 
@@ -264,7 +265,34 @@ namespace WindowsFormsApp1.Data
             return table;
         }
 
-      
+
+        public DataTable PobierzListeLekarzy()
+        {
+            var table = new DataTable();
+
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                var query = @"
+            SELECT 
+                u.Id,
+                u.Imie AS 'Imię',
+                u.Nazwisko,
+                d.Specjalizacja,
+                u.Email
+            FROM Users u
+            JOIN UserRoles ur ON u.Id = ur.UserId
+            LEFT JOIN Doctors d ON u.Id = d.UserId
+            WHERE ur.RoleName = 'Lekarz'";
+
+                using (var adapter = new MySqlDataAdapter(query, connection))
+                {
+                    adapter.Fill(table);
+                }
+            }
+
+            return table;
+        }
+
 
 
         public void NadajUprawnieniaLekarza(int userId, string specjalizacja)
@@ -356,69 +384,128 @@ namespace WindowsFormsApp1.Data
             using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
-
-
-                string imie = "", nazwisko = "";
-                var queryLekarz = "SELECT Imie, Nazwisko FROM Doctors WHERE UserId = @UserId";
-                using (var commandLekarz = new MySqlCommand(queryLekarz, connection))
+                using (var transaction = connection.BeginTransaction())
                 {
-                    commandLekarz.Parameters.AddWithValue("@UserId", userId);
-                    using (var reader = commandLekarz.ExecuteReader())
+                    try
+                    {
+                        
+                        bool maRoleLekarza = false;
+                        var checkRoleQuery = "SELECT COUNT(*) FROM UserRoles WHERE UserId = @UserId AND TRIM(LOWER(RoleName)) = 'Lekarz'";
+
+                        using (var checkCmd = new MySqlCommand(checkRoleQuery, connection, transaction))
+                        {
+                            checkCmd.Parameters.AddWithValue("@UserId", userId);
+                            maRoleLekarza = Convert.ToInt32(checkCmd.ExecuteScalar()) > 0;
+                        }
+
+                        if (!maRoleLekarza)
+                        {
+                            throw new Exception("Użytkownik nie ma przypisanej roli 'Lekarz'.");
+                        }
+
+                        
+                        var deleteDoctorQuery = "DELETE FROM Doctors WHERE UserId = @UserId";
+                        int affectedRows;
+                        using (var doctorCmd = new MySqlCommand(deleteDoctorQuery, connection, transaction))
+                        {
+                            doctorCmd.Parameters.AddWithValue("@UserId", userId);
+                            affectedRows = doctorCmd.ExecuteNonQuery();
+                        }
+
+                        if (affectedRows == 0)
+                        {
+                            throw new Exception("Użytkownik ma rolę 'Lekarz', ale nie ma powiązanego wpisu w tabeli Doctors.");
+                        }
+
+                        
+                        var deleteRoleQuery = "DELETE FROM UserRoles WHERE UserId = @UserId AND TRIM(LOWER(RoleName)) = 'lekarz'";
+                        using (var roleCmd = new MySqlCommand(deleteRoleQuery, connection, transaction))
+                        {
+                            roleCmd.Parameters.AddWithValue("@UserId", userId);
+                            roleCmd.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                        MessageBox.Show("Pomyślnie odebrano uprawnienia lekarza.");
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Błąd podczas odbierania uprawnień lekarza: " + ex.Message);
+                    }
+                }
+            }
+        }
+
+
+
+
+
+        public string SprawdzStatusLekarza(int userId)
+        {
+            var sb = new StringBuilder();
+
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                
+                var queryUser = "SELECT Imie, Nazwisko FROM Users WHERE Id = @UserId";
+                using (var cmd = new MySqlCommand(queryUser, connection))
+                {
+                    cmd.Parameters.AddWithValue("@UserId", userId);
+                    using (var reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            imie = reader.GetString(0);
-                            nazwisko = reader.GetString(1);
+                            sb.AppendLine($"Użytkownik: {reader["Imie"]} {reader["Nazwisko"]}");
                         }
                         else
                         {
-                            throw new Exception("Nie znaleziono lekarza o podanym Id.");
+                            return "Użytkownik nie istnieje";
                         }
                     }
                 }
 
-
-                var queryDeleteLekarz = "DELETE FROM Doctors WHERE UserId = @UserId";
-                using (var commandDeleteLekarz = new MySqlCommand(queryDeleteLekarz, connection))
+                
+                var queryRoles = "SELECT RoleName FROM UserRoles WHERE UserId = @UserId";
+                using (var cmd = new MySqlCommand(queryRoles, connection))
                 {
-                    commandDeleteLekarz.Parameters.AddWithValue("@UserId", userId);
-                    commandDeleteLekarz.ExecuteNonQuery();
+                    cmd.Parameters.AddWithValue("@UserId", userId);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        sb.Append("Przypisane role: ");
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                sb.Append($"{reader["RoleName"]}, ");
+                            }
+                        }
+                        else
+                        {
+                            sb.Append("brak ról");
+                        }
+                        sb.AppendLine();
+                    }
                 }
 
-
-                var queryDeleteRole = "DELETE FROM UserRoles WHERE UserId = @UserId AND RoleName = 'Lekarz'";
-                using (var commandDeleteRole = new MySqlCommand(queryDeleteRole, connection))
+                
+                var queryDoctor = "SELECT Specjalizacja FROM Doctors WHERE UserId = @UserId";
+                using (var cmd = new MySqlCommand(queryDoctor, connection))
                 {
-                    commandDeleteRole.Parameters.AddWithValue("@UserId", userId);
-                    commandDeleteRole.ExecuteNonQuery();
+                    cmd.Parameters.AddWithValue("@UserId", userId);
+                    var result = cmd.ExecuteScalar();
+                    sb.AppendLine(result != null
+                        ? $"Specjalizacja: {result}"
+                        : "Brak danych w tabeli lekarzy");
                 }
             }
+
+            return sb.ToString();
         }
 
 
-
-        public void UsunRekord(int userId)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-
-                var queryDeleteLekarz = "DELETE FROM Doctors WHERE UserId = @UserId";
-                var queryDeletePacjent = "DELETE FROM Users WHERE UserId = @UserId";
-
-                using (var commandLekarz = new SqlCommand(queryDeleteLekarz, connection))
-                {
-                    commandLekarz.Parameters.AddWithValue("@UserId", userId);
-                    commandLekarz.ExecuteNonQuery();
-                }
-
-                using (var commandPacjent = new SqlCommand(queryDeletePacjent, connection))
-                {
-                    commandPacjent.Parameters.AddWithValue("@UserId", userId);
-                    commandPacjent.ExecuteNonQuery();
-                }
-            }
-        }
 
         public int GetUserIdByEmailPublic(string email)
         {
@@ -434,11 +521,11 @@ namespace WindowsFormsApp1.Data
             using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
-                var query = @"INSERT INTO Lekarze (UzytkownikId, Imie, Nazwisko, Specjalizacja)
-                      VALUES (@UzytkownikId, @Imie, @Nazwisko, @Specjalizacja)";
+                var query = @"INSERT INTO Doctors (UserId, Imie, Nazwisko, Specjalizacja)
+                      VALUES (@UserId, @Imie, @Nazwisko, @Specjalizacja)";
                 using (var command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@UzytkownikId", userId);
+                    command.Parameters.AddWithValue("@UserId", userId);
                     command.Parameters.AddWithValue("@Imie", imie);
                     command.Parameters.AddWithValue("@Nazwisko", nazwisko);
                     command.Parameters.AddWithValue("@Specjalizacja", specjalizacja);
@@ -459,31 +546,7 @@ namespace WindowsFormsApp1.Data
             }
         }
 
-        public int PoliczLekarzy()
-        {
-            using (var connection = new MySqlConnection(_connectionString))
-            {
-                connection.Open();
-                var query = "SELECT COUNT(*) FROM Doctors";
-                using (var command = new MySqlCommand(query, connection))
-                {
-                    return (int)command.ExecuteScalar();
-                }
-            }
-        }
-
-        public int PoliczPacjentow()
-        {
-            using (var connection = new MySqlConnection(_connectionString))
-            {
-                connection.Open();
-                var query = "SELECT COUNT(*) FROM UserRoles WHERE RoleName = 'Pacjent'";
-                using (var command = new MySqlCommand(query, connection))
-                {
-                    return (int)command.ExecuteScalar();
-                }
-            }
-        }
+        
 
         public void UsunWszystkieDane()
         {
