@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
 using System.Text;
+using Org.BouncyCastle.Bcpg;
 
 
 
@@ -672,7 +673,7 @@ namespace WindowsFormsApp1.Data
             return null;
         }
 
-
+        //domyślnie funkcje takie jak reader.GetString czy reader.GetDateTime nie obsługują wartości NULL — jeśli kolumna zawiera NULL, dostajesz wyjątek, dlatego sporawdzam znim pobiore czu wartosc jest DBNULL
         public void ZaktualizujWizyte(int wizytaId, string opis, string diagnoza, string zalecenia)
         {
             using (MySqlConnection connection = new MySqlConnection(_connectionString))
@@ -787,33 +788,25 @@ namespace WindowsFormsApp1.Data
 
         public int DodajPacjenta(Patient patient)
         {
-            using (var connection = new MySqlConnection(_connectionString))
-            using (var command = new MySqlCommand(
-                @"INSERT INTO Users (
-                Imie, Nazwisko, DateOfBirth, PESEL, 
-                Adres, Miasto, KodPocztowy, PhoneNumber, Email, IsActive
-              ) 
-              OUTPUT INSERTED.Id
-              VALUES (
-                @Imie, @Nazwisko, @DateOfBirth, @PESEL, 
-                @Adres, @Miasto, @KodPocztowy, @PhoneNumber, @Email, @IsActive
-              )", connection))
+            using (var conn = new MySqlConnection(_connectionString))
             {
-                SetPatientParameters(command, patient);
-
-                try
+                conn.Open();
+                var query = @"INSERT INTO Users 
+                      (Imie, Nazwisko, DateOfBirth, PESEL, Adres, Miasto, KodPocztowy, PhoneNumber, Email) 
+                      VALUES (@Imie, @Nazwisko, @DateOfBirth, @PESEL, @Adres, @Miasto, @KodPocztowy, @PhoneNumber, @Email);
+                      SELECT LAST_INSERT_ID();";
+                using (var cmd = new MySqlCommand(query, conn))
                 {
-                    connection.Open();
-                    int newId = (int)command.ExecuteScalar();
-
-                   
-                    AddUserRole(newId, "Pacjent");
-
-                    return newId;
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Błąd podczas dodawania pacjenta", ex);
+                    cmd.Parameters.AddWithValue("@Imie", patient.Imie);
+                    cmd.Parameters.AddWithValue("@Nazwisko", patient.Nazwisko);
+                    cmd.Parameters.AddWithValue("@DateofBirth", patient.DateofBirth);
+                    cmd.Parameters.AddWithValue("@PESEL", patient.PESEL);
+                    cmd.Parameters.AddWithValue("@Adres", patient.Adres);
+                    cmd.Parameters.AddWithValue("@Miasto", patient.Miasto);
+                    cmd.Parameters.AddWithValue("@KodPocztowy", patient.KodPocztowy);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", patient.PhoneNumber);
+                    cmd.Parameters.AddWithValue("@Email", patient.Email);
+                    return Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }
         }
@@ -821,35 +814,36 @@ namespace WindowsFormsApp1.Data
 
         public void AktualizujPacjenta(Patient patient)
         {
-            using (var connection = new MySqlConnection(_connectionString))
-            using (var command = new MySqlCommand(
-                @"UPDATE Users SET
-                Imie = @Imie,
-                Nazwisko = @Nazwisko,
-                DateOfBirth = @DateOfBirth,
-                PESEL = @PESEL,
-                Adres = @Adres,
-                Miasto = @Miasto,
-                KodPocztowy = @KodPocztowy,
-                PhoneNumber = @PhoneNumber,
-                Email = @Email,
-                IsActive = @IsActive
-                WHERE Id = @Id", connection))
+            using (var conn = new MySqlConnection(_connectionString))
             {
-                SetPatientParameters(command, patient);
-                command.Parameters.AddWithValue("@Id", patient.Id);
+                conn.Open();
+                var query = @"UPDATE Users SET 
+                        Imie = @Imie,
+                        Nazwisko = @Nazwisko,
+                        DateofBirth = @DateofBirth,
+                        PESEL = @PESEL,
+                        Adres = @Adres,
+                        Miasto = @Miasto,
+                        KodPocztowy = @KodPocztowy,
+                        PhoneNumber = @PhoneNumber,
+                        Email = @Email
+                        WHERE Id = @Id";
 
-                try
+                using (var cmd = new MySqlCommand(query, conn))
                 {
-                    connection.Open();
-                    int affectedRows = command.ExecuteNonQuery();
+                    cmd.Parameters.AddWithValue("@Id", patient.Id);
+                    cmd.Parameters.AddWithValue("@Imie", patient.Imie);
+                    cmd.Parameters.AddWithValue("@Nazwisko", patient.Nazwisko);
+                    cmd.Parameters.AddWithValue("@DateofBirth", patient.DateofBirth);
+                    cmd.Parameters.AddWithValue("@PESEL", patient.PESEL);
+                    cmd.Parameters.AddWithValue("@Adres", patient.Adres);
+                    cmd.Parameters.AddWithValue("@Miasto", patient.Miasto);
+                    cmd.Parameters.AddWithValue("@KodPocztowy", patient.KodPocztowy);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", patient.PhoneNumber);
+                    cmd.Parameters.AddWithValue("@Email", patient.Email);
+                    
 
-                    if (affectedRows == 0)
-                        throw new Exception("Nie znaleziono pacjenta o podanym ID");
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Błąd podczas aktualizacji pacjenta", ex);
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
@@ -857,35 +851,30 @@ namespace WindowsFormsApp1.Data
 
         public Patient PobierzDanePacjenta(int patientId)
         {
-            using (var connection = new MySqlConnection(_connectionString))
+            using (var conn = new MySqlConnection(_connectionString))
             {
-                connection.Open();
-                string query = @"
-                   SELECT Id, Imie, Nazwisko, Email, DateOfBirth, PESEL, 
-                   PhoneNumber, Adres, Miasto, KodPocztowy
-                   FROM Users
-                   WHERE Id = @PatientId";
-
-                using (var command = new MySqlCommand(query, connection))
+                conn.Open();
+                var query = "SELECT * FROM Users WHERE Id = @Id AND Rola = 'Pacjent'";
+                using (var cmd = new MySqlCommand(query, conn))
                 {
-                    command.Parameters.AddWithValue("@PatientId", patientId);
-
-                    using (var reader = command.ExecuteReader())
+                    cmd.Parameters.AddWithValue("@Id", patientId);
+                    using (var reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
                             return new Patient
                             {
-                                Id = reader.GetInt32(0),
-                                Imie = reader.GetString(1),
-                                Nazwisko = reader.GetString(2),
-                                Email = reader.GetString(3),
-                                DataUrodzenia = reader.GetDateTime(4),
-                                PESEL = reader.IsDBNull(5) ? null : reader.GetString(5),
-                                Telefon = reader.IsDBNull(6) ? null : reader.GetString(6),
-                                Adres = reader.IsDBNull(7) ? null : reader.GetString(7),
-                                Miasto = reader.IsDBNull(8) ? null : reader.GetString(8),
-                                KodPocztowy = reader.IsDBNull(9) ? null : reader.GetString(9)
+                                Id = reader.GetInt32("Id"),
+                                Imie = reader.IsDBNull(reader.GetOrdinal("Imie")) ? null : reader.GetString("Imie"),
+                                Nazwisko = reader.IsDBNull(reader.GetOrdinal("Nazwisko")) ? null : reader.GetString("Nazwisko"),
+                                DateofBirth = reader.IsDBNull(reader.GetOrdinal("DateofBirth")) ? DateTime.MinValue : reader.GetDateTime("DateOfBirth"),
+                                PESEL = reader.IsDBNull(reader.GetOrdinal("PESEL")) ? null : reader.GetString("PESEL"),
+                                Adres = reader.IsDBNull(reader.GetOrdinal("Adres")) ? null : reader.GetString("Adres"),
+                                Miasto = reader.IsDBNull(reader.GetOrdinal("Miasto")) ? null : reader.GetString("Miasto"),
+                                KodPocztowy = reader.IsDBNull(reader.GetOrdinal("KodPocztowy")) ? null : reader.GetString("KodPocztowy"),
+                                PhoneNumber = reader.IsDBNull(reader.GetOrdinal("PhoneNumber")) ? null : reader.GetString("PhoneNumber"),
+                                Email = reader.IsDBNull(reader.GetOrdinal("Email")) ? null : reader.GetString("Email"),
+                               
                             };
                         }
                     }
@@ -894,38 +883,7 @@ namespace WindowsFormsApp1.Data
             return null;
         }
 
-
-        private void SetPatientParameters(MySqlCommand command, Patient patient)
-        {
-            command.Parameters.AddWithValue("@Imie", patient.Imie);
-            command.Parameters.AddWithValue("@Nazwisko", patient.Nazwisko);
-            command.Parameters.AddWithValue("@DateOfBirth", patient.DataUrodzenia);
-            command.Parameters.AddWithValue("@PESEL", (object)patient.PESEL ?? DBNull.Value);
-            command.Parameters.AddWithValue("@Adres", (object)patient.Adres ?? DBNull.Value);
-            command.Parameters.AddWithValue("@Miasto", (object)patient.Miasto ?? DBNull.Value);
-            command.Parameters.AddWithValue("@KodPocztowy", (object)patient.KodPocztowy ?? DBNull.Value);
-            command.Parameters.AddWithValue("@PhoneNumber", (object)patient.Telefon ?? DBNull.Value);
-            command.Parameters.AddWithValue("@Email", (object)patient.Email ?? DBNull.Value);
-            command.Parameters.AddWithValue("@IsActive", patient.IsActive);
-        }
-
-        private void AddUserRole(int userId, string roleName)
-        {
-            using (var connection = new MySqlConnection(_connectionString))
-            using (var command = new MySqlCommand(
-                @"IF NOT EXISTS (SELECT 1 FROM UserRoles WHERE UserId = @UserId AND RoleName = @RoleName)
-              BEGIN
-                  INSERT INTO UserRoles (UserId, RoleName)
-                  VALUES (@UserId, @RoleName)
-              END", connection))
-            {
-                command.Parameters.AddWithValue("@UserId", userId);
-                command.Parameters.AddWithValue("@RoleName", roleName);
-
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
-        }
+       
 
         public List<Lekarz> PobierzDostepnychLekarzy()
         {
@@ -961,6 +919,7 @@ namespace WindowsFormsApp1.Data
             return lekarze;
         }
 
+        //TODO jak lekarz ma wolny termin to poakzuje lekarz nie ma wolnego terminu cos jest pokickane xD
         public bool CzyLekarzMaWolnyTermin(int lekarzId, DateTime dataWizyty)
         {
             using (var connection = new MySqlConnection(_connectionString))
@@ -968,17 +927,17 @@ namespace WindowsFormsApp1.Data
                 connection.Open();
 
                 string query = @"SELECT COUNT(*) 
-                        FROM Wizyty 
-                        WHERE LekarzId = @lekarzId 
-                        AND DataWizyty = @dataWizyty
-                        AND Status != 'Anulowana'";
+                         FROM Wizyty 
+                         WHERE LekarzId = @lekarzId 
+                         AND DataWizyty = @dataWizyty
+                         AND Status != 'Anulowana'";
 
                 using (var command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@lekarzId", lekarzId);
                     command.Parameters.AddWithValue("@dataWizyty", dataWizyty);
 
-                    int count = (int)command.ExecuteScalar();
+                    int count = Convert.ToInt32(command.ExecuteScalar());
                     return count == 0;
                 }
             }
@@ -990,9 +949,9 @@ namespace WindowsFormsApp1.Data
             {
                 connection.Open();
                 string query = @"INSERT INTO Wizyty 
-                        (LekarzId, PacjentId, DataWizyty, Status, Opis, Diagnoza, Zalecenia, Specjalizacja)
-                        VALUES (@LekarzId, @PacjentId, @DataWizyty, @Status, @Opis, @Diagnoza, @Zalecenia, @Specjalizacja);
-                        SELECT SCOPE_IDENTITY();";
+                (LekarzId, PacjentId, DataWizyty, Status, Opis, Diagnoza, Zalecenia, Specjalizacja)
+                VALUES (@LekarzId, @PacjentId, @DataWizyty, @Status, @Opis, @Diagnoza, @Zalecenia, @Specjalizacja);
+                SELECT LAST_INSERT_ID();";
 
                 using (var command = new MySqlCommand(query, connection))
                 {
@@ -1000,40 +959,19 @@ namespace WindowsFormsApp1.Data
                     command.Parameters.AddWithValue("@PacjentId", wizyta.PacjentId);
                     command.Parameters.AddWithValue("@DataWizyty", wizyta.DataWizyty);
                     command.Parameters.AddWithValue("@Status", wizyta.Status ?? "Zaplanowana");
-                    command.Parameters.AddWithValue("@Opis", wizyta.Opis ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@Diagnoza", wizyta.Diagnoza ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@Zalecenia", wizyta.Zalecenia ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@Specjalizacja", wizyta.Specjalizacja ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@Opis", string.IsNullOrEmpty(wizyta.Opis) ? (object)DBNull.Value : wizyta.Opis);
+                    command.Parameters.AddWithValue("@Diagnoza", string.IsNullOrEmpty(wizyta.Diagnoza) ? (object)DBNull.Value : wizyta.Diagnoza);
+                    command.Parameters.AddWithValue("@Zalecenia", string.IsNullOrEmpty(wizyta.Zalecenia) ? (object)DBNull.Value : wizyta.Zalecenia);
+                    command.Parameters.AddWithValue("@Specjalizacja", string.IsNullOrEmpty(wizyta.Specjalizacja) ? (object)DBNull.Value : wizyta.Specjalizacja);
 
-                    return Convert.ToInt32(command.ExecuteScalar());
+                    
+                    object result = command.ExecuteScalar();
+                    return Convert.ToInt32(result);
                 }
             }
         }
 
-        public void AktualizujWizyte(Wizyta wizyta)
-        {
-            using (var connection = new MySqlConnection(_connectionString))
-            {
-                connection.Open();
-                string query = @"UPDATE Wizyty 
-                        SET Status = @Status,
-                            Diagnoza = @Diagnoza,
-                            Zalecenia = @Zalecenia
-                        WHERE Id = @Id";
 
-                using (var command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@Id", wizyta.Id);
-                    command.Parameters.AddWithValue("@Status", wizyta.Status);
-                    command.Parameters.AddWithValue("@Diagnoza", wizyta.Diagnoza ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@Zalecenia", wizyta.Zalecenia ?? (object)DBNull.Value);
-
-                    command.ExecuteNonQuery();
-                }
-            }
-        }
-
-        
         public void DodajDokument(DokumentPacjenta dokument)
         {
             using (var connection = new MySqlConnection(_connectionString))

@@ -9,17 +9,14 @@ using System.IO;
 using System.Xml.Linq;
 using System.Diagnostics;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Bcpg;
 
 namespace WindowsFormsApp1
 {
     public partial class FormPacjent : Form
     {
         private readonly DataBaseHelper _dbHelper;
-        private int _currentPatientId;
-        private bool _isNewPatient;
-        private DataGridView dataGridViewDokumenty;
-        private Button buttonDodajDokument;
-        private OpenFileDialog openFileDialogDokumenty;
+        private int _pacjentId;
         private string _wybranyPlik;
 
 
@@ -27,503 +24,294 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             _dbHelper = dbHelper;
-            _currentPatientId = patientId;
-            _isNewPatient = patientId == 0;
-
-            InitializeForm();
-            LoadPatientData();
-            InitializeVisitTab();
-            ZaladujDokumenty();
+            _pacjentId = patientId;
 
 
-        }
-
-        private void InitializeForm()
-        {
-            
-            this.Text = _isNewPatient ? "Nowy pacjent" : "Edycja pacjenta";
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.StartPosition = FormStartPosition.CenterParent;
-
-            dataGridViewDokumenty = new DataGridView();
-            dataGridViewDokumenty.Dock = DockStyle.Fill;
-            dataGridViewDokumenty.AutoGenerateColumns = false;
-            dataGridViewDokumenty.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            tabPageDokumentacjaMedyczna.Controls.Add(dataGridViewDokumenty);
-
-
-            dataGridViewDokumenty.Columns.Add("DataDodania", "Data");
-            dataGridViewDokumenty.Columns.Add("Typ", "Typ dokumentu");
-            dataGridViewDokumenty.Columns.Add("Uwagi", "Uwagi");
-            dataGridViewDokumenty.Columns.Add("SciezkaPliku", "Plik");
-
+            UstawFormularz();
+            WczytajDanePacjenta();
+            WczytajLekarzy();
+            WczytajHistorieWizyt();
+            WczytajDokumenty();
+            WczytajDanePacjenta();
 
 
         }
-        private void InitializeVisitTab()
+
+        private void UstawFormularz()
         {
-
-            dataGridViewLekarze.AutoGenerateColumns = false;
-            dataGridViewLekarze.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            ConfigureDoctorsGridColumns();
-
-
-            dateTimePickerWizyta.MinDate = DateTime.Today;
-            dateTimePickerWizyta.Value = DateTime.Today.AddDays(1);
-
-
-            buttonDodajWizyte.Click += buttonDodajWizyte_Click;
-
             comboBoxTypDokumentu.Items.AddRange(new string[]
             {
-                "Wynik badania krwi",
-                "Wynik RTG",
-                "Wynik USG",
-                "Wynik rezonansu magnetycznego (MRI)",
-                "Wynik tomografii komputerowej (CT)",
-                "Skierowanie",
-                "Zaświadczenie lekarskie",
-                "Historia choroby",
-                "Karta wypisu ze szpitala",
-                "Notatka z wizyty",
-                "Recepta",
-                "Zgoda pacjenta",
-                "Opis zabiegu",
-                "Inne"
+                "Wynik badania krwi", "RTG", "USG", "MRI", "CT",
+                "Skierowanie", "Zaświadczenie", "Historia choroby",
+                "Karta wypisu", "Notatka", "Recepta", "Zgoda", "Opis zabiegu", "Inne"
             });
 
+            dateTimePickerWizyta.MinDate = DateTime.Today.AddDays(1);
 
-            LoadAvailableDoctors();
+            buttonZapiszZmiany.Click += buttonZapiszZmiany_Click;
+            buttonDodajWizyte.Click += buttonDodajWizyte_Click;
+            buttonWybierzPlik.Click += ButtonWybierzPlik_Click;
+            buttonZapiszZmiany.Click += buttonZapiszZmiany_Click;
+           
         }
 
-        private void ConfigureDoctorsGridColumns()
+        private void WczytajDanePacjenta()
         {
-            dataGridViewLekarze.Columns.Clear();
+            if (_pacjentId <= 0)
+                return;
 
-            dataGridViewLekarze.Columns.Add(new DataGridViewTextBoxColumn()
+            var pacjent = _dbHelper.PobierzDanePacjenta(_pacjentId);
+
+            if (pacjent == null)
             {
-                Name = "colDoctorId",
-                HeaderText = "ID",
-                DataPropertyName = "Id",
-                Visible = false
-            });
-
-            dataGridViewLekarze.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                Name = "colDoctorName",
-                HeaderText = "Imię",
-                DataPropertyName = "Imie",
-                Width = 100
-            });
-
-            dataGridViewLekarze.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                Name = "colDoctorLastName",
-                HeaderText = "Nazwisko",
-                DataPropertyName = "Nazwisko",
-                Width = 120
-            });
-
-            dataGridViewLekarze.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                Name = "colSpecialization",
-                HeaderText = "Specjalizacja",
-                DataPropertyName = "Specjalizacja",
-                Width = 150
-            });
-
-            dataGridViewLekarze.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                Name = "colAvailableHours",
-                HeaderText = "Dostępne godziny",
-                DataPropertyName = "DostepneGodziny",
-                Width = 200
-            });
-        }
-
-       
-        private void LoadAvailableDoctors()
-        {
-            try
-            {
-                var doctors = _dbHelper.PobierzDostepnychLekarzy();
-                dataGridViewLekarze.DataSource = doctors;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Błąd ładowania lekarzy: {ex.Message}", "Błąd",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void ConfigureHistoryGridColumns()
-        {
-            dataGridViewHistoria.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                Name = "colDate",
-                HeaderText = "Data wizyty",
-                DataPropertyName = "DataWizyty",
-                Width = 120
-            });
-
-            dataGridViewHistoria.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                Name = "colDoctor",
-                HeaderText = "Lekarz",
-                DataPropertyName = "Lekarz",
-                Width = 150
-            });
-
-            dataGridViewHistoria.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                Name = "colDiagnosis",
-                HeaderText = "Diagnoza",
-                DataPropertyName = "Diagnoza",
-                Width = 200
-            });
-        }
-
-        private void LoadPatientData()
-        {
-            if (!_isNewPatient)
-            {
-                
-                var patient = _dbHelper.PobierzDanePacjenta(_currentPatientId);
-                if (patient != null)
-                {
-                    textBoxImie.Text = patient.Imie;
-                    textBoxNazwisko.Text = patient.Nazwisko;
-                    dateTimePickerDU.Value = patient.DataUrodzenia;
-                    textBoxPesel.Text = patient.PESEL;
-                    textBoxAdress.Text = patient.Adres;
-                    textBoxMiasto.Text = patient.Miasto;
-                    textBoxKodPocztowy.Text = patient.KodPocztowy;
-                    textBoxTelefon.Text = patient.Telefon;
-                    textBoxEmail.Text = patient.Email;
-                    checkBoxAktywny.Checked = patient.IsActive;
-
-                    
-                    LoadVisitHistory();
-                }
-            }
-            else
-            {
-                dateTimePickerDU.Value = DateTime.Now.AddYears(-30);
-                checkBoxAktywny.Checked = true;
-            }
-        }
-
-        private void LoadVisitHistory()
-        {
-            try
-            {
-                dataGridViewHistoria.DataSource = _dbHelper.PobierzHistorieWizyt(_currentPatientId);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Błąd ładowania historii wizyt: {ex.Message}", "Błąd",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private bool IsValidEmail(string email)
-        {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-
-        private void dataGridViewHistoria_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                // Pokaż szczegóły w MessageBox zamiast osobnego formularza
-                var row = dataGridViewHistoria.Rows[e.RowIndex];
-                string details = $"Data: {row.Cells["colDate"].Value}\n" +
-                                $"Lekarz: {row.Cells["colDoctor"].Value}\n" +
-                                $"Diagnoza: {row.Cells["colDiagnosis"].Value}";
-
-                MessageBox.Show(details, "Szczegóły wizyty", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        private void textBoxImie_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxNazwisko_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxAdres_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxAdress_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxPesel_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxTelefon_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxMiasto_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxKodPocztowy_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxEmail_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrWhiteSpace(textBoxEmail.Text) && !IsValidEmail(textBoxEmail.Text))
-            {
-                errorProvider.SetError(textBoxEmail, "Nieprawidłowy format email");
-                
-            }
-            else
-            {
-                errorProvider.SetError(textBoxEmail, null);
-            }
-        }
-
-        private void dateTimePickerDU_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBoxAktywny_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ButtonZapiszZmiany_Click(object sender, EventArgs e)
-        {
-            if (!ValidateChildren(ValidationConstraints.Enabled))
-            {
-                MessageBox.Show("Proszę poprawić błędne dane", "Błąd walidacji",
-                              MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Nie znaleziono pacjenta o podanym ID.");
                 return;
             }
 
-            var patient = new Patient
+            
+            textBoxImie.Text = pacjent.Imie;
+            textBoxNazwisko.Text = pacjent.Nazwisko;
+            dateTimePickerDU.Value = pacjent.DateofBirth;
+            textBoxPesel.Text = pacjent.PESEL;
+            textBoxAdres.Text = pacjent.Adres;
+            textBoxMiasto.Text = pacjent.Miasto;
+            textBoxKodPocztowy.Text = pacjent.KodPocztowy;
+            textBoxTelefon.Text = pacjent.PhoneNumber;
+            textBoxEmail.Text = pacjent.Email;
+            checkBoxAktywny.Checked = pacjent.IsActive;
+        }
+
+        private void buttonZapiszZmiany_Click(object sender, EventArgs e)
+        {
+            var pacjent = new Patient
             {
-                Id = _currentPatientId,
-                Imie = textBoxImie.Text.Trim(),
-                Nazwisko = textBoxNazwisko.Text.Trim(),
-                DataUrodzenia = dateTimePickerDU.Value,
-                PESEL = textBoxPesel.Text.Trim(),
-                Adres = textBoxAdres.Text.Trim(),
-                Miasto = textBoxMiasto.Text.Trim(),
-                KodPocztowy = textBoxKodPocztowy.Text.Trim(),
-                Telefon = textBoxTelefon.Text.Trim(),
-                Email = textBoxEmail.Text.Trim(),
+                Id = _pacjentId,
+                Imie = textBoxImie.Text,
+                Nazwisko = textBoxNazwisko.Text,
+                DateofBirth = dateTimePickerDU.Value,
+                PESEL = textBoxPesel.Text,
+                Adres = textBoxAdres.Text,
+                Miasto = textBoxMiasto.Text,
+                KodPocztowy = textBoxKodPocztowy.Text,
+                PhoneNumber = textBoxTelefon.Text,
+                Email = textBoxEmail.Text,
                 IsActive = checkBoxAktywny.Checked
             };
 
-            try
+            if (_pacjentId == 0)
             {
-                if (_isNewPatient)
-                {
-                    _currentPatientId = _dbHelper.DodajPacjenta(patient);
-                    _isNewPatient = false;
-                    MessageBox.Show("Pacjent został dodany", "Sukces",
-                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    _dbHelper.AktualizujPacjenta(patient);
-                    MessageBox.Show("Dane pacjenta zostały zaktualizowane", "Sukces",
-                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-
-                this.DialogResult = DialogResult.OK;
+                _pacjentId = _dbHelper.DodajPacjenta(pacjent);
+                MessageBox.Show("Dodano pacjenta.");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Błąd zapisu danych: {ex.Message}", "Błąd",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _dbHelper.AktualizujPacjenta(pacjent);
+                MessageBox.Show("Zaktualizowano dane pacjenta.");
             }
         }
 
-        private void btnAnuluj_Click_1(object sender, EventArgs e)
+        private void WczytajPacjentaDoFormularza(int id)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            var pacjent = _dbHelper.PobierzDanePacjenta(id);
+            if (pacjent != null)
+            {
+                _pacjentId = pacjent.Id;
+                textBoxImie.Text = pacjent.Imie;
+                textBoxNazwisko.Text = pacjent.Nazwisko;
+                dateTimePickerDU.Value = pacjent.DateofBirth;
+                textBoxPesel.Text = pacjent.PESEL;
+                textBoxAdres.Text = pacjent.Adres;
+                textBoxMiasto.Text = pacjent.Miasto;
+                textBoxKodPocztowy.Text = pacjent.KodPocztowy;
+                textBoxTelefon.Text = pacjent.PhoneNumber;
+                textBoxEmail.Text = pacjent.Email;
+                checkBoxAktywny.Checked = pacjent.IsActive;
+            }
+            else
+            {
+                MessageBox.Show("Nie znaleziono pacjenta o podanym ID.");
+            }
+        }
+
+        private void WczytajLekarzy()
+        {
+            dataGridViewLekarze.DataSource = _dbHelper.PobierzDostepnychLekarzy();
         }
 
         private void buttonDodajWizyte_Click(object sender, EventArgs e)
         {
-            if (_isNewPatient)
+            if (_pacjentId == 0)
             {
-                MessageBox.Show("Najpierw zapisz dane pacjenta przed dodaniem wizyty", "Informacja",
-                              MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Najpierw zapisz dane pacjenta.");
                 return;
             }
 
             if (dataGridViewLekarze.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Wybierz lekarza", "Błąd",
-                              MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Wybierz lekarza.");
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(richTextBoxOpisProblemu.Text))
+            var lekarz = (Lekarz)dataGridViewLekarze.SelectedRows[0].DataBoundItem;
+            var data = dateTimePickerWizyta.Value;
+            var opis = richTextBoxOpisProblemu.Text.Trim();
+
+            if (!_dbHelper.CzyLekarzMaWolnyTermin(lekarz.Id, data))
             {
-                MessageBox.Show("Wpisz opis problemu", "Błąd",
-                              MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Lekarz nie ma wolnego terminu.");
                 return;
             }
 
-            var selectedDoctor = (Lekarz)dataGridViewLekarze.SelectedRows[0].DataBoundItem;
-            var visitDate = dateTimePickerWizyta.Value;
-
-            try
+            var wizyta = new Wizyta
             {
-                var wizyta = new Wizyta
-                {
-                    PacjentId = _currentPatientId,
-                    LekarzId = selectedDoctor.Id,
-                    DataWizyty = visitDate,
-                    Opis = richTextBoxOpisProblemu.Text.Trim(),
-                    Status = "Zaplanowana"
-                };
+                PacjentId = _pacjentId,
+                LekarzId = lekarz.Id,
+                DataWizyty = data,
+                Opis = opis,
+                Status = "Zaplanowana"
+            };
 
-                if (_dbHelper.CzyLekarzMaWolnyTermin(selectedDoctor.Id, visitDate))
-                {
-                    _dbHelper.DodajWizyte(wizyta);
-                    MessageBox.Show("Wizyta została dodana", "Sukces",
-                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    
-                    LoadVisitHistory();
-                    richTextBoxOpisProblemu.Clear();
-                }
-                else
-                {
-                    MessageBox.Show("Lekarz nie ma wolnego terminu w wybranym czasie", "Błąd",
-                                  MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Błąd podczas dodawania wizyty: {ex.Message}", "Błąd",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            _dbHelper.DodajWizyte(wizyta);
+            MessageBox.Show("Dodano wizytę.");
+            WczytajHistorieWizyt();
         }
 
-        private void buttonWybierzPlik_Click(object sender, EventArgs e)
+        private void WczytajHistorieWizyt()
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Pliki PDF, obrazy i dokumenty|*.pdf;*.jpg;*.jpeg;*.png;*.docx;*.txt";
-
-
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                _wybranyPlik = ofd.FileName;
-                labelWybranyPlik.Text = Path.GetFileName(_wybranyPlik);
-            }
+            if (_pacjentId == 0) return;
+            dataGridViewHistoria.DataSource = _dbHelper.PobierzHistorieWizyt(_pacjentId);
         }
 
-        private void ZaladujDokumenty()
+        private void ButtonWybierzPlik_Click(object sender, EventArgs e)
         {
-            var dokumenty = _dbHelper.PobierzDokumentyDlaPacjenta(_currentPatientId);
-
-            dataGridViewDokumenty.Rows.Clear();
-            foreach (var d in dokumenty)
+            using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                dataGridViewDokumenty.Rows.Add(
-                    d.DataDodania.ToString("yyyy-MM-dd"),
-                    d.Typ,
-                    d.Uwagi,
-                    "Zobacz",
-                    "Usuń"
-                );
+                ofd.Filter = "Wszystkie pliki|*.*";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    _wybranyPlik = ofd.FileName;
+                    wybranyplik.Text = Path.GetFileName(_wybranyPlik);
+                }
             }
         }
 
         private void buttonDodajDocument_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(_wybranyPlik))
+            if (_pacjentId == 0 || string.IsNullOrEmpty(_wybranyPlik) || comboBoxTypDokumentu.SelectedIndex == -1)
             {
-                MessageBox.Show("Wybierz plik do dodania.");
+                MessageBox.Show("Uzupełnij dane dokumentu.");
                 return;
             }
 
-            if (comboBoxTypDokumentu.SelectedItem == null)
-            {
-                MessageBox.Show("Wybierz typ dokumentu.");
-                return;
-            }
-
-            string typ = comboBoxTypDokumentu.SelectedItem.ToString();
-            string uwagi = textBoxUwagiDokument.Text;
-
-            string folder = Path.Combine("Dokumenty", _currentPatientId.ToString());
+            var folder = Path.Combine("Dokumenty", _pacjentId.ToString());
             Directory.CreateDirectory(folder);
 
-            string nowaSciezka = Path.Combine(folder, Path.GetFileName(_wybranyPlik));
+            var nowaSciezka = Path.Combine(folder, Path.GetFileName(_wybranyPlik));
             File.Copy(_wybranyPlik, nowaSciezka, true);
 
             var dokument = new DokumentPacjenta
             {
-                PacjentId = _currentPatientId,
+                PacjentId = _pacjentId,
                 DataDodania = DateTime.Now,
-                Typ = typ,
-                Uwagi = uwagi,
+                Typ = comboBoxTypDokumentu.Text,
+                Uwagi = textBoxUwagiDokument.Text,
                 SciezkaPliku = nowaSciezka
             };
 
             _dbHelper.DodajDokument(dokument);
-            _wybranyPlik = null;
-            labelWybranyPlik.Text = "";
+            MessageBox.Show("Dodano dokument.");
+            WczytajDokumenty();
+        }
 
-            comboBoxTypDokumentu.SelectedIndex = -1;
-            textBoxUwagiDokument.Clear();
+        private void WczytajDokumenty()
+        {
+            //kolumny sa dodawne automatycznie
+            if (_pacjentId == 0) return;
 
-            ZaladujDokumenty();
+            var lista = _dbHelper.PobierzDokumentyDlaPacjenta(_pacjentId);
+            dataGridViewDocuments.Columns.Clear();
+            dataGridViewDocuments.Rows.Clear();
+            dataGridViewDocuments.Columns.Add("DataDodania", "Data dodania");
+            dataGridViewDocuments.Columns.Add("Typ", "Typ");
+            dataGridViewDocuments.Columns.Add("Uwagi", "Uwagi");
+
+            var kolOtworz = new DataGridViewButtonColumn
+            {
+                Name = "Otworz",
+                HeaderText = "",
+                Text = "Otwórz",
+                UseColumnTextForButtonValue = true
+            };
+
+            var kolUsun = new DataGridViewButtonColumn
+            {
+                Name = "Usun",
+                HeaderText = "",
+                Text = "Usuń",
+                UseColumnTextForButtonValue = true
+            };
+
+            dataGridViewDocuments.Columns.Add(kolOtworz);
+            dataGridViewDocuments.Columns.Add(kolUsun);
+
+            foreach (var d in lista)
+            {
+                dataGridViewDocuments.Rows.Add(
+                    d.DataDodania.ToString("yyyy-MM-dd"),
+                    d.Typ,
+                    d.Uwagi,
+                    "Otwórz",
+                    "Usuń"
+                );
+            }
         }
 
         private void dataGridViewDocuments_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
 
-            var dokument = _dbHelper.PobierzDokumentPoIndeksie(_currentPatientId, e.RowIndex);
+            var dokument = _dbHelper.PobierzDokumentPoIndeksie(_pacjentId, e.RowIndex);
 
-            if (dataGridViewDokumenty.Columns[e.ColumnIndex].Name == "colPodglad")
+            if (e.ColumnIndex == 3) 
             {
                 Process.Start(dokument.SciezkaPliku);
             }
-            else if (dataGridViewDokumenty.Columns[e.ColumnIndex].Name == "colUsun")
+            else if (e.ColumnIndex == 4) 
             {
                 if (MessageBox.Show("Czy usunąć dokument?", "Potwierdź", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     File.Delete(dokument.SciezkaPliku);
                     _dbHelper.UsunDokument(dokument.Id);
-                    ZaladujDokumenty();
+                    WczytajDokumenty();
                 }
+            }
+        }
+
+        private void buttonZmienDane_Click(object sender, EventArgs e)
+        {
+            var pacjent = new Patient
+            {
+                Id = _pacjentId,
+                Imie = textBoxImie.Text,
+                Nazwisko = textBoxNazwisko.Text,
+                DateofBirth = dateTimePickerDU.Value,
+                PESEL = textBoxPesel.Text,
+                Adres = textBoxAdres.Text,
+                Miasto = textBoxMiasto.Text,
+                KodPocztowy = textBoxKodPocztowy.Text,
+                PhoneNumber = textBoxTelefon.Text,
+                Email = textBoxEmail.Text,
+                IsActive = checkBoxAktywny.Checked
+            };
+
+            try
+            {
+                _dbHelper.AktualizujPacjenta(pacjent);
+                MessageBox.Show("Zaktualizowano dane pacjenta.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd podczas aktualizacji: " + ex.Message);
             }
         }
     }
