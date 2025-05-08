@@ -249,7 +249,7 @@ namespace WindowsFormsApp1
         {
             if (dataGridViewPacjenci.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Wybierz pacjenta.");
+                MessageBox.Show("Wybierz pacjentaa.");
                 return;
             }
 
@@ -289,6 +289,31 @@ namespace WindowsFormsApp1
         {
 
             WczytajPacjentow();
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
