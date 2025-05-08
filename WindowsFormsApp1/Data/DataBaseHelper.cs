@@ -826,7 +826,8 @@ namespace WindowsFormsApp1.Data
                         Miasto = @Miasto,
                         KodPocztowy = @KodPocztowy,
                         PhoneNumber = @PhoneNumber,
-                        Email = @Email
+                        Email = @Email,
+                        Haslo = @Haslo,
                         WHERE Id = @Id";
 
                 using (var cmd = new MySqlCommand(query, conn))
@@ -841,6 +842,7 @@ namespace WindowsFormsApp1.Data
                     cmd.Parameters.AddWithValue("@KodPocztowy", patient.KodPocztowy);
                     cmd.Parameters.AddWithValue("@PhoneNumber", patient.PhoneNumber);
                     cmd.Parameters.AddWithValue("@Email", patient.Email);
+                    cmd.Parameters.AddWithValue("@Haslo", patient.Haslo);
                     
 
                     cmd.ExecuteNonQuery();

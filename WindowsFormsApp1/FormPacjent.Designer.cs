@@ -32,6 +32,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPageDanePacjenta = new System.Windows.Forms.TabPage();
+            this.textBoxHaslo = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.buttonZmienDane = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -100,6 +102,8 @@
             // tabPageDanePacjenta
             // 
             this.tabPageDanePacjenta.BackColor = System.Drawing.Color.DimGray;
+            this.tabPageDanePacjenta.Controls.Add(this.textBoxHaslo);
+            this.tabPageDanePacjenta.Controls.Add(this.label11);
             this.tabPageDanePacjenta.Controls.Add(this.buttonZmienDane);
             this.tabPageDanePacjenta.Controls.Add(this.label9);
             this.tabPageDanePacjenta.Controls.Add(this.label8);
@@ -131,9 +135,26 @@
             this.tabPageDanePacjenta.TabIndex = 0;
             this.tabPageDanePacjenta.Text = "Dane Pacjenta";
             // 
+            // textBoxHaslo
+            // 
+            this.textBoxHaslo.Location = new System.Drawing.Point(81, 286);
+            this.textBoxHaslo.Name = "textBoxHaslo";
+            this.textBoxHaslo.Size = new System.Drawing.Size(241, 22);
+            this.textBoxHaslo.TabIndex = 26;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(9, 286);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(40, 16);
+            this.label11.TabIndex = 25;
+            this.label11.Text = "haslo";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
+            // 
             // buttonZmienDane
             // 
-            this.buttonZmienDane.Location = new System.Drawing.Point(97, 336);
+            this.buttonZmienDane.Location = new System.Drawing.Point(90, 356);
             this.buttonZmienDane.Margin = new System.Windows.Forms.Padding(4);
             this.buttonZmienDane.Name = "buttonZmienDane";
             this.buttonZmienDane.Size = new System.Drawing.Size(83, 28);
@@ -155,7 +176,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 261);
+            this.label8.Location = new System.Drawing.Point(11, 260);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(40, 16);
@@ -259,6 +280,7 @@
             this.textBoxNazwisko.Name = "textBoxNazwisko";
             this.textBoxNazwisko.Size = new System.Drawing.Size(241, 22);
             this.textBoxNazwisko.TabIndex = 1;
+            this.textBoxNazwisko.TextChanged += new System.EventHandler(this.textBoxNazwisko_TextChanged);
             // 
             // textBoxImie
             // 
@@ -320,7 +342,7 @@
             // 
             // buttonZapiszZmiany
             // 
-            this.buttonZapiszZmiany.Location = new System.Drawing.Point(265, 336);
+            this.buttonZapiszZmiany.Location = new System.Drawing.Point(218, 356);
             this.buttonZapiszZmiany.Margin = new System.Windows.Forms.Padding(4);
             this.buttonZapiszZmiany.Name = "buttonZapiszZmiany";
             this.buttonZapiszZmiany.Size = new System.Drawing.Size(83, 28);
@@ -331,7 +353,7 @@
             // 
             // dateTimePickerDU
             // 
-            this.dateTimePickerDU.Location = new System.Drawing.Point(81, 289);
+            this.dateTimePickerDU.Location = new System.Drawing.Point(81, 326);
             this.dateTimePickerDU.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerDU.Name = "dateTimePickerDU";
             this.dateTimePickerDU.Size = new System.Drawing.Size(265, 22);
@@ -588,5 +610,7 @@
         private System.Windows.Forms.Button buttonZmienDane;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBoxHaslo;
+        private System.Windows.Forms.Label label11;
     }
 }

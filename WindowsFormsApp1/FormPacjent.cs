@@ -301,6 +301,7 @@ namespace WindowsFormsApp1
                 KodPocztowy = textBoxKodPocztowy.Text,
                 PhoneNumber = textBoxTelefon.Text,
                 Email = textBoxEmail.Text,
+                Haslo = textBoxHaslo.Text,
                 IsActive = checkBoxAktywny.Checked
             };
 
@@ -316,6 +317,16 @@ namespace WindowsFormsApp1
         }
 
         private void dataGridViewLekarze_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void textBoxNazwisko_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
         {
 
         }
