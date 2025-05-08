@@ -827,7 +827,7 @@ namespace WindowsFormsApp1.Data
                         KodPocztowy = @KodPocztowy,
                         PhoneNumber = @PhoneNumber,
                         Email = @Email,
-                        Haslo = @Haslo,
+                        Haslo = @Haslo
                         WHERE Id = @Id";
 
                 using (var cmd = new MySqlCommand(query, conn))
