@@ -22,16 +22,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(65, 50);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(60, 52);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(177, 17);
+            this.label1.Size = new System.Drawing.Size(280, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "Zarządzanie Lekarzami";
             // 
             // FormZarzadzajLekarzami
             // 
-            this.ClientSize = new System.Drawing.Size(363, 170);
+            this.ClientSize = new System.Drawing.Size(919, 534);
             this.Controls.Add(this.label1);
             this.Name = "FormZarzadzajLekarzami";
             this.Text = "Lekarze";
