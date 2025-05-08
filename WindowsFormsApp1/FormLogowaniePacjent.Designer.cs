@@ -45,24 +45,27 @@
             // 
             // textBoxLoginPacjent
             // 
-            this.textBoxLoginPacjent.Location = new System.Drawing.Point(98, 48);
+            this.textBoxLoginPacjent.Location = new System.Drawing.Point(131, 59);
+            this.textBoxLoginPacjent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxLoginPacjent.Name = "textBoxLoginPacjent";
-            this.textBoxLoginPacjent.Size = new System.Drawing.Size(100, 20);
+            this.textBoxLoginPacjent.Size = new System.Drawing.Size(132, 22);
             this.textBoxLoginPacjent.TabIndex = 4;
             // 
             // textBoxHasloPacjent
             // 
-            this.textBoxHasloPacjent.Location = new System.Drawing.Point(98, 75);
+            this.textBoxHasloPacjent.Location = new System.Drawing.Point(131, 92);
+            this.textBoxHasloPacjent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxHasloPacjent.Name = "textBoxHasloPacjent";
-            this.textBoxHasloPacjent.Size = new System.Drawing.Size(100, 20);
+            this.textBoxHasloPacjent.Size = new System.Drawing.Size(132, 22);
             this.textBoxHasloPacjent.TabIndex = 5;
             // 
             // checkBoxPokazHaslo
             // 
             this.checkBoxPokazHaslo.AutoSize = true;
-            this.checkBoxPokazHaslo.Location = new System.Drawing.Point(107, 110);
+            this.checkBoxPokazHaslo.Location = new System.Drawing.Point(143, 135);
+            this.checkBoxPokazHaslo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBoxPokazHaslo.Name = "checkBoxPokazHaslo";
-            this.checkBoxPokazHaslo.Size = new System.Drawing.Size(86, 17);
+            this.checkBoxPokazHaslo.Size = new System.Drawing.Size(106, 20);
             this.checkBoxPokazHaslo.TabIndex = 7;
             this.checkBoxPokazHaslo.Text = "Pokaż hasło";
             this.checkBoxPokazHaslo.UseVisualStyleBackColor = true;
@@ -70,9 +73,10 @@
             // 
             // buttonZalogujPacjent
             // 
-            this.buttonZalogujPacjent.Location = new System.Drawing.Point(107, 132);
+            this.buttonZalogujPacjent.Location = new System.Drawing.Point(143, 162);
+            this.buttonZalogujPacjent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonZalogujPacjent.Name = "buttonZalogujPacjent";
-            this.buttonZalogujPacjent.Size = new System.Drawing.Size(75, 23);
+            this.buttonZalogujPacjent.Size = new System.Drawing.Size(100, 28);
             this.buttonZalogujPacjent.TabIndex = 8;
             this.buttonZalogujPacjent.Text = "Zaloguj";
             this.buttonZalogujPacjent.UseVisualStyleBackColor = true;
@@ -82,9 +86,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(87, 17);
+            this.label3.Location = new System.Drawing.Point(116, 21);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(150, 17);
+            this.label3.Size = new System.Drawing.Size(180, 20);
             this.label3.TabIndex = 9;
             this.label3.Text = "WITAMY W KLINICE";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -94,10 +99,9 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(38, 50);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(51, 62);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 13);
+            this.label2.Size = new System.Drawing.Size(64, 17);
             this.label2.TabIndex = 10;
             this.label2.Text = "E-MAIL:";
             // 
@@ -106,30 +110,27 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Location = new System.Drawing.Point(38, 75);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(51, 92);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 13);
+            this.label1.Size = new System.Drawing.Size(65, 17);
             this.label1.TabIndex = 14;
             this.label1.Text = "HASŁO:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(38, 173);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(51, 213);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(137, 13);
+            this.label4.Size = new System.Drawing.Size(173, 16);
             this.label4.TabIndex = 15;
             this.label4.Text = "Nie możesz się zalogować?";
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(176, 173);
-            this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel1.Location = new System.Drawing.Point(235, 213);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(66, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(83, 16);
             this.linkLabel1.TabIndex = 16;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Zmień hasło";
@@ -137,37 +138,38 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(61, 202);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(81, 249);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(181, 13);
+            this.label5.Size = new System.Drawing.Size(223, 16);
             this.label5.TabIndex = 17;
             this.label5.Text = "BRAK KONTA? ZAREJESTRUJ SIĘ";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(90, 219);
+            this.button2.Location = new System.Drawing.Point(120, 270);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(107, 37);
+            this.button2.Size = new System.Drawing.Size(143, 46);
             this.button2.TabIndex = 18;
             this.button2.Text = "REJESTRACJA";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(56, 259);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(75, 319);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(191, 13);
+            this.label6.Size = new System.Drawing.Size(232, 16);
             this.label6.TabIndex = 19;
             this.label6.Text = "PONOWNY WYBÓR UŻYTKOWNIKA";
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(90, 275);
+            this.button3.Location = new System.Drawing.Point(120, 338);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(107, 37);
+            this.button3.Size = new System.Drawing.Size(143, 46);
             this.button3.TabIndex = 20;
             this.button3.Text = "<< COFNIJ";
             this.button3.UseVisualStyleBackColor = true;
@@ -175,9 +177,9 @@
             // 
             // FormLogowaniePacjent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(306, 391);
+            this.ClientSize = new System.Drawing.Size(408, 481);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button2);
@@ -191,6 +193,7 @@
             this.Controls.Add(this.checkBoxPokazHaslo);
             this.Controls.Add(this.textBoxHasloPacjent);
             this.Controls.Add(this.textBoxLoginPacjent);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormLogowaniePacjent";
             this.Text = "Logowanie Pacjent";
             this.ResumeLayout(false);

@@ -52,7 +52,7 @@ namespace WindowsFormsApp1
                         break;
 
                     case "Administrator":
-                        var formAdmin = new FormLogowanieAdmin();
+                        var formAdmin = new FormLogowanieAdmin(_dbHelper);
                         formAdmin.Closed += (s, args) => this.Close();
                         formAdmin.Show();
                         break;

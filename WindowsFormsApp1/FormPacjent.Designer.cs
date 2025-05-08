@@ -32,6 +32,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPageDanePacjenta = new System.Windows.Forms.TabPage();
+            this.buttonZmienDane = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -61,14 +62,15 @@
             this.dataGridViewLekarze = new System.Windows.Forms.DataGridView();
             this.buttonDodajWizyte = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.wybranyplik = new System.Windows.Forms.Label();
             this.dataGridViewDocuments = new System.Windows.Forms.DataGridView();
             this.buttonDodajDocument = new System.Windows.Forms.Button();
             this.buttonWybierzPlik = new System.Windows.Forms.Button();
             this.textBoxUwagiDokument = new System.Windows.Forms.TextBox();
             this.comboBoxTypDokumentu = new System.Windows.Forms.ComboBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.wybranyplik = new System.Windows.Forms.Label();
-            this.buttonZmienDane = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.tabPageDanePacjenta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -78,13 +80,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLekarze)).BeginInit();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDocuments)).BeginInit();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1391, 12);
+            this.button1.Location = new System.Drawing.Point(1855, 15);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(83, 27);
+            this.button1.Size = new System.Drawing.Size(111, 33);
             this.button1.TabIndex = 1;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -119,175 +123,207 @@
             this.tabPageDanePacjenta.Controls.Add(this.buttonZapiszZmiany);
             this.tabPageDanePacjenta.Controls.Add(this.dateTimePickerDU);
             this.errorProvider.SetIconAlignment(this.tabPageDanePacjenta, System.Windows.Forms.ErrorIconAlignment.BottomLeft);
-            this.tabPageDanePacjenta.Location = new System.Drawing.Point(4, 22);
+            this.tabPageDanePacjenta.Location = new System.Drawing.Point(4, 25);
+            this.tabPageDanePacjenta.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageDanePacjenta.Name = "tabPageDanePacjenta";
-            this.tabPageDanePacjenta.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageDanePacjenta.Size = new System.Drawing.Size(1466, 796);
+            this.tabPageDanePacjenta.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPageDanePacjenta.Size = new System.Drawing.Size(1957, 983);
             this.tabPageDanePacjenta.TabIndex = 0;
             this.tabPageDanePacjenta.Text = "Dane Pacjenta";
+            // 
+            // buttonZmienDane
+            // 
+            this.buttonZmienDane.Location = new System.Drawing.Point(97, 336);
+            this.buttonZmienDane.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonZmienDane.Name = "buttonZmienDane";
+            this.buttonZmienDane.Size = new System.Drawing.Size(83, 28);
+            this.buttonZmienDane.TabIndex = 24;
+            this.buttonZmienDane.Text = "Zmien Dane";
+            this.buttonZmienDane.UseVisualStyleBackColor = true;
+            this.buttonZmienDane.Click += new System.EventHandler(this.buttonZmienDane_Click);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(747, 27);
+            this.label9.Location = new System.Drawing.Point(996, 33);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(109, 13);
+            this.label9.Size = new System.Drawing.Size(138, 16);
             this.label9.TabIndex = 23;
             this.label9.Text = "Tu bedzie zdjecie ryja";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(9, 212);
+            this.label8.Location = new System.Drawing.Point(12, 261);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(31, 13);
+            this.label8.Size = new System.Drawing.Size(40, 16);
             this.label8.TabIndex = 22;
             this.label8.Text = "email";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 160);
+            this.label7.Location = new System.Drawing.Point(9, 197);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 13);
+            this.label7.Size = new System.Drawing.Size(47, 16);
             this.label7.TabIndex = 21;
             this.label7.Text = "Miasto";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 131);
+            this.label6.Location = new System.Drawing.Point(9, 161);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(39, 13);
+            this.label6.Size = new System.Drawing.Size(47, 16);
             this.label6.TabIndex = 20;
             this.label6.Text = "Nr Tel.";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 186);
+            this.label5.Location = new System.Drawing.Point(9, 229);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(75, 13);
+            this.label5.Size = new System.Drawing.Size(91, 16);
             this.label5.TabIndex = 19;
             this.label5.Text = "Kod Pocztowy";
             // 
             // checkBoxAktywny
             // 
             this.checkBoxAktywny.AutoSize = true;
-            this.checkBoxAktywny.Location = new System.Drawing.Point(273, 30);
+            this.checkBoxAktywny.Location = new System.Drawing.Point(364, 37);
+            this.checkBoxAktywny.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxAktywny.Name = "checkBoxAktywny";
-            this.checkBoxAktywny.Size = new System.Drawing.Size(92, 17);
+            this.checkBoxAktywny.Size = new System.Drawing.Size(110, 20);
             this.checkBoxAktywny.TabIndex = 17;
             this.checkBoxAktywny.Text = "Czy Aktywny?";
             this.checkBoxAktywny.UseVisualStyleBackColor = true;
             // 
             // textBoxEmail
             // 
-            this.textBoxEmail.Location = new System.Drawing.Point(61, 209);
+            this.textBoxEmail.Location = new System.Drawing.Point(81, 257);
+            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(182, 20);
+            this.textBoxEmail.Size = new System.Drawing.Size(241, 22);
             this.textBoxEmail.TabIndex = 16;
             // 
             // textBoxKodPocztowy
             // 
             this.textBoxKodPocztowy.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBoxKodPocztowy.Location = new System.Drawing.Point(88, 183);
+            this.textBoxKodPocztowy.Location = new System.Drawing.Point(117, 225);
+            this.textBoxKodPocztowy.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxKodPocztowy.Name = "textBoxKodPocztowy";
-            this.textBoxKodPocztowy.Size = new System.Drawing.Size(182, 20);
+            this.textBoxKodPocztowy.Size = new System.Drawing.Size(241, 22);
             this.textBoxKodPocztowy.TabIndex = 15;
             // 
             // textBoxMiasto
             // 
-            this.textBoxMiasto.Location = new System.Drawing.Point(61, 157);
+            this.textBoxMiasto.Location = new System.Drawing.Point(81, 193);
+            this.textBoxMiasto.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxMiasto.Name = "textBoxMiasto";
-            this.textBoxMiasto.Size = new System.Drawing.Size(182, 20);
+            this.textBoxMiasto.Size = new System.Drawing.Size(241, 22);
             this.textBoxMiasto.TabIndex = 14;
             // 
             // textBoxTelefon
             // 
-            this.textBoxTelefon.Location = new System.Drawing.Point(61, 131);
+            this.textBoxTelefon.Location = new System.Drawing.Point(81, 161);
+            this.textBoxTelefon.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxTelefon.Name = "textBoxTelefon";
-            this.textBoxTelefon.Size = new System.Drawing.Size(182, 20);
+            this.textBoxTelefon.Size = new System.Drawing.Size(241, 22);
             this.textBoxTelefon.TabIndex = 13;
             // 
             // textBoxPesel
             // 
-            this.textBoxPesel.Location = new System.Drawing.Point(61, 105);
+            this.textBoxPesel.Location = new System.Drawing.Point(81, 129);
+            this.textBoxPesel.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxPesel.Name = "textBoxPesel";
-            this.textBoxPesel.Size = new System.Drawing.Size(182, 20);
+            this.textBoxPesel.Size = new System.Drawing.Size(241, 22);
             this.textBoxPesel.TabIndex = 6;
             // 
             // textBoxAdres
             // 
-            this.textBoxAdres.Location = new System.Drawing.Point(61, 79);
+            this.textBoxAdres.Location = new System.Drawing.Point(81, 97);
+            this.textBoxAdres.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxAdres.Name = "textBoxAdres";
-            this.textBoxAdres.Size = new System.Drawing.Size(182, 20);
+            this.textBoxAdres.Size = new System.Drawing.Size(241, 22);
             this.textBoxAdres.TabIndex = 2;
             // 
             // textBoxNazwisko
             // 
-            this.textBoxNazwisko.Location = new System.Drawing.Point(61, 53);
+            this.textBoxNazwisko.Location = new System.Drawing.Point(81, 65);
+            this.textBoxNazwisko.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxNazwisko.Name = "textBoxNazwisko";
-            this.textBoxNazwisko.Size = new System.Drawing.Size(182, 20);
+            this.textBoxNazwisko.Size = new System.Drawing.Size(241, 22);
             this.textBoxNazwisko.TabIndex = 1;
             // 
             // textBoxImie
             // 
-            this.textBoxImie.Location = new System.Drawing.Point(61, 27);
+            this.textBoxImie.Location = new System.Drawing.Point(81, 33);
+            this.textBoxImie.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxImie.Name = "textBoxImie";
-            this.textBoxImie.Size = new System.Drawing.Size(182, 20);
+            this.textBoxImie.Size = new System.Drawing.Size(241, 22);
             this.textBoxImie.TabIndex = 0;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 108);
+            this.label4.Location = new System.Drawing.Point(8, 133);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(33, 13);
+            this.label4.Size = new System.Drawing.Size(42, 16);
             this.label4.TabIndex = 12;
             this.label4.Text = "Pesel";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 82);
+            this.label3.Location = new System.Drawing.Point(8, 101);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 13);
+            this.label3.Size = new System.Drawing.Size(43, 16);
             this.label3.TabIndex = 11;
             this.label3.Text = "Adres";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 56);
+            this.label2.Location = new System.Drawing.Point(8, 69);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 13);
+            this.label2.Size = new System.Drawing.Size(62, 16);
             this.label2.TabIndex = 10;
             this.label2.Text = "nazwisko";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 31);
+            this.label1.Location = new System.Drawing.Point(8, 38);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(25, 13);
+            this.label1.Size = new System.Drawing.Size(32, 16);
             this.label1.TabIndex = 9;
             this.label1.Text = "imie";
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.imagebadge;
-            this.pictureBox1.Location = new System.Drawing.Point(533, 53);
+            this.pictureBox1.Location = new System.Drawing.Point(711, 65);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(491, 316);
+            this.pictureBox1.Size = new System.Drawing.Size(655, 389);
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
             // buttonZapiszZmiany
             // 
-            this.buttonZapiszZmiany.Location = new System.Drawing.Point(199, 273);
+            this.buttonZapiszZmiany.Location = new System.Drawing.Point(265, 336);
+            this.buttonZapiszZmiany.Margin = new System.Windows.Forms.Padding(4);
             this.buttonZapiszZmiany.Name = "buttonZapiszZmiany";
-            this.buttonZapiszZmiany.Size = new System.Drawing.Size(62, 23);
+            this.buttonZapiszZmiany.Size = new System.Drawing.Size(83, 28);
             this.buttonZapiszZmiany.TabIndex = 7;
             this.buttonZapiszZmiany.Text = "Zapisz zmiany";
             this.buttonZapiszZmiany.UseVisualStyleBackColor = true;
@@ -295,9 +331,10 @@
             // 
             // dateTimePickerDU
             // 
-            this.dateTimePickerDU.Location = new System.Drawing.Point(61, 235);
+            this.dateTimePickerDU.Location = new System.Drawing.Point(81, 289);
+            this.dateTimePickerDU.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerDU.Name = "dateTimePickerDU";
-            this.dateTimePickerDU.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerDU.Size = new System.Drawing.Size(265, 22);
             this.dateTimePickerDU.TabIndex = 4;
             // 
             // tabControlPanelLekarza
@@ -305,12 +342,14 @@
             this.tabControlPanelLekarza.Controls.Add(this.tabPageDanePacjenta);
             this.tabControlPanelLekarza.Controls.Add(this.tabPageWizyty);
             this.tabControlPanelLekarza.Controls.Add(this.tabPage1);
+            this.tabControlPanelLekarza.Controls.Add(this.tabPage2);
             this.tabControlPanelLekarza.Cursor = System.Windows.Forms.Cursors.Hand;
             this.errorProvider.SetIconAlignment(this.tabControlPanelLekarza, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
-            this.tabControlPanelLekarza.Location = new System.Drawing.Point(12, 12);
+            this.tabControlPanelLekarza.Location = new System.Drawing.Point(16, 15);
+            this.tabControlPanelLekarza.Margin = new System.Windows.Forms.Padding(4);
             this.tabControlPanelLekarza.Name = "tabControlPanelLekarza";
             this.tabControlPanelLekarza.SelectedIndex = 0;
-            this.tabControlPanelLekarza.Size = new System.Drawing.Size(1474, 822);
+            this.tabControlPanelLekarza.Size = new System.Drawing.Size(1965, 1012);
             this.tabControlPanelLekarza.TabIndex = 2;
             // 
             // tabPageWizyty
@@ -320,10 +359,11 @@
             this.tabPageWizyty.Controls.Add(this.dateTimePickerWizyta);
             this.tabPageWizyty.Controls.Add(this.dataGridViewLekarze);
             this.tabPageWizyty.Controls.Add(this.buttonDodajWizyte);
-            this.tabPageWizyty.Location = new System.Drawing.Point(4, 22);
+            this.tabPageWizyty.Location = new System.Drawing.Point(4, 25);
+            this.tabPageWizyty.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageWizyty.Name = "tabPageWizyty";
-            this.tabPageWizyty.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageWizyty.Size = new System.Drawing.Size(1466, 796);
+            this.tabPageWizyty.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPageWizyty.Size = new System.Drawing.Size(1957, 983);
             this.tabPageWizyty.TabIndex = 6;
             this.tabPageWizyty.Text = "Wizyty";
             this.tabPageWizyty.UseVisualStyleBackColor = true;
@@ -331,39 +371,47 @@
             // dataGridViewHistoria
             // 
             this.dataGridViewHistoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewHistoria.Location = new System.Drawing.Point(728, 30);
+            this.dataGridViewHistoria.Location = new System.Drawing.Point(971, 37);
+            this.dataGridViewHistoria.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewHistoria.Name = "dataGridViewHistoria";
-            this.dataGridViewHistoria.Size = new System.Drawing.Size(457, 311);
+            this.dataGridViewHistoria.RowHeadersWidth = 51;
+            this.dataGridViewHistoria.Size = new System.Drawing.Size(609, 383);
             this.dataGridViewHistoria.TabIndex = 7;
             // 
             // richTextBoxOpisProblemu
             // 
-            this.richTextBoxOpisProblemu.Location = new System.Drawing.Point(360, 347);
+            this.richTextBoxOpisProblemu.Location = new System.Drawing.Point(480, 427);
+            this.richTextBoxOpisProblemu.Margin = new System.Windows.Forms.Padding(4);
             this.richTextBoxOpisProblemu.Name = "richTextBoxOpisProblemu";
-            this.richTextBoxOpisProblemu.Size = new System.Drawing.Size(305, 210);
+            this.richTextBoxOpisProblemu.Size = new System.Drawing.Size(405, 258);
             this.richTextBoxOpisProblemu.TabIndex = 6;
             this.richTextBoxOpisProblemu.Text = "";
             // 
             // dateTimePickerWizyta
             // 
-            this.dateTimePickerWizyta.Location = new System.Drawing.Point(58, 347);
+            this.dateTimePickerWizyta.Location = new System.Drawing.Point(77, 427);
+            this.dateTimePickerWizyta.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerWizyta.Name = "dateTimePickerWizyta";
-            this.dateTimePickerWizyta.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerWizyta.Size = new System.Drawing.Size(265, 22);
             this.dateTimePickerWizyta.TabIndex = 5;
             // 
             // dataGridViewLekarze
             // 
             this.dataGridViewLekarze.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewLekarze.Location = new System.Drawing.Point(58, 30);
+            this.dataGridViewLekarze.Location = new System.Drawing.Point(77, 37);
+            this.dataGridViewLekarze.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewLekarze.Name = "dataGridViewLekarze";
-            this.dataGridViewLekarze.Size = new System.Drawing.Size(607, 311);
+            this.dataGridViewLekarze.RowHeadersWidth = 51;
+            this.dataGridViewLekarze.Size = new System.Drawing.Size(809, 383);
             this.dataGridViewLekarze.TabIndex = 4;
+            this.dataGridViewLekarze.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewLekarze_CellContentClick);
             // 
             // buttonDodajWizyte
             // 
-            this.buttonDodajWizyte.Location = new System.Drawing.Point(58, 375);
+            this.buttonDodajWizyte.Location = new System.Drawing.Point(77, 462);
+            this.buttonDodajWizyte.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDodajWizyte.Name = "buttonDodajWizyte";
-            this.buttonDodajWizyte.Size = new System.Drawing.Size(148, 51);
+            this.buttonDodajWizyte.Size = new System.Drawing.Size(197, 63);
             this.buttonDodajWizyte.TabIndex = 3;
             this.buttonDodajWizyte.Text = "Dodaj Wizyte";
             this.buttonDodajWizyte.UseVisualStyleBackColor = true;
@@ -377,28 +425,41 @@
             this.tabPage1.Controls.Add(this.buttonWybierzPlik);
             this.tabPage1.Controls.Add(this.textBoxUwagiDokument);
             this.tabPage1.Controls.Add(this.comboBoxTypDokumentu);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1466, 796);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage1.Size = new System.Drawing.Size(1957, 983);
             this.tabPage1.TabIndex = 7;
             this.tabPage1.Text = "Dokumentacja Medyczna";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // wybranyplik
+            // 
+            this.wybranyplik.AutoSize = true;
+            this.wybranyplik.Location = new System.Drawing.Point(601, 721);
+            this.wybranyplik.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.wybranyplik.Name = "wybranyplik";
+            this.wybranyplik.Size = new System.Drawing.Size(0, 16);
+            this.wybranyplik.TabIndex = 5;
+            // 
             // dataGridViewDocuments
             // 
             this.dataGridViewDocuments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewDocuments.Location = new System.Drawing.Point(109, 47);
+            this.dataGridViewDocuments.Location = new System.Drawing.Point(145, 58);
+            this.dataGridViewDocuments.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewDocuments.Name = "dataGridViewDocuments";
-            this.dataGridViewDocuments.Size = new System.Drawing.Size(992, 353);
+            this.dataGridViewDocuments.RowHeadersWidth = 51;
+            this.dataGridViewDocuments.Size = new System.Drawing.Size(1323, 434);
             this.dataGridViewDocuments.TabIndex = 4;
             this.dataGridViewDocuments.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDocuments_CellContentClick);
             // 
             // buttonDodajDocument
             // 
-            this.buttonDodajDocument.Location = new System.Drawing.Point(726, 581);
+            this.buttonDodajDocument.Location = new System.Drawing.Point(968, 715);
+            this.buttonDodajDocument.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDodajDocument.Name = "buttonDodajDocument";
-            this.buttonDodajDocument.Size = new System.Drawing.Size(75, 23);
+            this.buttonDodajDocument.Size = new System.Drawing.Size(100, 28);
             this.buttonDodajDocument.TabIndex = 3;
             this.buttonDodajDocument.Text = "Dodaj Dokument";
             this.buttonDodajDocument.UseVisualStyleBackColor = true;
@@ -406,58 +467,64 @@
             // 
             // buttonWybierzPlik
             // 
-            this.buttonWybierzPlik.Location = new System.Drawing.Point(645, 581);
+            this.buttonWybierzPlik.Location = new System.Drawing.Point(860, 715);
+            this.buttonWybierzPlik.Margin = new System.Windows.Forms.Padding(4);
             this.buttonWybierzPlik.Name = "buttonWybierzPlik";
-            this.buttonWybierzPlik.Size = new System.Drawing.Size(75, 23);
+            this.buttonWybierzPlik.Size = new System.Drawing.Size(100, 28);
             this.buttonWybierzPlik.TabIndex = 2;
             this.buttonWybierzPlik.Text = "Wybierz Plik";
             this.buttonWybierzPlik.UseVisualStyleBackColor = true;
             // 
             // textBoxUwagiDokument
             // 
-            this.textBoxUwagiDokument.Location = new System.Drawing.Point(454, 406);
+            this.textBoxUwagiDokument.Location = new System.Drawing.Point(605, 500);
+            this.textBoxUwagiDokument.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxUwagiDokument.Multiline = true;
             this.textBoxUwagiDokument.Name = "textBoxUwagiDokument";
-            this.textBoxUwagiDokument.Size = new System.Drawing.Size(347, 169);
+            this.textBoxUwagiDokument.Size = new System.Drawing.Size(461, 207);
             this.textBoxUwagiDokument.TabIndex = 1;
             // 
             // comboBoxTypDokumentu
             // 
             this.comboBoxTypDokumentu.FormattingEnabled = true;
-            this.comboBoxTypDokumentu.Location = new System.Drawing.Point(327, 406);
+            this.comboBoxTypDokumentu.Location = new System.Drawing.Point(436, 500);
+            this.comboBoxTypDokumentu.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxTypDokumentu.Name = "comboBoxTypDokumentu";
-            this.comboBoxTypDokumentu.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxTypDokumentu.Size = new System.Drawing.Size(160, 24);
             this.comboBoxTypDokumentu.TabIndex = 0;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.label10);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1957, 983);
+            this.tabPage2.TabIndex = 8;
+            this.tabPage2.Text = "Opinie";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(75, 28);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(51, 16);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "label10";
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // wybranyplik
-            // 
-            this.wybranyplik.AutoSize = true;
-            this.wybranyplik.Location = new System.Drawing.Point(451, 586);
-            this.wybranyplik.Name = "wybranyplik";
-            this.wybranyplik.Size = new System.Drawing.Size(0, 13);
-            this.wybranyplik.TabIndex = 5;
-            // 
-            // buttonZmienDane
-            // 
-            this.buttonZmienDane.Location = new System.Drawing.Point(73, 273);
-            this.buttonZmienDane.Name = "buttonZmienDane";
-            this.buttonZmienDane.Size = new System.Drawing.Size(62, 23);
-            this.buttonZmienDane.TabIndex = 24;
-            this.buttonZmienDane.Text = "Zmien Dane";
-            this.buttonZmienDane.UseVisualStyleBackColor = true;
-            this.buttonZmienDane.Click += new System.EventHandler(this.buttonZmienDane_Click);
-            // 
             // FormPacjent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1486, 834);
+            this.ClientSize = new System.Drawing.Size(1924, 1026);
             this.Controls.Add(this.tabControlPanelLekarza);
             this.Controls.Add(this.button1);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormPacjent";
             this.Text = "FormPacjent";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
@@ -471,6 +538,8 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDocuments)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -517,5 +586,7 @@
         private System.Windows.Forms.Button buttonWybierzPlik;
         private System.Windows.Forms.Label wybranyplik;
         private System.Windows.Forms.Button buttonZmienDane;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Label label10;
     }
 }

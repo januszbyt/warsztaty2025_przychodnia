@@ -255,7 +255,7 @@ namespace WindowsFormsApp1.Data
                 ur.RoleName AS 'Rola'
                 FROM Users u
                 LEFT JOIN UserRoles ur ON u.Id = ur.UserId
-                WHERE ur.RoleName = 'Pacjent' OR ur.RoleName IS NULL";
+                WHERE ur.RoleName = 'Pacjent'";
 
                 using (var adapter = new MySqlDataAdapter(query, connection))
                 {

@@ -314,5 +314,10 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Błąd podczas aktualizacji: " + ex.Message);
             }
         }
+
+        private void dataGridViewLekarze_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

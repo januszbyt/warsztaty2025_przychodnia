@@ -8,16 +8,17 @@ namespace WindowsFormsApp1
     public partial class FormLogowanieAdmin : Form
     {
         private readonly DataBaseHelper _dbHelper;
-        public FormLogowanieAdmin()
+        public FormLogowanieAdmin(DataBaseHelper dbHelper)
         {
             InitializeComponent();
+            _dbHelper = dbHelper ?? throw new ArgumentNullException(nameof(dbHelper));
             textBoxHasloAdmin.PasswordChar = '•';
 
             textBoxLoginAdmin.Text = "Admin";
             textBoxHasloAdmin.Focus();
         }
 
-      
+   
 
         private void textBoxHasloAdmin_TextChanged(object sender, KeyEventArgs e)
         {
@@ -65,8 +66,8 @@ namespace WindowsFormsApp1
 
         private void button3_Click(object sender, EventArgs e)
         {
-            FormLogowanieRola logowanieRola = new FormLogowanieRola(_dbHelper);
-            logowanieRola.Show();
+            FormLogowanieRola rolaForm = new FormLogowanieRola(_dbHelper);
+            rolaForm.Show();
             this.Hide();
         }
 

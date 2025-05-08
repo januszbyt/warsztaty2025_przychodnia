@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using WindowsFormsApp1.Data;
 using WindowsFormsApp1.Models;
 using MySql.Data.MySqlClient;
+using WindowsFormsApp1.Forms;
 
 namespace WindowsFormsApp1
 {
@@ -95,6 +96,13 @@ namespace WindowsFormsApp1
             var formLogowanieRola = new FormLogowanieRola(_dbHelper);
             formLogowanieRola.Closed += (s, args) => Close();
             formLogowanieRola.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FormRejestracja formRejestracja = new FormRejestracja(_dbHelper);
+            formRejestracja.Show();
+            this.Hide();
         }
     }
 }
