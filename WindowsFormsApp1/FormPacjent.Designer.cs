@@ -55,7 +55,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.buttonZapiszZmiany = new System.Windows.Forms.Button();
-            this.dateTimePickerDU = new System.Windows.Forms.DateTimePicker();
             this.tabControlPanelLekarza = new System.Windows.Forms.TabControl();
             this.tabPageWizyty = new System.Windows.Forms.TabPage();
             this.dataGridViewHistoria = new System.Windows.Forms.DataGridView();
@@ -73,6 +72,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label10 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.tabPageDanePacjenta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -102,6 +102,7 @@
             // tabPageDanePacjenta
             // 
             this.tabPageDanePacjenta.BackColor = System.Drawing.Color.DimGray;
+            this.tabPageDanePacjenta.Controls.Add(this.monthCalendar1);
             this.tabPageDanePacjenta.Controls.Add(this.textBoxHaslo);
             this.tabPageDanePacjenta.Controls.Add(this.label11);
             this.tabPageDanePacjenta.Controls.Add(this.buttonZmienDane);
@@ -125,7 +126,6 @@
             this.tabPageDanePacjenta.Controls.Add(this.label1);
             this.tabPageDanePacjenta.Controls.Add(this.pictureBox1);
             this.tabPageDanePacjenta.Controls.Add(this.buttonZapiszZmiany);
-            this.tabPageDanePacjenta.Controls.Add(this.dateTimePickerDU);
             this.errorProvider.SetIconAlignment(this.tabPageDanePacjenta, System.Windows.Forms.ErrorIconAlignment.BottomLeft);
             this.tabPageDanePacjenta.Location = new System.Drawing.Point(4, 25);
             this.tabPageDanePacjenta.Margin = new System.Windows.Forms.Padding(4);
@@ -137,7 +137,7 @@
             // 
             // textBoxHaslo
             // 
-            this.textBoxHaslo.Location = new System.Drawing.Point(81, 286);
+            this.textBoxHaslo.Location = new System.Drawing.Point(157, 292);
             this.textBoxHaslo.Name = "textBoxHaslo";
             this.textBoxHaslo.Size = new System.Drawing.Size(241, 22);
             this.textBoxHaslo.TabIndex = 26;
@@ -146,19 +146,21 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(9, 286);
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label11.Location = new System.Drawing.Point(11, 294);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(40, 16);
+            this.label11.Size = new System.Drawing.Size(58, 20);
             this.label11.TabIndex = 25;
-            this.label11.Text = "haslo";
+            this.label11.Text = "Haslo";
             this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // buttonZmienDane
             // 
-            this.buttonZmienDane.Location = new System.Drawing.Point(90, 356);
+            this.buttonZmienDane.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonZmienDane.Location = new System.Drawing.Point(54, 437);
             this.buttonZmienDane.Margin = new System.Windows.Forms.Padding(4);
             this.buttonZmienDane.Name = "buttonZmienDane";
-            this.buttonZmienDane.Size = new System.Drawing.Size(83, 28);
+            this.buttonZmienDane.Size = new System.Drawing.Size(129, 46);
             this.buttonZmienDane.TabIndex = 24;
             this.buttonZmienDane.Text = "Zmien Dane";
             this.buttonZmienDane.UseVisualStyleBackColor = true;
@@ -167,67 +169,73 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(996, 33);
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label9.Location = new System.Drawing.Point(624, 47);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(138, 16);
+            this.label9.Size = new System.Drawing.Size(172, 25);
             this.label9.TabIndex = 23;
-            this.label9.Text = "Tu bedzie zdjecie ryja";
+            this.label9.Text = "Zdjecie Pacjenta";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label8.Location = new System.Drawing.Point(11, 260);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(40, 16);
+            this.label8.Size = new System.Drawing.Size(54, 20);
             this.label8.TabIndex = 22;
             this.label8.Text = "email";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label7.Location = new System.Drawing.Point(9, 197);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(47, 16);
+            this.label7.Size = new System.Drawing.Size(65, 20);
             this.label7.TabIndex = 21;
             this.label7.Text = "Miasto";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 161);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.Location = new System.Drawing.Point(9, 166);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 16);
+            this.label6.Size = new System.Drawing.Size(66, 20);
             this.label6.TabIndex = 20;
             this.label6.Text = "Nr Tel.";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label5.Location = new System.Drawing.Point(9, 229);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(91, 16);
+            this.label5.Size = new System.Drawing.Size(127, 20);
             this.label5.TabIndex = 19;
             this.label5.Text = "Kod Pocztowy";
             // 
             // checkBoxAktywny
             // 
             this.checkBoxAktywny.AutoSize = true;
-            this.checkBoxAktywny.Location = new System.Drawing.Point(364, 37);
+            this.checkBoxAktywny.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBoxAktywny.Location = new System.Drawing.Point(445, 30);
             this.checkBoxAktywny.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxAktywny.Name = "checkBoxAktywny";
-            this.checkBoxAktywny.Size = new System.Drawing.Size(110, 20);
+            this.checkBoxAktywny.Size = new System.Drawing.Size(135, 24);
             this.checkBoxAktywny.TabIndex = 17;
             this.checkBoxAktywny.Text = "Czy Aktywny?";
             this.checkBoxAktywny.UseVisualStyleBackColor = true;
             // 
             // textBoxEmail
             // 
-            this.textBoxEmail.Location = new System.Drawing.Point(81, 257);
+            this.textBoxEmail.Location = new System.Drawing.Point(157, 261);
             this.textBoxEmail.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(241, 22);
@@ -236,7 +244,7 @@
             // textBoxKodPocztowy
             // 
             this.textBoxKodPocztowy.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBoxKodPocztowy.Location = new System.Drawing.Point(117, 225);
+            this.textBoxKodPocztowy.Location = new System.Drawing.Point(157, 230);
             this.textBoxKodPocztowy.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxKodPocztowy.Name = "textBoxKodPocztowy";
             this.textBoxKodPocztowy.Size = new System.Drawing.Size(241, 22);
@@ -244,7 +252,7 @@
             // 
             // textBoxMiasto
             // 
-            this.textBoxMiasto.Location = new System.Drawing.Point(81, 193);
+            this.textBoxMiasto.Location = new System.Drawing.Point(157, 199);
             this.textBoxMiasto.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxMiasto.Name = "textBoxMiasto";
             this.textBoxMiasto.Size = new System.Drawing.Size(241, 22);
@@ -252,7 +260,7 @@
             // 
             // textBoxTelefon
             // 
-            this.textBoxTelefon.Location = new System.Drawing.Point(81, 161);
+            this.textBoxTelefon.Location = new System.Drawing.Point(157, 167);
             this.textBoxTelefon.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxTelefon.Name = "textBoxTelefon";
             this.textBoxTelefon.Size = new System.Drawing.Size(241, 22);
@@ -260,7 +268,7 @@
             // 
             // textBoxPesel
             // 
-            this.textBoxPesel.Location = new System.Drawing.Point(81, 129);
+            this.textBoxPesel.Location = new System.Drawing.Point(157, 133);
             this.textBoxPesel.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxPesel.Name = "textBoxPesel";
             this.textBoxPesel.Size = new System.Drawing.Size(241, 22);
@@ -268,7 +276,7 @@
             // 
             // textBoxAdres
             // 
-            this.textBoxAdres.Location = new System.Drawing.Point(81, 97);
+            this.textBoxAdres.Location = new System.Drawing.Point(157, 101);
             this.textBoxAdres.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxAdres.Name = "textBoxAdres";
             this.textBoxAdres.Size = new System.Drawing.Size(241, 22);
@@ -276,7 +284,7 @@
             // 
             // textBoxNazwisko
             // 
-            this.textBoxNazwisko.Location = new System.Drawing.Point(81, 65);
+            this.textBoxNazwisko.Location = new System.Drawing.Point(157, 69);
             this.textBoxNazwisko.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxNazwisko.Name = "textBoxNazwisko";
             this.textBoxNazwisko.Size = new System.Drawing.Size(241, 22);
@@ -285,7 +293,7 @@
             // 
             // textBoxImie
             // 
-            this.textBoxImie.Location = new System.Drawing.Point(81, 33);
+            this.textBoxImie.Location = new System.Drawing.Point(157, 36);
             this.textBoxImie.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxImie.Name = "textBoxImie";
             this.textBoxImie.Size = new System.Drawing.Size(241, 22);
@@ -294,71 +302,68 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label4.Location = new System.Drawing.Point(8, 133);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 16);
+            this.label4.Size = new System.Drawing.Size(56, 20);
             this.label4.TabIndex = 12;
             this.label4.Text = "Pesel";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label3.Location = new System.Drawing.Point(8, 101);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 16);
+            this.label3.Size = new System.Drawing.Size(58, 20);
             this.label3.TabIndex = 11;
             this.label3.Text = "Adres";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.Location = new System.Drawing.Point(8, 69);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 16);
+            this.label2.Size = new System.Drawing.Size(89, 20);
             this.label2.TabIndex = 10;
-            this.label2.Text = "nazwisko";
+            this.label2.Text = "Nazwisko";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.Location = new System.Drawing.Point(8, 38);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 16);
+            this.label1.Size = new System.Drawing.Size(44, 20);
             this.label1.TabIndex = 9;
-            this.label1.Text = "imie";
+            this.label1.Text = "Imię";
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.imagebadge;
-            this.pictureBox1.Location = new System.Drawing.Point(711, 65);
+            this.pictureBox1.Location = new System.Drawing.Point(544, 90);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(655, 389);
+            this.pictureBox1.Size = new System.Drawing.Size(368, 204);
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
             // buttonZapiszZmiany
             // 
-            this.buttonZapiszZmiany.Location = new System.Drawing.Point(218, 356);
+            this.buttonZapiszZmiany.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonZapiszZmiany.Location = new System.Drawing.Point(292, 437);
             this.buttonZapiszZmiany.Margin = new System.Windows.Forms.Padding(4);
             this.buttonZapiszZmiany.Name = "buttonZapiszZmiany";
-            this.buttonZapiszZmiany.Size = new System.Drawing.Size(83, 28);
+            this.buttonZapiszZmiany.Size = new System.Drawing.Size(117, 46);
             this.buttonZapiszZmiany.TabIndex = 7;
             this.buttonZapiszZmiany.Text = "Zapisz zmiany";
             this.buttonZapiszZmiany.UseVisualStyleBackColor = true;
             this.buttonZapiszZmiany.Click += new System.EventHandler(this.buttonZapiszZmiany_Click);
-            // 
-            // dateTimePickerDU
-            // 
-            this.dateTimePickerDU.Location = new System.Drawing.Point(81, 326);
-            this.dateTimePickerDU.Margin = new System.Windows.Forms.Padding(4);
-            this.dateTimePickerDU.Name = "dateTimePickerDU";
-            this.dateTimePickerDU.Size = new System.Drawing.Size(265, 22);
-            this.dateTimePickerDU.TabIndex = 4;
             // 
             // tabControlPanelLekarza
             // 
@@ -540,6 +545,12 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Location = new System.Drawing.Point(973, 87);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 27;
+            // 
             // FormPacjent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -594,7 +605,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button buttonZapiszZmiany;
-        private System.Windows.Forms.DateTimePicker dateTimePickerDU;
         private System.Windows.Forms.TabPage tabPageWizyty;
         private System.Windows.Forms.RichTextBox richTextBoxOpisProblemu;
         private System.Windows.Forms.DateTimePicker dateTimePickerWizyta;
@@ -613,5 +623,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBoxHaslo;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.MonthCalendar monthCalendar1;
     }
 }
