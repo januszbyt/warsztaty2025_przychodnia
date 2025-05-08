@@ -67,13 +67,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.tabPageWizyty = new System.Windows.Forms.TabPage();
-            this.txtSzukajPacjenta = new System.Windows.Forms.TextBox();
             this.buttonWyloguj = new System.Windows.Forms.Button();
             this.buttonPokazPacjentow = new System.Windows.Forms.Button();
             this.btnSzukaj = new System.Windows.Forms.Button();
             this.dataGridViewWizyty = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.label8 = new System.Windows.Forms.Label();
+            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPageUstawienia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -237,7 +237,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(494, 503);
+            this.label3.Location = new System.Drawing.Point(518, 354);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 16);
@@ -247,7 +247,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(494, 580);
+            this.label4.Location = new System.Drawing.Point(518, 438);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(83, 16);
@@ -480,11 +480,11 @@
             // 
             // tabPageWizyty
             // 
+            this.tabPageWizyty.Controls.Add(this.monthCalendar2);
             this.tabPageWizyty.Controls.Add(this.dataGridViewWizyty);
             this.tabPageWizyty.Controls.Add(this.btnSzukaj);
             this.tabPageWizyty.Controls.Add(this.buttonPokazPacjentow);
             this.tabPageWizyty.Controls.Add(this.buttonWyloguj);
-            this.tabPageWizyty.Controls.Add(this.txtSzukajPacjenta);
             this.tabPageWizyty.Location = new System.Drawing.Point(4, 25);
             this.tabPageWizyty.Name = "tabPageWizyty";
             this.tabPageWizyty.Padding = new System.Windows.Forms.Padding(3);
@@ -493,19 +493,13 @@
             this.tabPageWizyty.Text = "Wizyty";
             this.tabPageWizyty.UseVisualStyleBackColor = true;
             // 
-            // txtSzukajPacjenta
-            // 
-            this.txtSzukajPacjenta.Location = new System.Drawing.Point(165, 27);
-            this.txtSzukajPacjenta.Name = "txtSzukajPacjenta";
-            this.txtSzukajPacjenta.Size = new System.Drawing.Size(316, 22);
-            this.txtSzukajPacjenta.TabIndex = 13;
-            // 
             // buttonWyloguj
             // 
             this.buttonWyloguj.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.buttonWyloguj.Location = new System.Drawing.Point(971, 39);
+            this.buttonWyloguj.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonWyloguj.Location = new System.Drawing.Point(25, 462);
             this.buttonWyloguj.Name = "buttonWyloguj";
-            this.buttonWyloguj.Size = new System.Drawing.Size(83, 32);
+            this.buttonWyloguj.Size = new System.Drawing.Size(156, 66);
             this.buttonWyloguj.TabIndex = 9;
             this.buttonWyloguj.Text = "Wyloguj";
             this.buttonWyloguj.UseVisualStyleBackColor = false;
@@ -525,21 +519,22 @@
             // btnSzukaj
             // 
             this.btnSzukaj.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.btnSzukaj.Location = new System.Drawing.Point(549, 21);
+            this.btnSzukaj.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnSzukaj.Location = new System.Drawing.Point(25, 323);
             this.btnSzukaj.Name = "btnSzukaj";
-            this.btnSzukaj.Size = new System.Drawing.Size(151, 38);
+            this.btnSzukaj.Size = new System.Drawing.Size(176, 62);
             this.btnSzukaj.TabIndex = 19;
-            this.btnSzukaj.Text = "Szukaj";
+            this.btnSzukaj.Text = "Szukaj Wizyty";
             this.btnSzukaj.UseVisualStyleBackColor = false;
             this.btnSzukaj.Click += new System.EventHandler(this.btnSzukaj_Click);
             // 
             // dataGridViewWizyty
             // 
             this.dataGridViewWizyty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewWizyty.Location = new System.Drawing.Point(165, 81);
+            this.dataGridViewWizyty.Location = new System.Drawing.Point(398, 67);
             this.dataGridViewWizyty.Name = "dataGridViewWizyty";
             this.dataGridViewWizyty.RowHeadersWidth = 51;
-            this.dataGridViewWizyty.Size = new System.Drawing.Size(663, 406);
+            this.dataGridViewWizyty.Size = new System.Drawing.Size(672, 477);
             this.dataGridViewWizyty.TabIndex = 22;
             // 
             // tabControl1
@@ -549,7 +544,7 @@
             this.tabControl1.Controls.Add(this.tabPageEdycjaWizyty);
             this.tabControl1.Controls.Add(this.tabPagePowiadomienia);
             this.tabControl1.Controls.Add(this.tabPageUstawienia);
-            this.tabControl1.Location = new System.Drawing.Point(-1, -1);
+            this.tabControl1.Location = new System.Drawing.Point(22, 11);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1106, 1021);
@@ -564,6 +559,12 @@
             this.label8.Size = new System.Drawing.Size(97, 25);
             this.label8.TabIndex = 28;
             this.label8.Text = "Zalecenia";
+            // 
+            // monthCalendar2
+            // 
+            this.monthCalendar2.Location = new System.Drawing.Point(25, 67);
+            this.monthCalendar2.Name = "monthCalendar2";
+            this.monthCalendar2.TabIndex = 23;
             // 
             // PanelLekarza
             // 
@@ -584,7 +585,6 @@
             this.tabPagePacjenci.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabPageWizyty.ResumeLayout(false);
-            this.tabPageWizyty.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWizyty)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -636,7 +636,7 @@
         private System.Windows.Forms.Button btnSzukaj;
         private System.Windows.Forms.Button buttonPokazPacjentow;
         private System.Windows.Forms.Button buttonWyloguj;
-        private System.Windows.Forms.TextBox txtSzukajPacjenta;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.MonthCalendar monthCalendar2;
     }
 }
