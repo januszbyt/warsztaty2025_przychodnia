@@ -68,7 +68,7 @@ namespace WindowsFormsApp1.Forms
                     return;
                 }
 
-                if (!uzytkownik.Rola.Nazwa.Equals("Lekarz", StringComparison.OrdinalIgnoreCase))
+                if (uzytkownik.Rola.Nazwa.Equals("Lekarz", StringComparison.OrdinalIgnoreCase))
                 {
                     MessageBox.Show("Brak uprawnień lekarza.");
                     return;
