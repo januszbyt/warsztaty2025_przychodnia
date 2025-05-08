@@ -249,7 +249,7 @@ namespace WindowsFormsApp1
         {
             if (dataGridViewPacjenci.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Wybierz pacjenta.");
+                MessageBox.Show("Wybierz pacjentaa.");
                 return;
             }
 
