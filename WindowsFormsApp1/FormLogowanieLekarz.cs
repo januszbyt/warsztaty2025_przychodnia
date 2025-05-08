@@ -35,9 +35,9 @@ namespace WindowsFormsApp1.Forms
 
         private void button3_Click(object sender, EventArgs e)
         {
-            FormRejestracja formrejestracja = new FormRejestracja(_dbHelper);
+            FormLogowanieRola formrola = new FormLogowanieRola(_dbHelper);
             this.Hide();
-            formrejestracja.ShowDialog();
+            formrola.ShowDialog();
 
         }
 
