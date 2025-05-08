@@ -72,7 +72,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label10 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.tabPageDanePacjenta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -102,7 +102,7 @@
             // tabPageDanePacjenta
             // 
             this.tabPageDanePacjenta.BackColor = System.Drawing.Color.DimGray;
-            this.tabPageDanePacjenta.Controls.Add(this.monthCalendar1);
+            this.tabPageDanePacjenta.Controls.Add(this.dateTimePicker1);
             this.tabPageDanePacjenta.Controls.Add(this.textBoxHaslo);
             this.tabPageDanePacjenta.Controls.Add(this.label11);
             this.tabPageDanePacjenta.Controls.Add(this.buttonZmienDane);
@@ -545,11 +545,12 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // monthCalendar1
+            // dateTimePicker1
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(973, 87);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 27;
+            this.dateTimePicker1.Location = new System.Drawing.Point(127, 369);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(271, 22);
+            this.dateTimePicker1.TabIndex = 27;
             // 
             // FormPacjent
             // 
@@ -623,6 +624,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBoxHaslo;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
