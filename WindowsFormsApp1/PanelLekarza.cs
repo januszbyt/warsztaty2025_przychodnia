@@ -169,7 +169,7 @@ namespace WindowsFormsApp1
 
         private void btnSzukaj_Click(object sender, EventArgs e)
         {
-            string imieNazwisko = txtSzukajPacjenta.Text.Trim();
+            string imieNazwisko = btnSzukaj.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(imieNazwisko))
             {
