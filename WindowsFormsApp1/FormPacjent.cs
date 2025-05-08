@@ -71,7 +71,7 @@ namespace WindowsFormsApp1
             
             textBoxImie.Text = pacjent.Imie;
             textBoxNazwisko.Text = pacjent.Nazwisko;
-            dateTimePickerDU.Value = pacjent.DateofBirth;
+            dateTimePicker1.Value = pacjent.DateofBirth;
             textBoxPesel.Text = pacjent.PESEL;
             textBoxAdres.Text = pacjent.Adres;
             textBoxMiasto.Text = pacjent.Miasto;
@@ -88,7 +88,7 @@ namespace WindowsFormsApp1
                 Id = _pacjentId,
                 Imie = textBoxImie.Text,
                 Nazwisko = textBoxNazwisko.Text,
-                DateofBirth = dateTimePickerDU.Value,
+                DateofBirth = dateTimePicker1.Value,
                 PESEL = textBoxPesel.Text,
                 Adres = textBoxAdres.Text,
                 Miasto = textBoxMiasto.Text,
@@ -118,7 +118,7 @@ namespace WindowsFormsApp1
                 _pacjentId = pacjent.Id;
                 textBoxImie.Text = pacjent.Imie;
                 textBoxNazwisko.Text = pacjent.Nazwisko;
-                dateTimePickerDU.Value = pacjent.DateofBirth;
+                dateTimePicker1.Value = pacjent.DateofBirth;
                 textBoxPesel.Text = pacjent.PESEL;
                 textBoxAdres.Text = pacjent.Adres;
                 textBoxMiasto.Text = pacjent.Miasto;
@@ -294,7 +294,7 @@ namespace WindowsFormsApp1
                 Id = _pacjentId,
                 Imie = textBoxImie.Text,
                 Nazwisko = textBoxNazwisko.Text,
-                DateofBirth = dateTimePickerDU.Value,
+                DateofBirth = dateTimePicker1.Value,
                 PESEL = textBoxPesel.Text,
                 Adres = textBoxAdres.Text,
                 Miasto = textBoxMiasto.Text,
