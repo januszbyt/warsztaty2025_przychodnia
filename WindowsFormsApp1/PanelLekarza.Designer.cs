@@ -74,6 +74,7 @@
             this.buttonPokazPacjentow = new System.Windows.Forms.Button();
             this.buttonWyloguj = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPageUstawienia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -265,6 +266,7 @@
             // 
             // tabPageEdycjaWizyty
             // 
+            this.tabPageEdycjaWizyty.Controls.Add(this.label9);
             this.tabPageEdycjaWizyty.Controls.Add(this.label8);
             this.tabPageEdycjaWizyty.Controls.Add(this.buttonZatwierdzSkierowanie);
             this.tabPageEdycjaWizyty.Controls.Add(this.buttonZatwierdzRecepte);
@@ -290,7 +292,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label8.Location = new System.Drawing.Point(335, 363);
+            this.label8.Location = new System.Drawing.Point(337, 378);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(127, 29);
             this.label8.TabIndex = 28;
@@ -322,7 +324,7 @@
             // dataGridViewPacjenci
             // 
             this.dataGridViewPacjenci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPacjenci.Location = new System.Drawing.Point(331, 40);
+            this.dataGridViewPacjenci.Location = new System.Drawing.Point(331, 69);
             this.dataGridViewPacjenci.Name = "dataGridViewPacjenci";
             this.dataGridViewPacjenci.RowHeadersWidth = 51;
             this.dataGridViewPacjenci.Size = new System.Drawing.Size(740, 261);
@@ -398,7 +400,7 @@
             // 
             this.btnSkierowanie.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.btnSkierowanie.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnSkierowanie.Location = new System.Drawing.Point(31, 43);
+            this.btnSkierowanie.Location = new System.Drawing.Point(31, 69);
             this.btnSkierowanie.Name = "btnSkierowanie";
             this.btnSkierowanie.Size = new System.Drawing.Size(221, 74);
             this.btnSkierowanie.TabIndex = 18;
@@ -570,11 +572,21 @@
             this.tabControl1.Size = new System.Drawing.Size(1106, 1021);
             this.tabControl1.TabIndex = 23;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label9.Location = new System.Drawing.Point(337, 17);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(153, 25);
+            this.label9.TabIndex = 29;
+            this.label9.Text = "Dane Pacjenta";
+            // 
             // PanelLekarza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1140, 1044);
+            this.ClientSize = new System.Drawing.Size(1179, 1044);
             this.Controls.Add(this.tabControl1);
             this.Name = "PanelLekarza";
             this.Text = "PanelLekarza";
@@ -642,5 +654,6 @@
         private System.Windows.Forms.Button buttonWyloguj;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.MonthCalendar monthCalendar2;
+        private System.Windows.Forms.Label label9;
     }
 }
