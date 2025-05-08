@@ -335,5 +335,10 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePicker1.Value = pacjent.DateofBirth;
+        }
     }
 }
