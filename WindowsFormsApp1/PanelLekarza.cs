@@ -6,6 +6,7 @@ using WindowsFormsApp1.Data;
 using WindowsFormsApp1.Forms;
 using WindowsFormsApp1.Models;
 using MySql.Data.MySqlClient;
+using System.Diagnostics;
 
 namespace WindowsFormsApp1
 {
@@ -341,7 +342,6 @@ namespace WindowsFormsApp1
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
@@ -351,7 +351,13 @@ namespace WindowsFormsApp1
 
         private void button3_Click(object sender, EventArgs e)
         {
+            var newMail = textBox3.Text;
 
+            Debug.Assert(_lekarz.UserId >= 0);
+
+            var helper = new DataBaseHelper();
+            helper.ZmienEmail(_lekarz.UserId, newMail);
+            MessageBox.Show("Email zmieniony");
         }
 
         private void button5_Click_1(object sender, EventArgs e)
@@ -359,6 +365,17 @@ namespace WindowsFormsApp1
             FormLogowanieRola formrola = new FormLogowanieRola(_dbHelper);
             this.Hide();
             formrola.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var newPass = textBox4.Text;
+
+            Debug.Assert(_lekarz.UserId >= 0);
+
+            var helper = new DataBaseHelper();
+            helper.ZmienHaslo(_lekarz.UserId, newPass);
+            MessageBox.Show("Haslo zmienione");
         }
     }
 }

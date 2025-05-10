@@ -111,7 +111,7 @@ namespace WindowsFormsApp1.Data
             using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
-                var query = "SELECT Id, Imie, Nazwisko, Specjalizacja FROM Doctors WHERE UserId = @UserId";
+                var query = "SELECT Id, Imie, Nazwisko, Specjalizacja, UserId FROM Doctors WHERE UserId = @UserId";
 
                 using (var command = new MySqlCommand(query, connection))
                 {
@@ -126,7 +126,8 @@ namespace WindowsFormsApp1.Data
                                 Id = reader.GetInt32(0),
                                 Imie = reader.GetString(1),
                                 Nazwisko = reader.GetString(2),
-                                Specjalizacja = reader.GetString(3)
+                                Specjalizacja = reader.GetString(3),
+                                UserId = reader.GetInt32(4),
                             };
                         }
                     }
@@ -897,7 +898,7 @@ namespace WindowsFormsApp1.Data
             using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
-                string query = @"SELECT d.Id, d.Imie, d.Nazwisko, d.Specjalizacja
+                string query = @"SELECT d.Id, d.Imie, d.Nazwisko, d.Specjalizacja, d.UserId
                         FROM Doctors d
                         JOIN Users u ON d.UserId = u.Id
                         JOIN UserRoles ur ON u.Id = ur.UserId
@@ -914,7 +915,8 @@ namespace WindowsFormsApp1.Data
                                 Id = reader.GetInt32(0),
                                 Imie = reader.IsDBNull(1) ? null : reader.GetString(1),
                                 Nazwisko = reader.IsDBNull(2) ? null : reader.GetString(2),
-                                Specjalizacja = reader.IsDBNull(3) ? null : reader.GetString(3)
+                                Specjalizacja = reader.IsDBNull(3) ? null : reader.GetString(3),
+                                UserId = reader.GetInt32(4),
                             });
                         }
                     }
