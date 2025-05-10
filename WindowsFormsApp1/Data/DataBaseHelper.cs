@@ -274,10 +274,10 @@ namespace WindowsFormsApp1.Data
                     {
                         MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową długość numeru PESEL");
                     }
-                    if (user.PESEL.Any(c => !char.IsDigit(c)))
-                    {
-                        MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy numer PESEL (powinien zawierać tylko cyfry)");
-                    }
+                    // if (user.PESEL.Any(c => !char.IsDigit(c)))
+                    // {
+                    //     MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy numer PESEL (powinien zawierać tylko cyfry)");
+                    // }
                     if (user.PhoneNumber == null || user.PhoneNumber == "")
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma numeru telefonu");
@@ -286,10 +286,10 @@ namespace WindowsFormsApp1.Data
                     {
                         MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową długość numeru telefonu");
                     }
-                    if (user.PhoneNumber.Any(c => !char.IsDigit(c)))
-                    {
-                        MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy numer telefonu (powinien zawierać tylko cyfry)");
-                    }
+                    // if (user.PhoneNumber.Any(c => !char.IsDigit(c)))
+                    // {
+                    //     MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy numer telefonu (powinien zawierać tylko cyfry)");
+                    // }
                     if (user.Adres == null || user.Adres == "")
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma adresu");
@@ -306,10 +306,10 @@ namespace WindowsFormsApp1.Data
                     {
                         MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową długość kodu pocztowego");
                     }
-                    if (user.KodPocztowy.Any(c => !char.IsDigit(c)))
-                    {
-                        MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy kod pocztowy (powinien zawierać tylko cyfry)");
-                    }
+                    // if (user.KodPocztowy.Any(c => !char.IsDigit(c)))
+                    // {
+                    //     MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy kod pocztowy (powinien zawierać tylko cyfry)");
+                    // }
                 }
             }
         }
@@ -410,7 +410,7 @@ namespace WindowsFormsApp1.Data
                                 Imie = reader.GetString(1),
                                 Nazwisko = reader.GetString(2),
                                 Email = reader.GetString(3),
-                                Rola = reader.GetString(4),
+                                Rola = new Role { Nazwa = reader.GetString(4) },
                                 DateOfBirth = reader.GetDateTime(5),
                                 PESEL = reader.GetString(6),
                                 PhoneNumber = reader.GetString(7),
