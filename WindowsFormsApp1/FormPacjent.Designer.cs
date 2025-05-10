@@ -72,7 +72,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label10 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.tabPageDanePacjenta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -134,6 +133,20 @@
             this.tabPageDanePacjenta.Size = new System.Drawing.Size(1957, 983);
             this.tabPageDanePacjenta.TabIndex = 0;
             this.tabPageDanePacjenta.Text = "Dane Pacjenta";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(0, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 0;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(127, 369);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(271, 22);
+            this.dateTimePicker1.TabIndex = 27;
             // 
             // textBoxHaslo
             // 
@@ -370,13 +383,6 @@
             // 
             // tabPageWizyty
             // 
-            this.tabPageWizyty.Controls.Add(this.label15);
-            this.tabPageWizyty.Controls.Add(this.label14);
-            this.tabPageWizyty.Controls.Add(this.comboBox1);
-            this.tabPageWizyty.Controls.Add(this.ZakonczWizyte);
-            this.tabPageWizyty.Controls.Add(this.label13);
-            this.tabPageWizyty.Controls.Add(this.label12);
-            this.tabPageWizyty.Controls.Add(this.button3);
             this.tabPageWizyty.Controls.Add(this.dataGridViewHistoria);
             this.tabPageWizyty.Controls.Add(this.dateTimePickerWizyta);
             this.tabPageWizyty.Controls.Add(this.dataGridViewLekarze);
@@ -403,7 +409,7 @@
             // 
             // dateTimePickerWizyta
             // 
-            this.dateTimePickerWizyta.Location = new System.Drawing.Point(163, 500);
+            this.dateTimePickerWizyta.Location = new System.Drawing.Point(77, 504);
             this.dateTimePickerWizyta.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerWizyta.Name = "dateTimePickerWizyta";
             this.dateTimePickerWizyta.Size = new System.Drawing.Size(265, 22);
@@ -435,7 +441,6 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button4);
             this.tabPage1.Controls.Add(this.wybranyplik);
             this.tabPage1.Controls.Add(this.dataGridViewDocuments);
             this.tabPage1.Controls.Add(this.buttonDodajDocument);
@@ -534,13 +539,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(127, 369);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(271, 22);
-            this.dateTimePicker1.TabIndex = 27;
-            // 
             // FormPacjent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -557,7 +555,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControlPanelLekarza.ResumeLayout(false);
             this.tabPageWizyty.ResumeLayout(false);
-            this.tabPageWizyty.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistoria)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLekarze)).EndInit();
             this.tabPage1.ResumeLayout(false);
