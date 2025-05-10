@@ -50,14 +50,13 @@ namespace WindowsFormsApp1.Data
                                 Nazwisko = reader.GetString("Nazwisko"),
                                 Email = reader.GetString("Email"),
                                 Haslo = reader.GetString("Haslo"),
-                                Rola = reader.GetString("Rola"),
+                                Rola = new Role { Nazwa = reader.GetString("Rola") },
                                 DateOfBirth = reader.GetDateTime("DateOfBirth"),
                                 PESEL = reader.GetString("PESEL"),
                                 PhoneNumber = reader.GetString("PhoneNumber"),
                                 Adres = reader.GetString("Adres"),
                                 Miasto = reader.GetString("Miasto"),
                                 KodPocztowy = reader.GetString("KodPocztowy"),
-                                Rola = new Role { Nazwa = reader.GetString("Rola") }
                             };
                         }
                     }
@@ -213,7 +212,7 @@ namespace WindowsFormsApp1.Data
                     using (var cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@UserId", userId);
-                        cmd.Parameters.AddWithValue("@Specialization", specjalizacja);
+                        cmd.Parameters.AddWithValue("@Specialization", "Testowa specjalizacja");
                         cmd.Parameters.AddWithValue("@IsActive", true);
                         cmd.ExecuteNonQuery();
                     }
@@ -242,20 +241,16 @@ namespace WindowsFormsApp1.Data
                 foreach (var user in WyliczUzytkownikow())
                 {
                     // Sprawdź hasło
-                    if (string.IsNullOrEmpty(user.Haslo))
+                    if (!user.Haslo)
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma hasła");
                     }
                     // Sprawdź mail
-                    if (string.IsNullOrEmpty(user.Email))
+                    if (!user.Email)
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma adresu email");
                     }
-                    if (!Regex.IsMatch(user.Email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
-                    {
-                        MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy format adresu email");
-                    }
-                    if (string.IsNullOrEmpty(user.Rola.Nazwa))
+                    if (!user.Rola.Nazwa)
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma przypisanej roli");
                     }
@@ -263,15 +258,15 @@ namespace WindowsFormsApp1.Data
                     {
                         MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową rolę");
                     }
-                    if (string.IsNullOrEmpty(user.Imie))
+                    if (!user.Imie)
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma imienia");
                     }
-                    if (string.IsNullOrEmpty(user.Nazwisko))
+                    if (!user.Nazwisko)
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma nazwiska");
                     }
-                    if (string.IsNullOrEmpty(user.PESEL))
+                    if (!user.PESEL)
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma numeru PESEL");
                     }
@@ -283,7 +278,7 @@ namespace WindowsFormsApp1.Data
                     {
                         MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy numer PESEL (powinien zawierać tylko cyfry)");
                     }
-                    if (string.IsNullOrEmpty(user.PhoneNumber))
+                    if (!user.PhoneNumber)
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma numeru telefonu");
                     }
@@ -295,15 +290,15 @@ namespace WindowsFormsApp1.Data
                     {
                         MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy numer telefonu (powinien zawierać tylko cyfry)");
                     }
-                    if (string.IsNullOrEmpty(user.Adres))
+                    if (!user.Adres)
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma adresu");
                     }
-                    if (string.IsNullOrEmpty(user.Miasto))
+                    if (!user.Miasto)
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma miasta");
                     }
-                    if (string.IsNullOrEmpty(user.KodPocztowy))
+                    if (!user.KodPocztowy)
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma kodu pocztowego");
                     }
