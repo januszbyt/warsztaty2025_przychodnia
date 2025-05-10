@@ -379,5 +379,20 @@ namespace WindowsFormsApp1
         {
             UpdateDetails();
         }
+
+        private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelLekarzId_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelSpecjalizacja_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
