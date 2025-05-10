@@ -137,8 +137,10 @@ namespace WindowsFormsApp1.Data
             return new DateTime(rok, miesiac, dzien);
         }
 
+
+
         // Dawid Kotlinski
-        public void DodajLosowegoPacjenta()
+        public void DodajLosoweUzytkownika()
         {
             using var conn = new MySqlConnection(_connectionString);
             conn.Open();
@@ -154,15 +156,16 @@ namespace WindowsFormsApp1.Data
             var kodPocztowy = LosowyKodPocztowy();
             var rola = LosowaRola();
             var dataUrodzenia = LosowaDataUrodzenia();
+            int? userId = null;
 
             {
-                var query = "INSERT INTO Users (Imie, Nazwisko, Email, Haslo, Rola, DateOfBirth, PESEL, PhoneNumber, Adres, Miasto, KodPocztowy) VALUES (@Imie, @Nazwisko, @Email, @Haslo, @Rola, @DateOfBirth, @PESEL, @PhoneNumber, @Adres, @Miasto, @KodPocztowy)";
+                var query = "INSERT INTO Users (Imie, Nazwisko, Email, Rola, DateOfBirth, PESEL, PhoneNumber, Adres, Miasto, KodPocztowy) VALUES (@Imie, @Nazwisko, @Email, @Rola, @DateOfBirth, @PESEL, @PhoneNumber, @Adres, @Miasto, @KodPocztowy)";
 
                 using var cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Imie", imie);
                 cmd.Parameters.AddWithValue("@Nazwisko", nazwisko);
                 cmd.Parameters.AddWithValue("@Email", email);
-                cmd.Parameters.AddWithValue("@Haslo", haslo);
+                // cmd.Parameters.AddWithValue("@Haslo", haslo);
                 cmd.Parameters.AddWithValue("@Rola", rola);
                 cmd.Parameters.AddWithValue("@PESEL", pesel);
                 cmd.Parameters.AddWithValue("@PhoneNumber", telefon);
@@ -171,6 +174,37 @@ namespace WindowsFormsApp1.Data
                 cmd.Parameters.AddWithValue("@KodPocztowy", kodPocztowy);
                 cmd.Parameters.AddWithValue("@DateOfBirth", dataUrodzenia);
 
+                cmd.ExecuteNonQuery();
+                userId = (int)cmd.LastInsertedId;
+            }
+
+            Debug.Assert(userId != null);
+
+            if (rola == "Pacjent")
+            {
+                var query = "INSERT INTO Patients (UserId, PESEL, PhoneNumber, Adres, Miasto, KodPocztowy, DateOfBirth, Imie, Nazwisko, Email, Haslo, IsActive) VALUES (@UserId, @PESEL, @PhoneNumber, @Adres, @Miasto, @KodPocztowy, @DateOfBirth, @Imie, @Nazwisko, @Email, @Haslo, @IsActive)";
+                using var cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@UserId", userId);
+                cmd.Parameters.AddWithValue("@PESEL", pesel);
+                cmd.Parameters.AddWithValue("@PhoneNumber", telefon);
+                cmd.Parameters.AddWithValue("@Adres", adres);
+                cmd.Parameters.AddWithValue("@Miasto", miasto);
+                cmd.Parameters.AddWithValue("@KodPocztowy", kodPocztowy);
+                cmd.Parameters.AddWithValue("@DateOfBirth", dataUrodzenia);
+                cmd.Parameters.AddWithValue("@Imie", imie);
+                cmd.Parameters.AddWithValue("@Nazwisko", nazwisko);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Haslo", haslo);
+                cmd.Parameters.AddWithValue("@IsActive", true);
+                cmd.ExecuteNonQuery();
+            }
+            else if (rola == "Lekarz")
+            {
+                var query = "INSERT INTO Doctors (UserId, Specialization, IsActive) VALUES (@UserId, @Specialization, @IsActive)";
+                using var cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@UserId", userId);
+                cmd.Parameters.AddWithValue("@Specialization", specjalizacja);
+                cmd.Parameters.AddWithValue("@IsActive", true);
                 cmd.ExecuteNonQuery();
             }
 
