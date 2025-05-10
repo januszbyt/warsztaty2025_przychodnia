@@ -379,6 +379,38 @@ namespace WindowsFormsApp1.Data
             }
         }
 
+        // Dawid Kotlinski
+        public Users PobierzUzytkownika(int userId)
+        {
+            var connection = new MySqlConnection(_connectionString);
+            connection.Open();
+
+            var query = "SELECT Id, Imie, Nazwisko, Email, Rola, DateOfBirth, PESEL, PhoneNumber, Adres, Miasto, KodPocztowy, Haslo FROM Users WHERE Id = @UserId";
+            using var command = new MySqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@UserId", userId);
+            var result = command.ExecuteScalar();
+
+            if (result == null || result == DBNull.Value)
+                throw new Exception("Użytkownik z podanym adresem email nie istnieje.");
+
+            return new Users
+            {
+                Id = reader.GetInt32(0),
+                Imie = reader.GetString(1),
+                Nazwisko = reader.GetString(2),
+                Email = reader.GetString(3),
+                Rola = reader.GetString(4),
+                DateOfBirth = reader.GetDateTime(5),
+                PESEL = reader.GetString(6),
+                PhoneNumber = reader.GetString(7),
+                Adres = reader.GetString(8),
+                Miasto = reader.GetString(9),
+                KodPocztowy = reader.GetString(10),
+                Haslo = reader.GetString(11),
+            };
+        }
+
         public Lekarz PobierzLekarza(int userId)
         {
             using (var connection = new MySqlConnection(_connectionString))
@@ -401,6 +433,7 @@ namespace WindowsFormsApp1.Data
                                 Nazwisko = reader.GetString(2),
                                 Specjalizacja = reader.GetString(3),
                                 UserId = reader.GetInt32(4),
+                                User = PobierzUzytkownika(reader.GetInt32(4)),
                             };
                         }
                     }
