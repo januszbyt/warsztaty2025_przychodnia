@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PanelLekarza));
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -168,6 +169,7 @@
             // 
             // tabPageUstawienia
             // 
+            this.tabPageUstawienia.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageUstawienia.BackgroundImage")));
             this.tabPageUstawienia.Controls.Add(this.label14);
             this.tabPageUstawienia.Controls.Add(this.label13);
             this.tabPageUstawienia.Controls.Add(this.label12);
