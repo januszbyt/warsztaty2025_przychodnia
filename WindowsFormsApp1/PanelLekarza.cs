@@ -316,5 +316,12 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            FormLogowanieRola rolaForm = new FormLogowanieRola(_dbHelper);
+            rolaForm.Show();
+            this.Hide();
+        }
     }
 }
