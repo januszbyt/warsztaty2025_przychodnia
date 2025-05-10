@@ -785,6 +785,65 @@ namespace WindowsFormsApp1.Data
             return table;
         }
 
+        public void ZmienStatusWizyty(int wizytaId)
+        {
+            using (var conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+                var query = "UPDATE wizyty SET Status = 'Odbyta' WHERE Id = @WizytaId";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@WizytaId", wizytaId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public List<Wizyta> PobierzWizytyPacjenta(int pacjentId)
+        {
+            var wizyty = new List<Wizyta>();
+
+            using (var conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+                var query = @"
+            SELECT 
+                w.Id, 
+                w.DataWizyty, 
+                CONCAT(d.Imie, ' ', d.Nazwisko) AS Lekarz, 
+                w.Status, 
+                w.Specjalizacja
+            FROM wizyty w
+            JOIN doctors d ON w.LekarzId = d.Id
+            WHERE w.PacjentId = @PacjentId";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@PacjentId", pacjentId);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var wizyta = new Wizyta
+                            {
+                                Id = reader.GetInt32("Id"),
+                                DataWizyty = reader.GetDateTime("DataWizyty"),
+                                Lekarz = reader.IsDBNull(reader.GetOrdinal("Lekarz")) ? "" : reader.GetString("Lekarz"),
+                                Status = reader.IsDBNull(reader.GetOrdinal("Status")) ? "" : reader.GetString("Status"),
+                                Specjalizacja = reader.IsDBNull(reader.GetOrdinal("Specjalizacja")) ? "" : reader.GetString("Specjalizacja")
+                            };
+                            wizyty.Add(wizyta);
+                        }
+                    }
+                }
+            }
+
+            return wizyty;
+        }
+
+
 
         public int DodajPacjenta(Patient patient)
         {

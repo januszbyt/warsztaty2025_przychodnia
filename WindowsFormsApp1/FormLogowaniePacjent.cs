@@ -19,6 +19,11 @@ namespace WindowsFormsApp1
             checkBoxPokazHaslo.Checked = false;
         }
 
+        public FormLogowaniePacjent()
+        {
+            InitializeComponent();
+        }
+
         private void checkBoxPokazHaslo_CheckedChanged(object sender, EventArgs e)
         {
             textBoxHasloPacjent.PasswordChar = checkBoxPokazHaslo.Checked ? '\0' : '•';
