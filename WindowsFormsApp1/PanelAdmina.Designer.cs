@@ -107,7 +107,7 @@
             // 
             // buttonDodajLekarza
             // 
-            this.buttonDodajLekarza.Location = new System.Drawing.Point(1277, 521);
+            this.buttonDodajLekarza.Location = new System.Drawing.Point(672, 383);
             this.buttonDodajLekarza.Name = "buttonDodajLekarza";
             this.buttonDodajLekarza.Size = new System.Drawing.Size(127, 48);
             this.buttonDodajLekarza.TabIndex = 5;
@@ -128,7 +128,7 @@
             // buttonUsunWszystko
             // 
             this.buttonUsunWszystko.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonUsunWszystko.Location = new System.Drawing.Point(12, 369);
+            this.buttonUsunWszystko.Location = new System.Drawing.Point(12, 347);
             this.buttonUsunWszystko.Name = "buttonUsunWszystko";
             this.buttonUsunWszystko.Size = new System.Drawing.Size(127, 48);
             this.buttonUsunWszystko.TabIndex = 7;
@@ -142,7 +142,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(152, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(907, 684);
+            this.dataGridView1.Size = new System.Drawing.Size(409, 405);
             this.dataGridView1.TabIndex = 14;
             // 
             // WylogujAdmin
@@ -157,7 +157,7 @@
             // 
             // buttonPokaz
             // 
-            this.buttonPokaz.Location = new System.Drawing.Point(1137, 12);
+            this.buttonPokaz.Location = new System.Drawing.Point(631, 22);
             this.buttonPokaz.Name = "buttonPokaz";
             this.buttonPokaz.Size = new System.Drawing.Size(59, 29);
             this.buttonPokaz.TabIndex = 16;
@@ -166,21 +166,21 @@
             // 
             // textBoxImie
             // 
-            this.textBoxImie.Location = new System.Drawing.Point(1276, 379);
+            this.textBoxImie.Location = new System.Drawing.Point(671, 241);
             this.textBoxImie.Name = "textBoxImie";
             this.textBoxImie.Size = new System.Drawing.Size(128, 20);
             this.textBoxImie.TabIndex = 19;
             // 
             // textBoxNazwisko
             // 
-            this.textBoxNazwisko.Location = new System.Drawing.Point(1276, 405);
+            this.textBoxNazwisko.Location = new System.Drawing.Point(671, 267);
             this.textBoxNazwisko.Name = "textBoxNazwisko";
             this.textBoxNazwisko.Size = new System.Drawing.Size(128, 20);
             this.textBoxNazwisko.TabIndex = 20;
             // 
             // textBoxSpecjalizacja
             // 
-            this.textBoxSpecjalizacja.Location = new System.Drawing.Point(1276, 431);
+            this.textBoxSpecjalizacja.Location = new System.Drawing.Point(671, 293);
             this.textBoxSpecjalizacja.Name = "textBoxSpecjalizacja";
             this.textBoxSpecjalizacja.Size = new System.Drawing.Size(128, 20);
             this.textBoxSpecjalizacja.TabIndex = 21;
@@ -188,7 +188,7 @@
             // radioButtonLekarze
             // 
             this.radioButtonLekarze.AutoSize = true;
-            this.radioButtonLekarze.Location = new System.Drawing.Point(1139, 228);
+            this.radioButtonLekarze.Location = new System.Drawing.Point(621, 97);
             this.radioButtonLekarze.Name = "radioButtonLekarze";
             this.radioButtonLekarze.Size = new System.Drawing.Size(63, 17);
             this.radioButtonLekarze.TabIndex = 22;
@@ -199,7 +199,7 @@
             // radioButtonPacjenci
             // 
             this.radioButtonPacjenci.AutoSize = true;
-            this.radioButtonPacjenci.Location = new System.Drawing.Point(1139, 259);
+            this.radioButtonPacjenci.Location = new System.Drawing.Point(621, 128);
             this.radioButtonPacjenci.Name = "radioButtonPacjenci";
             this.radioButtonPacjenci.Size = new System.Drawing.Size(66, 17);
             this.radioButtonPacjenci.TabIndex = 23;
@@ -210,7 +210,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1212, 382);
+            this.label5.Location = new System.Drawing.Point(607, 244);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(29, 13);
             this.label5.TabIndex = 25;
@@ -219,7 +219,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1212, 408);
+            this.label3.Location = new System.Drawing.Point(607, 270);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 13);
             this.label3.TabIndex = 26;
@@ -228,7 +228,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1181, 434);
+            this.label4.Location = new System.Drawing.Point(576, 296);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(89, 13);
             this.label4.TabIndex = 27;
@@ -236,7 +236,7 @@
             // 
             // textBoxHaslo
             // 
-            this.textBoxHaslo.Location = new System.Drawing.Point(1276, 485);
+            this.textBoxHaslo.Location = new System.Drawing.Point(671, 347);
             this.textBoxHaslo.Name = "textBoxHaslo";
             this.textBoxHaslo.Size = new System.Drawing.Size(128, 20);
             this.textBoxHaslo.TabIndex = 28;
@@ -244,7 +244,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1223, 492);
+            this.label2.Location = new System.Drawing.Point(618, 354);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 29;
@@ -252,7 +252,7 @@
             // 
             // textBoxEmail
             // 
-            this.textBoxEmail.Location = new System.Drawing.Point(1276, 459);
+            this.textBoxEmail.Location = new System.Drawing.Point(671, 321);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(128, 20);
             this.textBoxEmail.TabIndex = 30;
@@ -260,7 +260,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1223, 466);
+            this.label1.Location = new System.Drawing.Point(618, 328);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 13);
             this.label1.TabIndex = 31;
@@ -268,7 +268,7 @@
             // 
             // textBoxSpecjalizacjaUprawnienia
             // 
-            this.textBoxSpecjalizacjaUprawnienia.Location = new System.Drawing.Point(1200, 647);
+            this.textBoxSpecjalizacjaUprawnienia.Location = new System.Drawing.Point(490, 441);
             this.textBoxSpecjalizacjaUprawnienia.Name = "textBoxSpecjalizacjaUprawnienia";
             this.textBoxSpecjalizacjaUprawnienia.Size = new System.Drawing.Size(160, 20);
             this.textBoxSpecjalizacjaUprawnienia.TabIndex = 32;
@@ -277,7 +277,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1028, 609);
+            this.ClientSize = new System.Drawing.Size(824, 477);
             this.Controls.Add(this.textBoxSpecjalizacjaUprawnienia);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxEmail);
