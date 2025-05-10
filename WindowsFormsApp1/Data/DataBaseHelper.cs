@@ -137,8 +137,8 @@ namespace WindowsFormsApp1.Data
 
         public Users ZalogujUzytkownika(string email, string Haslo)
         {
-            try
-            {
+            //try
+            //{
                 using (var connection = new MySqlConnection(_connectionString))
                 {
                     connection.Open();
@@ -162,7 +162,7 @@ namespace WindowsFormsApp1.Data
                         {
                             if (reader.HasRows && reader.Read())
                             {
-                                return new Users
+                                var user = new Users
                                 {
                                     Id = reader.GetInt32("Id"),
                                     Imie = reader.IsDBNull(reader.GetOrdinal("Imie")) ? "" : reader.GetString("Imie"),
@@ -170,26 +170,29 @@ namespace WindowsFormsApp1.Data
                                     Email = reader.GetString("Email"),
                                     Rola = new Role { Nazwa = reader.GetString("Rola") }
                                 };
+                                Debug.Assert(user.Rola.Nazwa == "Pacjent" || user.Rola.Nazwa == "Lekarz" || user.Rola.Nazwa == "Admin");
+                                return user;
                             }
                         }
                     }
                 }
-            }
-            catch (MySqlException ex)
-            {
+            //}
+            //catch (MySqlException ex)
+            //{
                
-                Console.WriteLine($"[{DateTime.Now}] Błąd MySQL #{ex.Number}: {ex.Message}");
-                Debug.WriteLine($"[{DateTime.Now}] Błąd MySQL #{ex.Number}: {ex.Message}");
+            //    Console.WriteLine($"[{DateTime.Now}] Błąd MySQL #{ex.Number}: {ex.Message}");
+            //    Debug.WriteLine($"[{DateTime.Now}] Błąd MySQL #{ex.Number}: {ex.Message}");
 
-                throw new Exception("Błąd bazy danych podczas logowania. Spróbuj ponownie.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"[{DateTime.Now}] Błąd: {ex}");
-                Debug.WriteLine($"[{DateTime.Now}] Błąd: {ex}");
+            //    throw new Exception("Błąd bazy danych podczas logowania. Spróbuj ponownie.");
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine($"[{DateTime.Now}] Błąd: {ex}");
+            //    Debug.WriteLine($"[{DateTime.Now}] Błąd: {ex}");
 
-                throw new Exception("Wystąpił nieoczekiwany błąd podczas logowania.");
-            }
+            //    throw ex;
+            //    //throw new Exception("Wystąpił nieoczekiwany błąd podczas logowania.");
+            //}
 
             return null;
         }

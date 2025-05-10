@@ -80,7 +80,6 @@
             this.btnSzukaj = new System.Windows.Forms.Button();
             this.buttonPokazPacjentow = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPageUstawienia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -230,7 +229,8 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(513, 431);
+            this.label4.Location = new System.Drawing.Point(516, 371);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(99, 20);
             this.label4.TabIndex = 20;
@@ -239,8 +239,8 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(476, 362);
+            this.label3.Location = new System.Drawing.Point(518, 318);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(390, 32);
             this.label3.TabIndex = 19;
@@ -366,9 +366,9 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label9.Location = new System.Drawing.Point(379, 21);
+            this.label9.Location = new System.Drawing.Point(337, 17);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(182, 29);
+            this.label9.Size = new System.Drawing.Size(153, 25);
             this.label9.TabIndex = 29;
             this.label9.Text = "Dane Pacjenta";
             // 
@@ -664,16 +664,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1244, 1276);
             this.tabControl1.TabIndex = 23;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(1186, 9);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(128, 34);
-            this.button5.TabIndex = 24;
-            this.button5.Text = "Wyloguj";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // PanelLekarza
             // 
