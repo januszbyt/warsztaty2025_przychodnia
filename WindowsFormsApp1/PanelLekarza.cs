@@ -34,14 +34,14 @@ namespace WindowsFormsApp1
             WczytajWizyty();
             WyswietlDaneLekarza();
             WczytajPacjentow();
-            
+
         }
         private void WczytajPacjentow()
         {
             var pacjenci = _dbHelper.PobierzPacjentow();
             dataGridViewPacjenci.DataSource = pacjenci;
 
-           
+
             if (dataGridViewPacjenci.Columns["Id"] != null)
                 dataGridViewPacjenci.Columns["Id"].Visible = false;
 
@@ -182,7 +182,7 @@ namespace WindowsFormsApp1
             dataGridViewWizyty.DataSource = wyniki;
         }
 
-      
+
 
         private void buttonPokazPacjentow_Click(object sender, EventArgs e)
         {
@@ -190,7 +190,7 @@ namespace WindowsFormsApp1
             {
                 dataGridViewPacjenci.DataSource = _dbHelper.PobierzPacjentow();
 
-                
+
                 dataGridViewPacjenci.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dataGridViewPacjenci.Refresh();
             }
@@ -221,9 +221,9 @@ namespace WindowsFormsApp1
             try
             {
                 _dbHelper.WystawRecepte(
-                    wizytaId: wybranaWizytaId, 
+                    wizytaId: wybranaWizytaId,
                     pacjentId: pacjentId,
-                    lekarzId: _lekarz.Id, 
+                    lekarzId: _lekarz.Id,
                     leki: leki,
                     uwagi: null,
                     kodRecepty: kod
@@ -349,15 +349,23 @@ namespace WindowsFormsApp1
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void UpdateDetails()
         {
-            var newMail = textBox3.Text;
-
             Debug.Assert(_lekarz.UserId >= 0);
-
             var helper = new DataBaseHelper();
+
+            var newMail = textBox3.Text;
             helper.ZmienEmail(_lekarz.UserId, newMail);
             MessageBox.Show("Email zmieniony");
+
+            var newPass = textBox4.Text;
+            helper.ZmienHaslo(_lekarz.UserId, newPass);
+            MessageBox.Show("Haslo zmienione");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            UpdateDetails();
         }
 
         private void button5_Click_1(object sender, EventArgs e)
@@ -369,13 +377,7 @@ namespace WindowsFormsApp1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            var newPass = textBox4.Text;
-
-            Debug.Assert(_lekarz.UserId >= 0);
-
-            var helper = new DataBaseHelper();
-            helper.ZmienHaslo(_lekarz.UserId, newPass);
-            MessageBox.Show("Haslo zmienione");
+            UpdateDetails();
         }
     }
 }
