@@ -72,14 +72,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label10 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.ZakonczWizyte = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.tabPageDanePacjenta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -141,25 +134,6 @@
             this.tabPageDanePacjenta.Size = new System.Drawing.Size(1957, 983);
             this.tabPageDanePacjenta.TabIndex = 0;
             this.tabPageDanePacjenta.Text = "Dane Pacjenta";
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button2.Location = new System.Drawing.Point(303, 418);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(219, 49);
-            this.button2.TabIndex = 28;
-            this.button2.Text = "Wyloguj";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(127, 369);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(271, 22);
-            this.dateTimePicker1.TabIndex = 27;
             // 
             // textBoxHaslo
             // 
@@ -560,139 +534,12 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // button3
+            // dateTimePicker1
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button3.Location = new System.Drawing.Point(77, 636);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(219, 49);
-            this.button3.TabIndex = 29;
-            this.button3.Text = "Wyloguj";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button4.Location = new System.Drawing.Point(145, 658);
-            this.button4.Margin = new System.Windows.Forms.Padding(4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(219, 49);
-            this.button4.TabIndex = 30;
-            this.button4.Text = "Wyloguj";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label12.Location = new System.Drawing.Point(74, 62);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(82, 20);
-            this.label12.TabIndex = 30;
-            this.label12.Text = "Lekarze:";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label13.Location = new System.Drawing.Point(1042, 62);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(122, 20);
-            this.label13.TabIndex = 31;
-            this.label13.Text = "Twoje wizyty:";
-            // 
-            // ZakonczWizyte
-            // 
-            this.ZakonczWizyte.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ZakonczWizyte.Location = new System.Drawing.Point(301, 551);
-            this.ZakonczWizyte.Margin = new System.Windows.Forms.Padding(4);
-            this.ZakonczWizyte.Name = "ZakonczWizyte";
-            this.ZakonczWizyte.Size = new System.Drawing.Size(197, 63);
-            this.ZakonczWizyte.TabIndex = 32;
-            this.ZakonczWizyte.Text = "Zakoncz Wizyte";
-            this.ZakonczWizyte.UseVisualStyleBackColor = true;
-            this.ZakonczWizyte.Click += new System.EventHandler(this.ZakonczWizyte_Click);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "00:00",
-            "00:30",
-            "01:00",
-            "01:30",
-            "02:00",
-            "02:30",
-            "03:00",
-            "03:30",
-            "04:00",
-            "04:30",
-            "05:00",
-            "05:30",
-            "06:00",
-            "06:30",
-            "07:00",
-            "07:30",
-            "08:00",
-            "08:30",
-            "09:00",
-            "09:30",
-            "10:00",
-            "10:30",
-            "11:00",
-            "11:30",
-            "12:00",
-            "12:30",
-            "13:00",
-            "13:30",
-            "14:00",
-            "14:30",
-            "15:00",
-            "15:30",
-            "16:00",
-            "16:30",
-            "17:00",
-            "17:30",
-            "18:00",
-            "18:30",
-            "19:00",
-            "19:30",
-            "20:00",
-            "20:30",
-            "21:00",
-            "21:30",
-            "22:00",
-            "22:30",
-            "23:00",
-            "23:30",
-            "24:00"});
-            this.comboBox1.Location = new System.Drawing.Point(536, 500);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 33;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label14.Location = new System.Drawing.Point(446, 500);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(84, 20);
-            this.label14.TabIndex = 34;
-            this.label14.Text = "Godzina:";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label15.Location = new System.Drawing.Point(101, 500);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(55, 20);
-            this.label15.TabIndex = 35;
-            this.label15.Text = "Data:";
+            this.dateTimePicker1.Location = new System.Drawing.Point(127, 369);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(271, 22);
+            this.dateTimePicker1.TabIndex = 27;
             // 
             // FormPacjent
             // 

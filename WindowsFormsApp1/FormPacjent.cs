@@ -433,5 +433,10 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Proszę wybrać wizytę z listy.");
             }
         }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+           
+        }
     }
 }

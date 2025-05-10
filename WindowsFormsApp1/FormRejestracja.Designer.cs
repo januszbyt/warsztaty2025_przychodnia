@@ -39,7 +39,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.buttonLogowanie = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.buttonRejestruj = new System.Windows.Forms.Button();
             this.textBoxPesel = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -136,22 +135,13 @@
             // 
             // buttonLogowanie
             // 
-            this.buttonLogowanie.Location = new System.Drawing.Point(320, 12);
+            this.buttonLogowanie.Location = new System.Drawing.Point(394, 12);
             this.buttonLogowanie.Name = "buttonLogowanie";
             this.buttonLogowanie.Size = new System.Drawing.Size(75, 23);
             this.buttonLogowanie.TabIndex = 10;
             this.buttonLogowanie.Text = "Logowanie";
             this.buttonLogowanie.UseVisualStyleBackColor = true;
             this.buttonLogowanie.Click += new System.EventHandler(this.buttonLogowanie_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(401, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Rejestracja";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // buttonRejestruj
             // 
@@ -268,7 +258,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBoxPesel);
             this.Controls.Add(this.buttonRejestruj);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.buttonLogowanie);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -300,7 +289,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button buttonLogowanie;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button buttonRejestruj;
         private System.Windows.Forms.TextBox textBoxPesel;
         private System.Windows.Forms.Label label6;

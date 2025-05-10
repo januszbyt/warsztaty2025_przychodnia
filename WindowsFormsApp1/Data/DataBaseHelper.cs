@@ -111,7 +111,7 @@ namespace WindowsFormsApp1.Data
             using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
-                var query = "SELECT Id, Imie, Nazwisko, Specjalizacja FROM Doctors WHERE UserId = @UserId";
+                var query = "SELECT Id, Imie, Nazwisko, Specjalizacja, UserId FROM Doctors WHERE UserId = @UserId";
 
                 using (var command = new MySqlCommand(query, connection))
                 {
@@ -126,7 +126,8 @@ namespace WindowsFormsApp1.Data
                                 Id = reader.GetInt32(0),
                                 Imie = reader.GetString(1),
                                 Nazwisko = reader.GetString(2),
-                                Specjalizacja = reader.GetString(3)
+                                Specjalizacja = reader.GetString(3),
+                                UserId = reader.GetInt32(4),
                             };
                         }
                     }
@@ -137,8 +138,8 @@ namespace WindowsFormsApp1.Data
 
         public Users ZalogujUzytkownika(string email, string Haslo)
         {
-            try
-            {
+            //try
+            //{
                 using (var connection = new MySqlConnection(_connectionString))
                 {
                     connection.Open();
@@ -162,7 +163,7 @@ namespace WindowsFormsApp1.Data
                         {
                             if (reader.HasRows && reader.Read())
                             {
-                                return new Users
+                                var user = new Users
                                 {
                                     Id = reader.GetInt32("Id"),
                                     Imie = reader.IsDBNull(reader.GetOrdinal("Imie")) ? "" : reader.GetString("Imie"),
@@ -170,26 +171,29 @@ namespace WindowsFormsApp1.Data
                                     Email = reader.GetString("Email"),
                                     Rola = new Role { Nazwa = reader.GetString("Rola") }
                                 };
+                                Debug.Assert(user.Rola.Nazwa == "Pacjent" || user.Rola.Nazwa == "Lekarz" || user.Rola.Nazwa == "Admin");
+                                return user;
                             }
                         }
                     }
                 }
-            }
-            catch (MySqlException ex)
-            {
+            //}
+            //catch (MySqlException ex)
+            //{
                
-                Console.WriteLine($"[{DateTime.Now}] Błąd MySQL #{ex.Number}: {ex.Message}");
-                Debug.WriteLine($"[{DateTime.Now}] Błąd MySQL #{ex.Number}: {ex.Message}");
+            //    Console.WriteLine($"[{DateTime.Now}] Błąd MySQL #{ex.Number}: {ex.Message}");
+            //    Debug.WriteLine($"[{DateTime.Now}] Błąd MySQL #{ex.Number}: {ex.Message}");
 
-                throw new Exception("Błąd bazy danych podczas logowania. Spróbuj ponownie.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"[{DateTime.Now}] Błąd: {ex}");
-                Debug.WriteLine($"[{DateTime.Now}] Błąd: {ex}");
+            //    throw new Exception("Błąd bazy danych podczas logowania. Spróbuj ponownie.");
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine($"[{DateTime.Now}] Błąd: {ex}");
+            //    Debug.WriteLine($"[{DateTime.Now}] Błąd: {ex}");
 
-                throw new Exception("Wystąpił nieoczekiwany błąd podczas logowania.");
-            }
+            //    throw ex;
+            //    //throw new Exception("Wystąpił nieoczekiwany błąd podczas logowania.");
+            //}
 
             return null;
         }
@@ -953,7 +957,7 @@ namespace WindowsFormsApp1.Data
             using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
-                string query = @"SELECT d.Id, d.Imie, d.Nazwisko, d.Specjalizacja
+                string query = @"SELECT d.Id, d.Imie, d.Nazwisko, d.Specjalizacja, d.UserId
                         FROM Doctors d
                         JOIN Users u ON d.UserId = u.Id
                         JOIN UserRoles ur ON u.Id = ur.UserId
@@ -970,7 +974,8 @@ namespace WindowsFormsApp1.Data
                                 Id = reader.GetInt32(0),
                                 Imie = reader.IsDBNull(1) ? null : reader.GetString(1),
                                 Nazwisko = reader.IsDBNull(2) ? null : reader.GetString(2),
-                                Specjalizacja = reader.IsDBNull(3) ? null : reader.GetString(3)
+                                Specjalizacja = reader.IsDBNull(3) ? null : reader.GetString(3),
+                                UserId = reader.GetInt32(4),
                             });
                         }
                     }

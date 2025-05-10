@@ -9,6 +9,7 @@ namespace WindowsFormsApp1.Models
     public class Lekarz
     {
         public int Id { get; set; }
+        public int UserId { get; set; }
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
         public string Specjalizacja { get; set; }
