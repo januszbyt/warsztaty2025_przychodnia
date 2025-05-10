@@ -81,6 +81,7 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPageUstawienia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -597,7 +598,7 @@
             this.tabControl1.Controls.Add(this.tabPageEdycjaWizyty);
             this.tabControl1.Controls.Add(this.tabPagePowiadomienia);
             this.tabControl1.Controls.Add(this.tabPageUstawienia);
-            this.tabControl1.Location = new System.Drawing.Point(25, 14);
+            this.tabControl1.Location = new System.Drawing.Point(36, 50);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -674,11 +675,21 @@
             this.dataGridView3.Size = new System.Drawing.Size(139, 86);
             this.dataGridView3.TabIndex = 26;
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(1186, 9);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(128, 34);
+            this.button5.TabIndex = 24;
+            this.button5.Text = "Wyloguj";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
             // PanelLekarza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1326, 1050);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.tabControl1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PanelLekarza";
@@ -755,5 +766,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.Button button5;
     }
 }
