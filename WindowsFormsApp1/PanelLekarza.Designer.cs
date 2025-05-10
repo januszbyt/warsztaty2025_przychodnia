@@ -71,7 +71,6 @@
             this.dataGridViewWizyty = new System.Windows.Forms.DataGridView();
             this.btnSzukaj = new System.Windows.Forms.Button();
             this.buttonPokazPacjentow = new System.Windows.Forms.Button();
-            this.buttonWyloguj = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -526,7 +525,6 @@
             this.tabPageWizyty.Controls.Add(this.dataGridViewWizyty);
             this.tabPageWizyty.Controls.Add(this.btnSzukaj);
             this.tabPageWizyty.Controls.Add(this.buttonPokazPacjentow);
-            this.tabPageWizyty.Controls.Add(this.buttonWyloguj);
             this.tabPageWizyty.Location = new System.Drawing.Point(4, 29);
             this.tabPageWizyty.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPageWizyty.Name = "tabPageWizyty";
@@ -577,19 +575,6 @@
             this.buttonPokazPacjentow.Text = "Pokaz Pacjentow";
             this.buttonPokazPacjentow.UseVisualStyleBackColor = false;
             this.buttonPokazPacjentow.Click += new System.EventHandler(this.buttonPokazPacjentow_Click);
-            // 
-            // buttonWyloguj
-            // 
-            this.buttonWyloguj.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.buttonWyloguj.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonWyloguj.Location = new System.Drawing.Point(28, 598);
-            this.buttonWyloguj.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.buttonWyloguj.Name = "buttonWyloguj";
-            this.buttonWyloguj.Size = new System.Drawing.Size(176, 82);
-            this.buttonWyloguj.TabIndex = 9;
-            this.buttonWyloguj.Text = "Wyloguj";
-            this.buttonWyloguj.UseVisualStyleBackColor = false;
-            this.buttonWyloguj.Click += new System.EventHandler(this.buttonWyloguj_Click);
             // 
             // tabControl1
             // 
@@ -754,7 +739,6 @@
         private System.Windows.Forms.DataGridView dataGridViewWizyty;
         private System.Windows.Forms.Button btnSzukaj;
         private System.Windows.Forms.Button buttonPokazPacjentow;
-        private System.Windows.Forms.Button buttonWyloguj;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.MonthCalendar monthCalendar2;
         private System.Windows.Forms.Label label9;
