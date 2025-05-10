@@ -30,7 +30,7 @@ namespace WindowsFormsApp1
             UstawFormularz();
             WczytajDanePacjenta();
             WczytajLekarzy();
-            WczytajHistorieWizyt();
+            WczytajHistorieWizyt(_pacjentId);
             WczytajDokumenty();
             WczytajDanePacjenta();
 
@@ -48,10 +48,10 @@ namespace WindowsFormsApp1
 
             dateTimePickerWizyta.MinDate = DateTime.Today.AddDays(1);
 
-            buttonZapiszZmiany.Click += buttonZapiszZmiany_Click;
+            
             buttonDodajWizyte.Click += buttonDodajWizyte_Click;
             buttonWybierzPlik.Click += ButtonWybierzPlik_Click;
-            buttonZapiszZmiany.Click += buttonZapiszZmiany_Click;
+            
            
         }
 
@@ -154,7 +154,7 @@ namespace WindowsFormsApp1
 
             var lekarz = (Lekarz)dataGridViewLekarze.SelectedRows[0].DataBoundItem;
             var data = dateTimePickerWizyta.Value;
-            var opis = richTextBoxOpisProblemu.Text.Trim();
+            
 
             if (!_dbHelper.CzyLekarzMaWolnyTermin(lekarz.Id, data))
             {
@@ -167,19 +167,39 @@ namespace WindowsFormsApp1
                 PacjentId = _pacjentId,
                 LekarzId = lekarz.Id,
                 DataWizyty = data,
-                Opis = opis,
                 Status = "Zaplanowana"
             };
 
             _dbHelper.DodajWizyte(wizyta);
             MessageBox.Show("Dodano wizytę.");
-            WczytajHistorieWizyt();
+            WczytajHistorieWizyt(_pacjentId);
         }
 
-        private void WczytajHistorieWizyt()
+        private void WczytajHistorieWizyt(int _pacjentId)
         {
-            if (_pacjentId == 0) return;
-            dataGridViewHistoria.DataSource = _dbHelper.PobierzHistorieWizyt(_pacjentId);
+
+            dataGridViewHistoria.Rows.Clear();
+
+            if (dataGridViewHistoria.Columns.Count == 0)
+            {
+                dataGridViewHistoria.Columns.Add("Id", "Id");
+                dataGridViewHistoria.Columns.Add("DataWizyty", "Data Wizyty");
+                dataGridViewHistoria.Columns.Add("Lekarz", "Lekarz");
+                dataGridViewHistoria.Columns.Add("Status", "Status");
+                dataGridViewHistoria.Columns.Add("Specjalizacja", "Specjalizacja");
+            }
+
+            var wizyty = _dbHelper.PobierzWizytyPacjenta(_pacjentId);
+
+            foreach (var wizyta in wizyty)
+            {
+                dataGridViewHistoria.Rows.Add(
+                    wizyta.Id,
+                    wizyta.DataWizyty.ToString("yyyy-MM-dd HH:mm"),
+                    wizyta.Lekarz,
+                    wizyta.Status,
+                    wizyta.Specjalizacja);
+            }
         }
 
         private void ButtonWybierzPlik_Click(object sender, EventArgs e)
@@ -334,6 +354,84 @@ namespace WindowsFormsApp1
         private void textBoxHaslo_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridViewHistoria_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                this.Hide();
+
+                var formLogowaniePacjent = new FormLogowaniePacjent();
+                formLogowaniePacjent.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd: " + ex.Message);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                this.Hide();
+
+                var formLogowaniePacjent = new FormLogowaniePacjent();
+                formLogowaniePacjent.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd: " + ex.Message);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                this.Hide();
+
+                var formLogowaniePacjent = new FormLogowaniePacjent();
+                formLogowaniePacjent.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd: " + ex.Message);
+            }
+        }
+
+        private void dateTimePickerWizyta_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ZakonczWizyte_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewHistoria.SelectedRows.Count > 0)
+            {
+                // Pobierz ID wizyty z zaznaczonego wiersza
+                int wizytaId = Convert.ToInt32(dataGridViewHistoria.SelectedRows[0].Cells["Id"].Value);
+
+                // Zmiana statusu wizyty
+                _dbHelper.ZmienStatusWizyty(wizytaId);
+                MessageBox.Show("Status wizyty został zmieniony na 'Odbyta'.");
+
+                // Odświeżenie wizyt
+                WczytajHistorieWizyt(_pacjentId);
+            }
+            else
+            {
+                MessageBox.Show("Proszę wybrać wizytę z listy.");
+            }
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)

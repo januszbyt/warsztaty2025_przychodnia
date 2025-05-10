@@ -14,15 +14,15 @@ namespace WindowsFormsApp1
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            
+
             const string connectionString = "Server=localhost;Port=3306;Database=przychodnia;Uid=root;Pwd=;";
 
             try
             {
-                
+
                 var dbHelper = new DataBaseHelper(connectionString);
 
-                
+
                 if (!dbHelper.TestConnection())
                 {
                     MessageBox.Show("Nie można połączyć się z bazą danych. Sprawdź połączenie.",
@@ -32,7 +32,8 @@ namespace WindowsFormsApp1
                     return;
                 }
 
-                
+                // dbHelper.SprawdzIntegralnoscDanych(); // @TODO Dawiwd Kotlinski: Odkomentawać dla testu
+
                 Application.Run(new FormRejestracja(dbHelper));
             }
             catch (Exception ex)

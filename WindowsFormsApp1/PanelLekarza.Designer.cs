@@ -57,7 +57,7 @@
             this.txtHaslo = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.labelLekarzId = new System.Windows.Forms.Label();
             this.labelLekarzImieNazwisko = new System.Windows.Forms.Label();
@@ -189,7 +189,7 @@
             this.tabPageUstawienia.Controls.Add(this.txtHaslo);
             this.tabPageUstawienia.Controls.Add(this.txtEmail);
             this.tabPageUstawienia.Controls.Add(this.pictureBox1);
-            this.tabPageUstawienia.Controls.Add(this.dateTimePicker1);
+            this.tabPageUstawienia.Controls.Add(this.dateTimePicker);
             this.tabPageUstawienia.Controls.Add(this.monthCalendar1);
             this.tabPageUstawienia.Controls.Add(this.labelLekarzId);
             this.tabPageUstawienia.Controls.Add(this.labelLekarzImieNazwisko);
@@ -410,11 +410,11 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(1316, 229);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(298, 26);
-            this.dateTimePicker1.TabIndex = 10;
+            this.dateTimePicker.Location = new System.Drawing.Point(1316, 229);
+            this.dateTimePicker.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.dateTimePicker.Name = "dateTimePicker1";
+            this.dateTimePicker.Size = new System.Drawing.Size(298, 26);
+            this.dateTimePicker.TabIndex = 10;
             // 
             // monthCalendar1
             // 
@@ -834,7 +834,7 @@
         private System.Windows.Forms.TextBox txtHaslo;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.Label labelLekarzImieNazwisko;
         private System.Windows.Forms.Label labelSpecjalizacja;

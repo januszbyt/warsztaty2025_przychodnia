@@ -32,6 +32,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPageDanePacjenta = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.textBoxHaslo = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -55,11 +56,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.buttonZapiszZmiany = new System.Windows.Forms.Button();
             this.tabControlPanelLekarza = new System.Windows.Forms.TabControl();
             this.tabPageWizyty = new System.Windows.Forms.TabPage();
             this.dataGridViewHistoria = new System.Windows.Forms.DataGridView();
-            this.richTextBoxOpisProblemu = new System.Windows.Forms.RichTextBox();
             this.dateTimePickerWizyta = new System.Windows.Forms.DateTimePicker();
             this.dataGridViewLekarze = new System.Windows.Forms.DataGridView();
             this.buttonDodajWizyte = new System.Windows.Forms.Button();
@@ -102,6 +101,7 @@
             // tabPageDanePacjenta
             // 
             this.tabPageDanePacjenta.BackColor = System.Drawing.Color.DimGray;
+            this.tabPageDanePacjenta.Controls.Add(this.button2);
             this.tabPageDanePacjenta.Controls.Add(this.dateTimePicker1);
             this.tabPageDanePacjenta.Controls.Add(this.textBoxHaslo);
             this.tabPageDanePacjenta.Controls.Add(this.label11);
@@ -125,7 +125,6 @@
             this.tabPageDanePacjenta.Controls.Add(this.label2);
             this.tabPageDanePacjenta.Controls.Add(this.label1);
             this.tabPageDanePacjenta.Controls.Add(this.pictureBox1);
-            this.tabPageDanePacjenta.Controls.Add(this.buttonZapiszZmiany);
             this.errorProvider.SetIconAlignment(this.tabPageDanePacjenta, System.Windows.Forms.ErrorIconAlignment.BottomLeft);
             this.tabPageDanePacjenta.Location = new System.Drawing.Point(4, 25);
             this.tabPageDanePacjenta.Margin = new System.Windows.Forms.Padding(4);
@@ -135,13 +134,19 @@
             this.tabPageDanePacjenta.TabIndex = 0;
             this.tabPageDanePacjenta.Text = "Dane Pacjenta";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(0, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 0;
+            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(127, 369);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(271, 22);
             this.dateTimePicker1.TabIndex = 27;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // textBoxHaslo
             // 
@@ -165,12 +170,12 @@
             // buttonZmienDane
             // 
             this.buttonZmienDane.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonZmienDane.Location = new System.Drawing.Point(54, 437);
+            this.buttonZmienDane.Location = new System.Drawing.Point(42, 418);
             this.buttonZmienDane.Margin = new System.Windows.Forms.Padding(4);
             this.buttonZmienDane.Name = "buttonZmienDane";
-            this.buttonZmienDane.Size = new System.Drawing.Size(129, 46);
+            this.buttonZmienDane.Size = new System.Drawing.Size(219, 49);
             this.buttonZmienDane.TabIndex = 24;
-            this.buttonZmienDane.Text = "Zmien Dane";
+            this.buttonZmienDane.Text = "Aktualizuj Dane";
             this.buttonZmienDane.UseVisualStyleBackColor = true;
             this.buttonZmienDane.Click += new System.EventHandler(this.buttonZmienDane_Click);
             // 
@@ -361,18 +366,6 @@
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
-            // buttonZapiszZmiany
-            // 
-            this.buttonZapiszZmiany.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonZapiszZmiany.Location = new System.Drawing.Point(292, 437);
-            this.buttonZapiszZmiany.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonZapiszZmiany.Name = "buttonZapiszZmiany";
-            this.buttonZapiszZmiany.Size = new System.Drawing.Size(117, 46);
-            this.buttonZapiszZmiany.TabIndex = 7;
-            this.buttonZapiszZmiany.Text = "Zapisz zmiany";
-            this.buttonZapiszZmiany.UseVisualStyleBackColor = true;
-            this.buttonZapiszZmiany.Click += new System.EventHandler(this.buttonZapiszZmiany_Click);
-            // 
             // tabControlPanelLekarza
             // 
             this.tabControlPanelLekarza.Controls.Add(this.tabPageDanePacjenta);
@@ -391,7 +384,6 @@
             // tabPageWizyty
             // 
             this.tabPageWizyty.Controls.Add(this.dataGridViewHistoria);
-            this.tabPageWizyty.Controls.Add(this.richTextBoxOpisProblemu);
             this.tabPageWizyty.Controls.Add(this.dateTimePickerWizyta);
             this.tabPageWizyty.Controls.Add(this.dataGridViewLekarze);
             this.tabPageWizyty.Controls.Add(this.buttonDodajWizyte);
@@ -407,34 +399,27 @@
             // dataGridViewHistoria
             // 
             this.dataGridViewHistoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewHistoria.Location = new System.Drawing.Point(971, 37);
+            this.dataGridViewHistoria.Location = new System.Drawing.Point(1046, 95);
             this.dataGridViewHistoria.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewHistoria.Name = "dataGridViewHistoria";
             this.dataGridViewHistoria.RowHeadersWidth = 51;
-            this.dataGridViewHistoria.Size = new System.Drawing.Size(609, 383);
+            this.dataGridViewHistoria.Size = new System.Drawing.Size(776, 383);
             this.dataGridViewHistoria.TabIndex = 7;
-            // 
-            // richTextBoxOpisProblemu
-            // 
-            this.richTextBoxOpisProblemu.Location = new System.Drawing.Point(480, 427);
-            this.richTextBoxOpisProblemu.Margin = new System.Windows.Forms.Padding(4);
-            this.richTextBoxOpisProblemu.Name = "richTextBoxOpisProblemu";
-            this.richTextBoxOpisProblemu.Size = new System.Drawing.Size(405, 258);
-            this.richTextBoxOpisProblemu.TabIndex = 6;
-            this.richTextBoxOpisProblemu.Text = "";
+            this.dataGridViewHistoria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewHistoria_CellContentClick);
             // 
             // dateTimePickerWizyta
             // 
-            this.dateTimePickerWizyta.Location = new System.Drawing.Point(77, 427);
+            this.dateTimePickerWizyta.Location = new System.Drawing.Point(77, 504);
             this.dateTimePickerWizyta.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerWizyta.Name = "dateTimePickerWizyta";
             this.dateTimePickerWizyta.Size = new System.Drawing.Size(265, 22);
             this.dateTimePickerWizyta.TabIndex = 5;
+            this.dateTimePickerWizyta.ValueChanged += new System.EventHandler(this.dateTimePickerWizyta_ValueChanged);
             // 
             // dataGridViewLekarze
             // 
             this.dataGridViewLekarze.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewLekarze.Location = new System.Drawing.Point(77, 37);
+            this.dataGridViewLekarze.Location = new System.Drawing.Point(77, 95);
             this.dataGridViewLekarze.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewLekarze.Name = "dataGridViewLekarze";
             this.dataGridViewLekarze.RowHeadersWidth = 51;
@@ -444,7 +429,8 @@
             // 
             // buttonDodajWizyte
             // 
-            this.buttonDodajWizyte.Location = new System.Drawing.Point(77, 462);
+            this.buttonDodajWizyte.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonDodajWizyte.Location = new System.Drawing.Point(77, 551);
             this.buttonDodajWizyte.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDodajWizyte.Name = "buttonDodajWizyte";
             this.buttonDodajWizyte.Size = new System.Drawing.Size(197, 63);
@@ -606,9 +592,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button buttonZapiszZmiany;
         private System.Windows.Forms.TabPage tabPageWizyty;
-        private System.Windows.Forms.RichTextBox richTextBoxOpisProblemu;
         private System.Windows.Forms.DateTimePicker dateTimePickerWizyta;
         private System.Windows.Forms.DataGridView dataGridViewLekarze;
         private System.Windows.Forms.Button buttonDodajWizyte;
@@ -626,5 +610,14 @@
         private System.Windows.Forms.TextBox textBoxHaslo;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button ZakonczWizyte;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label15;
     }
 }
