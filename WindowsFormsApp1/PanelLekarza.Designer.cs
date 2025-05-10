@@ -80,6 +80,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPageUstawienia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -90,6 +91,7 @@
             this.tabPageWizyty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWizyty)).BeginInit();
             this.tabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -146,6 +148,7 @@
             // 
             // tabPageUstawienia
             // 
+            this.tabPageUstawienia.Controls.Add(this.dataGridView3);
             this.tabPageUstawienia.Controls.Add(this.button4);
             this.tabPageUstawienia.Controls.Add(this.textBox4);
             this.tabPageUstawienia.Controls.Add(this.label10);
@@ -224,7 +227,7 @@
             // labelLekarzId
             // 
             this.labelLekarzId.AutoSize = true;
-            this.labelLekarzId.Location = new System.Drawing.Point(44, 362);
+            this.labelLekarzId.Location = new System.Drawing.Point(192, 362);
             this.labelLekarzId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLekarzId.Name = "labelLekarzId";
             this.labelLekarzId.Size = new System.Drawing.Size(30, 20);
@@ -234,22 +237,22 @@
             // labelLekarzImieNazwisko
             // 
             this.labelLekarzImieNazwisko.AutoSize = true;
-            this.labelLekarzImieNazwisko.Location = new System.Drawing.Point(44, 398);
+            this.labelLekarzImieNazwisko.Location = new System.Drawing.Point(101, 395);
             this.labelLekarzImieNazwisko.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLekarzImieNazwisko.Name = "labelLekarzImieNazwisko";
-            this.labelLekarzImieNazwisko.Size = new System.Drawing.Size(178, 20);
+            this.labelLekarzImieNazwisko.Size = new System.Drawing.Size(121, 20);
             this.labelLekarzImieNazwisko.TabIndex = 2;
-            this.labelLekarzImieNazwisko.Text = "Imie i Nazwisko Lekarza";
+            this.labelLekarzImieNazwisko.Text = "Imie i Nazwisko:";
             // 
             // labelSpecjalizacja
             // 
             this.labelSpecjalizacja.AutoSize = true;
-            this.labelSpecjalizacja.Location = new System.Drawing.Point(44, 431);
+            this.labelSpecjalizacja.Location = new System.Drawing.Point(117, 428);
             this.labelSpecjalizacja.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSpecjalizacja.Name = "labelSpecjalizacja";
-            this.labelSpecjalizacja.Size = new System.Drawing.Size(101, 20);
+            this.labelSpecjalizacja.Size = new System.Drawing.Size(105, 20);
             this.labelSpecjalizacja.TabIndex = 3;
-            this.labelSpecjalizacja.Text = "Specjalizacja";
+            this.labelSpecjalizacja.Text = "Specjalizacja:";
             // 
             // tabPagePowiadomienia
             // 
@@ -661,6 +664,16 @@
             this.button4.Text = "Zmień";
             this.button4.UseVisualStyleBackColor = true;
             // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(229, 362);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowHeadersWidth = 62;
+            this.dataGridView3.RowTemplate.Height = 28;
+            this.dataGridView3.Size = new System.Drawing.Size(139, 86);
+            this.dataGridView3.TabIndex = 26;
+            // 
             // PanelLekarza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -683,6 +696,7 @@
             this.tabPageWizyty.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWizyty)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -740,5 +754,6 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridView dataGridView3;
     }
 }
