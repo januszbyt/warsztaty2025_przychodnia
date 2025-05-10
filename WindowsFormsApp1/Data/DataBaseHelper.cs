@@ -32,31 +32,36 @@ namespace WindowsFormsApp1.Data
 
         public IEnumerable<Users> WyliczUzytkownikow()
         {
-            using var connection = new MySqlConnection(_connectionString);
-            connection.Open();
-
-            var query = "SELECT * FROM Users";
-            using var cmd = new MySqlCommand(query, connection);
-            using var reader = cmd.ExecuteReader();
-
-            while (reader.Read())
+            using (var connection = new MySqlConnection(_connectionString))
             {
-                yield return new Users
+                connection.Open();
+
+                var query = "SELECT * FROM Users";
+                using (var cmd = new MySqlCommand(query, connection))
                 {
-                    Id = reader.GetInt32("Id"),
-                    Imie = reader.GetString("Imie"),
-                    Nazwisko = reader.GetString("Nazwisko"),
-                    Email = reader.GetString("Email"),
-                    Haslo = reader.GetString("Haslo"),
-                    Rola = reader.GetString("Rola"),
-                    DateOfBirth = reader.GetDateTime("DateOfBirth"),
-                    PESEL = reader.GetString("PESEL"),
-                    PhoneNumber = reader.GetString("PhoneNumber"),
-                    Adres = reader.GetString("Adres"),
-                    Miasto = reader.GetString("Miasto"),
-                    KodPocztowy = reader.GetString("KodPocztowy"),
-                    Rola = new Role { Nazwa = reader.GetString("Rola") }
-                };
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            yield return new Users
+                            {
+                                Id = reader.GetInt32("Id"),
+                                Imie = reader.GetString("Imie"),
+                                Nazwisko = reader.GetString("Nazwisko"),
+                                Email = reader.GetString("Email"),
+                                Haslo = reader.GetString("Haslo"),
+                                Rola = reader.GetString("Rola"),
+                                DateOfBirth = reader.GetDateTime("DateOfBirth"),
+                                PESEL = reader.GetString("PESEL"),
+                                PhoneNumber = reader.GetString("PhoneNumber"),
+                                Adres = reader.GetString("Adres"),
+                                Miasto = reader.GetString("Miasto"),
+                                KodPocztowy = reader.GetString("KodPocztowy"),
+                                Rola = new Role { Nazwa = reader.GetString("Rola") }
+                            };
+                        }
+                    }
+                }
             }
         }
 
@@ -142,164 +147,174 @@ namespace WindowsFormsApp1.Data
         // Dawid Kotlinski
         public void DodajLosoweUzytkownika()
         {
-            using var conn = new MySqlConnection(_connectionString);
-            conn.Open();
-
-            var imie = LosoweImie();
-            var nazwisko = LosoweNazwisko();
-            var email = LosowyEmail(imie, nazwisko);
-            var haslo = LosoweHaslo();
-            var pesel = LosowyPESEL();
-            var telefon = LosowyTelefon();
-            var adres = LosowyAdres();
-            var miasto = LosoweMiasto();
-            var kodPocztowy = LosowyKodPocztowy();
-            var rola = LosowaRola();
-            var dataUrodzenia = LosowaDataUrodzenia();
-            int? userId = null;
-
+            using (var conn = new MySqlConnection(_connectionString))
             {
-                var query = "INSERT INTO Users (Imie, Nazwisko, Email, Rola, DateOfBirth, PESEL, PhoneNumber, Adres, Miasto, KodPocztowy) VALUES (@Imie, @Nazwisko, @Email, @Rola, @DateOfBirth, @PESEL, @PhoneNumber, @Adres, @Miasto, @KodPocztowy)";
+                conn.Open();
 
-                using var cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Imie", imie);
-                cmd.Parameters.AddWithValue("@Nazwisko", nazwisko);
-                cmd.Parameters.AddWithValue("@Email", email);
-                // cmd.Parameters.AddWithValue("@Haslo", haslo);
-                cmd.Parameters.AddWithValue("@Rola", rola);
-                cmd.Parameters.AddWithValue("@PESEL", pesel);
-                cmd.Parameters.AddWithValue("@PhoneNumber", telefon);
-                cmd.Parameters.AddWithValue("@Adres", adres);
-                cmd.Parameters.AddWithValue("@Miasto", miasto);
-                cmd.Parameters.AddWithValue("@KodPocztowy", kodPocztowy);
-                cmd.Parameters.AddWithValue("@DateOfBirth", dataUrodzenia);
+                var imie = LosoweImie();
+                var nazwisko = LosoweNazwisko();
+                var email = LosowyEmail(imie, nazwisko);
+                var haslo = LosoweHaslo();
+                var pesel = LosowyPESEL();
+                var telefon = LosowyTelefon();
+                var adres = LosowyAdres();
+                var miasto = LosoweMiasto();
+                var kodPocztowy = LosowyKodPocztowy();
+                var rola = LosowaRola();
+                var dataUrodzenia = LosowaDataUrodzenia();
+                int? userId = null;
 
-                cmd.ExecuteNonQuery();
-                userId = (int)cmd.LastInsertedId;
-            }
+                {
+                    var query = "INSERT INTO Users (Imie, Nazwisko, Email, Rola, DateOfBirth, PESEL, PhoneNumber, Adres, Miasto, KodPocztowy) VALUES (@Imie, @Nazwisko, @Email, @Rola, @DateOfBirth, @PESEL, @PhoneNumber, @Adres, @Miasto, @KodPocztowy)";
 
-            Debug.Assert(userId != null);
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Imie", imie);
+                        cmd.Parameters.AddWithValue("@Nazwisko", nazwisko);
+                        cmd.Parameters.AddWithValue("@Email", email);
+                        cmd.Parameters.AddWithValue("@Rola", rola);
+                        cmd.Parameters.AddWithValue("@PESEL", pesel);
+                        cmd.Parameters.AddWithValue("@PhoneNumber", telefon);
+                        cmd.Parameters.AddWithValue("@Adres", adres);
+                        cmd.Parameters.AddWithValue("@Miasto", miasto);
+                        cmd.Parameters.AddWithValue("@KodPocztowy", kodPocztowy);
+                        cmd.Parameters.AddWithValue("@DateOfBirth", dataUrodzenia);
 
-            if (rola == "Pacjent")
-            {
-                var query = "INSERT INTO Patients (UserId, PESEL, PhoneNumber, Adres, Miasto, KodPocztowy, DateOfBirth, Imie, Nazwisko, Email, Haslo, IsActive) VALUES (@UserId, @PESEL, @PhoneNumber, @Adres, @Miasto, @KodPocztowy, @DateOfBirth, @Imie, @Nazwisko, @Email, @Haslo, @IsActive)";
-                using var cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@UserId", userId);
-                cmd.Parameters.AddWithValue("@PESEL", pesel);
-                cmd.Parameters.AddWithValue("@PhoneNumber", telefon);
-                cmd.Parameters.AddWithValue("@Adres", adres);
-                cmd.Parameters.AddWithValue("@Miasto", miasto);
-                cmd.Parameters.AddWithValue("@KodPocztowy", kodPocztowy);
-                cmd.Parameters.AddWithValue("@DateOfBirth", dataUrodzenia);
-                cmd.Parameters.AddWithValue("@Imie", imie);
-                cmd.Parameters.AddWithValue("@Nazwisko", nazwisko);
-                cmd.Parameters.AddWithValue("@Email", email);
-                cmd.Parameters.AddWithValue("@Haslo", haslo);
-                cmd.Parameters.AddWithValue("@IsActive", true);
-                cmd.ExecuteNonQuery();
-            }
-            else if (rola == "Lekarz")
-            {
-                var query = "INSERT INTO Doctors (UserId, Specialization, IsActive) VALUES (@UserId, @Specialization, @IsActive)";
-                using var cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@UserId", userId);
-                cmd.Parameters.AddWithValue("@Specialization", specjalizacja);
-                cmd.Parameters.AddWithValue("@IsActive", true);
-                cmd.ExecuteNonQuery();
-            }
+                        cmd.ExecuteNonQuery();
+                        userId = (int)cmd.LastInsertedId;
+                    }
+                }
 
-            {
-                // Aktualizacja UserRoles
-                var query = "INSERT INTO UserRoles (UserId, RoleName) VALUES (@UserId, @RoleName)";
-                using var cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@UserId", userId);
-                cmd.Parameters.AddWithValue("@RoleName", rola);
-                cmd.ExecuteNonQuery();
+                Debug.Assert(userId != null);
+
+                if (rola == "Pacjent")
+                {
+                    var query = "INSERT INTO Patients (UserId, PESEL, PhoneNumber, Adres, Miasto, KodPocztowy, DateOfBirth, Imie, Nazwisko, Email, Haslo, IsActive) VALUES (@UserId, @PESEL, @PhoneNumber, @Adres, @Miasto, @KodPocztowy, @DateOfBirth, @Imie, @Nazwisko, @Email, @Haslo, @IsActive)";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@UserId", userId);
+                        cmd.Parameters.AddWithValue("@PESEL", pesel);
+                        cmd.Parameters.AddWithValue("@PhoneNumber", telefon);
+                        cmd.Parameters.AddWithValue("@Adres", adres);
+                        cmd.Parameters.AddWithValue("@Miasto", miasto);
+                        cmd.Parameters.AddWithValue("@KodPocztowy", kodPocztowy);
+                        cmd.Parameters.AddWithValue("@DateOfBirth", dataUrodzenia);
+                        cmd.Parameters.AddWithValue("@Imie", imie);
+                        cmd.Parameters.AddWithValue("@Nazwisko", nazwisko);
+                        cmd.Parameters.AddWithValue("@Email", email);
+                        cmd.Parameters.AddWithValue("@Haslo", haslo);
+                        cmd.Parameters.AddWithValue("@IsActive", true);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                else if (rola == "Lekarz")
+                {
+                    var query = "INSERT INTO Doctors (UserId, Specialization, IsActive) VALUES (@UserId, @Specialization, @IsActive)";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@UserId", userId);
+                        cmd.Parameters.AddWithValue("@Specialization", specjalizacja);
+                        cmd.Parameters.AddWithValue("@IsActive", true);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                {
+                    var query = "INSERT INTO UserRoles (UserId, RoleName) VALUES (@UserId, @RoleName)";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@UserId", userId);
+                        cmd.Parameters.AddWithValue("@RoleName", rola);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
             }
         }
 
         // Dawid Kotlinski
         public void SprawdzIntegralnoscDanych()
         {
-            using var conn = new MySqlConnection(_connectionString);
-            conn.Open();
-
-            // Sprawdz userów
-            foreach (var user in WyliczUzytkownikow())
+            using (var conn = new MySqlConnection(_connectionString))
             {
-                // Sprawdź hasło
-                if (string.IsNullOrEmpty(user.Haslo))
+                conn.Open();
+
+                // Sprawdz userów
+                foreach (var user in WyliczUzytkownikow())
                 {
-                    MessageBox.Show($"Użytkownik {user.Id} nie ma hasła");
-                }
-                // Sprawdź mail
-                if (string.IsNullOrEmpty(user.Email))
-                {
-                    MessageBox.Show($"Użytkownik {user.Id} nie ma adresu email");
-                }
-                if (!Regex.IsMatch(user.Email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
-                {
-                    MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy format adresu email");
-                }
-                if (string.IsNullOrEmpty(user.Rola.Nazwa))
-                {
-                    MessageBox.Show($"Użytkownik {user.Id} nie ma przypisanej roli");
-                }
-                if (user.Rola.Nazwa != "Pacjent" && user.Rola.Nazwa != "Lekarz" && user.Rola.Nazwa != "Admin")
-                {
-                    MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową rolę");
-                }
-                if (string.IsNullOrEmpty(user.Imie))
-                {
-                    MessageBox.Show($"Użytkownik {user.Id} nie ma imienia");
-                }
-                if (string.IsNullOrEmpty(user.Nazwisko))
-                {
-                    MessageBox.Show($"Użytkownik {user.Id} nie ma nazwiska");
-                }
-                if (string.IsNullOrEmpty(user.PESEL))
-                {
-                    MessageBox.Show($"Użytkownik {user.Id} nie ma numeru PESEL");
-                }
-                if (user.PESEL.Length != 11)
-                {
-                    MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową długość numeru PESEL");
-                }
-                if (user.PESEL.Any(c => !char.IsDigit(c)))
-                {
-                    MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy numer PESEL (powinien zawierać tylko cyfry)");
-                }
-                if (string.IsNullOrEmpty(user.PhoneNumber))
-                {
-                    MessageBox.Show($"Użytkownik {user.Id} nie ma numeru telefonu");
-                }
-                if (user.PhoneNumber.Length != 9)
-                {
-                    MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową długość numeru telefonu");
-                }
-                if (user.PhoneNumber.Any(c => !char.IsDigit(c)))
-                {
-                    MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy numer telefonu (powinien zawierać tylko cyfry)");
-                }
-                if (string.IsNullOrEmpty(user.Adres))
-                {
-                    MessageBox.Show($"Użytkownik {user.Id} nie ma adresu");
-                }
-                if (string.IsNullOrEmpty(user.Miasto))
-                {
-                    MessageBox.Show($"Użytkownik {user.Id} nie ma miasta");
-                }
-                if (string.IsNullOrEmpty(user.KodPocztowy))
-                {
-                    MessageBox.Show($"Użytkownik {user.Id} nie ma kodu pocztowego");
-                }
-                if (user.KodPocztowy.Length != 6)
-                {
-                    MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową długość kodu pocztowego");
-                }
-                if (user.KodPocztowy.Any(c => !char.IsDigit(c)))
-                {
-                    MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy kod pocztowy (powinien zawierać tylko cyfry)");
+                    // Sprawdź hasło
+                    if (string.IsNullOrEmpty(user.Haslo))
+                    {
+                        MessageBox.Show($"Użytkownik {user.Id} nie ma hasła");
+                    }
+                    // Sprawdź mail
+                    if (string.IsNullOrEmpty(user.Email))
+                    {
+                        MessageBox.Show($"Użytkownik {user.Id} nie ma adresu email");
+                    }
+                    if (!Regex.IsMatch(user.Email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+                    {
+                        MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy format adresu email");
+                    }
+                    if (string.IsNullOrEmpty(user.Rola.Nazwa))
+                    {
+                        MessageBox.Show($"Użytkownik {user.Id} nie ma przypisanej roli");
+                    }
+                    if (user.Rola.Nazwa != "Pacjent" && user.Rola.Nazwa != "Lekarz" && user.Rola.Nazwa != "Admin")
+                    {
+                        MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową rolę");
+                    }
+                    if (string.IsNullOrEmpty(user.Imie))
+                    {
+                        MessageBox.Show($"Użytkownik {user.Id} nie ma imienia");
+                    }
+                    if (string.IsNullOrEmpty(user.Nazwisko))
+                    {
+                        MessageBox.Show($"Użytkownik {user.Id} nie ma nazwiska");
+                    }
+                    if (string.IsNullOrEmpty(user.PESEL))
+                    {
+                        MessageBox.Show($"Użytkownik {user.Id} nie ma numeru PESEL");
+                    }
+                    if (user.PESEL.Length != 11)
+                    {
+                        MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową długość numeru PESEL");
+                    }
+                    if (user.PESEL.Any(c => !char.IsDigit(c)))
+                    {
+                        MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy numer PESEL (powinien zawierać tylko cyfry)");
+                    }
+                    if (string.IsNullOrEmpty(user.PhoneNumber))
+                    {
+                        MessageBox.Show($"Użytkownik {user.Id} nie ma numeru telefonu");
+                    }
+                    if (user.PhoneNumber.Length != 9)
+                    {
+                        MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową długość numeru telefonu");
+                    }
+                    if (user.PhoneNumber.Any(c => !char.IsDigit(c)))
+                    {
+                        MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy numer telefonu (powinien zawierać tylko cyfry)");
+                    }
+                    if (string.IsNullOrEmpty(user.Adres))
+                    {
+                        MessageBox.Show($"Użytkownik {user.Id} nie ma adresu");
+                    }
+                    if (string.IsNullOrEmpty(user.Miasto))
+                    {
+                        MessageBox.Show($"Użytkownik {user.Id} nie ma miasta");
+                    }
+                    if (string.IsNullOrEmpty(user.KodPocztowy))
+                    {
+                        MessageBox.Show($"Użytkownik {user.Id} nie ma kodu pocztowego");
+                    }
+                    if (user.KodPocztowy.Length != 6)
+                    {
+                        MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową długość kodu pocztowego");
+                    }
+                    if (user.KodPocztowy.Any(c => !char.IsDigit(c)))
+                    {
+                        MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy kod pocztowy (powinien zawierać tylko cyfry)");
+                    }
                 }
             }
         }
@@ -382,33 +397,38 @@ namespace WindowsFormsApp1.Data
         // Dawid Kotlinski
         public Users PobierzUzytkownika(int userId)
         {
-            var connection = new MySqlConnection(_connectionString);
-            connection.Open();
-
-            var query = "SELECT Id, Imie, Nazwisko, Email, Rola, DateOfBirth, PESEL, PhoneNumber, Adres, Miasto, KodPocztowy, Haslo FROM Users WHERE Id = @UserId";
-            using var command = new MySqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@UserId", userId);
-            var result = command.ExecuteScalar();
-
-            if (result == null || result == DBNull.Value)
-                throw new Exception("Użytkownik z podanym adresem email nie istnieje.");
-
-            return new Users
+            using (var connection = new MySqlConnection(_connectionString))
             {
-                Id = reader.GetInt32(0),
-                Imie = reader.GetString(1),
-                Nazwisko = reader.GetString(2),
-                Email = reader.GetString(3),
-                Rola = reader.GetString(4),
-                DateOfBirth = reader.GetDateTime(5),
-                PESEL = reader.GetString(6),
-                PhoneNumber = reader.GetString(7),
-                Adres = reader.GetString(8),
-                Miasto = reader.GetString(9),
-                KodPocztowy = reader.GetString(10),
-                Haslo = reader.GetString(11),
-            };
+                connection.Open();
+
+                var query = "SELECT Id, Imie, Nazwisko, Email, Rola, DateOfBirth, PESEL, PhoneNumber, Adres, Miasto, KodPocztowy, Haslo FROM Users WHERE Id = @UserId";
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserId", userId);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Users
+                            {
+                                Id = reader.GetInt32(0),
+                                Imie = reader.GetString(1),
+                                Nazwisko = reader.GetString(2),
+                                Email = reader.GetString(3),
+                                Rola = reader.GetString(4),
+                                DateOfBirth = reader.GetDateTime(5),
+                                PESEL = reader.GetString(6),
+                                PhoneNumber = reader.GetString(7),
+                                Adres = reader.GetString(8),
+                                Miasto = reader.GetString(9),
+                                KodPocztowy = reader.GetString(10),
+                                Haslo = reader.GetString(11),
+                            };
+                        }
+                    }
+                }
+            }
+            return null;
         }
 
         public Lekarz PobierzLekarza(int userId)
@@ -1416,7 +1436,7 @@ namespace WindowsFormsApp1.Data
             }
         }
 
-        public void WyslijPowiadomienie(int pacjentId, string tresc)
+        public void WystlijPowiadomienie(int pacjentId, string tresc)
         {
             using (var connection = new MySqlConnection(_connectionString))
             {
