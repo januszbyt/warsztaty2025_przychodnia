@@ -60,6 +60,131 @@ namespace WindowsFormsApp1.Data
             }
         }
 
+        // Dawid Kotlinski
+        public string LosoweImie()
+        {
+            var imiona = new List<string> { "Jan", "Adam", "Marek", "Piotr", "Krzysztof", "Andrzej", "Marcin", "Kamil", "Maciej", "Sebastian" };
+            return imiona[new Random().Next(imiona.Count)];
+        }
+
+        // Dawid Kotlinski
+        public string LosoweNazwisko()
+        {
+            var nazwiska = new List<string> { "Kowalski", "Nowak", "Wiśniewski", "Kowalczyk", "Kowalska", "Nowak", "Wiśniewska", "Kowalczyk", "Kowalska", "Nowak" };
+            return nazwiska[new Random().Next(nazwiska.Count)];
+        }
+
+        // Dawid Kotlinski
+        public string LosowyEmail(string imie, string nazwisko)
+        {
+            var domeny = new List<string> { "gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "example.com" };
+            return $"{imie}.{nazwisko}@{domeny[new Random().Next(domeny.Count)]}";
+        }
+
+        // Dawid Kotlinski
+        public string LosoweHaslo()
+        {
+            var hasla = new List<string> { "haslo123", "password", "qwerty", "admin", "user" };
+            return hasla[new Random().Next(hasla.Count)];
+        }
+
+        // Dawid Kotlinski
+        public string LosowyPESEL()
+        {
+            var pesele = new List<string> { "12345678901", "12345678902", "12345678903", "12345678904", "12345678905" };
+            return pesele[new Random().Next(pesele.Count)];
+        }
+
+        // Dawid Kotlinski
+        public string LosowyTelefon()
+        {
+            var telefony = new List<string> { "1234567890", "12345678901", "12345678902", "12345678903", "12345678904" };
+            return telefony[new Random().Next(telefony.Count)];
+        }
+
+        // Dawid Kotlinski
+        public string LosowyAdres()
+        {
+            var adresy = new List<string> { "ul. Sikorskiego", "ul. Długa", "ul. Szeroka", "ul. Krótka", "ul. Wąska" };
+            return adresy[new Random().Next(adresy.Count)];
+        }
+
+        // Dawid Kotlinski
+        public string LosoweMiasto()
+        {
+            var miasta = new List<string> { "Warszawa", "Krakow", "Wroclaw", "Gdansk", "Poznan" };
+            return miasta[new Random().Next(miasta.Count)];
+        }
+
+        // Dawid Kotlinski
+        public string LosowyKodPocztowy()
+        {
+            var kodyPocztowe = new List<string> { "00-000", "11-111", "22-222", "33-333", "44-444" };
+            return kodyPocztowe[new Random().Next(kodyPocztowe.Count)];
+        }
+
+        public string LosowaRola()
+        {
+            var role = new List<string> { "Pacjent", "Lekarz", "Admin" };
+            return role[new Random().Next(role.Count)];
+        }
+
+        public DateTime LosowaDataUrodzenia()
+        {
+            var rok = new Random().Next(1900, 2025);
+            var miesiac = new Random().Next(1, 13);
+            var dzien = new Random().Next(1, 32);
+            return new DateTime(rok, miesiac, dzien);
+        }
+
+        // Dawid Kotlinski
+        public void DodajLosowegoPacjenta()
+        {
+            using var conn = new MySqlConnection(_connectionString);
+            conn.Open();
+
+            var imie = LosoweImie();
+            var nazwisko = LosoweNazwisko();
+            var email = LosowyEmail(imie, nazwisko);
+            var haslo = LosoweHaslo();
+            var pesel = LosowyPESEL();
+            var telefon = LosowyTelefon();
+            var adres = LosowyAdres();
+            var miasto = LosoweMiasto();
+            var kodPocztowy = LosowyKodPocztowy();
+            var rola = LosowaRola();
+            var dataUrodzenia = LosowaDataUrodzenia();
+
+            {
+                var query = "INSERT INTO Users (Imie, Nazwisko, Email, Haslo, Rola, DateOfBirth, PESEL, PhoneNumber, Adres, Miasto, KodPocztowy) VALUES (@Imie, @Nazwisko, @Email, @Haslo, @Rola, @DateOfBirth, @PESEL, @PhoneNumber, @Adres, @Miasto, @KodPocztowy)";
+
+                using var cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Imie", imie);
+                cmd.Parameters.AddWithValue("@Nazwisko", nazwisko);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Haslo", haslo);
+                cmd.Parameters.AddWithValue("@Rola", rola);
+                cmd.Parameters.AddWithValue("@PESEL", pesel);
+                cmd.Parameters.AddWithValue("@PhoneNumber", telefon);
+                cmd.Parameters.AddWithValue("@Adres", adres);
+                cmd.Parameters.AddWithValue("@Miasto", miasto);
+                cmd.Parameters.AddWithValue("@KodPocztowy", kodPocztowy);
+                cmd.Parameters.AddWithValue("@DateOfBirth", dataUrodzenia);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            {
+                // Aktualizacja UserRoles
+                var query = "INSERT INTO UserRoles (UserId, RoleName) VALUES (@UserId, @RoleName)";
+                using var cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@UserId", userId);
+                cmd.Parameters.AddWithValue("@RoleName", rola);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        // Dawid Kotlinski
         public void SprawdzIntegralnoscDanych()
         {
             using var conn = new MySqlConnection(_connectionString);
