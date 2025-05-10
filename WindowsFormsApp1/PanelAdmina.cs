@@ -221,7 +221,7 @@ namespace WindowsFormsApp1
         private void WylogujAdmin_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var formLogowanie = new FormLogowanieLekarz(_dbHelper);
+            var formLogowanie = new FormLogowanieRola(_dbHelper);
             formLogowanie.ShowDialog();
             this.Close();
         }

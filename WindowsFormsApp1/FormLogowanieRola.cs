@@ -76,5 +76,10 @@ namespace WindowsFormsApp1
         {
             this.Close();
         }
+
+        private void FormLogowanieRola_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
