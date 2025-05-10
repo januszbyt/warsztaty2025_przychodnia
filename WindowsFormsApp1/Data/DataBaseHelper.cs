@@ -241,16 +241,16 @@ namespace WindowsFormsApp1.Data
                 foreach (var user in WyliczUzytkownikow())
                 {
                     // Sprawdź hasło
-                    if (!user.Haslo)
+                    if (user.Haslo == null || user.Haslo == "")
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma hasła");
                     }
                     // Sprawdź mail
-                    if (!user.Email)
+                    if (user.Email == null || user.Email == "")
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma adresu email");
                     }
-                    if (!user.Rola.Nazwa)
+                    if (user.Rola.Nazwa == null || user.Rola.Nazwa == "")
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma przypisanej roli");
                     }
@@ -258,15 +258,15 @@ namespace WindowsFormsApp1.Data
                     {
                         MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową rolę");
                     }
-                    if (!user.Imie)
+                    if (user.Imie == null || user.Imie == "")
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma imienia");
                     }
-                    if (!user.Nazwisko)
+                    if (user.Nazwisko == null || user.Nazwisko == "")
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma nazwiska");
                     }
-                    if (!user.PESEL)
+                    if (user.PESEL == null || user.PESEL == "")
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma numeru PESEL");
                     }
@@ -278,7 +278,7 @@ namespace WindowsFormsApp1.Data
                     {
                         MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy numer PESEL (powinien zawierać tylko cyfry)");
                     }
-                    if (!user.PhoneNumber)
+                    if (user.PhoneNumber == null || user.PhoneNumber == "")
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma numeru telefonu");
                     }
@@ -290,15 +290,15 @@ namespace WindowsFormsApp1.Data
                     {
                         MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy numer telefonu (powinien zawierać tylko cyfry)");
                     }
-                    if (!user.Adres)
+                    if (user.Adres == null || user.Adres == "")
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma adresu");
                     }
-                    if (!user.Miasto)
+                    if (user.Miasto == null || user.Miasto == "")
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma miasta");
                     }
-                    if (!user.KodPocztowy)
+                    if (user.KodPocztowy == null || user.KodPocztowy == "")
                     {
                         MessageBox.Show($"Użytkownik {user.Id} nie ma kodu pocztowego");
                     }
