@@ -311,6 +311,7 @@
             this.textBoxImie.Name = "textBoxImie";
             this.textBoxImie.Size = new System.Drawing.Size(241, 22);
             this.textBoxImie.TabIndex = 0;
+            this.textBoxImie.TextChanged += new System.EventHandler(this.textBoxImie_TextChanged);
             // 
             // label4
             // 

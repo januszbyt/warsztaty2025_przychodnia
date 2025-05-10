@@ -7,6 +7,7 @@ using WindowsFormsApp1.Forms;
 using WindowsFormsApp1.Models;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WindowsFormsApp1
 {
@@ -19,8 +20,10 @@ namespace WindowsFormsApp1
         private int lekarzId;
         private int wizytId;
 
+       
         public PanelLekarza(Lekarz lekarz, DataBaseHelper dbHelper)
         {
+
             InitializeComponent();
 
             _lekarz = lekarz ?? throw new ArgumentNullException(nameof(lekarz));
@@ -342,6 +345,7 @@ namespace WindowsFormsApp1
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
+            
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
@@ -391,6 +395,11 @@ namespace WindowsFormsApp1
         }
 
         private void labelSpecjalizacja_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelLekarzImieNazwisko_Click(object sender, EventArgs e)
         {
 
         }

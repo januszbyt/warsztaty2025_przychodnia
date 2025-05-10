@@ -438,5 +438,10 @@ namespace WindowsFormsApp1
         {
            
         }
+
+        private void textBoxImie_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
