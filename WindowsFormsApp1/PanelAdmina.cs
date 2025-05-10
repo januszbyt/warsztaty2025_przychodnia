@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
         public PanelAdmina()
         {
             InitializeComponent();
-            UkryjFormularzLekarza();
+            
             try
             {
                 _dbHelper = new DataBaseHelper();
@@ -187,47 +187,15 @@ namespace WindowsFormsApp1
 
         private void RefreshGrid()
         {
-            if (radioButtonLekarze.Checked)
-            {
+            
                 dataGridView1.DataSource = _dbHelper.PobierzWszystkichLekarzy();
-            }
-            else if (radioButtonPacjenci.Checked)
-            {
+            
+            
                 dataGridView1.DataSource = _dbHelper.PobierzWszystkichPacjentow();
-            }
+            
         }
 
-        private void UkryjFormularzLekarza()
-        {
-            foreach (Control control in Controls)
-            {
-                if (control is TextBox || control is Label)
-                {
-                    control.Visible = false;
-                }
-            }
-            buttonDodajLekarza.Visible = false;
-        }
-
-        private void buttonFormDodaniaLekarza_Click(object sender, EventArgs e)
-        {
-            bool isVisible = textBoxImie.Visible;
-
-            textBoxImie.Visible = !isVisible;
-            textBoxNazwisko.Visible = !isVisible;
-            textBoxEmail.Visible = !isVisible;
-            textBoxHaslo.Visible = !isVisible;
-            textBoxSpecjalizacja.Visible = !isVisible;
-            buttonDodajLekarza.Visible = !isVisible;
-
-            label1.Visible = !isVisible;
-            label2.Visible = !isVisible;
-            label3.Visible = !isVisible;
-            label4.Visible = !isVisible;
-            label5.Visible = !isVisible;
-
-            buttonFormDodaniaLekarza.Text = isVisible ? "Formularz dodania lekarza" : "Ukryj formularz";
-        }
+        
 
         private void buttonUsunWszystko_Click(object sender, EventArgs e)
         {
@@ -259,6 +227,61 @@ namespace WindowsFormsApp1
         {
             dataGridView1.DataSource = _dbHelper.PobierzWszystkichLekarzy();
             dataGridView1.Visible = true;
+        }
+
+        private void textBoxEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxHaslo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxSpecjalizacja_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxNazwisko_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxImie_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PanelAdmina_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

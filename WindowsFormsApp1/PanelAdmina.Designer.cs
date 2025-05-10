@@ -34,16 +34,12 @@
             this.buttonZabierzUprawnienia = new System.Windows.Forms.Button();
             this.buttonUsunRekordy = new System.Windows.Forms.Button();
             this.buttonDodajLekarza = new System.Windows.Forms.Button();
-            this.buttonFormDodaniaLekarza = new System.Windows.Forms.Button();
             this.buttonUsunWszystko = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.WylogujAdmin = new System.Windows.Forms.Button();
-            this.buttonPokaz = new System.Windows.Forms.Button();
             this.textBoxImie = new System.Windows.Forms.TextBox();
             this.textBoxNazwisko = new System.Windows.Forms.TextBox();
             this.textBoxSpecjalizacja = new System.Windows.Forms.TextBox();
-            this.radioButtonLekarze = new System.Windows.Forms.RadioButton();
-            this.radioButtonPacjenci = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -115,16 +111,6 @@
             this.buttonDodajLekarza.UseVisualStyleBackColor = true;
             this.buttonDodajLekarza.Click += new System.EventHandler(this.buttonDodajLekarza_Click);
             // 
-            // buttonFormDodaniaLekarza
-            // 
-            this.buttonFormDodaniaLekarza.Location = new System.Drawing.Point(12, 282);
-            this.buttonFormDodaniaLekarza.Name = "buttonFormDodaniaLekarza";
-            this.buttonFormDodaniaLekarza.Size = new System.Drawing.Size(127, 48);
-            this.buttonFormDodaniaLekarza.TabIndex = 6;
-            this.buttonFormDodaniaLekarza.Text = "Formularz dodania Lekarza";
-            this.buttonFormDodaniaLekarza.UseVisualStyleBackColor = true;
-            this.buttonFormDodaniaLekarza.Click += new System.EventHandler(this.buttonFormDodaniaLekarza_Click);
-            // 
             // buttonUsunWszystko
             // 
             this.buttonUsunWszystko.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -147,22 +133,13 @@
             // 
             // WylogujAdmin
             // 
-            this.WylogujAdmin.Location = new System.Drawing.Point(1367, 12);
+            this.WylogujAdmin.Location = new System.Drawing.Point(720, 12);
             this.WylogujAdmin.Name = "WylogujAdmin";
-            this.WylogujAdmin.Size = new System.Drawing.Size(117, 48);
+            this.WylogujAdmin.Size = new System.Drawing.Size(111, 31);
             this.WylogujAdmin.TabIndex = 15;
             this.WylogujAdmin.Text = "Wyloguj";
             this.WylogujAdmin.UseVisualStyleBackColor = true;
             this.WylogujAdmin.Click += new System.EventHandler(this.WylogujAdmin_Click);
-            // 
-            // buttonPokaz
-            // 
-            this.buttonPokaz.Location = new System.Drawing.Point(631, 22);
-            this.buttonPokaz.Name = "buttonPokaz";
-            this.buttonPokaz.Size = new System.Drawing.Size(59, 29);
-            this.buttonPokaz.TabIndex = 16;
-            this.buttonPokaz.Text = "Pokaż";
-            this.buttonPokaz.UseVisualStyleBackColor = true;
             // 
             // textBoxImie
             // 
@@ -170,6 +147,7 @@
             this.textBoxImie.Name = "textBoxImie";
             this.textBoxImie.Size = new System.Drawing.Size(128, 20);
             this.textBoxImie.TabIndex = 19;
+            this.textBoxImie.TextChanged += new System.EventHandler(this.textBoxImie_TextChanged);
             // 
             // textBoxNazwisko
             // 
@@ -177,6 +155,7 @@
             this.textBoxNazwisko.Name = "textBoxNazwisko";
             this.textBoxNazwisko.Size = new System.Drawing.Size(128, 20);
             this.textBoxNazwisko.TabIndex = 20;
+            this.textBoxNazwisko.TextChanged += new System.EventHandler(this.textBoxNazwisko_TextChanged);
             // 
             // textBoxSpecjalizacja
             // 
@@ -184,28 +163,7 @@
             this.textBoxSpecjalizacja.Name = "textBoxSpecjalizacja";
             this.textBoxSpecjalizacja.Size = new System.Drawing.Size(128, 20);
             this.textBoxSpecjalizacja.TabIndex = 21;
-            // 
-            // radioButtonLekarze
-            // 
-            this.radioButtonLekarze.AutoSize = true;
-            this.radioButtonLekarze.Location = new System.Drawing.Point(621, 97);
-            this.radioButtonLekarze.Name = "radioButtonLekarze";
-            this.radioButtonLekarze.Size = new System.Drawing.Size(63, 17);
-            this.radioButtonLekarze.TabIndex = 22;
-            this.radioButtonLekarze.TabStop = true;
-            this.radioButtonLekarze.Text = "Lekarze";
-            this.radioButtonLekarze.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonPacjenci
-            // 
-            this.radioButtonPacjenci.AutoSize = true;
-            this.radioButtonPacjenci.Location = new System.Drawing.Point(621, 128);
-            this.radioButtonPacjenci.Name = "radioButtonPacjenci";
-            this.radioButtonPacjenci.Size = new System.Drawing.Size(66, 17);
-            this.radioButtonPacjenci.TabIndex = 23;
-            this.radioButtonPacjenci.TabStop = true;
-            this.radioButtonPacjenci.Text = "Pacjenci";
-            this.radioButtonPacjenci.UseVisualStyleBackColor = true;
+            this.textBoxSpecjalizacja.TextChanged += new System.EventHandler(this.textBoxSpecjalizacja_TextChanged);
             // 
             // label5
             // 
@@ -215,6 +173,7 @@
             this.label5.Size = new System.Drawing.Size(29, 13);
             this.label5.TabIndex = 25;
             this.label5.Text = "IMIE";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label3
             // 
@@ -224,6 +183,7 @@
             this.label3.Size = new System.Drawing.Size(65, 13);
             this.label3.TabIndex = 26;
             this.label3.Text = "NAZWISKO";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -233,6 +193,7 @@
             this.label4.Size = new System.Drawing.Size(89, 13);
             this.label4.TabIndex = 27;
             this.label4.Text = "SPECJALIZACJA";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // textBoxHaslo
             // 
@@ -240,6 +201,7 @@
             this.textBoxHaslo.Name = "textBoxHaslo";
             this.textBoxHaslo.Size = new System.Drawing.Size(128, 20);
             this.textBoxHaslo.TabIndex = 28;
+            this.textBoxHaslo.TextChanged += new System.EventHandler(this.textBoxHaslo_TextChanged);
             // 
             // label2
             // 
@@ -249,6 +211,7 @@
             this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 29;
             this.label2.Text = "HASLO";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // textBoxEmail
             // 
@@ -256,6 +219,7 @@
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(128, 20);
             this.textBoxEmail.TabIndex = 30;
+            this.textBoxEmail.TextChanged += new System.EventHandler(this.textBoxEmail_TextChanged);
             // 
             // label1
             // 
@@ -265,10 +229,11 @@
             this.label1.Size = new System.Drawing.Size(32, 13);
             this.label1.TabIndex = 31;
             this.label1.Text = "Email";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // textBoxSpecjalizacjaUprawnienia
             // 
-            this.textBoxSpecjalizacjaUprawnienia.Location = new System.Drawing.Point(490, 441);
+            this.textBoxSpecjalizacjaUprawnienia.Location = new System.Drawing.Point(490, 432);
             this.textBoxSpecjalizacjaUprawnienia.Name = "textBoxSpecjalizacjaUprawnienia";
             this.textBoxSpecjalizacjaUprawnienia.Size = new System.Drawing.Size(160, 20);
             this.textBoxSpecjalizacjaUprawnienia.TabIndex = 32;
@@ -277,7 +242,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(824, 477);
+            this.ClientSize = new System.Drawing.Size(843, 482);
             this.Controls.Add(this.textBoxSpecjalizacjaUprawnienia);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxEmail);
@@ -286,16 +251,12 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.radioButtonPacjenci);
-            this.Controls.Add(this.radioButtonLekarze);
             this.Controls.Add(this.textBoxSpecjalizacja);
             this.Controls.Add(this.textBoxNazwisko);
             this.Controls.Add(this.textBoxImie);
-            this.Controls.Add(this.buttonPokaz);
             this.Controls.Add(this.WylogujAdmin);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonUsunWszystko);
-            this.Controls.Add(this.buttonFormDodaniaLekarza);
             this.Controls.Add(this.buttonDodajLekarza);
             this.Controls.Add(this.buttonUsunRekordy);
             this.Controls.Add(this.buttonZabierzUprawnienia);
@@ -304,6 +265,7 @@
             this.Controls.Add(this.buttonWyswierlLekarzy);
             this.Name = "PanelAdmina";
             this.Text = "PanelAdmina";
+            this.Load += new System.EventHandler(this.PanelAdmina_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -318,16 +280,12 @@
         private System.Windows.Forms.Button buttonZabierzUprawnienia;
         private System.Windows.Forms.Button buttonUsunRekordy;
         private System.Windows.Forms.Button buttonDodajLekarza;
-        private System.Windows.Forms.Button buttonFormDodaniaLekarza;
         private System.Windows.Forms.Button buttonUsunWszystko;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button WylogujAdmin;
-        private System.Windows.Forms.Button buttonPokaz;
         private System.Windows.Forms.TextBox textBoxImie;
         private System.Windows.Forms.TextBox textBoxNazwisko;
         private System.Windows.Forms.TextBox textBoxSpecjalizacja;
-        private System.Windows.Forms.RadioButton radioButtonLekarze;
-        private System.Windows.Forms.RadioButton radioButtonPacjenci;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
