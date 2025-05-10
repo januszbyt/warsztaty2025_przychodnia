@@ -18,28 +18,142 @@ namespace WindowsFormsApp1.Data
     {
         private readonly string _connectionString;
 
-       
+
         public DataBaseHelper(string connectionString = null)
         {
             _connectionString = connectionString ?? ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-            
+
             if (string.IsNullOrEmpty(_connectionString))
             {
                 throw new Exception("Brak connection string w app.config!");
             }
         }
 
+        public IEnumerable<Users> WyliczUzytkownikow()
+        {
+            using var connection = new MySqlConnection(_connectionString);
+            connection.Open();
+
+            var query = "SELECT * FROM Users";
+            using var cmd = new MySqlCommand(query, connection);
+            using var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                yield return new Users
+                {
+                    Id = reader.GetInt32("Id"),
+                    Imie = reader.GetString("Imie"),
+                    Nazwisko = reader.GetString("Nazwisko"),
+                    Email = reader.GetString("Email"),
+                    Haslo = reader.GetString("Haslo"),
+                    Rola = reader.GetString("Rola"),
+                    DateOfBirth = reader.GetDateTime("DateOfBirth"),
+                    PESEL = reader.GetString("PESEL"),
+                    PhoneNumber = reader.GetString("PhoneNumber"),
+                    Adres = reader.GetString("Adres"),
+                    Miasto = reader.GetString("Miasto"),
+                    KodPocztowy = reader.GetString("KodPocztowy"),
+                    Rola = new Role { Nazwa = reader.GetString("Rola") }
+                };
+            }
+        }
+
+        public void SprawdzIntegralnoscDanych()
+        {
+            using var conn = new MySqlConnection(_connectionString);
+            conn.Open();
+
+            // Sprawdz userów
+            foreach (var user in WyliczUzytkownikow())
+            {
+                // Sprawdź hasło
+                if (string.IsNullOrEmpty(user.Haslo))
+                {
+                    MessageBox.Show($"Użytkownik {user.Id} nie ma hasła");
+                }
+                // Sprawdź mail
+                if (string.IsNullOrEmpty(user.Email))
+                {
+                    MessageBox.Show($"Użytkownik {user.Id} nie ma adresu email");
+                }
+                if (!Regex.IsMatch(user.Email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+                {
+                    MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy format adresu email");
+                }
+                if (string.IsNullOrEmpty(user.Rola.Nazwa))
+                {
+                    MessageBox.Show($"Użytkownik {user.Id} nie ma przypisanej roli");
+                }
+                if (user.Rola.Nazwa != "Pacjent" && user.Rola.Nazwa != "Lekarz" && user.Rola.Nazwa != "Admin")
+                {
+                    MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową rolę");
+                }
+                if (string.IsNullOrEmpty(user.Imie))
+                {
+                    MessageBox.Show($"Użytkownik {user.Id} nie ma imienia");
+                }
+                if (string.IsNullOrEmpty(user.Nazwisko))
+                {
+                    MessageBox.Show($"Użytkownik {user.Id} nie ma nazwiska");
+                }
+                if (string.IsNullOrEmpty(user.PESEL))
+                {
+                    MessageBox.Show($"Użytkownik {user.Id} nie ma numeru PESEL");
+                }
+                if (user.PESEL.Length != 11)
+                {
+                    MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową długość numeru PESEL");
+                }
+                if (user.PESEL.Any(c => !char.IsDigit(c)))
+                {
+                    MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy numer PESEL (powinien zawierać tylko cyfry)");
+                }
+                if (string.IsNullOrEmpty(user.PhoneNumber))
+                {
+                    MessageBox.Show($"Użytkownik {user.Id} nie ma numeru telefonu");
+                }
+                if (user.PhoneNumber.Length != 9)
+                {
+                    MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową długość numeru telefonu");
+                }
+                if (user.PhoneNumber.Any(c => !char.IsDigit(c)))
+                {
+                    MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy numer telefonu (powinien zawierać tylko cyfry)");
+                }
+                if (string.IsNullOrEmpty(user.Adres))
+                {
+                    MessageBox.Show($"Użytkownik {user.Id} nie ma adresu");
+                }
+                if (string.IsNullOrEmpty(user.Miasto))
+                {
+                    MessageBox.Show($"Użytkownik {user.Id} nie ma miasta");
+                }
+                if (string.IsNullOrEmpty(user.KodPocztowy))
+                {
+                    MessageBox.Show($"Użytkownik {user.Id} nie ma kodu pocztowego");
+                }
+                if (user.KodPocztowy.Length != 6)
+                {
+                    MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową długość kodu pocztowego");
+                }
+                if (user.KodPocztowy.Any(c => !char.IsDigit(c)))
+                {
+                    MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy kod pocztowy (powinien zawierać tylko cyfry)");
+                }
+            }
+        }
         public bool TestConnection()
         {
             try
             {
                 using (var connection = new MySqlConnection(_connectionString))
                 {
-                   
+
                     connection.Open();
 
-                    
+
                     using (var cmd = new MySqlCommand("SELECT 1", connection))
                     {
                         var result = cmd.ExecuteScalar();
@@ -75,7 +189,7 @@ namespace WindowsFormsApp1.Data
                     command.Parameters.AddWithValue("@Imie", user.Imie);
                     command.Parameters.AddWithValue("@Nazwisko", user.Nazwisko);
                     command.Parameters.AddWithValue("@Email", user.Email);
-                    command.Parameters.AddWithValue("@Haslo", haslo); 
+                    command.Parameters.AddWithValue("@Haslo", haslo);
                     command.Parameters.AddWithValue("@Rola", rola);
                     command.Parameters.AddWithValue("@DateOfBirth", user.DateOfBirth);
                     command.Parameters.AddWithValue("@PESEL", user.PESEL);
@@ -140,12 +254,12 @@ namespace WindowsFormsApp1.Data
         {
             //try
             //{
-                using (var connection = new MySqlConnection(_connectionString))
-                {
-                    connection.Open();
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
 
-                    
-                    var query = @"
+
+                var query = @"
                                 SELECT u.Id, u.Imie, u.Nazwisko, u.Email, 
                                 IFNULL(ur.RoleName, 'Pacjent') AS Rola
                                 FROM users u
@@ -153,34 +267,34 @@ namespace WindowsFormsApp1.Data
                                 WHERE u.Email = ?Email AND u.Haslo = ?Haslo
                                 LIMIT 1";
 
-                    using (var command = new MySqlCommand(query, connection))
-                    {
-                        
-                        command.Parameters.Add("?Email", MySqlDbType.VarChar).Value = email;
-                        command.Parameters.Add("?Haslo", MySqlDbType.VarChar).Value = Haslo;
+                using (var command = new MySqlCommand(query, connection))
+                {
 
-                        using (var reader = command.ExecuteReader())
+                    command.Parameters.Add("?Email", MySqlDbType.VarChar).Value = email;
+                    command.Parameters.Add("?Haslo", MySqlDbType.VarChar).Value = Haslo;
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows && reader.Read())
                         {
-                            if (reader.HasRows && reader.Read())
+                            var user = new Users
                             {
-                                var user = new Users
-                                {
-                                    Id = reader.GetInt32("Id"),
-                                    Imie = reader.IsDBNull(reader.GetOrdinal("Imie")) ? "" : reader.GetString("Imie"),
-                                    Nazwisko = reader.IsDBNull(reader.GetOrdinal("Nazwisko")) ? "" : reader.GetString("Nazwisko"),
-                                    Email = reader.GetString("Email"),
-                                    Rola = new Role { Nazwa = reader.GetString("Rola") }
-                                };
-                                Debug.Assert(user.Rola.Nazwa == "Pacjent" || user.Rola.Nazwa == "Lekarz" || user.Rola.Nazwa == "Admin");
-                                return user;
-                            }
+                                Id = reader.GetInt32("Id"),
+                                Imie = reader.IsDBNull(reader.GetOrdinal("Imie")) ? "" : reader.GetString("Imie"),
+                                Nazwisko = reader.IsDBNull(reader.GetOrdinal("Nazwisko")) ? "" : reader.GetString("Nazwisko"),
+                                Email = reader.GetString("Email"),
+                                Rola = new Role { Nazwa = reader.GetString("Rola") }
+                            };
+                            Debug.Assert(user.Rola.Nazwa == "Pacjent" || user.Rola.Nazwa == "Lekarz" || user.Rola.Nazwa == "Admin");
+                            return user;
                         }
                     }
                 }
+            }
             //}
             //catch (MySqlException ex)
             //{
-               
+
             //    Console.WriteLine($"[{DateTime.Now}] Błąd MySQL #{ex.Number}: {ex.Message}");
             //    Debug.WriteLine($"[{DateTime.Now}] Błąd MySQL #{ex.Number}: {ex.Message}");
 
@@ -221,7 +335,7 @@ namespace WindowsFormsApp1.Data
 
             using (var connection = new MySqlConnection(_connectionString))
             {
-                
+
                 string query = @"
                                 SELECT 
                                 Id,
@@ -319,7 +433,7 @@ namespace WindowsFormsApp1.Data
 
                             long coutnt = Convert.ToInt64(checkCommand.ExecuteScalar());
 
-                            if(coutnt > 0)
+                            if (coutnt > 0)
                             {
                                 throw new Exception("Użytkownik już posiada rolę Lekarza.");
                             }
@@ -328,7 +442,7 @@ namespace WindowsFormsApp1.Data
 
 
                         string imie = "", nazwisko = "";
-                       
+
                         var queryUser = "SELECT Imie, Nazwisko FROM Users WHERE Id = @UserId";
 
                         using (var command = new MySqlCommand(queryUser, connection, transaction))
@@ -393,7 +507,7 @@ namespace WindowsFormsApp1.Data
                 {
                     try
                     {
-                        
+
                         bool maRoleLekarza = false;
                         var checkRoleQuery = "SELECT COUNT(*) FROM UserRoles WHERE UserId = @UserId AND TRIM(LOWER(RoleName)) = 'Lekarz'";
 
@@ -408,7 +522,7 @@ namespace WindowsFormsApp1.Data
                             throw new Exception("Użytkownik nie ma przypisanej roli 'Lekarz'.");
                         }
 
-                        
+
                         var deleteDoctorQuery = "DELETE FROM Doctors WHERE UserId = @UserId";
                         int affectedRows;
                         using (var doctorCmd = new MySqlCommand(deleteDoctorQuery, connection, transaction))
@@ -422,7 +536,7 @@ namespace WindowsFormsApp1.Data
                             throw new Exception("Użytkownik ma rolę 'Lekarz', ale nie ma powiązanego wpisu w tabeli Doctors.");
                         }
 
-                        
+
                         var deleteRoleQuery = "DELETE FROM UserRoles WHERE UserId = @UserId AND TRIM(LOWER(RoleName)) = 'lekarz'";
                         using (var roleCmd = new MySqlCommand(deleteRoleQuery, connection, transaction))
                         {
@@ -454,7 +568,7 @@ namespace WindowsFormsApp1.Data
             {
                 connection.Open();
 
-                
+
                 var queryUser = "SELECT Imie, Nazwisko FROM Users WHERE Id = @UserId";
                 using (var cmd = new MySqlCommand(queryUser, connection))
                 {
@@ -472,7 +586,7 @@ namespace WindowsFormsApp1.Data
                     }
                 }
 
-                
+
                 var queryRoles = "SELECT RoleName FROM UserRoles WHERE UserId = @UserId";
                 using (var cmd = new MySqlCommand(queryRoles, connection))
                 {
@@ -495,7 +609,7 @@ namespace WindowsFormsApp1.Data
                     }
                 }
 
-                
+
                 var queryDoctor = "SELECT Specjalizacja FROM Doctors WHERE UserId = @UserId";
                 using (var cmd = new MySqlCommand(queryDoctor, connection))
                 {
@@ -551,7 +665,7 @@ namespace WindowsFormsApp1.Data
             }
         }
 
-        
+
 
         public void UsunWszystkieDane()
         {
@@ -588,7 +702,7 @@ namespace WindowsFormsApp1.Data
                 }
             }
         }
-       
+
         public DataTable PobierzHistorieWizytPacjenta(int pacjentId)
         {
             using (var conn = new MySqlConnection(_connectionString))
@@ -749,7 +863,7 @@ namespace WindowsFormsApp1.Data
                 }
             }
         }
-        
+
         public DataTable PobierzHistorieWizyt(int patientId)
         {
             DataTable table = new DataTable();
@@ -906,7 +1020,7 @@ namespace WindowsFormsApp1.Data
                     cmd.Parameters.AddWithValue("@PhoneNumber", patient.PhoneNumber);
                     cmd.Parameters.AddWithValue("@Email", patient.Email);
                     cmd.Parameters.AddWithValue("@Haslo", patient.Haslo);
-                    
+
 
                     cmd.ExecuteNonQuery();
                 }
@@ -939,7 +1053,7 @@ namespace WindowsFormsApp1.Data
                                 KodPocztowy = reader.IsDBNull(reader.GetOrdinal("KodPocztowy")) ? null : reader.GetString("KodPocztowy"),
                                 PhoneNumber = reader.IsDBNull(reader.GetOrdinal("PhoneNumber")) ? null : reader.GetString("PhoneNumber"),
                                 Email = reader.IsDBNull(reader.GetOrdinal("Email")) ? null : reader.GetString("Email"),
-                               
+
                             };
                         }
                     }
@@ -948,7 +1062,7 @@ namespace WindowsFormsApp1.Data
             return null;
         }
 
-       
+
 
         public List<Lekarz> PobierzDostepnychLekarzy()
         {
@@ -1030,7 +1144,7 @@ namespace WindowsFormsApp1.Data
                     command.Parameters.AddWithValue("@Zalecenia", string.IsNullOrEmpty(wizyta.Zalecenia) ? (object)DBNull.Value : wizyta.Zalecenia);
                     command.Parameters.AddWithValue("@Specjalizacja", string.IsNullOrEmpty(wizyta.Specjalizacja) ? (object)DBNull.Value : wizyta.Specjalizacja);
 
-                    
+
                     object result = command.ExecuteScalar();
                     return Convert.ToInt32(result);
                 }
@@ -1135,7 +1249,7 @@ namespace WindowsFormsApp1.Data
                 connection.Open();
                 var cmd = connection.CreateCommand();
                 cmd.CommandText = "UPDATE Lekarze SET Haslo = @haslo WHERE Id = @id";
-                cmd.Parameters.AddWithValue("@haslo", noweHaslo); 
+                cmd.Parameters.AddWithValue("@haslo", noweHaslo);
                 cmd.Parameters.AddWithValue("@id", lekarzId);
                 cmd.ExecuteNonQuery();
             }
@@ -1158,8 +1272,8 @@ namespace WindowsFormsApp1.Data
             }
         }
 
-       
-        public  DataTable PobierzWizytyDlaLekarza(int lekarzId, DateTime data)
+
+        public DataTable PobierzWizytyDlaLekarza(int lekarzId, DateTime data)
         {
             DataTable dt = new DataTable();
             using (var connection = new MySqlConnection(_connectionString))
@@ -1176,7 +1290,7 @@ namespace WindowsFormsApp1.Data
         }
 
 
-        public  void ZapiszOpisIWyniki(int wizytaId, string opis, string diagnoza, string zalecenia)
+        public void ZapiszOpisIWyniki(int wizytaId, string opis, string diagnoza, string zalecenia)
         {
             using (MySqlConnection conn = new MySqlConnection(_connectionString))
             {
@@ -1221,7 +1335,7 @@ namespace WindowsFormsApp1.Data
             {
                 connection.Open();
 
-                
+
                 if (!SprawdzCzyLekarzIstnieje(lekarzId, connection))
                 {
                     throw new Exception($"Lekarz o ID {lekarzId} nie istnieje w bazie danych");
@@ -1232,7 +1346,7 @@ namespace WindowsFormsApp1.Data
                     throw new Exception($"Pacjent o ID {pacjentId} nie istnieje w bazie danych");
                 }
 
-               
+
                 if (wizytaId.HasValue && !SprawdzCzyWizytaIstnieje(wizytaId.Value, connection))
                 {
                     throw new Exception($"Wizyta o ID {wizytaId} nie istnieje w bazie danych");
@@ -1256,10 +1370,10 @@ namespace WindowsFormsApp1.Data
             }
         }
 
-        
 
 
-        public  void WystawSkierowanie(int wizytaId, int pacjentId, int lekarzId, string typ, string cel, string uwagi)
+
+        public void WystawSkierowanie(int wizytaId, int pacjentId, int lekarzId, string typ, string cel, string uwagi)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -1277,7 +1391,7 @@ namespace WindowsFormsApp1.Data
             }
         }
 
-        public  void ZmienEmail(int userId, string email)
+        public void ZmienEmail(int userId, string email)
         {
             using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
@@ -1288,7 +1402,7 @@ namespace WindowsFormsApp1.Data
                 cmd.ExecuteNonQuery();
             }
         }
-        public  void ZmienHaslo(int userId, string haslo)
+        public void ZmienHaslo(int userId, string haslo)
         {
             using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
