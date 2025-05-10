@@ -872,6 +872,18 @@ namespace WindowsFormsApp1.Data
             }
         }
 
+        public void UsunLekarza(int doctorId)
+        {
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+                var command = new MySqlCommand("DELETE FROM Doctors WHERE Id = @Id", connection);
+                command.Parameters.AddWithValue("@Id", doctorId);
+                command.ExecuteNonQuery();
+            }
+        }
+
+
 
 
         public void UsunWszystkieDane()

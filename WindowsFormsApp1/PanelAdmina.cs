@@ -116,26 +116,37 @@ namespace WindowsFormsApp1
             {
                 selectedUserId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
 
-                var result = MessageBox.Show("Czy na pewno chcesz usunąć tego użytkownika?", "Potwierdzenie", MessageBoxButtons.YesNo);
+                var result = MessageBox.Show("Czy na pewno chcesz usunąć ten rekord?", "Potwierdzenie", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     try
                     {
-                       _dbHelper.UsunUzytkownika(selectedUserId);
-                        MessageBox.Show("Użytkownik został usunięty.");
+                        // Sprawdź, czy to widok lekarzy, np. po kolumnie "Specjalizacja"
+                        if (dataGridView1.Columns.Contains("Specjalizacja"))
+                        {
+                            _dbHelper.UsunLekarza(selectedUserId);
+                            MessageBox.Show("Lekarz został usunięty.");
+                        }
+                        else
+                        {
+                            _dbHelper.UsunUzytkownika(selectedUserId);
+                            MessageBox.Show("Użytkownik został usunięty.");
+                        }
+
                         RefreshGrid();
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Błąd podczas usuwania użytkownika: " + ex.Message);
+                        MessageBox.Show("Błąd podczas usuwania: " + ex.Message);
                     }
                 }
             }
             else
             {
-                MessageBox.Show("Proszę zaznaczyć użytkownika do usunięcia.");
+                MessageBox.Show("Proszę zaznaczyć rekord do usunięcia.");
             }
         }
+
 
         private void buttonDodajLekarza_Click(object sender, EventArgs e)
         {
