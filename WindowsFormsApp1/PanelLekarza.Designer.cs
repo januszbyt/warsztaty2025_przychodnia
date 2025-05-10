@@ -34,6 +34,14 @@
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPageUstawienia = new System.Windows.Forms.TabPage();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.button4 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.buttonZmienHaslo = new System.Windows.Forms.Button();
             this.txtHaslo = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -72,17 +80,10 @@
             this.btnSzukaj = new System.Windows.Forms.Button();
             this.buttonPokazPacjentow = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPageUstawienia.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPageEdycjaWizyty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPacjenci)).BeginInit();
@@ -91,7 +92,6 @@
             this.tabPageWizyty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWizyty)).BeginInit();
             this.tabControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -173,6 +173,79 @@
             this.tabPageUstawienia.Text = "Ustawienia";
             this.tabPageUstawienia.UseVisualStyleBackColor = true;
             // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(171, 362);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowHeadersWidth = 62;
+            this.dataGridView3.RowTemplate.Height = 28;
+            this.dataGridView3.Size = new System.Drawing.Size(160, 89);
+            this.dataGridView3.TabIndex = 26;
+            this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(638, 545);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(86, 41);
+            this.button4.TabIndex = 25;
+            this.button4.Text = "Zmień";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(638, 513);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(195, 26);
+            this.textBox4.TabIndex = 24;
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(513, 513);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(99, 20);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "Nowe Hasło:";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(638, 460);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(86, 41);
+            this.button3.TabIndex = 22;
+            this.button3.Text = "Zmień";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(638, 428);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(195, 26);
+            this.textBox3.TabIndex = 21;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(513, 431);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(99, 20);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Nowy E-mail:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(476, 362);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(390, 32);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "Zmiana Danych Logowania:";
+            // 
             // buttonZmienHaslo
             // 
             this.buttonZmienHaslo.Location = new System.Drawing.Point(1425, 851);
@@ -220,14 +293,14 @@
             // monthCalendar1
             // 
             this.monthCalendar1.Location = new System.Drawing.Point(704, 50);
-            this.monthCalendar1.Margin = new System.Windows.Forms.Padding(14, 14, 14, 14);
+            this.monthCalendar1.Margin = new System.Windows.Forms.Padding(14);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 11;
             // 
             // labelLekarzId
             // 
             this.labelLekarzId.AutoSize = true;
-            this.labelLekarzId.Location = new System.Drawing.Point(192, 362);
+            this.labelLekarzId.Location = new System.Drawing.Point(117, 362);
             this.labelLekarzId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLekarzId.Name = "labelLekarzId";
             this.labelLekarzId.Size = new System.Drawing.Size(30, 20);
@@ -237,7 +310,7 @@
             // labelLekarzImieNazwisko
             // 
             this.labelLekarzImieNazwisko.AutoSize = true;
-            this.labelLekarzImieNazwisko.Location = new System.Drawing.Point(101, 395);
+            this.labelLekarzImieNazwisko.Location = new System.Drawing.Point(26, 392);
             this.labelLekarzImieNazwisko.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLekarzImieNazwisko.Name = "labelLekarzImieNazwisko";
             this.labelLekarzImieNazwisko.Size = new System.Drawing.Size(121, 20);
@@ -247,7 +320,7 @@
             // labelSpecjalizacja
             // 
             this.labelSpecjalizacja.AutoSize = true;
-            this.labelSpecjalizacja.Location = new System.Drawing.Point(117, 428);
+            this.labelSpecjalizacja.Location = new System.Drawing.Point(42, 431);
             this.labelSpecjalizacja.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSpecjalizacja.Name = "labelSpecjalizacja";
             this.labelSpecjalizacja.Size = new System.Drawing.Size(105, 20);
@@ -518,6 +591,7 @@
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(741, 520);
             this.dataGridView2.TabIndex = 0;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // tabPageWizyty
             // 
@@ -550,6 +624,7 @@
             this.dataGridViewWizyty.RowHeadersWidth = 51;
             this.dataGridViewWizyty.Size = new System.Drawing.Size(756, 596);
             this.dataGridViewWizyty.TabIndex = 22;
+            this.dataGridViewWizyty.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewWizyty_CellContentClick);
             // 
             // btnSzukaj
             // 
@@ -590,76 +665,6 @@
             this.tabControl1.Size = new System.Drawing.Size(1244, 1276);
             this.tabControl1.TabIndex = 23;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(476, 362);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(390, 32);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "Zmiana Danych Logowania:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(513, 431);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 20);
-            this.label4.TabIndex = 20;
-            this.label4.Text = "Nowy E-mail:";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(638, 428);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(195, 26);
-            this.textBox3.TabIndex = 21;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(638, 460);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(86, 41);
-            this.button3.TabIndex = 22;
-            this.button3.Text = "Zmień";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(513, 513);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(99, 20);
-            this.label10.TabIndex = 23;
-            this.label10.Text = "Nowe Hasło:";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(638, 513);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(195, 26);
-            this.textBox4.TabIndex = 24;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(638, 545);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(86, 41);
-            this.button4.TabIndex = 25;
-            this.button4.Text = "Zmień";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView3
-            // 
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(229, 362);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.RowHeadersWidth = 62;
-            this.dataGridView3.RowTemplate.Height = 28;
-            this.dataGridView3.Size = new System.Drawing.Size(139, 86);
-            this.dataGridView3.TabIndex = 26;
-            // 
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(1186, 9);
@@ -683,6 +688,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPageUstawienia.ResumeLayout(false);
             this.tabPageUstawienia.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPageEdycjaWizyty.ResumeLayout(false);
             this.tabPageEdycjaWizyty.PerformLayout();
@@ -693,7 +699,6 @@
             this.tabPageWizyty.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWizyty)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
 
         }
