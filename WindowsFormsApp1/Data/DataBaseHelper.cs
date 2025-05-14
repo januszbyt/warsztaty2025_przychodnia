@@ -467,10 +467,8 @@ namespace WindowsFormsApp1.Data
 
 
                 var query = @"
-                                SELECT u.Id, u.Imie, u.Nazwisko, u.Email, 
-                                IFNULL(ur.RoleName, 'Pacjent') AS Rola
+                                SELECT u.Id, u.Imie, u.Nazwisko, u.Email, u.Rola AS Rola
                                 FROM users u
-                                LEFT JOIN userroles ur ON u.Id = ur.UserId
                                 WHERE u.Email = ?Email AND u.Haslo = ?Haslo
                                 LIMIT 1";
 
@@ -552,7 +550,7 @@ namespace WindowsFormsApp1.Data
                                 PhoneNumber AS 'Numer telefonu',
                                 PESEL
                                 FROM Users
-                                WHERE Id IN (SELECT UserId FROM UserRoles WHERE RoleName = 'Pacjent')";
+                                WHERE Rola = 'Pacjent'";
 
                 using (var adapter = new MySqlDataAdapter(query, connection))
                 {
@@ -577,10 +575,9 @@ namespace WindowsFormsApp1.Data
                 u.Nazwisko,
                 u.Email,
                 u.PhoneNumber AS 'PhoneNumber',
-                ur.RoleName AS 'Rola'
+                u.Rola
                 FROM Users u
-                LEFT JOIN UserRoles ur ON u.Id = ur.UserId
-                WHERE ur.RoleName = 'Pacjent'";
+                WHERE u.Rola = 'Pacjent'";
 
                 using (var adapter = new MySqlDataAdapter(query, connection))
                 {
@@ -605,10 +602,9 @@ namespace WindowsFormsApp1.Data
                 u.Nazwisko,
                 d.Specjalizacja,
                 u.Email
-            FROM Users u
-            JOIN UserRoles ur ON u.Id = ur.UserId
-            LEFT JOIN Doctors d ON u.Id = d.UserId
-            WHERE ur.RoleName = 'Lekarz'";
+             FROM Users u
+             LEFT JOIN Doctors d ON u.Id = d.UserId
+             WHERE u.Rola = 'Lekarz'";
 
                 using (var adapter = new MySqlDataAdapter(query, connection))
                 {
@@ -631,8 +627,8 @@ namespace WindowsFormsApp1.Data
                     try
                     {
 
-                        var checkRoleQuery = @"SELECT COUNT(*) FROM UserRoles 
-                                     WHERE UserId = @UserId AND RoleName = 'Lekarz'";
+                        var checkRoleQuery = @"SELECT COUNT(*) FROM users 
+                                     WHERE UserId = @UserId AND Rola = 'Lekarz'";
 
                         using (var checkCommand = new MySqlCommand(checkRoleQuery, connection, transaction))
                         {
@@ -670,7 +666,7 @@ namespace WindowsFormsApp1.Data
                         }
 
 
-                        var insertRoleQuery = @"INSERT INTO UserRoles (UserId, RoleName) 
+                        var insertRoleQuery = @"INSERT INTO users (UserId, Rola) 
                                       VALUES (@UserId, 'Lekarz')";
 
                         using (var command = new MySqlCommand(insertRoleQuery, connection, transaction))
@@ -716,7 +712,7 @@ namespace WindowsFormsApp1.Data
                     {
 
                         bool maRoleLekarza = false;
-                        var checkRoleQuery = "SELECT COUNT(*) FROM UserRoles WHERE UserId = @UserId AND TRIM(LOWER(RoleName)) = 'Lekarz'";
+                        var checkRoleQuery = "SELECT COUNT(*) FROM users WHERE UserId = @UserId AND TRIM(LOWER(Rola)) = 'Lekarz'";
 
                         using (var checkCmd = new MySqlCommand(checkRoleQuery, connection, transaction))
                         {
@@ -744,7 +740,7 @@ namespace WindowsFormsApp1.Data
                         }
 
 
-                        var deleteRoleQuery = "DELETE FROM UserRoles WHERE UserId = @UserId AND TRIM(LOWER(RoleName)) = 'lekarz'";
+                        var deleteRoleQuery = "DELETE FROM users WHERE UserId = @UserId AND TRIM(LOWER(Rola)) = 'lekarz'";
                         using (var roleCmd = new MySqlCommand(deleteRoleQuery, connection, transaction))
                         {
                             roleCmd.Parameters.AddWithValue("@UserId", userId);
@@ -794,7 +790,7 @@ namespace WindowsFormsApp1.Data
                 }
 
 
-                var queryRoles = "SELECT RoleName FROM UserRoles WHERE UserId = @UserId";
+                var queryRoles = "SELECT Rola FROM Users WHERE Id = @UserId";
                 using (var cmd = new MySqlCommand(queryRoles, connection))
                 {
                     cmd.Parameters.AddWithValue("@UserId", userId);
@@ -805,7 +801,7 @@ namespace WindowsFormsApp1.Data
                         {
                             while (reader.Read())
                             {
-                                sb.Append($"{reader["RoleName"]}, ");
+                                sb.Append($"{reader["Rola"]}, ");
                             }
                         }
                         else
@@ -897,7 +893,7 @@ namespace WindowsFormsApp1.Data
                     {
                         var zapytania = new[]
                         {
-                            "DELETE FROM UserRoles",
+                            "DELETE FROM users",
                             "DELETE FROM Doctors",
                             "DELETE FROM Users"
                         };
@@ -1293,8 +1289,7 @@ namespace WindowsFormsApp1.Data
                 string query = @"SELECT d.Id, d.Imie, d.Nazwisko, d.Specjalizacja, d.UserId
                         FROM Doctors d
                         JOIN Users u ON d.UserId = u.Id
-                        JOIN UserRoles ur ON u.Id = ur.UserId
-                        WHERE ur.RoleName = 'Lekarz'";
+                        WHERE u.Rola = 'Lekarz'";
 
                 using (var command = new MySqlCommand(query, connection))
                 {
