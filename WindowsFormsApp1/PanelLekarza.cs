@@ -60,6 +60,7 @@ namespace WindowsFormsApp1
 
         private void WczytajWizyty()
         {
+            // TODO: Dawid Kotliński: Wykarzacza LINQ
             var wizyty = _dbHelper.PobierzWizytyLekarza(_lekarz.Id)
                             .AsEnumerable()
                             .Where(row => row.Field<DateTime>("DataWizyty").Date == PanelLekarza_GetSelectedDate())
@@ -497,6 +498,7 @@ namespace WindowsFormsApp1
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
+            // TODO: Dawid Kotliński: Wykarzacza LINQ
             var wizyty = _dbHelper.PobierzWizytyLekarza(_lekarz.Id)
                        .AsEnumerable()
                        .Where(row => row.Field<DateTime>("DataWizyty").Date == PanelLekarza_GetSelectedDate())
