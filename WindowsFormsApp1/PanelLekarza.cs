@@ -232,9 +232,14 @@ namespace WindowsFormsApp1
             formLogowanie.Show();
         }
 
+        private TextBox ImieNazwiskoSzukajTextBox()
+        {
+            return textBox2;
+        }
+
         private void btnSzukaj_Click(object sender, EventArgs e)
         {
-            string imieNazwisko = textBoxSzukaj.Text.Trim();
+            string imieNazwisko = ImieNazwiskoSzukajTextBox().Text.Trim();
 
             if (string.IsNullOrWhiteSpace(imieNazwisko))
             {
