@@ -427,16 +427,37 @@ namespace WindowsFormsApp1
 
         private void UpdateDetails()
         {
-            Debug.Assert(_lekarz.UserId >= 0);
-            var helper = new DataBaseHelper();
+            if (_lekarz.UserId < 0)
+            {
+                MessageBox.Show("Nieprawidłowy ID użytkownika.");
+                return;
+            }
 
-            var newMail = textBox3.Text;
-            helper.ZmienEmail(_lekarz.UserId, newMail);
-            MessageBox.Show("Email zmieniony");
+            var newMail = textBox3.Text.Trim();
+            var newPass = textBox4.Text.Trim();
 
-            var newPass = textBox4.Text;
-            helper.ZmienHaslo(_lekarz.UserId, newPass);
-            MessageBox.Show("Haslo zmienione");
+            if (string.IsNullOrEmpty(newMail))
+            {
+                MessageBox.Show("Email nie może być pusty.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(newPass))
+            {
+                MessageBox.Show("Hasło nie może być puste.");
+                return;
+            }
+
+            try
+            {
+                _dbHelper.ZmienEmail(_lekarz.UserId, newMail);
+                _dbHelper.ZmienHaslo(_lekarz.UserId, newPass);
+                MessageBox.Show("Dane zostały zaktualizowane.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd podczas aktualizacji danych: {ex.Message}");
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
