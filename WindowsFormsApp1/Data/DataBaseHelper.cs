@@ -966,6 +966,7 @@ namespace WindowsFormsApp1.Data
             return "R/" + DateTime.Now.ToString("yyyyMMdd") + "/" + Guid.NewGuid().ToString().Substring(0, 5).ToUpper();
         }
 
+        // TODO: Dawid Kotliński: Powinno przyjmować argument DateTime.
         public DataTable PobierzWizytyLekarza(int lekarzId)
         {
             using (MySqlConnection connection = new MySqlConnection(_connectionString))
