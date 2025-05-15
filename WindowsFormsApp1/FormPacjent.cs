@@ -48,11 +48,11 @@ namespace WindowsFormsApp1
 
             dateTimePickerWizyta.MinDate = DateTime.Today.AddDays(1);
 
-            
+
             buttonDodajWizyte.Click += buttonDodajWizyte_Click;
             buttonWybierzPlik.Click += ButtonWybierzPlik_Click;
-            
-           
+
+
         }
 
         private void WczytajDanePacjenta()
@@ -68,7 +68,7 @@ namespace WindowsFormsApp1
                 return;
             }
 
-            
+
             textBoxImie.Text = pacjent.Imie;
             textBoxNazwisko.Text = pacjent.Nazwisko;
             dateTimePicker1.Value = pacjent.DateofBirth;
@@ -154,7 +154,7 @@ namespace WindowsFormsApp1
 
             var lekarz = (Lekarz)dataGridViewLekarze.SelectedRows[0].DataBoundItem;
             var data = dateTimePickerWizyta.Value;
-            
+
 
             if (!_dbHelper.CzyLekarzMaWolnyTermin(lekarz.Id, data))
             {
@@ -292,11 +292,11 @@ namespace WindowsFormsApp1
 
             var dokument = _dbHelper.PobierzDokumentPoIndeksie(_pacjentId, e.RowIndex);
 
-            if (e.ColumnIndex == 3) 
+            if (e.ColumnIndex == 3)
             {
                 Process.Start(dokument.SciezkaPliku);
             }
-            else if (e.ColumnIndex == 4) 
+            else if (e.ColumnIndex == 4)
             {
                 if (MessageBox.Show("Czy usunąć dokument?", "Potwierdź", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
@@ -365,7 +365,7 @@ namespace WindowsFormsApp1
         {
             try
             {
-                
+
                 this.Hide();
 
                 var formLogowaniePacjent = new FormLogowaniePacjent();
@@ -436,12 +436,92 @@ namespace WindowsFormsApp1
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void textBoxImie_TextChanged(object sender, EventArgs e)
         {
 
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var formLogowaniePacjent = new FormLogowaniePacjent(_dbHelper);
+            formLogowaniePacjent.Closed += (s, args) => Close();
+            formLogowaniePacjent.Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var formLogowaniePacjent = new FormLogowaniePacjent(_dbHelper);
+            formLogowaniePacjent.Closed += (s, args) => Close();
+            formLogowaniePacjent.Show();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var formLogowaniePacjent = new FormLogowaniePacjent(_dbHelper);
+            formLogowaniePacjent.Closed += (s, args) => Close();
+            formLogowaniePacjent.Show();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var formLogowaniePacjent = new FormLogowaniePacjent(_dbHelper);
+            formLogowaniePacjent.Closed += (s, args) => Close();
+            formLogowaniePacjent.Show();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click_2(object sender, EventArgs e)
+        {
+            if (dataGridViewHistoria.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Proszę zaznaczyć wizytę do anulowania.");
+                return;
+            }
+
+            var selectedRow = dataGridViewHistoria.SelectedRows[0];
+            if (!int.TryParse(selectedRow.Cells["Id"].Value?.ToString(), out int wizytaId))
+            {
+                MessageBox.Show("Nieprawidłowy identyfikator wizyty.");
+                return;
+            }
+
+            var potwierdzenie = MessageBox.Show("Czy na pewno chcesz anulować wizytę?", "Potwierdzenie", MessageBoxButtons.YesNo);
+            if (potwierdzenie != DialogResult.Yes)
+                return;
+
+            try
+            {
+                using (var connection = new MySql.Data.MySqlClient.MySqlConnection(_dbHelper.ConnectionString))
+                {
+                    connection.Open();
+                    string zapytanie = "UPDATE wizyty SET status = 'Anulowana' WHERE id = @id";
+
+                    using (var cmd = new MySql.Data.MySqlClient.MySqlCommand(zapytanie, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@id", wizytaId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Wizyta została anulowana.");
+                WczytajHistorieWizyt(_pacjentId);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd podczas anulowania wizyty: " + ex.Message);
+            }
+        }
     }
 }
+   

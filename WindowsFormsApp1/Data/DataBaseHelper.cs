@@ -30,6 +30,8 @@ namespace WindowsFormsApp1.Data
             }
         }
 
+        public string ConnectionString => _connectionString;
+
         public IEnumerable<Users> WyliczUzytkownikow()
         {
             using (var connection = new MySqlConnection(_connectionString))

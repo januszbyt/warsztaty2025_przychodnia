@@ -32,7 +32,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPageDanePacjenta = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.textBoxHaslo = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -72,6 +71,14 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label10 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.tabPageDanePacjenta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -101,7 +108,7 @@
             // tabPageDanePacjenta
             // 
             this.tabPageDanePacjenta.BackColor = System.Drawing.Color.DimGray;
-            this.tabPageDanePacjenta.Controls.Add(this.button2);
+            this.tabPageDanePacjenta.Controls.Add(this.button5);
             this.tabPageDanePacjenta.Controls.Add(this.dateTimePicker1);
             this.tabPageDanePacjenta.Controls.Add(this.textBoxHaslo);
             this.tabPageDanePacjenta.Controls.Add(this.label11);
@@ -133,13 +140,6 @@
             this.tabPageDanePacjenta.Size = new System.Drawing.Size(1957, 983);
             this.tabPageDanePacjenta.TabIndex = 0;
             this.tabPageDanePacjenta.Text = "Dane Pacjenta";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 0;
             // 
             // dateTimePicker1
             // 
@@ -384,6 +384,8 @@
             // 
             // tabPageWizyty
             // 
+            this.tabPageWizyty.Controls.Add(this.button2);
+            this.tabPageWizyty.Controls.Add(this.button6);
             this.tabPageWizyty.Controls.Add(this.dataGridViewHistoria);
             this.tabPageWizyty.Controls.Add(this.dateTimePickerWizyta);
             this.tabPageWizyty.Controls.Add(this.dataGridViewLekarze);
@@ -442,6 +444,10 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label18);
+            this.tabPage1.Controls.Add(this.label17);
+            this.tabPage1.Controls.Add(this.label16);
+            this.tabPage1.Controls.Add(this.button7);
             this.tabPage1.Controls.Add(this.wybranyplik);
             this.tabPage1.Controls.Add(this.dataGridViewDocuments);
             this.tabPage1.Controls.Add(this.buttonDodajDocument);
@@ -469,7 +475,7 @@
             // dataGridViewDocuments
             // 
             this.dataGridViewDocuments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewDocuments.Location = new System.Drawing.Point(145, 58);
+            this.dataGridViewDocuments.Location = new System.Drawing.Point(146, 72);
             this.dataGridViewDocuments.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewDocuments.Name = "dataGridViewDocuments";
             this.dataGridViewDocuments.RowHeadersWidth = 51;
@@ -479,7 +485,7 @@
             // 
             // buttonDodajDocument
             // 
-            this.buttonDodajDocument.Location = new System.Drawing.Point(968, 715);
+            this.buttonDodajDocument.Location = new System.Drawing.Point(254, 823);
             this.buttonDodajDocument.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDodajDocument.Name = "buttonDodajDocument";
             this.buttonDodajDocument.Size = new System.Drawing.Size(100, 28);
@@ -490,7 +496,7 @@
             // 
             // buttonWybierzPlik
             // 
-            this.buttonWybierzPlik.Location = new System.Drawing.Point(860, 715);
+            this.buttonWybierzPlik.Location = new System.Drawing.Point(146, 823);
             this.buttonWybierzPlik.Margin = new System.Windows.Forms.Padding(4);
             this.buttonWybierzPlik.Name = "buttonWybierzPlik";
             this.buttonWybierzPlik.Size = new System.Drawing.Size(100, 28);
@@ -500,7 +506,7 @@
             // 
             // textBoxUwagiDokument
             // 
-            this.textBoxUwagiDokument.Location = new System.Drawing.Point(605, 500);
+            this.textBoxUwagiDokument.Location = new System.Drawing.Point(146, 608);
             this.textBoxUwagiDokument.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxUwagiDokument.Multiline = true;
             this.textBoxUwagiDokument.Name = "textBoxUwagiDokument";
@@ -510,7 +516,7 @@
             // comboBoxTypDokumentu
             // 
             this.comboBoxTypDokumentu.FormattingEnabled = true;
-            this.comboBoxTypDokumentu.Location = new System.Drawing.Point(436, 500);
+            this.comboBoxTypDokumentu.Location = new System.Drawing.Point(290, 535);
             this.comboBoxTypDokumentu.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxTypDokumentu.Name = "comboBoxTypDokumentu";
             this.comboBoxTypDokumentu.Size = new System.Drawing.Size(160, 24);
@@ -518,6 +524,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button8);
             this.tabPage2.Controls.Add(this.label10);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
@@ -539,6 +546,96 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button5.Location = new System.Drawing.Point(303, 418);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(219, 49);
+            this.button5.TabIndex = 28;
+            this.button5.Text = "Wyloguj";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button6.Location = new System.Drawing.Point(77, 636);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(197, 61);
+            this.button6.TabIndex = 29;
+            this.button6.Text = "Wyloguj";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button7
+            // 
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button7.Location = new System.Drawing.Point(653, 802);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(219, 49);
+            this.button7.TabIndex = 29;
+            this.button7.Text = "Wyloguj";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button8
+            // 
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button8.Location = new System.Drawing.Point(78, 319);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(219, 49);
+            this.button8.TabIndex = 29;
+            this.button8.Text = "Wyloguj";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button2.Location = new System.Drawing.Point(303, 551);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(197, 63);
+            this.button2.TabIndex = 30;
+            this.button2.Text = "Anuluj Wizyte";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_2);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label16.Location = new System.Drawing.Point(142, 38);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(247, 20);
+            this.label16.TabIndex = 30;
+            this.label16.Text = "Twoje Dokumenty Medyczne";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label17.Location = new System.Drawing.Point(142, 535);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(141, 20);
+            this.label17.TabIndex = 31;
+            this.label17.Text = "Typ dokumentu:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label18.Location = new System.Drawing.Point(142, 584);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(66, 20);
+            this.label18.TabIndex = 32;
+            this.label18.Text = "Uwagi:";
             // 
             // FormPacjent
             // 
@@ -611,7 +708,6 @@
         private System.Windows.Forms.TextBox textBoxHaslo;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label13;
@@ -620,5 +716,13 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label18;
     }
 }
