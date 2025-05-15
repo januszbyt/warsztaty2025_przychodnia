@@ -60,10 +60,11 @@ namespace WindowsFormsApp1
         private void WczytajWizyty()
         {
             var wizyty = _dbHelper.PobierzWizytyLekarza(_lekarz.Id)
-                .Where(row => row.Field<DateTime>("DataWizyty").Date == PanelLekarza_GetSelectedDate())
-                .ToList();
-            dataGridViewWizyty.DataSource = wizyty;
+                            .AsEnumerable()
+                            .Where(row => row.Field<DateTime>("DataWizyty").Date == PanelLekarza_GetSelectedDate())
+                            .ToList();
 
+            dataGridViewWizyty.DataSource = wizyty.CopyToDataTable();
             if (dataGridViewWizyty.Columns["Id"] != null)
                 dataGridViewWizyty.Columns["Id"].Visible = false;
         }
@@ -416,8 +417,9 @@ namespace WindowsFormsApp1
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
             var wizyty = _dbHelper.PobierzWizytyLekarza(_lekarz.Id)
-                .Where(row => row.Field<DateTime>("DataWizyty").Date == PanelLekarza_GetSelectedDate())
-                .ToList();
+                       .AsEnumerable()
+                       .Where(row => row.Field<DateTime>("DataWizyty").Date == PanelLekarza_GetSelectedDate())
+                       .ToList();
 
             dataGridViewWizyty.DataSource = wizyty;
 
