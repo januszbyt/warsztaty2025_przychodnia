@@ -36,7 +36,7 @@ namespace WindowsFormsApp1
             dataGridViewPacjenci.AutoGenerateColumns = true;
 
             WczytajWizyty();
-            WyswietlDaneLekarza();
+            WczytajAktualneDaneLekarza();
             WczytajPacjentow();
 
         }
@@ -67,11 +67,63 @@ namespace WindowsFormsApp1
             if (dataGridViewWizyty.Columns["Id"] != null)
                 dataGridViewWizyty.Columns["Id"].Visible = false;
         }
-        private void WyswietlDaneLekarza()
+
+        private TextBox LekarzIdTextbox()
         {
-            labelLekarzId.Text = $"ID: {_lekarz.Id}";
-            labelLekarzImieNazwisko.Text = $"Lekarz: {_lekarz.Imie} {_lekarz.Nazwisko}";
-            labelSpecjalizacja.Text = $"Specjalizacja: {_lekarz.Specjalizacja}";
+            return textBox3;
+        }
+
+        private TextBox LekarzEmailTextbox()
+        {
+            return textBox11;
+        }
+
+        private TextBox LekarzHasloTextbox()
+        {
+            return textBox12;
+        }
+
+        private TextBox LekarzImieNazwiskoTextbox()
+        {
+            return textBox5;
+        }
+
+        private TextBox LekarzSpecjalizacjaTextbox()
+        {
+            return textBox4;
+        }
+
+        private TextBox LekarzTelefonTextBox()
+        {
+            return textBox8;
+        }
+
+        private TextBox LekarzAdresTextBox()
+        {
+            return textBox6;
+        }
+
+        private TextBox LekarzMiejscowoscTextBox()
+        {
+            return textBox9;
+        }
+
+        private TextBox LekarzKodPocztowyTextBox()
+        {
+            return textBox10;
+        }
+
+        private void WczytajAktualneDaneLekarza()
+        {
+            LekarzIdTextbox().Text = $"{_lekarz.Id}";
+            LekarzEmailTextbox().Text = $"{_lekarz.Email}";
+            LekarzHasloTextbox().Text = $"{_lekarz.Haslo}";
+            LekarzImieNazwiskoTextbox().Text = $"{_lekarz.Imie} {_lekarz.Nazwisko}";
+            LekarzSpecjalizacjaTextbox().Text = $"{_lekarz.Specjalizacja}";
+            LekarzTelefonTextBox().Text = $"{_lekarz.Telefon}";
+            LekarzAdresTextBox().Text = $"{_lekarz.Adres}";
+            LekarzMiejscowoscTextBox().Text = $"{_lekarz.Miejscowosc}";
+            LekarzKodPocztowyTextBox().Text = $"{_lekarz.KodPocztowy}";
         }
 
         private void dataGridViewWizyty_CellClick(object sender, DataGridViewCellEventArgs e)
