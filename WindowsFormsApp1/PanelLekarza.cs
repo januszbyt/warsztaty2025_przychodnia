@@ -8,6 +8,7 @@ using WindowsFormsApp1.Models;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Linq;
 
 namespace WindowsFormsApp1
 {
@@ -20,7 +21,7 @@ namespace WindowsFormsApp1
         private int lekarzId;
         private int wizytId;
 
-       
+
         public PanelLekarza(Lekarz lekarz, DataBaseHelper dbHelper)
         {
 
@@ -50,9 +51,17 @@ namespace WindowsFormsApp1
 
             dataGridViewPacjenci.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
+
+        private DateTime PanelLekarza_GetSelectedDate()
+        {
+            return dateTimePicker2.Value.Date;
+        }
+
         private void WczytajWizyty()
         {
-            var wizyty = _dbHelper.PobierzWizytyLekarza(_lekarz.Id);
+            var wizyty = _dbHelper.PobierzWizytyLekarza(_lekarz.Id)
+                .Where(row => row.Field<DateTime>("DataWizyty").Date == PanelLekarza_GetSelectedDate())
+                .ToList();
             dataGridViewWizyty.DataSource = wizyty;
 
             if (dataGridViewWizyty.Columns["Id"] != null)
@@ -345,7 +354,7 @@ namespace WindowsFormsApp1
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
@@ -402,6 +411,18 @@ namespace WindowsFormsApp1
         private void labelLekarzImieNazwisko_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            var wizyty = _dbHelper.PobierzWizytyLekarza(_lekarz.Id)
+                .Where(row => row.Field<DateTime>("DataWizyty").Date == PanelLekarza_GetSelectedDate())
+                .ToList();
+
+            dataGridViewWizyty.DataSource = wizyty;
+
+            if (dataGridViewWizyty.Columns["Id"] != null)
+                dataGridViewWizyty.Columns["Id"].Visible = false;
         }
     }
 }
