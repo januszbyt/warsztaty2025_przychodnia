@@ -319,7 +319,13 @@ namespace WindowsFormsApp1
         {
             if (dataGridViewPacjenci.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Wybierz pacjentaa.");
+                MessageBox.Show("Wybierz pacjenta.");
+                return;
+            }
+
+            if (wizytId == -1) // TODO: wybranaWizytaId czy wizytId?
+            {
+                MessageBox.Show("Wybierz wizytę.");
                 return;
             }
 
@@ -341,7 +347,7 @@ namespace WindowsFormsApp1
             }
 
             _dbHelper.WystawSkierowanie(
-                wizytaId: wizytId,
+                wizytaId: wizytId, // TODO: wybranaWizytaId czy wizytId?
                 pacjentId: pacjentId,
                 lekarzId: _lekarz.Id,
                 typ: specjalizacja,
