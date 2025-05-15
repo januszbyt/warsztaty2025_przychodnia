@@ -522,6 +522,11 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Błąd podczas anulowania wizyty: " + ex.Message);
             }
         }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
    
