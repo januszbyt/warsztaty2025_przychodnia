@@ -66,7 +66,7 @@ namespace WindowsFormsApp1
             // .Where(row => row.Field<DateTime>("DataWizyty").Date == PanelLekarza_GetSelectedDate())
             // .ToList();
 
-            dataGridViewWizyty.DataSource = wizyty.CopyToDataTable();
+            dataGridViewWizyty.DataSource = wizyty;
             if (dataGridViewWizyty.Columns["Id"] != null)
                 dataGridViewWizyty.Columns["Id"].Visible = false;
         }
