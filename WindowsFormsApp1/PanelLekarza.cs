@@ -9,6 +9,7 @@ using MySql.Data.MySqlClient;
 using System.Diagnostics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Linq;
+// Users System.Windows.Forms; // TODO: Dawid Kotliński: odkomentować
 
 namespace WindowsFormsApp1
 {
@@ -69,62 +70,56 @@ namespace WindowsFormsApp1
                 dataGridViewWizyty.Columns["Id"].Visible = false;
         }
 
-        private TextBox LekarzIdTextbox()
-        {
-            return textBox3;
-        }
-
-        private TextBox LekarzEmailTextbox()
-        {
-            return textBox11;
-        }
-
-        private TextBox LekarzHasloTextbox()
-        {
-            return textBox12;
-        }
-
-        private TextBox LekarzImieNazwiskoTextbox()
-        {
-            return textBox5;
-        }
-
-        private TextBox LekarzSpecjalizacjaTextbox()
-        {
-            return textBox4;
-        }
-
-        private TextBox LekarzTelefonTextBox()
-        {
-            return textBox8;
-        }
-
-        private TextBox LekarzAdresTextBox()
-        {
-            return textBox6;
-        }
-
-        private TextBox LekarzMiejscowoscTextBox()
-        {
-            return textBox9;
-        }
-
-        private TextBox LekarzKodPocztowyTextBox()
-        {
-            return textBox10;
-        }
+        // TODO: Dawid Kotlinski: ODkomentować, były problemy z dostępem do klasy TextBox.
+        // private TextBox LekarzIdTextbox()
+        // {
+        //     return textBox3;
+        // }
+        // private TextBox LekarzEmailTextbox()
+        // {
+        //     return textBox11;
+        // }
+        // private TextBox LekarzHasloTextbox()
+        // {
+        //     return textBox12;
+        // }
+        // private TextBox LekarzImieNazwiskoTextbox()
+        // {
+        //     return textBox5;
+        // }
+        // private TextBox LekarzSpecjalizacjaTextbox()
+        // {
+        //     return textBox4;
+        // }
+        // private TextBox LekarzTelefonTextBox()
+        // {
+        //     return textBox8;
+        // }
+        // private TextBox LekarzAdresTextBox()
+        // {
+        //     return textBox6;
+        // }
+        // private TextBox LekarzMiejscowoscTextBox()
+        // {
+        //     return textBox9;
+        // }
+        // private TextBox LekarzKodPocztowyTextBox()
+        // {
+        //     return textBox10;
+        // }
 
         private void WczytajAktualneDaneLekarza()
         {
-            LekarzIdTextbox().Text = $"{_lekarz.Id}";
-            LekarzEmailTextbox().Text = $"{_lekarz.Email}";
-            LekarzHasloTextbox().Text = $"{_lekarz.Haslo}";
-            LekarzImieNazwiskoTextbox().Text = $"{_lekarz.Imie} {_lekarz.Nazwisko}";
-            LekarzSpecjalizacjaTextbox().Text = $"{_lekarz.Specjalizacja}";
-            LekarzTelefonTextBox().Text = $"{_lekarz.Telefon}";
-            LekarzAdresTextBox().Text = $"{_lekarz.Adres}";
-            LekarzMiejscowoscTextBox().Text = $"{_lekarz.Miejscowosc}";
-            LekarzKodPocztowyTextBox().Text = $"{_lekarz.KodPocztowy}";
+            // LekarzIdTextbox().Text = $"{_lekarz.Id}";
+            // TODO: Dawid Kotlinski: Lekarz musi pobierać Usera, kod w projekcie jest tylko zakomentowany. Trzeba go odkomentować przestować na kompuetrze z bazą danych (model Lekarz).
+            // LekarzEmailTextbox().Text = $"{_lekarz.Email}";
+            // LekarzHasloTextbox().Text = $"{_lekarz.Haslo}";
+            // LekarzImieNazwiskoTextbox().Text = $"{_lekarz.Imie} {_lekarz.Nazwisko}";
+            // LekarzSpecjalizacjaTextbox().Text = $"{_lekarz.Specjalizacja}";
+            // LekarzTelefonTextBox().Text = $"{_lekarz.Telefon}";
+            // LekarzAdresTextBox().Text = $"{_lekarz.Adres}";
+            // LekarzMiejscowoscTextBox().Text = $"{_lekarz.Miejscowosc}";
+            // LekarzKodPocztowyTextBox().Text = $"{_lekarz.KodPocztowy}";
         }
 
         private void dataGridViewWizyty_CellClick(object sender, DataGridViewCellEventArgs e)
