@@ -33,20 +33,9 @@
             this.buttonNadajUprawienia = new System.Windows.Forms.Button();
             this.buttonZabierzUprawnienia = new System.Windows.Forms.Button();
             this.buttonUsunRekordy = new System.Windows.Forms.Button();
-            this.buttonDodajLekarza = new System.Windows.Forms.Button();
             this.buttonUsunWszystko = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.WylogujAdmin = new System.Windows.Forms.Button();
-            this.textBoxImie = new System.Windows.Forms.TextBox();
-            this.textBoxNazwisko = new System.Windows.Forms.TextBox();
-            this.textBoxSpecjalizacja = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBoxHaslo = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxEmail = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.textBoxSpecjalizacjaUprawnienia = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -101,16 +90,6 @@
             this.buttonUsunRekordy.UseVisualStyleBackColor = true;
             this.buttonUsunRekordy.Click += new System.EventHandler(this.buttonUsunRekordy_Click);
             // 
-            // buttonDodajLekarza
-            // 
-            this.buttonDodajLekarza.Location = new System.Drawing.Point(672, 383);
-            this.buttonDodajLekarza.Name = "buttonDodajLekarza";
-            this.buttonDodajLekarza.Size = new System.Drawing.Size(127, 48);
-            this.buttonDodajLekarza.TabIndex = 5;
-            this.buttonDodajLekarza.Text = "Dodaj Lekarza";
-            this.buttonDodajLekarza.UseVisualStyleBackColor = true;
-            this.buttonDodajLekarza.Click += new System.EventHandler(this.buttonDodajLekarza_Click);
-            // 
             // buttonUsunWszystko
             // 
             this.buttonUsunWszystko.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -141,96 +120,6 @@
             this.WylogujAdmin.UseVisualStyleBackColor = true;
             this.WylogujAdmin.Click += new System.EventHandler(this.WylogujAdmin_Click);
             // 
-            // textBoxImie
-            // 
-            this.textBoxImie.Location = new System.Drawing.Point(671, 241);
-            this.textBoxImie.Name = "textBoxImie";
-            this.textBoxImie.Size = new System.Drawing.Size(128, 20);
-            this.textBoxImie.TabIndex = 19;
-            this.textBoxImie.TextChanged += new System.EventHandler(this.textBoxImie_TextChanged);
-            // 
-            // textBoxNazwisko
-            // 
-            this.textBoxNazwisko.Location = new System.Drawing.Point(671, 267);
-            this.textBoxNazwisko.Name = "textBoxNazwisko";
-            this.textBoxNazwisko.Size = new System.Drawing.Size(128, 20);
-            this.textBoxNazwisko.TabIndex = 20;
-            this.textBoxNazwisko.TextChanged += new System.EventHandler(this.textBoxNazwisko_TextChanged);
-            // 
-            // textBoxSpecjalizacja
-            // 
-            this.textBoxSpecjalizacja.Location = new System.Drawing.Point(671, 293);
-            this.textBoxSpecjalizacja.Name = "textBoxSpecjalizacja";
-            this.textBoxSpecjalizacja.Size = new System.Drawing.Size(128, 20);
-            this.textBoxSpecjalizacja.TabIndex = 21;
-            this.textBoxSpecjalizacja.TextChanged += new System.EventHandler(this.textBoxSpecjalizacja_TextChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(607, 244);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 13);
-            this.label5.TabIndex = 25;
-            this.label5.Text = "IMIE";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(607, 270);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 13);
-            this.label3.TabIndex = 26;
-            this.label3.Text = "NAZWISKO";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(576, 296);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(89, 13);
-            this.label4.TabIndex = 27;
-            this.label4.Text = "SPECJALIZACJA";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // textBoxHaslo
-            // 
-            this.textBoxHaslo.Location = new System.Drawing.Point(671, 347);
-            this.textBoxHaslo.Name = "textBoxHaslo";
-            this.textBoxHaslo.Size = new System.Drawing.Size(128, 20);
-            this.textBoxHaslo.TabIndex = 28;
-            this.textBoxHaslo.TextChanged += new System.EventHandler(this.textBoxHaslo_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(618, 354);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
-            this.label2.TabIndex = 29;
-            this.label2.Text = "HASLO";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // textBoxEmail
-            // 
-            this.textBoxEmail.Location = new System.Drawing.Point(671, 321);
-            this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(128, 20);
-            this.textBoxEmail.TabIndex = 30;
-            this.textBoxEmail.TextChanged += new System.EventHandler(this.textBoxEmail_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(618, 328);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 13);
-            this.label1.TabIndex = 31;
-            this.label1.Text = "Email";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
             // textBoxSpecjalizacjaUprawnienia
             // 
             this.textBoxSpecjalizacjaUprawnienia.Location = new System.Drawing.Point(490, 432);
@@ -244,20 +133,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(843, 482);
             this.Controls.Add(this.textBoxSpecjalizacjaUprawnienia);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBoxEmail);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBoxHaslo);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBoxSpecjalizacja);
-            this.Controls.Add(this.textBoxNazwisko);
-            this.Controls.Add(this.textBoxImie);
             this.Controls.Add(this.WylogujAdmin);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonUsunWszystko);
-            this.Controls.Add(this.buttonDodajLekarza);
             this.Controls.Add(this.buttonUsunRekordy);
             this.Controls.Add(this.buttonZabierzUprawnienia);
             this.Controls.Add(this.buttonNadajUprawienia);
@@ -279,20 +157,9 @@
         private System.Windows.Forms.Button buttonNadajUprawienia;
         private System.Windows.Forms.Button buttonZabierzUprawnienia;
         private System.Windows.Forms.Button buttonUsunRekordy;
-        private System.Windows.Forms.Button buttonDodajLekarza;
         private System.Windows.Forms.Button buttonUsunWszystko;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button WylogujAdmin;
-        private System.Windows.Forms.TextBox textBoxImie;
-        private System.Windows.Forms.TextBox textBoxNazwisko;
-        private System.Windows.Forms.TextBox textBoxSpecjalizacja;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBoxHaslo;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxEmail;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxSpecjalizacjaUprawnienia;
     }
 }

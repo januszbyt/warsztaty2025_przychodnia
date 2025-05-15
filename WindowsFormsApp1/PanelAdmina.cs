@@ -38,34 +38,46 @@ namespace WindowsFormsApp1
             dataGridView1.DataSource = _dbHelper.PobierzWszystkichPacjentow();
             dataGridView1.Visible = true;
         }
+        
+        private void buttonWyswierlLekarzy_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = _dbHelper.PobierzWszystkichLekarzy();
+            dataGridView1.Visible = true;
+        }
 
         private void buttonNadajUprawienia_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count > 0)
+            
+            if (dataGridView1.SelectedRows.Count == 0)
             {
-                selectedUserId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
-                textBoxSpecjalizacjaUprawnienia.Visible = true;
-                
-                if (!string.IsNullOrWhiteSpace(textBoxSpecjalizacjaUprawnienia.Text))
-                {
-                    try
-                    {
-                        _dbHelper.NadajUprawnieniaLekarza(selectedUserId, textBoxSpecjalizacjaUprawnienia.Text);
-                        MessageBox.Show("Uprawnienia nadane pomyślnie.");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Błąd: " + ex.Message);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Podaj specjalizację.");
-                }
+                MessageBox.Show("Wybierz użytkownika z listy.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+
+            selectedUserId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
+
+            if (string.IsNullOrWhiteSpace(textBoxSpecjalizacjaUprawnienia.Text))
             {
-                MessageBox.Show("Wybierz użytkownika z listy.");
+                MessageBox.Show("Podaj specjalizację, zanim nadasz uprawnienia.", "Brak danych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxSpecjalizacjaUprawnienia.Visible = true;
+                textBoxSpecjalizacjaUprawnienia.Focus();
+                return;
+            }
+
+            string specjalizacja = textBoxSpecjalizacjaUprawnienia.Text.Trim();
+
+            try
+            {
+                _dbHelper.NadajUprawnieniaLekarza(selectedUserId, specjalizacja);
+                MessageBox.Show("Uprawnienia nadane pomyślnie.", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                textBoxSpecjalizacjaUprawnienia.Clear();
+                textBoxSpecjalizacjaUprawnienia.Visible = false;
+                RefreshGrid(); // odśwież listę użytkowników/lekarzy
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd podczas nadawania uprawnień: " + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -95,7 +107,7 @@ namespace WindowsFormsApp1
                 {
                     _dbHelper.ZabierzUprawnieniaLekarza(userId);
                     MessageBox.Show("Pomyślnie odebrano uprawnienia lekarza.", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    OdswiezDane();
+                    RefreshGrid();
                 }
             }
             catch (Exception ex)
@@ -104,11 +116,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void OdswiezDane()
-        {
-            dataGridView1.DataSource = _dbHelper.PobierzListeLekarzy();
-            dataGridView1.Refresh();
-        }
+      
 
         private void buttonUsunRekordy_Click(object sender, EventArgs e)
         {
@@ -148,62 +156,15 @@ namespace WindowsFormsApp1
         }
 
 
-        private void buttonDodajLekarza_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(textBoxImie.Text) ||
-                    string.IsNullOrEmpty(textBoxNazwisko.Text) ||
-                    string.IsNullOrEmpty(textBoxEmail.Text) ||
-                    string.IsNullOrEmpty(textBoxHaslo.Text) ||
-                    string.IsNullOrEmpty(textBoxSpecjalizacja.Text))
-                {
-                    MessageBox.Show("Wypełnij wszystkie pola formularza");
-                    return;
-                }
-
-                var user = new Users
-                {
-                    Imie = textBoxImie.Text,
-                    Nazwisko = textBoxNazwisko.Text,
-                    Email = textBoxEmail.Text
-                };
-
-                string haslo = textBoxHaslo.Text;
-                string specjalizacja = textBoxSpecjalizacja.Text;
-
-                _dbHelper.RegisterUser(user, haslo, "Lekarz");
-
-                int userId = _dbHelper.GetUserIdByEmailPublic(user.Email);
-                _dbHelper.DodajDoLekarzy(userId, user.Imie, user.Nazwisko, specjalizacja);
-
-                MessageBox.Show("Lekarz został dodany");
-                ClearForm();
-                RefreshGrid();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Błąd przy dodawaniu lekarza: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void ClearForm()
-        {
-            textBoxImie.Clear();
-            textBoxNazwisko.Clear();
-            textBoxEmail.Clear();
-            textBoxHaslo.Clear();
-            textBoxSpecjalizacja.Clear();
-        }
-
         private void RefreshGrid()
         {
             
-                dataGridView1.DataSource = _dbHelper.PobierzWszystkichLekarzy();
-            
-            
-                dataGridView1.DataSource = _dbHelper.PobierzWszystkichPacjentow();
-            
+            dataGridView1.DataSource = _dbHelper.PobierzWszystkichLekarzy();
+            dataGridView1.Refresh();
+
+            dataGridView1.DataSource = _dbHelper.PobierzWszystkichPacjentow();
+            dataGridView1.Refresh();
+
         }
 
         
@@ -226,70 +187,10 @@ namespace WindowsFormsApp1
             this.Close();
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                selectedUserId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
-            }
-        }
+     
+        
 
-        private void buttonWyswierlLekarzy_Click(object sender, EventArgs e)
-        {
-            dataGridView1.DataSource = _dbHelper.PobierzWszystkichLekarzy();
-            dataGridView1.Visible = true;
-        }
-
-        private void textBoxEmail_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxHaslo_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxSpecjalizacja_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxNazwisko_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxImie_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+       
         private void PanelAdmina_Load(object sender, EventArgs e)
         {
 

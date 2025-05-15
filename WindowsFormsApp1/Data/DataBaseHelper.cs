@@ -628,67 +628,81 @@ namespace WindowsFormsApp1.Data
                 {
                     try
                     {
-
-                        var checkRoleQuery = @"SELECT COUNT(*) FROM users 
-                                     WHERE UserId = @UserId AND Rola = 'Lekarz'";
-
+                        // Pobierz aktualną rolę
+                        string currentRole = null;
+                        var checkRoleQuery = @"SELECT Rola FROM Users WHERE Id = @UserId";
                         using (var checkCommand = new MySqlCommand(checkRoleQuery, connection, transaction))
                         {
                             checkCommand.Parameters.AddWithValue("@UserId", userId);
-
-                            long coutnt = Convert.ToInt64(checkCommand.ExecuteScalar());
-
-                            if (coutnt > 0)
-                            {
-                                throw new Exception("Użytkownik już posiada rolę Lekarza.");
-                            }
-
+                            currentRole = checkCommand.ExecuteScalar()?.ToString();
                         }
 
-
-                        string imie = "", nazwisko = "";
-
-                        var queryUser = "SELECT Imie, Nazwisko FROM Users WHERE Id = @UserId";
-
-                        using (var command = new MySqlCommand(queryUser, connection, transaction))
+                        // Jeśli rola jest inna niż Lekarz, aktualizuj ją
+                        if (currentRole != "Lekarz")
                         {
-                            command.Parameters.AddWithValue("@UserId", userId);
-                            using (var reader = command.ExecuteReader())
+                            var updateRoleQuery = @"UPDATE Users SET Rola = 'Lekarz' WHERE Id = @UserId";
+                            using (var updateCommand = new MySqlCommand(updateRoleQuery, connection, transaction))
                             {
-                                if (reader.Read())
-                                {
-                                    imie = reader["Imie"]?.ToString() ?? "";
-                                    nazwisko = reader["Nazwisko"]?.ToString() ?? "";
-                                }
-                                else
-                                {
-                                    throw new Exception("user nie isniteje");
-                                }
+                                updateCommand.Parameters.AddWithValue("@UserId", userId);
+                                updateCommand.ExecuteNonQuery();
                             }
                         }
 
-
-                        var insertRoleQuery = @"INSERT INTO users (UserId, Rola) 
-                                      VALUES (@UserId, 'Lekarz')";
-
-                        using (var command = new MySqlCommand(insertRoleQuery, connection, transaction))
+                        // Sprawdź, czy lekarz jest już w tabeli Doctors
+                        long lekarzCount = 0;
+                        var checkDoctorQuery = @"SELECT COUNT(*) FROM Doctors WHERE UserId = @UserId";
+                        using (var checkDoctorCmd = new MySqlCommand(checkDoctorQuery, connection, transaction))
                         {
-                            command.Parameters.AddWithValue("@UserId", userId);
-                            command.ExecuteNonQuery();
+                            checkDoctorCmd.Parameters.AddWithValue("@UserId", userId);
+                            lekarzCount = Convert.ToInt64(checkDoctorCmd.ExecuteScalar());
                         }
 
-
-                        var insertLekarzQuery = @"INSERT INTO Doctors 
-                                        (UserId, Imie, Nazwisko, Specjalizacja) 
-                                        VALUES (@UserId, @Imie, @Nazwisko, @Specjalizacja)";
-
-                        using (var command = new MySqlCommand(insertLekarzQuery, connection, transaction))
+                        if (lekarzCount == 0)
                         {
-                            command.Parameters.AddWithValue("@UserId", userId);
-                            command.Parameters.AddWithValue("@Imie", imie);
-                            command.Parameters.AddWithValue("@Nazwisko", nazwisko);
-                            command.Parameters.AddWithValue("@Specjalizacja", specjalizacja);
-                            command.ExecuteNonQuery();
+                            // Pobierz dane użytkownika (imię i nazwisko)
+                            string imie = "";
+                            string nazwisko = "";
+
+                            var getUserQuery = @"SELECT Imie, Nazwisko FROM Users WHERE Id = @UserId";
+                            using (var getUserCmd = new MySqlCommand(getUserQuery, connection, transaction))
+                            {
+                                getUserCmd.Parameters.AddWithValue("@UserId", userId);
+                                using (var reader = getUserCmd.ExecuteReader())
+                                {
+                                    if (reader.Read())
+                                    {
+                                        imie = reader["Imie"]?.ToString() ?? "";
+                                        nazwisko = reader["Nazwisko"]?.ToString() ?? "";
+                                    }
+                                    else
+                                    {
+                                        throw new Exception("Użytkownik nie istnieje.");
+                                    }
+                                }
+                            }
+
+                            // Dodaj wpis do Doctors
+                            var insertDoctorQuery = @"INSERT INTO Doctors (UserId, Imie, Nazwisko, Specjalizacja) 
+                                              VALUES (@UserId, @Imie, @Nazwisko, @Specjalizacja)";
+                            using (var insertCmd = new MySqlCommand(insertDoctorQuery, connection, transaction))
+                            {
+                                insertCmd.Parameters.AddWithValue("@UserId", userId);
+                                insertCmd.Parameters.AddWithValue("@Imie", imie);
+                                insertCmd.Parameters.AddWithValue("@Nazwisko", nazwisko);
+                                insertCmd.Parameters.AddWithValue("@Specjalizacja", specjalizacja);
+                                insertCmd.ExecuteNonQuery();
+                            }
+                        }
+                        else
+                        {
+                            // Jeśli lekarz jest już w tabeli Doctors, możesz np. aktualizować specjalizację
+                            var updateSpecjalizacjaQuery = @"UPDATE Doctors SET Specjalizacja = @Specjalizacja WHERE UserId = @UserId";
+                            using (var updateCmd = new MySqlCommand(updateSpecjalizacjaQuery, connection, transaction))
+                            {
+                                updateCmd.Parameters.AddWithValue("@Specjalizacja", specjalizacja);
+                                updateCmd.Parameters.AddWithValue("@UserId", userId);
+                                updateCmd.ExecuteNonQuery();
+                            }
                         }
 
                         transaction.Commit();
@@ -701,7 +715,6 @@ namespace WindowsFormsApp1.Data
                 }
             }
         }
-
 
         public void ZabierzUprawnieniaLekarza(int userId)
         {
