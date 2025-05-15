@@ -36,7 +36,7 @@ namespace WindowsFormsApp1
             dataGridViewPacjenci.AutoGenerateColumns = true;
 
             WczytajWizyty();
-            WyswietlDaneLekarza();
+            WczytajAktualneDaneLekarza();
             WczytajPacjentow();
 
         }
@@ -68,11 +68,63 @@ namespace WindowsFormsApp1
             if (dataGridViewWizyty.Columns["Id"] != null)
                 dataGridViewWizyty.Columns["Id"].Visible = false;
         }
-        private void WyswietlDaneLekarza()
+
+        private TextBox LekarzIdTextbox()
         {
-            labelLekarzId.Text = $"ID: {_lekarz.Id}";
-            labelLekarzImieNazwisko.Text = $"Lekarz: {_lekarz.Imie} {_lekarz.Nazwisko}";
-            labelSpecjalizacja.Text = $"Specjalizacja: {_lekarz.Specjalizacja}";
+            return textBox3;
+        }
+
+        private TextBox LekarzEmailTextbox()
+        {
+            return textBox11;
+        }
+
+        private TextBox LekarzHasloTextbox()
+        {
+            return textBox12;
+        }
+
+        private TextBox LekarzImieNazwiskoTextbox()
+        {
+            return textBox5;
+        }
+
+        private TextBox LekarzSpecjalizacjaTextbox()
+        {
+            return textBox4;
+        }
+
+        private TextBox LekarzTelefonTextBox()
+        {
+            return textBox8;
+        }
+
+        private TextBox LekarzAdresTextBox()
+        {
+            return textBox6;
+        }
+
+        private TextBox LekarzMiejscowoscTextBox()
+        {
+            return textBox9;
+        }
+
+        private TextBox LekarzKodPocztowyTextBox()
+        {
+            return textBox10;
+        }
+
+        private void WczytajAktualneDaneLekarza()
+        {
+            LekarzIdTextbox().Text = $"{_lekarz.Id}";
+            LekarzEmailTextbox().Text = $"{_lekarz.Email}";
+            LekarzHasloTextbox().Text = $"{_lekarz.Haslo}";
+            LekarzImieNazwiskoTextbox().Text = $"{_lekarz.Imie} {_lekarz.Nazwisko}";
+            LekarzSpecjalizacjaTextbox().Text = $"{_lekarz.Specjalizacja}";
+            LekarzTelefonTextBox().Text = $"{_lekarz.Telefon}";
+            LekarzAdresTextBox().Text = $"{_lekarz.Adres}";
+            LekarzMiejscowoscTextBox().Text = $"{_lekarz.Miejscowosc}";
+            LekarzKodPocztowyTextBox().Text = $"{_lekarz.KodPocztowy}";
         }
 
         private void dataGridViewWizyty_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -181,9 +233,14 @@ namespace WindowsFormsApp1
             formLogowanie.Show();
         }
 
+        private TextBox ImieNazwiskoSzukajTextBox()
+        {
+            return textBox2;
+        }
+
         private void btnSzukaj_Click(object sender, EventArgs e)
         {
-            string imieNazwisko = btnSzukaj.Text.Trim();
+            string imieNazwisko = ImieNazwiskoSzukajTextBox().Text.Trim();
 
             if (string.IsNullOrWhiteSpace(imieNazwisko))
             {
@@ -263,7 +320,13 @@ namespace WindowsFormsApp1
         {
             if (dataGridViewPacjenci.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Wybierz pacjentaa.");
+                MessageBox.Show("Wybierz pacjenta.");
+                return;
+            }
+
+            if (wizytId == -1) // TODO: wybranaWizytaId czy wizytId?
+            {
+                MessageBox.Show("Wybierz wizytę.");
                 return;
             }
 
@@ -285,7 +348,7 @@ namespace WindowsFormsApp1
             }
 
             _dbHelper.WystawSkierowanie(
-                wizytaId: wizytId,
+                wizytaId: wizytId, // TODO: wybranaWizytaId czy wizytId?
                 pacjentId: pacjentId,
                 lekarzId: _lekarz.Id,
                 typ: specjalizacja,
@@ -365,16 +428,37 @@ namespace WindowsFormsApp1
 
         private void UpdateDetails()
         {
-            Debug.Assert(_lekarz.UserId >= 0);
-            var helper = new DataBaseHelper();
+            if (_lekarz.UserId < 0)
+            {
+                MessageBox.Show("Nieprawidłowy ID użytkownika.");
+                return;
+            }
 
-            var newMail = textBox3.Text;
-            helper.ZmienEmail(_lekarz.UserId, newMail);
-            MessageBox.Show("Email zmieniony");
+            var newMail = textBox3.Text.Trim();
+            var newPass = textBox4.Text.Trim();
 
-            var newPass = textBox4.Text;
-            helper.ZmienHaslo(_lekarz.UserId, newPass);
-            MessageBox.Show("Haslo zmienione");
+            if (string.IsNullOrEmpty(newMail))
+            {
+                MessageBox.Show("Email nie może być pusty.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(newPass))
+            {
+                MessageBox.Show("Hasło nie może być puste.");
+                return;
+            }
+
+            try
+            {
+                _dbHelper.ZmienEmail(_lekarz.UserId, newMail);
+                _dbHelper.ZmienHaslo(_lekarz.UserId, newPass);
+                MessageBox.Show("Dane zostały zaktualizowane.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd podczas aktualizacji danych: {ex.Message}");
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
