@@ -234,7 +234,7 @@ namespace WindowsFormsApp1
 
         private void btnSzukaj_Click(object sender, EventArgs e)
         {
-            string imieNazwisko = btnSzukaj.Text.Trim();
+            string imieNazwisko = textBoxSzukaj.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(imieNazwisko))
             {
