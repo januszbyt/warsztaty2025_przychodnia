@@ -228,23 +228,25 @@ namespace WindowsFormsApp1
             formLogowanie.Show();
         }
 
-        private TextBox ImieNazwiskoSzukajTextBox()
-        {
-            return textBox2;
-        }
+        // TODO: Dawid Kotlinski: Odkomentować, były problemy z dostępem do klasy TextBox.
+        // private TextBox ImieNazwiskoSzukajTextBox()
+        // {
+        //     return textBox2;
+        // }
 
         private void btnSzukaj_Click(object sender, EventArgs e)
         {
-            string imieNazwisko = ImieNazwiskoSzukajTextBox().Text.Trim();
+            // TODO: Dawid Kotlinski: Odkomentować, były problemy z dostępem do klasy TextBox.
+            // string imieNazwisko = ImieNazwiskoSzukajTextBox().Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(imieNazwisko))
-            {
-                WczytajWizyty();
-                return;
-            }
+            // if (string.IsNullOrWhiteSpace(imieNazwisko))
+            // {
+            //     WczytajWizyty();
+            //     return;
+            // }
 
-            var wyniki = _dbHelper.SzukajWizytPoImieniuNazwisku(_lekarz.Id, imieNazwisko);
-            dataGridViewWizyty.DataSource = wyniki;
+            // var wyniki = _dbHelper.SzukajWizytPoImieniuNazwisku(_lekarz.Id, imieNazwisko);
+            // dataGridViewWizyty.DataSource = wyniki;
         }
 
 
