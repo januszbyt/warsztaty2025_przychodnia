@@ -1162,7 +1162,10 @@ namespace WindowsFormsApp1.Data
                 w.DataWizyty, 
                 CONCAT(d.Imie, ' ', d.Nazwisko) AS Lekarz, 
                 w.Status, 
-                w.Specjalizacja
+                w.Specjalizacja,
+                w.Opis,
+                w.Diagnoza,
+                w.Zalecenia
             FROM wizyty w
             JOIN doctors d ON w.LekarzId = d.Id
             WHERE w.PacjentId = @PacjentId";
@@ -1181,7 +1184,10 @@ namespace WindowsFormsApp1.Data
                                 DataWizyty = reader.GetDateTime("DataWizyty"),
                                 Lekarz = reader.IsDBNull(reader.GetOrdinal("Lekarz")) ? "" : reader.GetString("Lekarz"),
                                 Status = reader.IsDBNull(reader.GetOrdinal("Status")) ? "" : reader.GetString("Status"),
-                                Specjalizacja = reader.IsDBNull(reader.GetOrdinal("Specjalizacja")) ? "" : reader.GetString("Specjalizacja")
+                                Specjalizacja = reader.IsDBNull(reader.GetOrdinal("Specjalizacja")) ? "" : reader.GetString("Specjalizacja"),
+                                Opis = reader.IsDBNull(reader.GetOrdinal("Opis")) ? "" : reader.GetString("Opis"),
+                                Diagnoza = reader.IsDBNull(reader.GetOrdinal("Diagnoza")) ? "" : reader.GetString("Diagnoza"),
+                                Zalecenia = reader.IsDBNull(reader.GetOrdinal("Zalecenia")) ? "" : reader.GetString("Zalecenia")
                             };
                             wizyty.Add(wizyta);
                         }
@@ -1191,7 +1197,6 @@ namespace WindowsFormsApp1.Data
 
             return wizyty;
         }
-
 
 
         public int DodajPacjenta(Patient patient)

@@ -167,7 +167,8 @@ namespace WindowsFormsApp1
                 PacjentId = _pacjentId,
                 LekarzId = lekarz.Id,
                 DataWizyty = data,
-                Status = "Zaplanowana"
+                Status = "Zaplanowana",
+                Specjalizacja = lekarz.Specjalizacja
             };
 
             _dbHelper.DodajWizyte(wizyta);
@@ -177,7 +178,6 @@ namespace WindowsFormsApp1
 
         private void WczytajHistorieWizyt(int _pacjentId)
         {
-
             dataGridViewHistoria.Rows.Clear();
 
             if (dataGridViewHistoria.Columns.Count == 0)
@@ -187,6 +187,9 @@ namespace WindowsFormsApp1
                 dataGridViewHistoria.Columns.Add("Lekarz", "Lekarz");
                 dataGridViewHistoria.Columns.Add("Status", "Status");
                 dataGridViewHistoria.Columns.Add("Specjalizacja", "Specjalizacja");
+                dataGridViewHistoria.Columns.Add("Opis", "Opis");
+                dataGridViewHistoria.Columns.Add("Diagnoza", "Diagnoza");
+                dataGridViewHistoria.Columns.Add("Zalecenia", "Zalecenia");
             }
 
             var wizyty = _dbHelper.PobierzWizytyPacjenta(_pacjentId);
@@ -198,7 +201,10 @@ namespace WindowsFormsApp1
                     wizyta.DataWizyty.ToString("yyyy-MM-dd HH:mm"),
                     wizyta.Lekarz,
                     wizyta.Status,
-                    wizyta.Specjalizacja);
+                    wizyta.Specjalizacja,
+                    wizyta.Opis,
+                    wizyta.Diagnoza,
+                    wizyta.Zalecenia);
             }
         }
 
