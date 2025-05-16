@@ -1570,6 +1570,38 @@ namespace WindowsFormsApp1.Data
             return wynik;
         }
 
+        public void DodajOpinie(int pacjentId, int lekarzId, int ocena, string komentarz)
+        {
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+                var cmd = connection.CreateCommand();
+                cmd.CommandText = @"
+            INSERT INTO opinie (PacjentId, LekarzId, Ocena, Komentarz, DataDodania)
+            VALUES (@pacjentId, @lekarzId, @ocena, @komentarz, @data)";
+                cmd.Parameters.AddWithValue("@pacjentId", pacjentId);
+                cmd.Parameters.AddWithValue("@lekarzId", lekarzId);
+                cmd.Parameters.AddWithValue("@ocena", ocena);
+                cmd.Parameters.AddWithValue("@komentarz", komentarz);
+                cmd.Parameters.AddWithValue("@data", DateTime.Now);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public DataTable PobierzLekarzy()
+        {
+            var dt = new DataTable();
+            using (var conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT Id, Imie, Nazwisko, Specjalizacja FROM doctors";
+                var adapter = new MySqlDataAdapter(cmd);
+                adapter.Fill(dt);
+            }
+            return dt;
+        }
+
 
         public void ZapiszOpisIWyniki(int wizytaId, string opis, string diagnoza, string zalecenia)
         {

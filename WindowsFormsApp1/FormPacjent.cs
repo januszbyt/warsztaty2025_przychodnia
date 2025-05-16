@@ -136,6 +136,7 @@ namespace WindowsFormsApp1
         private void WczytajLekarzy()
         {
             dataGridViewLekarze.DataSource = _dbHelper.PobierzDostepnychLekarzy();
+            dataGridView1.DataSource = _dbHelper.PobierzDostepnychLekarzy();
         }
 
         private void buttonDodajWizyte_Click(object sender, EventArgs e)
@@ -420,25 +421,7 @@ namespace WindowsFormsApp1
 
         }
 
-        private void ZakonczWizyte_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewHistoria.SelectedRows.Count > 0)
-            {
-                // Pobierz ID wizyty z zaznaczonego wiersza
-                int wizytaId = Convert.ToInt32(dataGridViewHistoria.SelectedRows[0].Cells["Id"].Value);
 
-                // Zmiana statusu wizyty
-                _dbHelper.ZmienStatusWizyty(wizytaId);
-                MessageBox.Show("Status wizyty został zmieniony na 'Odbyta'.");
-
-                // Odświeżenie wizyt
-                WczytajHistorieWizyt(_pacjentId);
-            }
-            else
-            {
-                MessageBox.Show("Proszę wybrać wizytę z listy.");
-            }
-        }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
@@ -537,9 +520,9 @@ namespace WindowsFormsApp1
             }
             MessageBox.Show("Zaznacz wizytę z listy.");
             return null;
-            }
+        }
 
-            private void tabPage2_Click(object sender, EventArgs e)
+        private void tabPage2_Click(object sender, EventArgs e)
         {
 
         }
@@ -584,7 +567,27 @@ namespace WindowsFormsApp1
                     MessageBox.Show(string.Join("\n\n", recepty), "Recepty");
             };
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0 || comboBox3.SelectedItem == null)
+            {
+                MessageBox.Show("Wybierz lekarza i ocenę.");
+                return;
+            }
+
+            var wybranyLekarz = (Lekarz)dataGridView1.SelectedRows[0].DataBoundItem;
+            int lekarzId = wybranyLekarz.Id;
+            int ocena = Convert.ToInt32(comboBox3.SelectedItem);
+            string komentarz = textBox1.Text.Trim();
+
+            _dbHelper.DodajOpinie(_pacjentId, lekarzId, ocena, komentarz);
+            MessageBox.Show("Opinia została dodana.");
+        }
+
     }
-  }
+}
+
+
 
    

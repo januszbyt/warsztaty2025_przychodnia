@@ -32,7 +32,7 @@ namespace WindowsFormsApp1
                     return;
                 }
 
-                // dbHelper.SprawdzIntegralnoscDanych(); // @TODO Dawiwd Kotlinski: Odkomentawać dla testu
+                 // dbHelper.SprawdzIntegralnoscDanych(); // @TODO Dawiwd Kotlinski: Odkomentawać dla testu
 
                 Application.Run(new FormRejestracja(dbHelper));
             }

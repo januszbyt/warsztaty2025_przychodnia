@@ -80,15 +80,16 @@
             this.textBoxUwagiDokument = new System.Windows.Forms.TextBox();
             this.comboBoxTypDokumentu = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label23 = new System.Windows.Forms.Label();
             this.button9 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.tabPageDanePacjenta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -99,6 +100,7 @@
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDocuments)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -628,12 +630,13 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.dataGridView1);
+            this.tabPage2.Controls.Add(this.label23);
             this.tabPage2.Controls.Add(this.button9);
             this.tabPage2.Controls.Add(this.textBox1);
             this.tabPage2.Controls.Add(this.label20);
             this.tabPage2.Controls.Add(this.comboBox3);
             this.tabPage2.Controls.Add(this.label19);
-            this.tabPage2.Controls.Add(this.comboBox2);
             this.tabPage2.Controls.Add(this.label10);
             this.tabPage2.Controls.Add(this.button8);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -646,19 +649,29 @@
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(616, 2);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(92, 65);
+            this.label23.TabIndex = 38;
+            this.label23.Text = "1 - Bardzo źle\r\n2 - Źle\r\n3 - Przeciętnie\r\n4 - Dobrze\r\n5 - Bardzo Dobrze\r\n";
+            // 
             // button9
             // 
             this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button9.Location = new System.Drawing.Point(58, 296);
+            this.button9.Location = new System.Drawing.Point(395, 258);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(164, 40);
             this.button9.TabIndex = 37;
             this.button9.Text = "Dodaj Opinie";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(58, 132);
+            this.textBox1.Location = new System.Drawing.Point(395, 93);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -669,7 +682,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label20.Location = new System.Drawing.Point(56, 106);
+            this.label20.Location = new System.Drawing.Point(392, 74);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(90, 17);
@@ -685,7 +698,7 @@
             "3",
             "4",
             "5"});
-            this.comboBox3.Location = new System.Drawing.Point(176, 70);
+            this.comboBox3.Location = new System.Drawing.Point(519, 26);
             this.comboBox3.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(92, 21);
@@ -695,27 +708,18 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label19.Location = new System.Drawing.Point(56, 70);
+            this.label19.Location = new System.Drawing.Point(392, 26);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(123, 17);
             this.label19.TabIndex = 33;
             this.label19.Text = "Ocena Lekarza:";
             // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(115, 34);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(92, 21);
-            this.comboBox2.TabIndex = 32;
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label10.Location = new System.Drawing.Point(56, 34);
+            this.label10.Location = new System.Drawing.Point(67, 26);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(62, 17);
@@ -725,7 +729,7 @@
             // button8
             // 
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button8.Location = new System.Drawing.Point(243, 296);
+            this.button8.Location = new System.Drawing.Point(581, 258);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(164, 40);
             this.button8.TabIndex = 29;
@@ -736,6 +740,14 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(70, 46);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(286, 156);
+            this.dataGridView1.TabIndex = 39;
             // 
             // FormPacjent
             // 
@@ -760,6 +772,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDocuments)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -823,7 +836,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.TextBox textBox1;
@@ -834,5 +846,7 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
