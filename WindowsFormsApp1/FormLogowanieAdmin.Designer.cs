@@ -37,6 +37,7 @@
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.Silver;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button1.Location = new System.Drawing.Point(372, 77);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
@@ -44,7 +45,7 @@
             this.button1.Size = new System.Drawing.Size(143, 42);
             this.button1.TabIndex = 2;
             this.button1.Text = "Zaloguj";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBoxLoginAdmin
@@ -125,6 +126,7 @@
             // 
             // button3
             // 
+            this.button3.BackColor = System.Drawing.Color.Silver;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button3.Location = new System.Drawing.Point(199, 282);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
@@ -132,13 +134,14 @@
             this.button3.Size = new System.Drawing.Size(143, 46);
             this.button3.TabIndex = 19;
             this.button3.Text = "<< COFNIJ";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // FormLogowanieAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(543, 358);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label5);

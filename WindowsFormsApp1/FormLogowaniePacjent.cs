@@ -109,5 +109,10 @@ namespace WindowsFormsApp1
             formRejestracja.Show();
             this.Hide();
         }
+
+        private void FormLogowaniePacjent_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

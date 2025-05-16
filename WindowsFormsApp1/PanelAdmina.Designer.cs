@@ -42,96 +42,120 @@
             // 
             // buttonWyswierlLekarzy
             // 
-            this.buttonWyswierlLekarzy.Location = new System.Drawing.Point(12, 12);
+            this.buttonWyswierlLekarzy.BackColor = System.Drawing.Color.Silver;
+            this.buttonWyswierlLekarzy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonWyswierlLekarzy.Location = new System.Drawing.Point(16, 15);
+            this.buttonWyswierlLekarzy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonWyswierlLekarzy.Name = "buttonWyswierlLekarzy";
-            this.buttonWyswierlLekarzy.Size = new System.Drawing.Size(127, 48);
+            this.buttonWyswierlLekarzy.Size = new System.Drawing.Size(209, 59);
             this.buttonWyswierlLekarzy.TabIndex = 0;
             this.buttonWyswierlLekarzy.Text = "Wyswietl Lekarzy";
-            this.buttonWyswierlLekarzy.UseVisualStyleBackColor = true;
+            this.buttonWyswierlLekarzy.UseVisualStyleBackColor = false;
             this.buttonWyswierlLekarzy.Click += new System.EventHandler(this.buttonWyswierlLekarzy_Click);
             // 
             // buttonWyswietlPacjentow
             // 
-            this.buttonWyswietlPacjentow.Location = new System.Drawing.Point(12, 66);
+            this.buttonWyswietlPacjentow.BackColor = System.Drawing.Color.Silver;
+            this.buttonWyswietlPacjentow.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonWyswietlPacjentow.Location = new System.Drawing.Point(16, 81);
+            this.buttonWyswietlPacjentow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonWyswietlPacjentow.Name = "buttonWyswietlPacjentow";
-            this.buttonWyswietlPacjentow.Size = new System.Drawing.Size(127, 48);
+            this.buttonWyswietlPacjentow.Size = new System.Drawing.Size(209, 59);
             this.buttonWyswietlPacjentow.TabIndex = 1;
             this.buttonWyswietlPacjentow.Text = "Wyświetl Pacjentow";
-            this.buttonWyswietlPacjentow.UseVisualStyleBackColor = true;
+            this.buttonWyswietlPacjentow.UseVisualStyleBackColor = false;
             this.buttonWyswietlPacjentow.Click += new System.EventHandler(this.buttonWyswietlPacjentow_Click);
             // 
             // buttonNadajUprawienia
             // 
-            this.buttonNadajUprawienia.Location = new System.Drawing.Point(12, 120);
+            this.buttonNadajUprawienia.BackColor = System.Drawing.Color.Silver;
+            this.buttonNadajUprawienia.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonNadajUprawienia.Location = new System.Drawing.Point(16, 148);
+            this.buttonNadajUprawienia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonNadajUprawienia.Name = "buttonNadajUprawienia";
-            this.buttonNadajUprawienia.Size = new System.Drawing.Size(127, 48);
+            this.buttonNadajUprawienia.Size = new System.Drawing.Size(209, 59);
             this.buttonNadajUprawienia.TabIndex = 2;
             this.buttonNadajUprawienia.Text = "Nadaj Uprawnienia";
-            this.buttonNadajUprawienia.UseVisualStyleBackColor = true;
+            this.buttonNadajUprawienia.UseVisualStyleBackColor = false;
             this.buttonNadajUprawienia.Click += new System.EventHandler(this.buttonNadajUprawienia_Click);
             // 
             // buttonZabierzUprawnienia
             // 
-            this.buttonZabierzUprawnienia.Location = new System.Drawing.Point(12, 174);
+            this.buttonZabierzUprawnienia.BackColor = System.Drawing.Color.Silver;
+            this.buttonZabierzUprawnienia.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonZabierzUprawnienia.Location = new System.Drawing.Point(16, 214);
+            this.buttonZabierzUprawnienia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonZabierzUprawnienia.Name = "buttonZabierzUprawnienia";
-            this.buttonZabierzUprawnienia.Size = new System.Drawing.Size(127, 48);
+            this.buttonZabierzUprawnienia.Size = new System.Drawing.Size(209, 59);
             this.buttonZabierzUprawnienia.TabIndex = 3;
             this.buttonZabierzUprawnienia.Text = "Zabierz Uprawnienia";
-            this.buttonZabierzUprawnienia.UseVisualStyleBackColor = true;
+            this.buttonZabierzUprawnienia.UseVisualStyleBackColor = false;
             this.buttonZabierzUprawnienia.Click += new System.EventHandler(this.buttonZabierzUprawnienia_Click);
             // 
             // buttonUsunRekordy
             // 
-            this.buttonUsunRekordy.Location = new System.Drawing.Point(12, 228);
+            this.buttonUsunRekordy.BackColor = System.Drawing.Color.Silver;
+            this.buttonUsunRekordy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonUsunRekordy.Location = new System.Drawing.Point(16, 281);
+            this.buttonUsunRekordy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonUsunRekordy.Name = "buttonUsunRekordy";
-            this.buttonUsunRekordy.Size = new System.Drawing.Size(127, 48);
+            this.buttonUsunRekordy.Size = new System.Drawing.Size(209, 59);
             this.buttonUsunRekordy.TabIndex = 4;
             this.buttonUsunRekordy.Text = "Usun Uzytkownika";
-            this.buttonUsunRekordy.UseVisualStyleBackColor = true;
+            this.buttonUsunRekordy.UseVisualStyleBackColor = false;
             this.buttonUsunRekordy.Click += new System.EventHandler(this.buttonUsunRekordy_Click);
             // 
             // buttonUsunWszystko
             // 
+            this.buttonUsunWszystko.BackColor = System.Drawing.Color.Silver;
+            this.buttonUsunWszystko.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonUsunWszystko.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonUsunWszystko.Location = new System.Drawing.Point(12, 347);
+            this.buttonUsunWszystko.Location = new System.Drawing.Point(16, 427);
+            this.buttonUsunWszystko.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonUsunWszystko.Name = "buttonUsunWszystko";
-            this.buttonUsunWszystko.Size = new System.Drawing.Size(127, 48);
+            this.buttonUsunWszystko.Size = new System.Drawing.Size(209, 59);
             this.buttonUsunWszystko.TabIndex = 7;
             this.buttonUsunWszystko.Text = "Usun wszystko z bazy";
-            this.buttonUsunWszystko.UseVisualStyleBackColor = true;
+            this.buttonUsunWszystko.UseVisualStyleBackColor = false;
             this.buttonUsunWszystko.Click += new System.EventHandler(this.buttonUsunWszystko_Click);
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(152, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(252, 13);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(409, 405);
+            this.dataGridView1.Size = new System.Drawing.Size(545, 498);
             this.dataGridView1.TabIndex = 14;
             // 
             // WylogujAdmin
             // 
-            this.WylogujAdmin.Location = new System.Drawing.Point(720, 12);
+            this.WylogujAdmin.BackColor = System.Drawing.Color.Silver;
+            this.WylogujAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.WylogujAdmin.Location = new System.Drawing.Point(889, 13);
+            this.WylogujAdmin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.WylogujAdmin.Name = "WylogujAdmin";
-            this.WylogujAdmin.Size = new System.Drawing.Size(111, 31);
+            this.WylogujAdmin.Size = new System.Drawing.Size(178, 61);
             this.WylogujAdmin.TabIndex = 15;
             this.WylogujAdmin.Text = "Wyloguj";
-            this.WylogujAdmin.UseVisualStyleBackColor = true;
+            this.WylogujAdmin.UseVisualStyleBackColor = false;
             this.WylogujAdmin.Click += new System.EventHandler(this.WylogujAdmin_Click);
             // 
             // textBoxSpecjalizacjaUprawnienia
             // 
-            this.textBoxSpecjalizacjaUprawnienia.Location = new System.Drawing.Point(490, 432);
+            this.textBoxSpecjalizacjaUprawnienia.Location = new System.Drawing.Point(653, 532);
+            this.textBoxSpecjalizacjaUprawnienia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxSpecjalizacjaUprawnienia.Name = "textBoxSpecjalizacjaUprawnienia";
-            this.textBoxSpecjalizacjaUprawnienia.Size = new System.Drawing.Size(160, 20);
+            this.textBoxSpecjalizacjaUprawnienia.Size = new System.Drawing.Size(212, 22);
             this.textBoxSpecjalizacjaUprawnienia.TabIndex = 32;
             // 
             // PanelAdmina
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(843, 482);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(1092, 593);
             this.Controls.Add(this.textBoxSpecjalizacjaUprawnienia);
             this.Controls.Add(this.WylogujAdmin);
             this.Controls.Add(this.dataGridView1);
@@ -141,6 +165,7 @@
             this.Controls.Add(this.buttonNadajUprawienia);
             this.Controls.Add(this.buttonWyswietlPacjentow);
             this.Controls.Add(this.buttonWyswierlLekarzy);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "PanelAdmina";
             this.Text = "PanelAdmina";
             this.Load += new System.EventHandler(this.PanelAdmina_Load);

@@ -57,7 +57,7 @@
             // textBoxEmail
             // 
             this.textBoxEmail.Location = new System.Drawing.Point(189, 178);
-            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(132, 22);
             this.textBoxEmail.TabIndex = 0;
@@ -65,7 +65,7 @@
             // textBoxNazwisko
             // 
             this.textBoxNazwisko.Location = new System.Drawing.Point(189, 139);
-            this.textBoxNazwisko.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxNazwisko.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxNazwisko.Name = "textBoxNazwisko";
             this.textBoxNazwisko.Size = new System.Drawing.Size(132, 22);
             this.textBoxNazwisko.TabIndex = 1;
@@ -73,7 +73,7 @@
             // textBoxHaslo
             // 
             this.textBoxHaslo.Location = new System.Drawing.Point(189, 218);
-            this.textBoxHaslo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxHaslo.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxHaslo.Name = "textBoxHaslo";
             this.textBoxHaslo.Size = new System.Drawing.Size(132, 22);
             this.textBoxHaslo.TabIndex = 2;
@@ -81,7 +81,7 @@
             // textBoxTelefon
             // 
             this.textBoxTelefon.Location = new System.Drawing.Point(189, 264);
-            this.textBoxTelefon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxTelefon.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxTelefon.Name = "textBoxTelefon";
             this.textBoxTelefon.Size = new System.Drawing.Size(132, 22);
             this.textBoxTelefon.TabIndex = 3;
@@ -89,7 +89,7 @@
             // textBoxImie
             // 
             this.textBoxImie.Location = new System.Drawing.Point(189, 98);
-            this.textBoxImie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxImie.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxImie.Name = "textBoxImie";
             this.textBoxImie.Size = new System.Drawing.Size(132, 22);
             this.textBoxImie.TabIndex = 4;
@@ -152,32 +152,34 @@
             // 
             // buttonLogowanie
             // 
+            this.buttonLogowanie.BackColor = System.Drawing.Color.Silver;
             this.buttonLogowanie.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonLogowanie.Location = new System.Drawing.Point(445, 87);
-            this.buttonLogowanie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonLogowanie.Location = new System.Drawing.Point(445, 104);
+            this.buttonLogowanie.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLogowanie.Name = "buttonLogowanie";
             this.buttonLogowanie.Size = new System.Drawing.Size(160, 39);
             this.buttonLogowanie.TabIndex = 10;
             this.buttonLogowanie.Text = "Zaloguj";
-            this.buttonLogowanie.UseVisualStyleBackColor = true;
+            this.buttonLogowanie.UseVisualStyleBackColor = false;
             this.buttonLogowanie.Click += new System.EventHandler(this.buttonLogowanie_Click);
             // 
             // buttonRejestruj
             // 
+            this.buttonRejestruj.BackColor = System.Drawing.Color.Silver;
             this.buttonRejestruj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonRejestruj.Location = new System.Drawing.Point(280, 549);
-            this.buttonRejestruj.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonRejestruj.Location = new System.Drawing.Point(287, 535);
+            this.buttonRejestruj.Margin = new System.Windows.Forms.Padding(4);
             this.buttonRejestruj.Name = "buttonRejestruj";
             this.buttonRejestruj.Size = new System.Drawing.Size(139, 40);
             this.buttonRejestruj.TabIndex = 12;
             this.buttonRejestruj.Text = "OK";
-            this.buttonRejestruj.UseVisualStyleBackColor = true;
+            this.buttonRejestruj.UseVisualStyleBackColor = false;
             this.buttonRejestruj.Click += new System.EventHandler(this.buttonRejestruj_Click_1);
             // 
             // textBoxPesel
             // 
             this.textBoxPesel.Location = new System.Drawing.Point(189, 304);
-            this.textBoxPesel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxPesel.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxPesel.Name = "textBoxPesel";
             this.textBoxPesel.Size = new System.Drawing.Size(132, 22);
             this.textBoxPesel.TabIndex = 13;
@@ -196,7 +198,7 @@
             // dtp_DataUrodzenia
             // 
             this.dtp_DataUrodzenia.Location = new System.Drawing.Point(235, 478);
-            this.dtp_DataUrodzenia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtp_DataUrodzenia.Margin = new System.Windows.Forms.Padding(4);
             this.dtp_DataUrodzenia.Name = "dtp_DataUrodzenia";
             this.dtp_DataUrodzenia.Size = new System.Drawing.Size(252, 22);
             this.dtp_DataUrodzenia.TabIndex = 15;
@@ -216,7 +218,7 @@
             // 
             this.comboBoxRola.FormattingEnabled = true;
             this.comboBoxRola.Location = new System.Drawing.Point(445, 168);
-            this.comboBoxRola.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxRola.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxRola.Name = "comboBoxRola";
             this.comboBoxRola.Size = new System.Drawing.Size(160, 24);
             this.comboBoxRola.TabIndex = 17;
@@ -257,7 +259,7 @@
             // textBoxAdres
             // 
             this.textBoxAdres.Location = new System.Drawing.Point(189, 344);
-            this.textBoxAdres.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxAdres.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxAdres.Name = "textBoxAdres";
             this.textBoxAdres.Size = new System.Drawing.Size(132, 22);
             this.textBoxAdres.TabIndex = 21;
@@ -265,7 +267,7 @@
             // textBoxMiasto
             // 
             this.textBoxMiasto.Location = new System.Drawing.Point(189, 383);
-            this.textBoxMiasto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxMiasto.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxMiasto.Name = "textBoxMiasto";
             this.textBoxMiasto.Size = new System.Drawing.Size(132, 22);
             this.textBoxMiasto.TabIndex = 22;
@@ -273,7 +275,7 @@
             // textBoxKodPocztowy
             // 
             this.textBoxKodPocztowy.Location = new System.Drawing.Point(189, 424);
-            this.textBoxKodPocztowy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxKodPocztowy.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxKodPocztowy.Name = "textBoxKodPocztowy";
             this.textBoxKodPocztowy.Size = new System.Drawing.Size(132, 22);
             this.textBoxKodPocztowy.TabIndex = 23;
@@ -283,7 +285,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(137, 9);
+            this.label8.Location = new System.Drawing.Point(162, 9);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(377, 64);
             this.label8.TabIndex = 24;
@@ -293,6 +295,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(670, 602);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.textBoxKodPocztowy);
@@ -320,7 +323,7 @@
             this.Controls.Add(this.textBoxEmail);
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormRejestracja";
             this.Text = "FormRejestracja";
             this.Load += new System.EventHandler(this.FormRejestracja_Load);
