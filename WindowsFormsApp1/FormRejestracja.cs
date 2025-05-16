@@ -85,5 +85,10 @@ namespace WindowsFormsApp1.Forms
         {
 
         }
+
+        private void FormRejestracja_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

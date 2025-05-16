@@ -165,7 +165,7 @@
             // buttonRejestruj
             // 
             this.buttonRejestruj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonRejestruj.Location = new System.Drawing.Point(266, 521);
+            this.buttonRejestruj.Location = new System.Drawing.Point(280, 549);
             this.buttonRejestruj.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonRejestruj.Name = "buttonRejestruj";
             this.buttonRejestruj.Size = new System.Drawing.Size(139, 40);
@@ -318,9 +318,12 @@
             this.Controls.Add(this.textBoxHaslo);
             this.Controls.Add(this.textBoxNazwisko);
             this.Controls.Add(this.textBoxEmail);
+            this.ForeColor = System.Drawing.Color.Black;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormRejestracja";
             this.Text = "FormRejestracja";
+            this.Load += new System.EventHandler(this.FormRejestracja_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
