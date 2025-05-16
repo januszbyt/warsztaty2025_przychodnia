@@ -529,7 +529,17 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void tabPage2_Click(object sender, EventArgs e)
+        private int? PobierzWizytaId()
+        {
+            if (dataGridViewHistoria.SelectedRows.Count > 0)
+            {
+                return Convert.ToInt32(dataGridViewHistoria.SelectedRows[0].Cells["Id"].Value);
+            }
+            MessageBox.Show("Zaznacz wizytę z listy.");
+            return null;
+            }
+
+            private void tabPage2_Click(object sender, EventArgs e)
         {
 
         }
@@ -538,6 +548,43 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewHistoria.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Zaznacz wizytę z listy.");
+                return;
+            }
+
+            int wizytaId = Convert.ToInt32(dataGridViewHistoria.SelectedRows[0].Cells["Id"].Value);
+            var skierowania = _dbHelper.PobierzSkierowaniaDlaWizyty(wizytaId);
+
+            if (skierowania.Count == 0)
+                MessageBox.Show("Brak skierowań dla tej wizyty.");
+            else
+                MessageBox.Show(string.Join("\n\n", skierowania), "Skierowania");
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            {
+                if (dataGridViewHistoria.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Zaznacz wizytę z listy.");
+                    return;
+                }
+
+                int wizytaId = Convert.ToInt32(dataGridViewHistoria.SelectedRows[0].Cells["Id"].Value);
+                var recepty = _dbHelper.PobierzReceptyDlaWizyty(wizytaId);
+
+                if (recepty.Count == 0)
+                    MessageBox.Show("Brak recept dla tej wizyty.");
+                else
+                    MessageBox.Show(string.Join("\n\n", recepty), "Recepty");
+            };
+        }
     }
-}
+  }
+
    

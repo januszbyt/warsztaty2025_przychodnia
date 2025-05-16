@@ -1507,6 +1507,7 @@ namespace WindowsFormsApp1.Data
             }
         }
 
+    
 
         public DataTable PobierzWizytyDlaLekarza(int lekarzId, DateTime data)
         {
@@ -1522,6 +1523,51 @@ namespace WindowsFormsApp1.Data
                 adapter.Fill(dt);
             }
             return dt;
+        }
+
+        public List<string> PobierzSkierowaniaDlaWizyty(int wizytaId)
+        {
+            var wynik = new List<string>();
+            using (var conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT Typ, Cel, Uwagi FROM skierowania WHERE WizytaId = @id";
+                cmd.Parameters.AddWithValue("@id", wizytaId);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string linia = $"Typ: {reader["Typ"]}, Cel: {reader["Cel"]}, Uwagi: {reader["Uwagi"]}";
+                        wynik.Add(linia);
+                    }
+                }
+            }
+            return wynik;
+        }
+
+
+        public List<string> PobierzReceptyDlaWizyty(int wizytaId)
+        {
+            var wynik = new List<string>();
+            using (var conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT KodRecepty, Leki, Uwagi FROM recepty WHERE WizytaId = @id";
+                cmd.Parameters.AddWithValue("@id", wizytaId);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string linia = $"Kod: {reader["KodRecepty"]}, Leki: {reader["Leki"]}, Uwagi: {reader["Uwagi"]}";
+                        wynik.Add(linia);
+                    }
+                }
+            }
+            return wynik;
         }
 
 
