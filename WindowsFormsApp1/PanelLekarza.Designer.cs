@@ -95,9 +95,12 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.button8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPageUstawienia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabPagePowiadomienia.SuspendLayout();
             this.tabPageEdycjaWizyty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPacjenci)).BeginInit();
             this.tabPagePacjenci.SuspendLayout();
@@ -105,6 +108,7 @@
             this.tabPageWizyty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWizyty)).BeginInit();
             this.tabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -478,6 +482,8 @@
             // 
             // tabPagePowiadomienia
             // 
+            this.tabPagePowiadomienia.Controls.Add(this.button8);
+            this.tabPagePowiadomienia.Controls.Add(this.dataGridView3);
             this.tabPagePowiadomienia.Location = new System.Drawing.Point(4, 25);
             this.tabPagePowiadomienia.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPagePowiadomienia.Name = "tabPagePowiadomienia";
@@ -852,6 +858,28 @@
             this.button7.Text = "Anuluj Wizytę ";
             this.button7.UseVisualStyleBackColor = false;
             // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(30, 66);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowHeadersWidth = 51;
+            this.dataGridView3.RowTemplate.Height = 24;
+            this.dataGridView3.Size = new System.Drawing.Size(827, 401);
+            this.dataGridView3.TabIndex = 0;
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button8.Location = new System.Drawing.Point(30, 507);
+            this.button8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(204, 62);
+            this.button8.TabIndex = 20;
+            this.button8.Text = "Wyślij Powiadomienie";
+            this.button8.UseVisualStyleBackColor = false;
+            // 
             // PanelLekarza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -866,6 +894,7 @@
             this.tabPageUstawienia.ResumeLayout(false);
             this.tabPageUstawienia.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabPagePowiadomienia.ResumeLayout(false);
             this.tabPageEdycjaWizyty.ResumeLayout(false);
             this.tabPageEdycjaWizyty.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPacjenci)).EndInit();
@@ -875,6 +904,7 @@
             this.tabPageWizyty.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWizyty)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -946,5 +976,7 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.DataGridView dataGridView3;
     }
 }
