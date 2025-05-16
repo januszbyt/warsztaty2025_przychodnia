@@ -533,6 +533,11 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void label22_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
    

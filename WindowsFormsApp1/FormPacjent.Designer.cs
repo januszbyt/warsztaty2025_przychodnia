@@ -102,7 +102,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(1855, 15);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(111, 33);
             this.button1.TabIndex = 1;
@@ -142,9 +142,9 @@
             this.tabPageDanePacjenta.Controls.Add(this.pictureBox1);
             this.errorProvider.SetIconAlignment(this.tabPageDanePacjenta, System.Windows.Forms.ErrorIconAlignment.BottomLeft);
             this.tabPageDanePacjenta.Location = new System.Drawing.Point(4, 25);
-            this.tabPageDanePacjenta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageDanePacjenta.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageDanePacjenta.Name = "tabPageDanePacjenta";
-            this.tabPageDanePacjenta.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageDanePacjenta.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageDanePacjenta.Size = new System.Drawing.Size(1957, 983);
             this.tabPageDanePacjenta.TabIndex = 0;
             this.tabPageDanePacjenta.Text = "Dane Pacjenta";
@@ -153,7 +153,7 @@
             // 
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button5.Location = new System.Drawing.Point(303, 418);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(219, 49);
             this.button5.TabIndex = 28;
@@ -193,7 +193,7 @@
             // 
             this.buttonZmienDane.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonZmienDane.Location = new System.Drawing.Point(43, 418);
-            this.buttonZmienDane.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonZmienDane.Margin = new System.Windows.Forms.Padding(4);
             this.buttonZmienDane.Name = "buttonZmienDane";
             this.buttonZmienDane.Size = new System.Drawing.Size(219, 49);
             this.buttonZmienDane.TabIndex = 24;
@@ -261,7 +261,7 @@
             this.checkBoxAktywny.AutoSize = true;
             this.checkBoxAktywny.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.checkBoxAktywny.Location = new System.Drawing.Point(445, 30);
-            this.checkBoxAktywny.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxAktywny.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxAktywny.Name = "checkBoxAktywny";
             this.checkBoxAktywny.Size = new System.Drawing.Size(135, 24);
             this.checkBoxAktywny.TabIndex = 17;
@@ -271,7 +271,7 @@
             // textBoxEmail
             // 
             this.textBoxEmail.Location = new System.Drawing.Point(157, 261);
-            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(241, 22);
             this.textBoxEmail.TabIndex = 16;
@@ -280,7 +280,7 @@
             // 
             this.textBoxKodPocztowy.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.textBoxKodPocztowy.Location = new System.Drawing.Point(157, 230);
-            this.textBoxKodPocztowy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxKodPocztowy.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxKodPocztowy.Name = "textBoxKodPocztowy";
             this.textBoxKodPocztowy.Size = new System.Drawing.Size(241, 22);
             this.textBoxKodPocztowy.TabIndex = 15;
@@ -288,7 +288,7 @@
             // textBoxMiasto
             // 
             this.textBoxMiasto.Location = new System.Drawing.Point(157, 199);
-            this.textBoxMiasto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxMiasto.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxMiasto.Name = "textBoxMiasto";
             this.textBoxMiasto.Size = new System.Drawing.Size(241, 22);
             this.textBoxMiasto.TabIndex = 14;
@@ -296,7 +296,7 @@
             // textBoxTelefon
             // 
             this.textBoxTelefon.Location = new System.Drawing.Point(157, 167);
-            this.textBoxTelefon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxTelefon.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxTelefon.Name = "textBoxTelefon";
             this.textBoxTelefon.Size = new System.Drawing.Size(241, 22);
             this.textBoxTelefon.TabIndex = 13;
@@ -304,7 +304,7 @@
             // textBoxPesel
             // 
             this.textBoxPesel.Location = new System.Drawing.Point(157, 133);
-            this.textBoxPesel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxPesel.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxPesel.Name = "textBoxPesel";
             this.textBoxPesel.Size = new System.Drawing.Size(241, 22);
             this.textBoxPesel.TabIndex = 6;
@@ -312,7 +312,7 @@
             // textBoxAdres
             // 
             this.textBoxAdres.Location = new System.Drawing.Point(157, 101);
-            this.textBoxAdres.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxAdres.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxAdres.Name = "textBoxAdres";
             this.textBoxAdres.Size = new System.Drawing.Size(241, 22);
             this.textBoxAdres.TabIndex = 2;
@@ -320,7 +320,7 @@
             // textBoxNazwisko
             // 
             this.textBoxNazwisko.Location = new System.Drawing.Point(157, 69);
-            this.textBoxNazwisko.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxNazwisko.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxNazwisko.Name = "textBoxNazwisko";
             this.textBoxNazwisko.Size = new System.Drawing.Size(241, 22);
             this.textBoxNazwisko.TabIndex = 1;
@@ -329,7 +329,7 @@
             // textBoxImie
             // 
             this.textBoxImie.Location = new System.Drawing.Point(157, 36);
-            this.textBoxImie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxImie.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxImie.Name = "textBoxImie";
             this.textBoxImie.Size = new System.Drawing.Size(241, 22);
             this.textBoxImie.TabIndex = 0;
@@ -383,7 +383,7 @@
             // 
             this.pictureBox1.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.imagebadge;
             this.pictureBox1.Location = new System.Drawing.Point(544, 90);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(368, 204);
             this.pictureBox1.TabIndex = 8;
@@ -398,7 +398,7 @@
             this.tabControlPanelLekarza.Cursor = System.Windows.Forms.Cursors.Hand;
             this.errorProvider.SetIconAlignment(this.tabControlPanelLekarza, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
             this.tabControlPanelLekarza.Location = new System.Drawing.Point(16, 15);
-            this.tabControlPanelLekarza.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControlPanelLekarza.Margin = new System.Windows.Forms.Padding(4);
             this.tabControlPanelLekarza.Name = "tabControlPanelLekarza";
             this.tabControlPanelLekarza.SelectedIndex = 0;
             this.tabControlPanelLekarza.Size = new System.Drawing.Size(1965, 1012);
@@ -415,9 +415,9 @@
             this.tabPageWizyty.Controls.Add(this.dataGridViewLekarze);
             this.tabPageWizyty.Controls.Add(this.buttonDodajWizyte);
             this.tabPageWizyty.Location = new System.Drawing.Point(4, 25);
-            this.tabPageWizyty.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageWizyty.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageWizyty.Name = "tabPageWizyty";
-            this.tabPageWizyty.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageWizyty.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageWizyty.Size = new System.Drawing.Size(1957, 983);
             this.tabPageWizyty.TabIndex = 6;
             this.tabPageWizyty.Text = "Wizyty";
@@ -426,20 +426,21 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label22.Location = new System.Drawing.Point(841, 71);
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label22.Location = new System.Drawing.Point(586, 48);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(71, 20);
+            this.label22.Size = new System.Drawing.Size(112, 32);
             this.label22.TabIndex = 32;
             this.label22.Text = "Wizyty:";
+            this.label22.Click += new System.EventHandler(this.label22_Click);
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label21.Location = new System.Drawing.Point(73, 71);
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label21.Location = new System.Drawing.Point(25, 48);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(82, 20);
+            this.label21.Size = new System.Drawing.Size(131, 32);
             this.label21.TabIndex = 31;
             this.label21.Text = "Lekarze:";
             // 
@@ -447,7 +448,7 @@
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button2.Location = new System.Drawing.Point(303, 551);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(197, 63);
             this.button2.TabIndex = 30;
@@ -459,7 +460,7 @@
             // 
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button6.Location = new System.Drawing.Point(77, 636);
-            this.button6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(197, 62);
             this.button6.TabIndex = 29;
@@ -470,18 +471,18 @@
             // dataGridViewHistoria
             // 
             this.dataGridViewHistoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewHistoria.Location = new System.Drawing.Point(845, 95);
-            this.dataGridViewHistoria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewHistoria.Location = new System.Drawing.Point(592, 95);
+            this.dataGridViewHistoria.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewHistoria.Name = "dataGridViewHistoria";
             this.dataGridViewHistoria.RowHeadersWidth = 51;
-            this.dataGridViewHistoria.Size = new System.Drawing.Size(591, 383);
+            this.dataGridViewHistoria.Size = new System.Drawing.Size(502, 383);
             this.dataGridViewHistoria.TabIndex = 7;
             this.dataGridViewHistoria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewHistoria_CellContentClick);
             // 
             // dateTimePickerWizyta
             // 
             this.dateTimePickerWizyta.Location = new System.Drawing.Point(77, 503);
-            this.dateTimePickerWizyta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerWizyta.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerWizyta.Name = "dateTimePickerWizyta";
             this.dateTimePickerWizyta.Size = new System.Drawing.Size(265, 22);
             this.dateTimePickerWizyta.TabIndex = 5;
@@ -490,11 +491,11 @@
             // dataGridViewLekarze
             // 
             this.dataGridViewLekarze.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewLekarze.Location = new System.Drawing.Point(77, 95);
-            this.dataGridViewLekarze.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewLekarze.Location = new System.Drawing.Point(31, 95);
+            this.dataGridViewLekarze.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewLekarze.Name = "dataGridViewLekarze";
             this.dataGridViewLekarze.RowHeadersWidth = 51;
-            this.dataGridViewLekarze.Size = new System.Drawing.Size(607, 383);
+            this.dataGridViewLekarze.Size = new System.Drawing.Size(469, 383);
             this.dataGridViewLekarze.TabIndex = 4;
             this.dataGridViewLekarze.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewLekarze_CellContentClick);
             // 
@@ -502,7 +503,7 @@
             // 
             this.buttonDodajWizyte.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonDodajWizyte.Location = new System.Drawing.Point(77, 551);
-            this.buttonDodajWizyte.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDodajWizyte.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDodajWizyte.Name = "buttonDodajWizyte";
             this.buttonDodajWizyte.Size = new System.Drawing.Size(197, 63);
             this.buttonDodajWizyte.TabIndex = 3;
@@ -523,9 +524,9 @@
             this.tabPage1.Controls.Add(this.textBoxUwagiDokument);
             this.tabPage1.Controls.Add(this.comboBoxTypDokumentu);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(1957, 983);
             this.tabPage1.TabIndex = 7;
             this.tabPage1.Text = "Dokumentacja Medyczna";
@@ -565,7 +566,7 @@
             // 
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button7.Location = new System.Drawing.Point(653, 802);
-            this.button7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(219, 49);
             this.button7.TabIndex = 29;
@@ -586,7 +587,7 @@
             // 
             this.dataGridViewDocuments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDocuments.Location = new System.Drawing.Point(147, 71);
-            this.dataGridViewDocuments.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewDocuments.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewDocuments.Name = "dataGridViewDocuments";
             this.dataGridViewDocuments.RowHeadersWidth = 51;
             this.dataGridViewDocuments.Size = new System.Drawing.Size(884, 434);
@@ -596,7 +597,7 @@
             // buttonDodajDocument
             // 
             this.buttonDodajDocument.Location = new System.Drawing.Point(253, 823);
-            this.buttonDodajDocument.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDodajDocument.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDodajDocument.Name = "buttonDodajDocument";
             this.buttonDodajDocument.Size = new System.Drawing.Size(100, 28);
             this.buttonDodajDocument.TabIndex = 3;
@@ -607,7 +608,7 @@
             // buttonWybierzPlik
             // 
             this.buttonWybierzPlik.Location = new System.Drawing.Point(147, 823);
-            this.buttonWybierzPlik.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonWybierzPlik.Margin = new System.Windows.Forms.Padding(4);
             this.buttonWybierzPlik.Name = "buttonWybierzPlik";
             this.buttonWybierzPlik.Size = new System.Drawing.Size(100, 28);
             this.buttonWybierzPlik.TabIndex = 2;
@@ -617,7 +618,7 @@
             // textBoxUwagiDokument
             // 
             this.textBoxUwagiDokument.Location = new System.Drawing.Point(147, 608);
-            this.textBoxUwagiDokument.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxUwagiDokument.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxUwagiDokument.Multiline = true;
             this.textBoxUwagiDokument.Name = "textBoxUwagiDokument";
             this.textBoxUwagiDokument.Size = new System.Drawing.Size(461, 207);
@@ -627,7 +628,7 @@
             // 
             this.comboBoxTypDokumentu.FormattingEnabled = true;
             this.comboBoxTypDokumentu.Location = new System.Drawing.Point(306, 535);
-            this.comboBoxTypDokumentu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxTypDokumentu.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxTypDokumentu.Name = "comboBoxTypDokumentu";
             this.comboBoxTypDokumentu.Size = new System.Drawing.Size(160, 24);
             this.comboBoxTypDokumentu.TabIndex = 0;
@@ -656,7 +657,7 @@
             // 
             this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button9.Location = new System.Drawing.Point(77, 364);
-            this.button9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button9.Margin = new System.Windows.Forms.Padding(4);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(219, 49);
             this.button9.TabIndex = 37;
@@ -730,7 +731,7 @@
             // 
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button8.Location = new System.Drawing.Point(324, 364);
-            this.button8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(219, 49);
             this.button8.TabIndex = 29;
@@ -749,7 +750,7 @@
             this.ClientSize = new System.Drawing.Size(1924, 1026);
             this.Controls.Add(this.tabControlPanelLekarza);
             this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormPacjent";
             this.Text = "FormPacjent";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
