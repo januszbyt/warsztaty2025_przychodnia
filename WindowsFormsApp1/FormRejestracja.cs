@@ -80,5 +80,10 @@ namespace WindowsFormsApp1.Forms
             this.Hide();
             formlogowanierola.Show();
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

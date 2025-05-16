@@ -81,5 +81,10 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void FormLogowanieRola_Validated(object sender, EventArgs e)
+        {
+
+        }
     }
 }
