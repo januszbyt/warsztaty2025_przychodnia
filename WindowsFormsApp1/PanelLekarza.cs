@@ -20,7 +20,7 @@ namespace WindowsFormsApp1
         private int wybranaWizytaId = -1;
         private int wybranyPacjentId = -1;
         private int lekarzId;
-        private int wizytId;
+        private int wizytaId;
 
 
         public PanelLekarza(Lekarz lekarz, DataBaseHelper dbHelper)
@@ -40,6 +40,28 @@ namespace WindowsFormsApp1
             WczytajAktualneDaneLekarza();
             WczytajPacjentow();
 
+            InitializeWizytyPacjentDataGridView();
+
+
+
+
+
+        }
+
+        private void InitializeWizytyPacjentDataGridView()
+        {
+            dataGridViewWizytyPacjent.Columns.Clear();
+
+            dataGridViewWizytyPacjent.Columns.Add("Data", "Data");
+            dataGridViewWizytyPacjent.Columns.Add("Status", "Status");
+            dataGridViewWizytyPacjent.Columns.Add("Opis", "Opis");
+            dataGridViewWizytyPacjent.Columns.Add("Diagnoza", "Diagnoza");
+            dataGridViewWizytyPacjent.Columns.Add("Zalecenia", "Zalecenia");
+            dataGridViewWizytyPacjent.Columns.Add("Recepta", "Recepta");
+
+            dataGridViewWizytyPacjent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewWizytyPacjent.ReadOnly = true;
+            dataGridViewWizytyPacjent.AllowUserToAddRows = false;
         }
         private void WczytajPacjentow()
         {
@@ -55,7 +77,7 @@ namespace WindowsFormsApp1
 
         private DateTime PanelLekarza_GetSelectedDate()
         {
-            return dateTimePicker2.Value.Date;
+            return dateTimePickerPacjenci.Value.Date;
         }
 
         private void WczytajWizyty()
@@ -153,6 +175,9 @@ namespace WindowsFormsApp1
                 MessageBox.Show($"Błąd podczas ładowania historii: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+ 
+
 
         private void buttonWizyty_Click(object sender, EventArgs e)
         {
@@ -322,7 +347,7 @@ namespace WindowsFormsApp1
                 return;
             }
 
-            if (wizytId == -1) // TODO: wybranaWizytaId czy wizytId?
+            if (wizytaId == -1) // TODO: wybranaWizytaId czy wizytId?
             {
                 MessageBox.Show("Wybierz wizytę.");
                 return;
@@ -346,7 +371,7 @@ namespace WindowsFormsApp1
             }
 
             _dbHelper.WystawSkierowanie(
-                wizytaId: wizytId, // TODO: wybranaWizytaId czy wizytId?
+                wizytaId: wizytaId, // TODO: wybranaWizytaId czy wizytId?
                 pacjentId: pacjentId,
                 lekarzId: _lekarz.Id,
                 typ: specjalizacja,
@@ -382,10 +407,7 @@ namespace WindowsFormsApp1
             Application.Exit();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
@@ -411,7 +433,15 @@ namespace WindowsFormsApp1
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (dataGridView2.SelectedRows.Count > 0)
+            {
+                var selectedRow = dataGridView2.SelectedRows[0];
+                var pacjentId = (int)selectedRow.Cells["Id"].Value;
 
+                var wizyty = _dbHelper.PobierzWizytyPacjentaZSzczegolami(pacjentId);
+                dataGridViewWizytyPacjent.AutoGenerateColumns = true;
+                dataGridViewWizytyPacjent.DataSource = wizyty;
+            }
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
@@ -508,6 +538,101 @@ namespace WindowsFormsApp1
 
             if (dataGridViewWizyty.Columns["Id"] != null)
                 dataGridViewWizyty.Columns["Id"].Visible = false;
+        }
+
+        private void buttonSzukaj_Click(object sender, EventArgs e)
+        {
+            string imieNazwisko = textBoxImieNazwisko.Text.Trim();
+            if (string.IsNullOrWhiteSpace(imieNazwisko))
+            {
+                MessageBox.Show("Wpisz imię i nazwisko.");
+                return;
+            }
+
+            var pacjenci = _dbHelper.SzukajPacjentowLekarza(lekarzId, imieNazwisko);
+
+            if (pacjenci.Count == 0)
+            {
+                MessageBox.Show("Nie znaleziono pacjentów.");
+                dataGridView2.DataSource = null;
+                dataGridViewWizytyPacjent.DataSource = null;
+                return;
+            }
+
+            
+            dataGridView2.AutoGenerateColumns = true;
+            dataGridView2.DataSource = pacjenci;
+
+           
+            string[] kolumnyDoWyswietlenia = { "Imie", "Nazwisko", "DateOfBirth", "PESEL", "Miasto", "Adres", "PhoneNumber" };
+
+            foreach (DataGridViewColumn column in dataGridView2.Columns)
+            {
+                column.Visible = kolumnyDoWyswietlenia.Contains(column.Name);
+
+                
+                switch (column.Name)
+                {
+                    case "DateOfBirth":
+                        column.HeaderText = "Data urodzenia";
+                        break;
+                    case "PESEL":
+                        column.HeaderText = "PESEL";
+                        break;
+                    case "PhoneNumber":
+                        column.HeaderText = "Telefon";
+                        break;
+                }
+            }
+
+            
+            if (dataGridView2.Columns["DateOfBirth"] != null)
+            {
+                dataGridView2.Columns["DateOfBirth"].DefaultCellStyle.Format = "dd.MM.yyyy";
+            }
+
+            
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+        }
+
+        private void buttonPokazInformacje_Click(object sender, EventArgs e)
+        {
+            if (dataGridView2.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Wybierz pacjenta z listy.");
+                return;
+            }
+
+           
+            DataGridViewRow selectedRow = dataGridView2.SelectedRows[0];
+
+           
+            int pacjentId = Convert.ToInt32(selectedRow.Cells["Id"].Value);
+
+            
+            var wizyty = _dbHelper.PobierzWizytyPacjentaZSzczegolami(pacjentId);
+
+          
+            dataGridViewWizytyPacjent.Rows.Clear();
+
+            
+            foreach (var wizyta in wizyty)
+            {
+                dynamic w = wizyta; 
+
+                dataGridViewWizytyPacjent.Rows.Add(
+                    w.Data,
+                    w.Status,
+                    w.Opis,
+                    w.Diagnoza,
+                    w.Zalecenia,
+                    w.Recepta
+                );
+            }
+
+          
+          
         }
     }
 }

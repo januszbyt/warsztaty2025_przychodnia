@@ -9,6 +9,8 @@ using MySql.Data.MySqlClient;
 using System.Diagnostics;
 using System.Text;
 using Org.BouncyCastle.Bcpg;
+using Microsoft.VisualBasic.ApplicationServices;
+using System.Linq;
 
 
 
@@ -517,6 +519,91 @@ namespace WindowsFormsApp1.Data
             //}
 
             return null;
+        }
+
+
+        //Nowe dla lekarza 
+
+       
+
+        public List<Users> SzukajPacjentowLekarza(int lekarzId, string imieNazwisko)
+        {
+            var list = new List<Users>();
+
+            using (var conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                string query = @"
+                SELECT DISTINCT u.*
+                FROM users u
+                INNER JOIN wizyty w ON w.PacjentId = u.Id
+                WHERE w.LekarzId = @lekarzId
+                AND CONCAT(u.Imie, ' ', u.Nazwisko) LIKE @szukaj
+                ";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@lekarzId", lekarzId);
+                    cmd.Parameters.AddWithValue("@szukaj", $"%{imieNazwisko}%");
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            list.Add(new Users
+                            {
+                                Id = reader.GetInt32("Id"),
+                                Imie = reader.GetString("Imie"),
+                                Nazwisko = reader.GetString("Nazwisko"),
+                                Email = reader["Email"]?.ToString()
+                            });
+                        }
+                    }
+                }
+            }
+            return list;
+        }
+
+        public List<object> PobierzWizytyPacjentaZSzczegolami(int pacjentId)
+        {
+            var lista = new List<object>();
+
+            using (var conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                string query = @"
+                SELECT 
+                w.DataWizyty, w.Status, w.Opis, w.Diagnoza, w.Zalecenia,
+                r.Leki AS ReceptaLeki
+                FROM wizyty w
+                LEFT JOIN recepty r ON r.WizytaId = w.Id
+                WHERE w.PacjentId = @pacjentId";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@pacjentId", pacjentId);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            lista.Add(new
+                            {
+                                Data = reader.GetDateTime("DataWizyty").ToString("yyyy-MM-dd"),
+                                Status = reader["Status"]?.ToString(),
+                                Opis = reader["Opis"]?.ToString(),
+                                Diagnoza = reader["Diagnoza"]?.ToString(),
+                                Zalecenia = reader["Zalecenia"]?.ToString(),
+                                Recepta = reader["ReceptaLeki"]?.ToString()
+                            });
+                        }
+                    }
+                }
+            }
+
+            return lista;
         }
 
 
