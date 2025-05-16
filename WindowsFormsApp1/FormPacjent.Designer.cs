@@ -80,6 +80,7 @@
             this.textBoxUwagiDokument = new System.Windows.Forms.TextBox();
             this.comboBoxTypDokumentu = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label23 = new System.Windows.Forms.Label();
             this.button9 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -89,7 +90,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.tabPageDanePacjenta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -535,7 +535,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label18.Location = new System.Drawing.Point(106, 474);
+            this.label18.Location = new System.Drawing.Point(107, 356);
             this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(56, 17);
@@ -546,7 +546,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label17.Location = new System.Drawing.Point(106, 435);
+            this.label17.Location = new System.Drawing.Point(107, 315);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(124, 17);
@@ -567,7 +567,7 @@
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button7.Location = new System.Drawing.Point(490, 652);
+            this.button7.Location = new System.Drawing.Point(489, 356);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(164, 40);
             this.button7.TabIndex = 29;
@@ -589,13 +589,13 @@
             this.dataGridViewDocuments.Location = new System.Drawing.Point(110, 58);
             this.dataGridViewDocuments.Name = "dataGridViewDocuments";
             this.dataGridViewDocuments.RowHeadersWidth = 51;
-            this.dataGridViewDocuments.Size = new System.Drawing.Size(624, 353);
+            this.dataGridViewDocuments.Size = new System.Drawing.Size(628, 238);
             this.dataGridViewDocuments.TabIndex = 4;
             this.dataGridViewDocuments.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDocuments_CellContentClick);
             // 
             // buttonDodajDocument
             // 
-            this.buttonDodajDocument.Location = new System.Drawing.Point(190, 669);
+            this.buttonDodajDocument.Location = new System.Drawing.Point(190, 551);
             this.buttonDodajDocument.Name = "buttonDodajDocument";
             this.buttonDodajDocument.Size = new System.Drawing.Size(75, 23);
             this.buttonDodajDocument.TabIndex = 3;
@@ -605,7 +605,7 @@
             // 
             // buttonWybierzPlik
             // 
-            this.buttonWybierzPlik.Location = new System.Drawing.Point(110, 669);
+            this.buttonWybierzPlik.Location = new System.Drawing.Point(109, 551);
             this.buttonWybierzPlik.Name = "buttonWybierzPlik";
             this.buttonWybierzPlik.Size = new System.Drawing.Size(75, 23);
             this.buttonWybierzPlik.TabIndex = 2;
@@ -614,7 +614,7 @@
             // 
             // textBoxUwagiDokument
             // 
-            this.textBoxUwagiDokument.Location = new System.Drawing.Point(110, 494);
+            this.textBoxUwagiDokument.Location = new System.Drawing.Point(110, 376);
             this.textBoxUwagiDokument.Multiline = true;
             this.textBoxUwagiDokument.Name = "textBoxUwagiDokument";
             this.textBoxUwagiDokument.Size = new System.Drawing.Size(347, 169);
@@ -623,7 +623,7 @@
             // comboBoxTypDokumentu
             // 
             this.comboBoxTypDokumentu.FormattingEnabled = true;
-            this.comboBoxTypDokumentu.Location = new System.Drawing.Point(230, 435);
+            this.comboBoxTypDokumentu.Location = new System.Drawing.Point(252, 315);
             this.comboBoxTypDokumentu.Name = "comboBoxTypDokumentu";
             this.comboBoxTypDokumentu.Size = new System.Drawing.Size(121, 21);
             this.comboBoxTypDokumentu.TabIndex = 0;
@@ -648,6 +648,14 @@
             this.tabPage2.Text = "Opinie";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(70, 46);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(286, 156);
+            this.dataGridView1.TabIndex = 39;
             // 
             // label23
             // 
@@ -740,14 +748,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(70, 46);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(286, 156);
-            this.dataGridView1.TabIndex = 39;
             // 
             // FormPacjent
             // 
