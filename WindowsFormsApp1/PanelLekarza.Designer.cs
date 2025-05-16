@@ -80,7 +80,7 @@
             this.btnSkierowanie = new System.Windows.Forms.Button();
             this.btnRecepta = new System.Windows.Forms.Button();
             this.tabPagePacjenci = new System.Windows.Forms.TabPage();
-            this.dataGridViewWizytyPacjent = new System.Windows.Forms.DataGridView();
+            
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dateTimePickerPacjenci = new System.Windows.Forms.DateTimePicker();
@@ -105,7 +105,7 @@
             this.tabPageEdycjaWizyty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPacjenci)).BeginInit();
             this.tabPagePacjenci.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWizytyPacjent)).BeginInit();
+            
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabPageWizyty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWizyty)).BeginInit();
@@ -662,8 +662,7 @@
             // 
             // tabPagePacjenci
             // 
-            this.tabPagePacjenci.Controls.Add(this.buttonPokazInformacje);
-            this.tabPagePacjenci.Controls.Add(this.dataGridViewWizytyPacjent);
+           
             this.tabPagePacjenci.Controls.Add(this.label7);
             this.tabPagePacjenci.Controls.Add(this.label6);
             this.tabPagePacjenci.Controls.Add(this.dateTimePickerPacjenci);
@@ -681,15 +680,7 @@
             // 
             // dataGridViewWizytyPacjent
             // 
-            this.dataGridViewWizytyPacjent.AllowUserToOrderColumns = true;
-            this.dataGridViewWizytyPacjent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewWizytyPacjent.Location = new System.Drawing.Point(276, 205);
-            this.dataGridViewWizytyPacjent.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.dataGridViewWizytyPacjent.Name = "dataGridViewWizytyPacjent";
-            this.dataGridViewWizytyPacjent.RowHeadersWidth = 51;
-            this.dataGridViewWizytyPacjent.RowTemplate.Height = 24;
-            this.dataGridViewWizytyPacjent.Size = new System.Drawing.Size(495, 130);
-            this.dataGridViewWizytyPacjent.TabIndex = 6;
+           
             // 
             // label7
             // 
@@ -909,7 +900,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPacjenci)).EndInit();
             this.tabPagePacjenci.ResumeLayout(false);
             this.tabPagePacjenci.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWizytyPacjent)).EndInit();
+            
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabPageWizyty.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWizyty)).EndInit();

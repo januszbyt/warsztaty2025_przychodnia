@@ -50,18 +50,18 @@ namespace WindowsFormsApp1
 
         private void InitializeWizytyPacjentDataGridView()
         {
-            dataGridViewWizytyPacjent.Columns.Clear();
+            dataGridViewWizyty.Columns.Clear();
 
-            dataGridViewWizytyPacjent.Columns.Add("Data", "Data");
-            dataGridViewWizytyPacjent.Columns.Add("Status", "Status");
-            dataGridViewWizytyPacjent.Columns.Add("Opis", "Opis");
-            dataGridViewWizytyPacjent.Columns.Add("Diagnoza", "Diagnoza");
-            dataGridViewWizytyPacjent.Columns.Add("Zalecenia", "Zalecenia");
-            dataGridViewWizytyPacjent.Columns.Add("Recepta", "Recepta");
+            dataGridViewWizyty.Columns.Add("Data", "Data");
+            dataGridViewWizyty.Columns.Add("Status", "Status");
+            dataGridViewWizyty.Columns.Add("Opis", "Opis");
+            dataGridViewWizyty.Columns.Add("Diagnoza", "Diagnoza");
+            dataGridViewWizyty.Columns.Add("Zalecenia", "Zalecenia");
+            dataGridViewWizyty.Columns.Add("Recepta", "Recepta");
 
-            dataGridViewWizytyPacjent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewWizytyPacjent.ReadOnly = true;
-            dataGridViewWizytyPacjent.AllowUserToAddRows = false;
+            dataGridViewWizyty.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewWizyty.ReadOnly = true;
+            dataGridViewWizyty.AllowUserToAddRows = false;
         }
         private void WczytajPacjentow()
         {
@@ -439,8 +439,8 @@ namespace WindowsFormsApp1
                 var pacjentId = (int)selectedRow.Cells["Id"].Value;
 
                 var wizyty = _dbHelper.PobierzWizytyPacjentaZSzczegolami(pacjentId);
-                dataGridViewWizytyPacjent.AutoGenerateColumns = true;
-                dataGridViewWizytyPacjent.DataSource = wizyty;
+                dataGridViewWizyty.AutoGenerateColumns = true;
+                dataGridViewWizyty.DataSource = wizyty;
             }
         }
 
@@ -555,7 +555,7 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("Nie znaleziono pacjentów.");
                 dataGridView2.DataSource = null;
-                dataGridViewWizytyPacjent.DataSource = null;
+                dataGridViewWizyty.DataSource = null;
                 return;
             }
 
@@ -614,14 +614,14 @@ namespace WindowsFormsApp1
             var wizyty = _dbHelper.PobierzWizytyPacjentaZSzczegolami(pacjentId);
 
           
-            dataGridViewWizytyPacjent.Rows.Clear();
+            dataGridViewWizyty.Rows.Clear();
 
             
             foreach (var wizyta in wizyty)
             {
                 dynamic w = wizyta; 
 
-                dataGridViewWizytyPacjent.Rows.Add(
+                dataGridViewWizyty.Rows.Add(
                     w.Data,
                     w.Status,
                     w.Opis,
