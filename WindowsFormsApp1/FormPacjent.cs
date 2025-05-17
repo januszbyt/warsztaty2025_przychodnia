@@ -585,6 +585,10 @@ namespace WindowsFormsApp1
             MessageBox.Show("Opinia została dodana.");
         }
 
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
