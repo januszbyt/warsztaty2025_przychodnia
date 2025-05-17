@@ -1351,6 +1351,8 @@ namespace WindowsFormsApp1.Data
         }
 
 
+        
+
         public Patient PobierzDanePacjenta(int patientId)
         {
             using (var conn = new MySqlConnection(_connectionString))
