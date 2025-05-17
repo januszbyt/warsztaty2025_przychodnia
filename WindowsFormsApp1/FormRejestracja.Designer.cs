@@ -296,7 +296,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(670, 602);
+            this.ClientSize = new System.Drawing.Size(712, 681);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.textBoxKodPocztowy);
             this.Controls.Add(this.textBoxMiasto);

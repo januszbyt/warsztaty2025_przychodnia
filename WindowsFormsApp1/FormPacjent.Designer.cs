@@ -120,6 +120,7 @@
             // tabPageDanePacjenta
             // 
             this.tabPageDanePacjenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.tabPageDanePacjenta.Controls.Add(this.textBoxImie);
             this.tabPageDanePacjenta.Controls.Add(this.button5);
             this.tabPageDanePacjenta.Controls.Add(this.dateTimePicker1);
             this.tabPageDanePacjenta.Controls.Add(this.textBoxHaslo);
@@ -138,7 +139,6 @@
             this.tabPageDanePacjenta.Controls.Add(this.textBoxPesel);
             this.tabPageDanePacjenta.Controls.Add(this.textBoxAdres);
             this.tabPageDanePacjenta.Controls.Add(this.textBoxNazwisko);
-            this.tabPageDanePacjenta.Controls.Add(this.textBoxImie);
             this.tabPageDanePacjenta.Controls.Add(this.label4);
             this.tabPageDanePacjenta.Controls.Add(this.label3);
             this.tabPageDanePacjenta.Controls.Add(this.label2);
@@ -435,7 +435,7 @@
             // 
             this.button11.BackColor = System.Drawing.Color.Silver;
             this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button11.Location = new System.Drawing.Point(896, 551);
+            this.button11.Location = new System.Drawing.Point(855, 549);
             this.button11.Margin = new System.Windows.Forms.Padding(4);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(197, 63);
@@ -482,7 +482,7 @@
             // 
             this.button2.BackColor = System.Drawing.Color.Silver;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button2.Location = new System.Drawing.Point(303, 551);
+            this.button2.Location = new System.Drawing.Point(326, 549);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(197, 63);
@@ -493,14 +493,15 @@
             // 
             // button6
             // 
+            this.button6.BackColor = System.Drawing.Color.Silver;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button6.Location = new System.Drawing.Point(1170, 551);
+            this.button6.Location = new System.Drawing.Point(1192, 549);
             this.button6.Margin = new System.Windows.Forms.Padding(4);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(197, 62);
             this.button6.TabIndex = 29;
             this.button6.Text = "Wyloguj";
-            this.button6.UseVisualStyleBackColor = true;
+            this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // dataGridViewHistoria
@@ -603,7 +604,7 @@
             // 
             this.button7.BackColor = System.Drawing.Color.Silver;
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button7.Location = new System.Drawing.Point(855, 601);
+            this.button7.Location = new System.Drawing.Point(928, 53);
             this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(219, 49);
@@ -805,7 +806,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1076, 598);
+            this.ClientSize = new System.Drawing.Size(1462, 707);
             this.Controls.Add(this.tabControlPanelLekarza);
             this.Controls.Add(this.button1);
             this.Margin = new System.Windows.Forms.Padding(4);
