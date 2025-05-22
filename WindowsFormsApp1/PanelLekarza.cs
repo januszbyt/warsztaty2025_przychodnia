@@ -41,6 +41,7 @@ namespace WindowsFormsApp1
             WczytajPacjentow();
 
             InitializeWizytyPacjentDataGridView();
+            WczytajDaneLekarza();
 
 
 
@@ -634,5 +635,28 @@ namespace WindowsFormsApp1
           
           
         }
+        private void WczytajDaneLekarza()
+        {
+            var lekarz = _dbHelper.PobierzDaneLekarza(_lekarz.Id);
+            if (lekarz != null)
+            {
+                textBox3.Text = lekarz.Id.ToString();
+                textBox4.Text = lekarz.Specjalizacja;
+                textBox5.Text = lekarz.Imie;
+                textBox2.Text = lekarz.Nazwisko;
+                textBox6.Text = lekarz.Adres;
+                textBox7.Text = lekarz.Pesel;
+                textBox8.Text = lekarz.Telefon;
+                textBox9.Text = lekarz.Miasto;
+                textBox10.Text = lekarz.KodPocztowy;
+                textBox11.Text = lekarz.Email;
+                textBox12.Text = lekarz.Haslo;
+            }
+            else
+            {
+                MessageBox.Show("Nie znaleziono lekarza o podanym ID.");
+            }
+        }
     }
 }
+

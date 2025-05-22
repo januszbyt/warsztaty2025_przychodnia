@@ -623,6 +623,52 @@ namespace WindowsFormsApp1.Data
             }
         }
 
+        public Lekarz PobierzDaneLekarza(int id)
+        {
+            using (var conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                string query = @"
+            SELECT u.Id, u.Imie, u.Nazwisko, u.Adres, u.PESEL, u.PhoneNumber,
+                   u.Miasto, u.KodPocztowy, u.Email, u.Haslo,
+                   d.Specjalizacja
+            FROM Users u
+            LEFT JOIN Doctors d ON u.Id = d.UserId
+            WHERE u.Id = @Id";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Id", id);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Lekarz
+                            {
+                                Id = reader.GetInt32("Id"),
+                                Imie = reader.GetString("Imie"),
+                                Nazwisko = reader.GetString("Nazwisko"),
+                                Adres = reader.GetString("Adres"),
+                                Pesel = reader.GetString("PESEL"),
+                                Telefon = reader.GetString("PhoneNumber"),
+                                Miasto = reader.GetString("Miasto"),
+                                KodPocztowy = reader.GetString("KodPocztowy"),
+                                Email = reader.GetString("Email"),
+                                Haslo = reader.GetString("Haslo"),
+                                Specjalizacja = reader.IsDBNull(reader.GetOrdinal("Specjalizacja"))
+                                    ? ""
+                                    : reader.GetString("Specjalizacja")
+                            };
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
         public DataTable PobierzPacjentow()
         {
             var table = new DataTable();
