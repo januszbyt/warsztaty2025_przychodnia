@@ -669,6 +669,72 @@ namespace WindowsFormsApp1.Data
             return null;
         }
 
+        public bool AktualizujDaneLekarza(Lekarz lekarz)
+        {
+            using (var conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                using (var tran = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        
+                        var queryUsers = @"
+                    UPDATE Users SET
+                        Imie = @Imie,
+                        Nazwisko = @Nazwisko,
+                        Adres = @Adres,
+                        PESEL = @PESEL,
+                        PhoneNumber = @Telefon,
+                        Miasto = @Miasto,
+                        KodPocztowy = @KodPocztowy,
+                        Email = @Email,
+                        Haslo = @Haslo
+                    WHERE Id = @Id";
+
+                        using (var cmdUsers = new MySqlCommand(queryUsers, conn, tran))
+                        {
+                            cmdUsers.Parameters.AddWithValue("@Imie", lekarz.Imie);
+                            cmdUsers.Parameters.AddWithValue("@Nazwisko", lekarz.Nazwisko);
+                            cmdUsers.Parameters.AddWithValue("@Adres", lekarz.Adres);
+                            cmdUsers.Parameters.AddWithValue("@PESEL", lekarz.Pesel);
+                            cmdUsers.Parameters.AddWithValue("@Telefon", lekarz.Telefon);
+                            cmdUsers.Parameters.AddWithValue("@Miasto", lekarz.Miasto);
+                            cmdUsers.Parameters.AddWithValue("@KodPocztowy", lekarz.KodPocztowy);
+                            cmdUsers.Parameters.AddWithValue("@Email", lekarz.Email);
+                            cmdUsers.Parameters.AddWithValue("@Haslo", lekarz.Haslo);
+                            cmdUsers.Parameters.AddWithValue("@Id", lekarz.Id);
+
+                            cmdUsers.ExecuteNonQuery();
+                        }
+
+
+                        var queryDoctors = @"
+                          UPDATE Doctors
+                          SET Specjalizacja = @Specjalizacja
+                          WHERE UserId = @UserId";
+
+                        using (var cmdDoctors = new MySqlCommand(queryDoctors, conn, tran))
+                        {
+                            cmdDoctors.Parameters.AddWithValue("@UserId", lekarz.Id);
+                            cmdDoctors.Parameters.AddWithValue("@Specjalizacja", lekarz.Specjalizacja);
+                            cmdDoctors.ExecuteNonQuery();
+                        }
+
+                        tran.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        tran.Rollback();
+                        MessageBox.Show("Błąd podczas aktualizacji: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
 
 
         public DataTable PobierzPacjentow()

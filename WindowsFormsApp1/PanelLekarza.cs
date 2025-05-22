@@ -459,7 +459,26 @@ namespace WindowsFormsApp1
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
+            var lekarz = new Lekarz
+            {
+                Id = int.Parse(textBox3.Text),
+                Specjalizacja = textBox4.Text,
+                Imie = textBox5.Text,
+                Nazwisko = textBox2.Text,
+                Adres = textBox6.Text,
+                Pesel = textBox7.Text,
+                Telefon = textBox8.Text,
+                Miasto = textBox9.Text,
+                KodPocztowy = textBox10.Text,
+                Email = textBox11.Text,
+                Haslo = textBox12.Text
+            };
+
+            bool sukces = _dbHelper.AktualizujDaneLekarza(lekarz);
+            if (sukces)
+            {
+                MessageBox.Show("Dane lekarza zostały zaktualizowane.");
+            }
         }
 
         private void button5_Click_1(object sender, EventArgs e)
