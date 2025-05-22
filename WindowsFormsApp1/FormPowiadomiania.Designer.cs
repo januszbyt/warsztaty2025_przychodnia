@@ -1,9 +1,8 @@
 ﻿using System.Windows.Forms;
-using System;
 
 namespace WindowsFormsApp1
 {
-    partial class FormPowiadomiania
+    partial class FormPowiadomienia
     {
         /// <summary>
         /// Required designer variable.
@@ -31,6 +30,14 @@ namespace WindowsFormsApp1
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Text = "FormPowiadomienia";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
+            // Kontrolki dla ustawień SMTP
             this.lblSmtpHost = new System.Windows.Forms.Label();
             this.txtSmtpHost = new System.Windows.Forms.TextBox();
             this.lblSmtpPort = new System.Windows.Forms.Label();
@@ -40,151 +47,104 @@ namespace WindowsFormsApp1
             this.lblSmtpPassword = new System.Windows.Forms.Label();
             this.txtSmtpPassword = new System.Windows.Forms.TextBox();
             this.btnUpdateSmtp = new System.Windows.Forms.Button();
+
+            // Wybór rodzaju powiadomienia
             this.lblNotificationType = new System.Windows.Forms.Label();
             this.cbNotificationType = new System.Windows.Forms.ComboBox();
+
+            // DataGridView dla rekordów
             this.dgvData = new System.Windows.Forms.DataGridView();
+
+            // Przycisk do wysyłania powiadomień
             this.btnSendNotifications = new System.Windows.Forms.Button();
+
+            // Logi
             this.txtLog = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // lblSmtpHost
-            // 
+
+            // Ustawienia kontrolek
             this.lblSmtpHost.AutoSize = true;
             this.lblSmtpHost.Location = new System.Drawing.Point(10, 10);
             this.lblSmtpHost.Name = "lblSmtpHost";
-            this.lblSmtpHost.Size = new System.Drawing.Size(93, 16);
-            this.lblSmtpHost.TabIndex = 0;
             this.lblSmtpHost.Text = "Serwer SMTP:";
-            // 
-            // txtSmtpHost
-            // 
-            this.txtSmtpHost.Location = new System.Drawing.Point(137, 12);
+
+            this.txtSmtpHost.Location = new System.Drawing.Point(100, 10);
             this.txtSmtpHost.Name = "txtSmtpHost";
-            this.txtSmtpHost.Size = new System.Drawing.Size(200, 22);
-            this.txtSmtpHost.TabIndex = 1;
-            // 
-            // lblSmtpPort
-            // 
+            this.txtSmtpHost.Size = new System.Drawing.Size(200, 20);
+            this.txtSmtpHost.Text = "";
+
             this.lblSmtpPort.AutoSize = true;
             this.lblSmtpPort.Location = new System.Drawing.Point(10, 40);
             this.lblSmtpPort.Name = "lblSmtpPort";
-            this.lblSmtpPort.Size = new System.Drawing.Size(75, 16);
-            this.lblSmtpPort.TabIndex = 2;
             this.lblSmtpPort.Text = "Port SMTP:";
-            // 
-            // txtSmtpPort
-            // 
-            this.txtSmtpPort.Location = new System.Drawing.Point(137, 42);
+
+            this.txtSmtpPort.Location = new System.Drawing.Point(100, 40);
             this.txtSmtpPort.Name = "txtSmtpPort";
-            this.txtSmtpPort.Size = new System.Drawing.Size(200, 22);
-            this.txtSmtpPort.TabIndex = 3;
-            // 
-            // lblSmtpUser
-            // 
+            this.txtSmtpPort.Size = new System.Drawing.Size(200, 20);
+            this.txtSmtpPort.Text = "";
+
             this.lblSmtpUser.AutoSize = true;
             this.lblSmtpUser.Location = new System.Drawing.Point(10, 70);
             this.lblSmtpUser.Name = "lblSmtpUser";
-            this.lblSmtpUser.Size = new System.Drawing.Size(84, 16);
-            this.lblSmtpUser.TabIndex = 4;
             this.lblSmtpUser.Text = "Login SMTP:";
-            // 
-            // txtSmtpUser
-            // 
-            this.txtSmtpUser.Location = new System.Drawing.Point(137, 72);
+
+            this.txtSmtpUser.Location = new System.Drawing.Point(100, 70);
             this.txtSmtpUser.Name = "txtSmtpUser";
-            this.txtSmtpUser.Size = new System.Drawing.Size(200, 22);
-            this.txtSmtpUser.TabIndex = 5;
-            // 
-            // lblSmtpPassword
-            // 
+            this.txtSmtpUser.Size = new System.Drawing.Size(200, 20);
+            this.txtSmtpUser.Text = "";
+
             this.lblSmtpPassword.AutoSize = true;
             this.lblSmtpPassword.Location = new System.Drawing.Point(10, 100);
             this.lblSmtpPassword.Name = "lblSmtpPassword";
-            this.lblSmtpPassword.Size = new System.Drawing.Size(90, 16);
-            this.lblSmtpPassword.TabIndex = 6;
             this.lblSmtpPassword.Text = "Hasło SMTP:";
-            // 
-            // txtSmtpPassword
-            // 
-            this.txtSmtpPassword.Location = new System.Drawing.Point(137, 102);
+
+            this.txtSmtpPassword.Location = new System.Drawing.Point(100, 100);
             this.txtSmtpPassword.Name = "txtSmtpPassword";
+            this.txtSmtpPassword.Size = new System.Drawing.Size(200, 20);
+            this.txtSmtpPassword.Text = "";
             this.txtSmtpPassword.PasswordChar = '*';
-            this.txtSmtpPassword.Size = new System.Drawing.Size(200, 22);
-            this.txtSmtpPassword.TabIndex = 7;
-            // 
-            // btnUpdateSmtp
-            // 
-            this.btnUpdateSmtp.Location = new System.Drawing.Point(365, 10);
+
+            this.btnUpdateSmtp.Location = new System.Drawing.Point(310, 10);
             this.btnUpdateSmtp.Name = "btnUpdateSmtp";
             this.btnUpdateSmtp.Size = new System.Drawing.Size(150, 50);
             this.btnUpdateSmtp.TabIndex = 0;
             this.btnUpdateSmtp.Text = "Aktualizuj ustawienia SMTP";
             this.btnUpdateSmtp.UseVisualStyleBackColor = true;
-            this.btnUpdateSmtp.Click += new System.EventHandler(this.btnUpdateSmtp_Click);
-            // 
-            // lblNotificationType
-            // 
+
             this.lblNotificationType.AutoSize = true;
             this.lblNotificationType.Location = new System.Drawing.Point(10, 130);
             this.lblNotificationType.Name = "lblNotificationType";
-            this.lblNotificationType.Size = new System.Drawing.Size(148, 16);
-            this.lblNotificationType.TabIndex = 8;
             this.lblNotificationType.Text = "Rodzaj powiadomienia:";
-            // 
-            // cbNotificationType
-            // 
-            this.cbNotificationType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbNotificationType.Items.AddRange(new object[] {
-            "wizyta",
-            "recepta",
-            "skierowanie",
-            "dokument",
-            "opinia"});
-            this.cbNotificationType.Location = new System.Drawing.Point(187, 130);
+
+            this.cbNotificationType.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.cbNotificationType.Items.AddRange(new string[] { "wizyta", "recepta", "skierowanie", "dokument", "opinia" });
+            this.cbNotificationType.Location = new System.Drawing.Point(150, 130);
             this.cbNotificationType.Name = "cbNotificationType";
-            this.cbNotificationType.Size = new System.Drawing.Size(150, 24);
-            this.cbNotificationType.TabIndex = 9;
-            this.cbNotificationType.SelectedIndexChanged += new System.EventHandler(this.cbNotificationType_SelectedIndexChanged);
-            // 
-            // dgvData
-            // 
-            this.dgvData.AllowUserToAddRows = false;
-            this.dgvData.AllowUserToDeleteRows = false;
-            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.cbNotificationType.Size = new System.Drawing.Size(150, 21);
+            this.cbNotificationType.SelectedIndex = 0;
+
             this.dgvData.Location = new System.Drawing.Point(10, 160);
             this.dgvData.Name = "dgvData";
-            this.dgvData.ReadOnly = true;
-            this.dgvData.RowHeadersWidth = 51;
             this.dgvData.Size = new System.Drawing.Size(760, 200);
-            this.dgvData.TabIndex = 10;
-            this.dgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellContentClick_1);
-            // 
-            // btnSendNotifications
-            // 
+            this.dgvData.ReadOnly = true;
+            this.dgvData.AllowUserToAddRows = false;
+            this.dgvData.AllowUserToDeleteRows = false;
+            this.dgvData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+
             this.btnSendNotifications.Location = new System.Drawing.Point(10, 370);
             this.btnSendNotifications.Name = "btnSendNotifications";
             this.btnSendNotifications.Size = new System.Drawing.Size(150, 30);
             this.btnSendNotifications.TabIndex = 1;
             this.btnSendNotifications.Text = "Wyślij powiadomienia";
             this.btnSendNotifications.UseVisualStyleBackColor = true;
-            this.btnSendNotifications.Click += new System.EventHandler(this.btnSendNotifications_Click);
-            // 
-            // txtLog
-            // 
+
             this.txtLog.Location = new System.Drawing.Point(10, 410);
-            this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
+            this.txtLog.Multiline = true;
             this.txtLog.ReadOnly = true;
-            this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtLog.ScrollBars = ScrollBars.Vertical;
             this.txtLog.Size = new System.Drawing.Size(760, 150);
-            this.txtLog.TabIndex = 11;
-            // 
-            // FormPowiadomiania
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 577);
+
+            // Dodanie kontrolek do formularza
             this.Controls.Add(this.lblSmtpHost);
             this.Controls.Add(this.txtSmtpHost);
             this.Controls.Add(this.lblSmtpPort);
@@ -199,15 +159,6 @@ namespace WindowsFormsApp1
             this.Controls.Add(this.dgvData);
             this.Controls.Add(this.btnSendNotifications);
             this.Controls.Add(this.txtLog);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "FormPowiadomiania";
-            this.Text = "FormPowiadomienia";
-            this.Load += new System.EventHandler(this.FormPowiadomiania_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
         }
 
         #endregion
@@ -226,36 +177,5 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.DataGridView dgvData;
         private System.Windows.Forms.Button btnSendNotifications;
         private System.Windows.Forms.TextBox txtLog;
-
-        private void btnUpdateSmtp_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                smtpHost = txtSmtpHost.Text.Trim();
-                smtpPort = int.Parse(txtSmtpPort.Text.Trim());
-                smtpUser = txtSmtpUser.Text.Trim();
-                smtpPassword = txtSmtpPassword.Text.Trim();
-                if (string.IsNullOrWhiteSpace(smtpHost) || smtpPort == 0 || string.IsNullOrWhiteSpace(smtpUser) || string.IsNullOrWhiteSpace(smtpPassword))
-                {
-                    LogMessage("Wszystkie pola SMTP muszą być wypełnione.");
-                    return;
-                }
-                LogMessage($"Ustawienia SMTP zaktualizowane: {smtpHost}:{smtpPort}, login: {smtpUser}");
-            }
-            catch (Exception ex)
-            {
-                LogMessage($"Błąd aktualizacji ustawień SMTP: {ex.Message}");
-            }
-        }
-
-        private void cbNotificationType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadDataGridView(cbNotificationType.SelectedItem.ToString());
-        }
-
-        private void btnSendNotifications_Click(object sender, EventArgs e)
-        {
-            SendNotifications(cbNotificationType.SelectedItem.ToString());
-        }
     }
 }
