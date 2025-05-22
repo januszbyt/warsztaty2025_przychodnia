@@ -860,9 +860,8 @@ namespace WindowsFormsApp1.Data
                 {
                     try
                     {
-
                         bool maRoleLekarza = false;
-                        var checkRoleQuery = "SELECT COUNT(*) FROM users WHERE UserId = @UserId AND TRIM(LOWER(Rola)) = 'Lekarz'";
+                        var checkRoleQuery = "SELECT COUNT(*) FROM users WHERE Id = @UserId AND TRIM(LOWER(Rola)) = 'lekarz'";
 
                         using (var checkCmd = new MySqlCommand(checkRoleQuery, connection, transaction))
                         {
@@ -872,11 +871,10 @@ namespace WindowsFormsApp1.Data
 
                         if (!maRoleLekarza)
                         {
-                            throw new Exception("Użytkownik nie ma przypisanej roli 'Lekarz'.");
+                            throw new Exception("Użytkownik nie ma przypisanej roli 'lekarz'.");
                         }
 
-
-                        var deleteDoctorQuery = "DELETE FROM Doctors WHERE UserId = @UserId";
+                        var deleteDoctorQuery = "DELETE FROM Doctors WHERE Id = @UserId";
                         int affectedRows;
                         using (var doctorCmd = new MySqlCommand(deleteDoctorQuery, connection, transaction))
                         {
@@ -886,12 +884,11 @@ namespace WindowsFormsApp1.Data
 
                         if (affectedRows == 0)
                         {
-                            throw new Exception("Użytkownik ma rolę 'Lekarz', ale nie ma powiązanego wpisu w tabeli Doctors.");
+                            throw new Exception("Użytkownik ma rolę 'lekarz', ale nie ma powiązanego wpisu w tabeli Doctors.");
                         }
 
-
-                        var deleteRoleQuery = "DELETE FROM users WHERE UserId = @UserId AND TRIM(LOWER(Rola)) = 'lekarz'";
-                        using (var roleCmd = new MySqlCommand(deleteRoleQuery, connection, transaction))
+                        var updateRoleQuery = "UPDATE users SET Rola = 'użytkownik' WHERE Id = @UserId";
+                        using (var roleCmd = new MySqlCommand(updateRoleQuery, connection, transaction))
                         {
                             roleCmd.Parameters.AddWithValue("@UserId", userId);
                             roleCmd.ExecuteNonQuery();
