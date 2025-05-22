@@ -455,44 +455,11 @@ namespace WindowsFormsApp1
 
         }
 
-        private void UpdateDetails()
-        {
-            if (_lekarz.UserId < 0)
-            {
-                MessageBox.Show("Nieprawidłowy ID użytkownika.");
-                return;
-            }
-
-            var newMail = textBox3.Text.Trim();
-            var newPass = textBox4.Text.Trim();
-
-            if (string.IsNullOrEmpty(newMail))
-            {
-                MessageBox.Show("Email nie może być pusty.");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(newPass))
-            {
-                MessageBox.Show("Hasło nie może być puste.");
-                return;
-            }
-
-            try
-            {
-                _dbHelper.ZmienEmail(_lekarz.UserId, newMail);
-                _dbHelper.ZmienHaslo(_lekarz.UserId, newPass);
-                MessageBox.Show("Dane zostały zaktualizowane.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Błąd podczas aktualizacji danych: {ex.Message}");
-            }
-        }
+        
 
         private void button3_Click(object sender, EventArgs e)
         {
-            UpdateDetails();
+            
         }
 
         private void button5_Click_1(object sender, EventArgs e)
@@ -504,7 +471,7 @@ namespace WindowsFormsApp1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            UpdateDetails();
+            
         }
 
         private void textBox7_TextChanged(object sender, EventArgs e)

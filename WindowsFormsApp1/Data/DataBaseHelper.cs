@@ -669,6 +669,8 @@ namespace WindowsFormsApp1.Data
             return null;
         }
 
+
+
         public DataTable PobierzPacjentow()
         {
             var table = new DataTable();
