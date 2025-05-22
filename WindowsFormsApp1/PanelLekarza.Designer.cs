@@ -191,6 +191,13 @@
             this.tabPageUstawienia.Controls.Add(this.textBox5);
             this.tabPageUstawienia.Controls.Add(this.textBox4);
             this.tabPageUstawienia.Controls.Add(this.textBox3);
+            this.tabPageUstawienia.Controls.Add(this.button3);
+            this.tabPageUstawienia.Controls.Add(this.buttonZmienHaslo);
+            this.tabPageUstawienia.Controls.Add(this.txtHaslo);
+            this.tabPageUstawienia.Controls.Add(this.txtEmail);
+            this.tabPageUstawienia.Controls.Add(this.pictureBox1);
+            this.tabPageUstawienia.Controls.Add(this.dateTimePicker);
+            this.tabPageUstawienia.Controls.Add(this.monthCalendar1);
             this.tabPageUstawienia.Controls.Add(this.label15);
             this.tabPageUstawienia.Controls.Add(this.label14);
             this.tabPageUstawienia.Controls.Add(this.label13);
@@ -198,14 +205,7 @@
             this.tabPageUstawienia.Controls.Add(this.label11);
             this.tabPageUstawienia.Controls.Add(this.label3);
             this.tabPageUstawienia.Controls.Add(this.label10);
-            this.tabPageUstawienia.Controls.Add(this.button3);
             this.tabPageUstawienia.Controls.Add(this.label4);
-            this.tabPageUstawienia.Controls.Add(this.buttonZmienHaslo);
-            this.tabPageUstawienia.Controls.Add(this.txtHaslo);
-            this.tabPageUstawienia.Controls.Add(this.txtEmail);
-            this.tabPageUstawienia.Controls.Add(this.pictureBox1);
-            this.tabPageUstawienia.Controls.Add(this.dateTimePicker);
-            this.tabPageUstawienia.Controls.Add(this.monthCalendar1);
             this.tabPageUstawienia.Controls.Add(this.labelLekarzId);
             this.tabPageUstawienia.Controls.Add(this.labelLekarzImieNazwisko);
             this.tabPageUstawienia.Controls.Add(this.labelSpecjalizacja);
@@ -466,7 +466,7 @@
             // 
             this.labelLekarzId.AutoSize = true;
             this.labelLekarzId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelLekarzId.Location = new System.Drawing.Point(85, 24);
+            this.labelLekarzId.Location = new System.Drawing.Point(75, 25);
             this.labelLekarzId.Name = "labelLekarzId";
             this.labelLekarzId.Size = new System.Drawing.Size(26, 16);
             this.labelLekarzId.TabIndex = 1;
@@ -488,7 +488,7 @@
             // 
             this.labelSpecjalizacja.AutoSize = true;
             this.labelSpecjalizacja.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelSpecjalizacja.Location = new System.Drawing.Point(19, 54);
+            this.labelSpecjalizacja.Location = new System.Drawing.Point(12, 56);
             this.labelSpecjalizacja.Name = "labelSpecjalizacja";
             this.labelSpecjalizacja.Size = new System.Drawing.Size(105, 16);
             this.labelSpecjalizacja.TabIndex = 3;
