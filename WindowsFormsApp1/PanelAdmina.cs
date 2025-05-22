@@ -16,6 +16,8 @@ namespace WindowsFormsApp1
         private int selectedUserId;
         private DataBaseHelper _dbHelper;
 
+        private bool oczekujeNaSpecjalizacje = false;
+        
         public PanelAdmina()
         {
             InitializeComponent();
@@ -29,6 +31,10 @@ namespace WindowsFormsApp1
                 MessageBox.Show($"Błąd inicjalizacji bazy: {ex.Message}");
                 this.Close();
             }
+            // Ukrycie specjalizacji
+            textBoxSpecjalizacjaUprawnienia.Visible = false;
+            label1.Visible = false;
+            textBoxSpecjalizacjaUprawnienia.Clear();
         }
 
         
@@ -37,17 +43,28 @@ namespace WindowsFormsApp1
         {
             dataGridView1.DataSource = _dbHelper.PobierzWszystkichPacjentow();
             dataGridView1.Visible = true;
+
+
+            // Ukrycie specjalizacji
+            textBoxSpecjalizacjaUprawnienia.Visible = false;
+            label1.Visible = false;
+            textBoxSpecjalizacjaUprawnienia.Clear();
         }
         
         private void buttonWyswierlLekarzy_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = _dbHelper.PobierzWszystkichLekarzy();
             dataGridView1.Visible = true;
+
+            // Ukrycie specjalizacji
+            textBoxSpecjalizacjaUprawnienia.Visible = false;
+            label1.Visible = false;
+            textBoxSpecjalizacjaUprawnienia.Clear();
         }
 
         private void buttonNadajUprawienia_Click(object sender, EventArgs e)
         {
-            
+
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Wybierz użytkownika z listy.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -58,10 +75,17 @@ namespace WindowsFormsApp1
 
             if (string.IsNullOrWhiteSpace(textBoxSpecjalizacjaUprawnienia.Text))
             {
-                MessageBox.Show("Podaj specjalizację, zanim nadasz uprawnienia.", "Brak danych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textBoxSpecjalizacjaUprawnienia.Visible = true;
+                label1.Visible = true;
                 textBoxSpecjalizacjaUprawnienia.Focus();
+                oczekujeNaSpecjalizacje = true;
+                MessageBox.Show("Podaj specjalizację, zanim nadasz uprawnienia.", "Brak danych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
+            }
+
+            if (oczekujeNaSpecjalizacje)
+            {
+                oczekujeNaSpecjalizacje = false; // reset flagi
             }
 
             string specjalizacja = textBoxSpecjalizacjaUprawnienia.Text.Trim();
@@ -73,7 +97,8 @@ namespace WindowsFormsApp1
 
                 textBoxSpecjalizacjaUprawnienia.Clear();
                 textBoxSpecjalizacjaUprawnienia.Visible = false;
-                RefreshGrid(); // odśwież listę użytkowników/lekarzy
+                label1.Visible = false;
+                RefreshGrid();
             }
             catch (Exception ex)
             {
@@ -129,7 +154,7 @@ namespace WindowsFormsApp1
                 {
                     try
                     {
-                        // Sprawdź, czy to widok lekarzy, np. po kolumnie "Specjalizacja"
+                        // Sprawdzenie, czy to widok lekarzy,  po kolumnie "Specjalizacja"
                         if (dataGridView1.Columns.Contains("Specjalizacja"))
                         {
                             _dbHelper.UsunLekarza(selectedUserId);
@@ -198,7 +223,7 @@ namespace WindowsFormsApp1
 
         private void textBoxSpecjalizacjaUprawnienia_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void label1_Click(object sender, EventArgs e)
