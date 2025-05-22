@@ -178,12 +178,6 @@
     <Compile Include="FormPowiadomiania.Designer.cs">
       <DependentUpon>FormPowiadomiania.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPowiadomienia.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormPowiadomienia.Designer.cs">
-      <DependentUpon>FormPowiadomienia.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormRejestracja.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,9 +238,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPowiadomiania.resx">
       <DependentUpon>FormPowiadomiania.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormPowiadomienia.resx">
-      <DependentUpon>FormPowiadomienia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRejestracja.resx">
       <DependentUpon>FormRejestracja.cs</DependentUpon>

@@ -158,6 +158,7 @@ namespace WindowsFormsApp1
             this.dgvData.RowHeadersWidth = 51;
             this.dgvData.Size = new System.Drawing.Size(760, 200);
             this.dgvData.TabIndex = 10;
+            this.dgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellContentClick_1);
             // 
             // btnSendNotifications
             // 
@@ -202,6 +203,7 @@ namespace WindowsFormsApp1
             this.MinimizeBox = false;
             this.Name = "FormPowiadomiania";
             this.Text = "FormPowiadomienia";
+            this.Load += new System.EventHandler(this.FormPowiadomiania_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

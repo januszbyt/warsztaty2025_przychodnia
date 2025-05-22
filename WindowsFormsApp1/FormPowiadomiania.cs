@@ -26,5 +26,15 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void dgvData_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void FormPowiadomiania_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
