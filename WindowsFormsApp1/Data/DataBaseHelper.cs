@@ -830,7 +830,7 @@ namespace WindowsFormsApp1.Data
                         }
                         else
                         {
-                            // Jeśli lekarz jest już w tabeli Doctors, możesz np. aktualizować specjalizację
+                            // Jeśli wpis lekarz jest już w tabeli doktorzy, możemy aktualizować specjalizację
                             var updateSpecjalizacjaQuery = @"UPDATE Doctors SET Specjalizacja = @Specjalizacja WHERE UserId = @UserId";
                             using (var updateCmd = new MySqlCommand(updateSpecjalizacjaQuery, connection, transaction))
                             {
