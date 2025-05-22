@@ -887,7 +887,7 @@ namespace WindowsFormsApp1.Data
                             throw new Exception("Użytkownik ma rolę 'lekarz', ale nie ma powiązanego wpisu w tabeli Doctors.");
                         }
 
-                        var updateRoleQuery = "UPDATE users SET Rola = 'użytkownik' WHERE Id = @UserId";
+                        var updateRoleQuery = "UPDATE users SET Rola = 'Pacjent' WHERE Id = @UserId";
                         using (var roleCmd = new MySqlCommand(updateRoleQuery, connection, transaction))
                         {
                             roleCmd.Parameters.AddWithValue("@UserId", userId);
