@@ -829,7 +829,7 @@ namespace WindowsFormsApp1.Data
                 {
                     try
                     {
-                        // Pobierz aktualną rolę
+                        // Pobieranie roli aktualnej
                         string currentRole = null;
                         var checkRoleQuery = @"SELECT Rola FROM Users WHERE Id = @UserId";
                         using (var checkCommand = new MySqlCommand(checkRoleQuery, connection, transaction))
@@ -838,7 +838,7 @@ namespace WindowsFormsApp1.Data
                             currentRole = checkCommand.ExecuteScalar()?.ToString();
                         }
 
-                        // Jeśli rola jest inna niż Lekarz, aktualizuj ją
+                       
                         if (currentRole != "Lekarz")
                         {
                             var updateRoleQuery = @"UPDATE Users SET Rola = 'Lekarz' WHERE Id = @UserId";
@@ -849,7 +849,7 @@ namespace WindowsFormsApp1.Data
                             }
                         }
 
-                        // Sprawdź, czy lekarz jest już w tabeli Doctors
+                        // Sprawdzamy czy lekarz jest już w tabeli Doctors
                         long lekarzCount = 0;
                         var checkDoctorQuery = @"SELECT COUNT(*) FROM Doctors WHERE UserId = @UserId";
                         using (var checkDoctorCmd = new MySqlCommand(checkDoctorQuery, connection, transaction))
@@ -882,7 +882,7 @@ namespace WindowsFormsApp1.Data
                                 }
                             }
 
-                            // Dodaj wpis do Doctors
+                            // ADD wpis do Doctors
                             var insertDoctorQuery = @"INSERT INTO Doctors (UserId, Imie, Nazwisko, Specjalizacja) 
                                               VALUES (@UserId, @Imie, @Nazwisko, @Specjalizacja)";
                             using (var insertCmd = new MySqlCommand(insertDoctorQuery, connection, transaction))
@@ -896,7 +896,7 @@ namespace WindowsFormsApp1.Data
                         }
                         else
                         {
-                            // Jeśli lekarz jest już w tabeli Doctors, możesz np. aktualizować specjalizację
+                            // Jeśli wpis lekarz jest już w tabeli doktorzy, możemy aktualizować specjalizację
                             var updateSpecjalizacjaQuery = @"UPDATE Doctors SET Specjalizacja = @Specjalizacja WHERE UserId = @UserId";
                             using (var updateCmd = new MySqlCommand(updateSpecjalizacjaQuery, connection, transaction))
                             {

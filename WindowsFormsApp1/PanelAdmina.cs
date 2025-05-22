@@ -195,5 +195,15 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void textBoxSpecjalizacjaUprawnienia_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
