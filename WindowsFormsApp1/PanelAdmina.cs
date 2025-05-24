@@ -8,6 +8,7 @@ using WindowsFormsApp1.Forms;
 using WindowsFormsApp1.Models;
 using MySql.Data.MySqlClient;
 
+
 namespace WindowsFormsApp1
 {
     public partial class PanelAdmina : Form

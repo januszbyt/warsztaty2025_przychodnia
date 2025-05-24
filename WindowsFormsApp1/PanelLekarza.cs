@@ -672,6 +672,35 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Nie znaleziono lekarza o podanym ID.");
             }
         }
+
+        private void buttonPokazInformacje_Click_1(object sender, EventArgs e)
+        {
+
+            if (dataGridView2.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Wybierz pacjenta z listy.");
+                return;
+            }
+
+            try
+            {
+                
+                DataGridViewRow selectedRow = dataGridView2.SelectedRows[0];
+                int pacjentId = Convert.ToInt32(selectedRow.Cells["Id"].Value);
+
+                
+                var wizyty = _dbHelper.PobierzWizytyPacjentaZSzczegolami(pacjentId);
+
+                
+                dataGridViewWizytyhehe.AutoGenerateColumns = true;
+                dataGridViewWizytyhehe.DataSource = null;
+                dataGridViewWizytyhehe.DataSource = wizyty;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd podczas pobierania wizyt pacjenta: " + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
 
