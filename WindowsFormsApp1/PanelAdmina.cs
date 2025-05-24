@@ -79,7 +79,8 @@ namespace WindowsFormsApp1
                 label1.Visible = true;
                 textBoxSpecjalizacjaUprawnienia.Focus();
                 oczekujeNaSpecjalizacje = true;
-                MessageBox.Show("Podaj specjalizację, zanim nadasz uprawnienia.", "Brak danych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //TEGO NIE TRZEBA CHYBA ŻE CHCECIE
+               // MessageBox.Show("Podaj specjalizację, zanim nadasz uprawnienia.", "Brak danych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
