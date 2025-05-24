@@ -583,44 +583,7 @@ namespace WindowsFormsApp1
 
         }
 
-        private void buttonPokazInformacje_Click(object sender, EventArgs e)
-        {
-            if (dataGridView2.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Wybierz pacjenta z listy.");
-                return;
-            }
-
-           
-            DataGridViewRow selectedRow = dataGridView2.SelectedRows[0];
-
-           
-            int pacjentId = Convert.ToInt32(selectedRow.Cells["Id"].Value);
-
-            
-            var wizyty = _dbHelper.PobierzWizytyPacjentaZSzczegolami(pacjentId);
-
-          
-            dataGridViewWizyty.Rows.Clear();
-
-            
-            foreach (var wizyta in wizyty)
-            {
-                dynamic w = wizyta; 
-
-                dataGridViewWizyty.Rows.Add(
-                    w.Data,
-                    w.Status,
-                    w.Opis,
-                    w.Diagnoza,
-                    w.Zalecenia,
-                    w.Recepta
-                );
-            }
-
-          
-          
-        }
+ 
         private void WczytajDaneLekarza()
         {
             var lekarz = _dbHelper.PobierzDaneLekarza(_lekarz.Id);
@@ -641,6 +604,35 @@ namespace WindowsFormsApp1
             else
             {
                 MessageBox.Show("Nie znaleziono lekarza o podanym ID.");
+            }
+        }
+
+        private void buttonPokazInformacje_Click_1(object sender, EventArgs e)
+        {
+
+            if (dataGridView2.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Wybierz pacjenta z listy.");
+                return;
+            }
+
+            try
+            {
+                
+                DataGridViewRow selectedRow = dataGridView2.SelectedRows[0];
+                int pacjentId = Convert.ToInt32(selectedRow.Cells["Id"].Value);
+
+                
+                var wizyty = _dbHelper.PobierzWizytyPacjentaZSzczegolami(pacjentId);
+
+                
+                dataGridViewWizytyhehe.AutoGenerateColumns = true;
+                dataGridViewWizytyhehe.DataSource = null;
+                dataGridViewWizytyhehe.DataSource = wizyty;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd podczas pobierania wizyt pacjenta: " + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -8,6 +8,7 @@ using WindowsFormsApp1.Forms;
 using WindowsFormsApp1.Models;
 using MySql.Data.MySqlClient;
 
+
 namespace WindowsFormsApp1
 {
     public partial class PanelAdmina : Form
@@ -229,6 +230,14 @@ namespace WindowsFormsApp1
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var formPowiadmienia = new FormPowiadomienia();
+            formPowiadmienia.Show();
+            this.Close();
         }
     }
 }

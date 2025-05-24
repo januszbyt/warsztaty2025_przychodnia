@@ -6,6 +6,7 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Windows.Forms;
+using WindowsFormsApp1.Data;
 
 namespace WindowsFormsApp1
 {
@@ -16,6 +17,7 @@ namespace WindowsFormsApp1
         private int smtpPort = 0;
         private string smtpUser = "";
         private string smtpPassword = "";
+        private readonly DataBaseHelper _dbHelper;
 
         public FormPowiadomienia()
         {
@@ -25,6 +27,7 @@ namespace WindowsFormsApp1
             btnUpdateSmtp.Click += BtnUpdateSmtp_Click;
             cbNotificationType.SelectedIndexChanged += CbNotificationType_SelectedIndexChanged;
             btnSendNotifications.Click += BtnSendNotifications_Click;
+            
         }
 
         private void LoadDataGridView(string notificationType)

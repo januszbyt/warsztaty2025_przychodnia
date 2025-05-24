@@ -574,12 +574,12 @@ namespace WindowsFormsApp1.Data
                 conn.Open();
 
                 string query = @"
-                SELECT 
-                w.DataWizyty, w.Status, w.Opis, w.Diagnoza, w.Zalecenia,
-                r.Leki AS ReceptaLeki
-                FROM wizyty w
-                LEFT JOIN recepty r ON r.WizytaId = w.Id
-                WHERE w.PacjentId = @pacjentId";
+            SELECT 
+            w.DataWizyty, w.Status, w.Opis, w.Diagnoza, w.Zalecenia,
+            r.Leki AS ReceptaLeki
+            FROM wizyty w
+            LEFT JOIN recepty r ON r.WizytaId = w.Id
+            WHERE w.PacjentId = @pacjentId";
 
                 using (var cmd = new MySqlCommand(query, conn))
                 {
@@ -605,6 +605,7 @@ namespace WindowsFormsApp1.Data
 
             return lista;
         }
+
 
 
 
