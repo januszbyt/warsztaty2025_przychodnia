@@ -141,7 +141,7 @@
             // 
             // textBoxSpecjalizacjaUprawnienia
             // 
-            this.textBoxSpecjalizacjaUprawnienia.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.textBoxSpecjalizacjaUprawnienia.BackColor = System.Drawing.SystemColors.HighlightText;
             this.textBoxSpecjalizacjaUprawnienia.Location = new System.Drawing.Point(667, 234);
             this.textBoxSpecjalizacjaUprawnienia.Name = "textBoxSpecjalizacjaUprawnienia";
             this.textBoxSpecjalizacjaUprawnienia.Size = new System.Drawing.Size(150, 20);
@@ -163,7 +163,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(679, 331);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(112, 20);
             this.textBox1.TabIndex = 34;
@@ -184,7 +184,7 @@
             // 
             this.buttonResetujHaslo.BackColor = System.Drawing.Color.DarkGray;
             this.buttonResetujHaslo.Location = new System.Drawing.Point(679, 368);
-            this.buttonResetujHaslo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonResetujHaslo.Margin = new System.Windows.Forms.Padding(2);
             this.buttonResetujHaslo.Name = "buttonResetujHaslo";
             this.buttonResetujHaslo.Size = new System.Drawing.Size(112, 38);
             this.buttonResetujHaslo.TabIndex = 36;
@@ -197,7 +197,7 @@
             this.ResetHasla.BackColor = System.Drawing.Color.Silver;
             this.ResetHasla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ResetHasla.Location = new System.Drawing.Point(12, 275);
-            this.ResetHasla.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ResetHasla.Margin = new System.Windows.Forms.Padding(2);
             this.ResetHasla.Name = "ResetHasla";
             this.ResetHasla.Size = new System.Drawing.Size(157, 54);
             this.ResetHasla.TabIndex = 37;
@@ -210,7 +210,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(832, 482);
             this.Controls.Add(this.ResetHasla);
             this.Controls.Add(this.buttonResetujHaslo);

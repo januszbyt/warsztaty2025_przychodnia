@@ -285,7 +285,6 @@ namespace WindowsFormsApp1
         }
 
         //przycisk wyświetlający reset hasla
-
        
         private void ResetHasla_Click(object sender, EventArgs e)
         {
