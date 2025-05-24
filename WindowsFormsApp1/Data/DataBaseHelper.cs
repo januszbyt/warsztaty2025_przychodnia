@@ -818,6 +818,20 @@ namespace WindowsFormsApp1.Data
             return table;
         }
 
+        public void ZmienHasloUzytkownika(int userId, string noweHaslo)
+        {
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+                string query = "UPDATE Users SET Haslo = @Haslo WHERE Id = @id";
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@Haslo", noweHaslo);
+                    cmd.Parameters.AddWithValue("@id", userId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
 
         public void NadajUprawnieniaLekarza(int userId, string specjalizacja)

@@ -35,6 +35,10 @@ namespace WindowsFormsApp1
             textBoxSpecjalizacjaUprawnienia.Visible = false;
             label1.Visible = false;
             textBoxSpecjalizacjaUprawnienia.Clear();
+            // ukrycie resetu hasla
+            textBox1.Visible = false;
+            label2.Visible = false;
+            buttonResetujHaslo.Visible = false;
         }
 
         
@@ -49,6 +53,10 @@ namespace WindowsFormsApp1
             textBoxSpecjalizacjaUprawnienia.Visible = false;
             label1.Visible = false;
             textBoxSpecjalizacjaUprawnienia.Clear();
+            // ukrycie resetu hasla
+            textBox1.Visible = false;
+            label2.Visible = false;
+            buttonResetujHaslo.Visible = false;
         }
         
         private void buttonWyswierlLekarzy_Click(object sender, EventArgs e)
@@ -60,6 +68,10 @@ namespace WindowsFormsApp1
             textBoxSpecjalizacjaUprawnienia.Visible = false;
             label1.Visible = false;
             textBoxSpecjalizacjaUprawnienia.Clear();
+            // ukrycie resetu hasla
+            textBox1.Visible = false;
+            label2.Visible = false;
+            buttonResetujHaslo.Visible = false;
         }
 
         private void buttonNadajUprawienia_Click(object sender, EventArgs e)
@@ -231,5 +243,61 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        //Działanie przycisku reset hasła resetuje hasła w tabeli users
+        private void buttonResetujHaslo_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Wybierz użytkownika z listy.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            selectedUserId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
+            string noweHaslo = textBox1.Text.Trim();
+
+            if (string.IsNullOrEmpty(noweHaslo))
+            {
+                MessageBox.Show("Wprowadź nowe hasło.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                _dbHelper.ZmienHasloUzytkownika(selectedUserId, noweHaslo);
+                MessageBox.Show("Hasło zostało zresetowane.", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                textBox1.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd przy resetowaniu hasła: " + ex.Message);
+            }
+        }
+        private void label2_Click(object sender, EventArgs e)
+        {
+            //etykieta resetu hasła
+        }
+
+        //przycisk wyświetlający reset hasla
+
+       
+        private void ResetHasla_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                textBox1.Visible = true;
+                label2.Visible = true;
+                buttonResetujHaslo.Visible = true;
+                return;
+            }
+            
+        }
+
+       
     }
 }

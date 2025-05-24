@@ -38,6 +38,10 @@
             this.WylogujAdmin = new System.Windows.Forms.Button();
             this.textBoxSpecjalizacjaUprawnienia = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.buttonResetujHaslo = new System.Windows.Forms.Button();
+            this.ResetHasla = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -156,12 +160,58 @@
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(676, 333);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 34;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(673, 291);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(128, 39);
+            this.label2.TabIndex = 35;
+            this.label2.Text = "Reset Hasła             Wpisz nowe Hasło";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // buttonResetujHaslo
+            // 
+            this.buttonResetujHaslo.BackColor = System.Drawing.Color.DarkGray;
+            this.buttonResetujHaslo.Location = new System.Drawing.Point(674, 359);
+            this.buttonResetujHaslo.Name = "buttonResetujHaslo";
+            this.buttonResetujHaslo.Size = new System.Drawing.Size(102, 38);
+            this.buttonResetujHaslo.TabIndex = 36;
+            this.buttonResetujHaslo.Text = "Reset";
+            this.buttonResetujHaslo.UseVisualStyleBackColor = false;
+            this.buttonResetujHaslo.Click += new System.EventHandler(this.buttonResetujHaslo_Click);
+            // 
+            // ResetHasla
+            // 
+            this.ResetHasla.BackColor = System.Drawing.Color.Silver;
+            this.ResetHasla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ResetHasla.Location = new System.Drawing.Point(12, 274);
+            this.ResetHasla.Name = "ResetHasla";
+            this.ResetHasla.Size = new System.Drawing.Size(157, 46);
+            this.ResetHasla.TabIndex = 37;
+            this.ResetHasla.Text = "Reset Hasła";
+            this.ResetHasla.UseMnemonic = false;
+            this.ResetHasla.UseVisualStyleBackColor = false;
+            this.ResetHasla.Click += new System.EventHandler(this.ResetHasla_Click);
+            // 
             // PanelAdmina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(819, 482);
+            this.Controls.Add(this.ResetHasla);
+            this.Controls.Add(this.buttonResetujHaslo);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxSpecjalizacjaUprawnienia);
             this.Controls.Add(this.WylogujAdmin);
@@ -193,5 +243,9 @@
         private System.Windows.Forms.Button WylogujAdmin;
         private System.Windows.Forms.TextBox textBoxSpecjalizacjaUprawnienia;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button buttonResetujHaslo;
+        private System.Windows.Forms.Button ResetHasla;
     }
 }
