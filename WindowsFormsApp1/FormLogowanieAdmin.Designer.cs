@@ -50,20 +50,20 @@
             // 
             // textBoxLoginAdmin
             // 
-            this.textBoxLoginAdmin.Location = new System.Drawing.Point(128, 64);
+            this.textBoxLoginAdmin.Location = new System.Drawing.Point(128, 75);
             this.textBoxLoginAdmin.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxLoginAdmin.Multiline = true;
             this.textBoxLoginAdmin.Name = "textBoxLoginAdmin";
-            this.textBoxLoginAdmin.Size = new System.Drawing.Size(205, 38);
+            this.textBoxLoginAdmin.Size = new System.Drawing.Size(205, 27);
             this.textBoxLoginAdmin.TabIndex = 3;
             // 
             // textBoxHasloAdmin
             // 
-            this.textBoxHasloAdmin.Location = new System.Drawing.Point(128, 120);
+            this.textBoxHasloAdmin.Location = new System.Drawing.Point(128, 127);
             this.textBoxHasloAdmin.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxHasloAdmin.Multiline = true;
             this.textBoxHasloAdmin.Name = "textBoxHasloAdmin";
-            this.textBoxHasloAdmin.Size = new System.Drawing.Size(205, 38);
+            this.textBoxHasloAdmin.Size = new System.Drawing.Size(205, 27);
             this.textBoxHasloAdmin.TabIndex = 4;
             // 
             // checkBoxHasloAdmin
@@ -141,7 +141,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(563, 462);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label5);
