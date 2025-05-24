@@ -225,7 +225,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(77, 72);
+            this.textBox2.Location = new System.Drawing.Point(126, 99);
             this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
@@ -234,7 +234,7 @@
             // 
             // textBox12
             // 
-            this.textBox12.Location = new System.Drawing.Point(77, 202);
+            this.textBox12.Location = new System.Drawing.Point(126, 310);
             this.textBox12.Margin = new System.Windows.Forms.Padding(2);
             this.textBox12.Multiline = true;
             this.textBox12.Name = "textBox12";
@@ -243,7 +243,7 @@
             // 
             // textBox11
             // 
-            this.textBox11.Location = new System.Drawing.Point(77, 184);
+            this.textBox11.Location = new System.Drawing.Point(126, 280);
             this.textBox11.Margin = new System.Windows.Forms.Padding(2);
             this.textBox11.Multiline = true;
             this.textBox11.Name = "textBox11";
@@ -252,7 +252,7 @@
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(77, 165);
+            this.textBox10.Location = new System.Drawing.Point(126, 250);
             this.textBox10.Margin = new System.Windows.Forms.Padding(2);
             this.textBox10.Multiline = true;
             this.textBox10.Name = "textBox10";
@@ -261,7 +261,7 @@
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(77, 147);
+            this.textBox9.Location = new System.Drawing.Point(126, 216);
             this.textBox9.Margin = new System.Windows.Forms.Padding(2);
             this.textBox9.Multiline = true;
             this.textBox9.Name = "textBox9";
@@ -270,7 +270,7 @@
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(77, 128);
+            this.textBox8.Location = new System.Drawing.Point(126, 186);
             this.textBox8.Margin = new System.Windows.Forms.Padding(2);
             this.textBox8.Multiline = true;
             this.textBox8.Name = "textBox8";
@@ -279,7 +279,7 @@
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(77, 109);
+            this.textBox7.Location = new System.Drawing.Point(126, 157);
             this.textBox7.Margin = new System.Windows.Forms.Padding(2);
             this.textBox7.Multiline = true;
             this.textBox7.Name = "textBox7";
@@ -289,7 +289,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(77, 90);
+            this.textBox6.Location = new System.Drawing.Point(126, 129);
             this.textBox6.Margin = new System.Windows.Forms.Padding(2);
             this.textBox6.Multiline = true;
             this.textBox6.Name = "textBox6";
@@ -298,7 +298,7 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(77, 54);
+            this.textBox5.Location = new System.Drawing.Point(122, 66);
             this.textBox5.Margin = new System.Windows.Forms.Padding(2);
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
@@ -307,7 +307,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(77, 36);
+            this.textBox4.Location = new System.Drawing.Point(122, 34);
             this.textBox4.Margin = new System.Windows.Forms.Padding(2);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
@@ -317,7 +317,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(77, 15);
+            this.textBox3.Location = new System.Drawing.Point(106, 2);
             this.textBox3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
@@ -329,7 +329,7 @@
             // 
             this.button3.BackColor = System.Drawing.Color.Silver;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button3.Location = new System.Drawing.Point(100, 243);
+            this.button3.Location = new System.Drawing.Point(167, 354);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(118, 46);
@@ -896,7 +896,7 @@
             this.buttonPrzyszleWizyty.Name = "buttonPrzyszleWizyty";
             this.buttonPrzyszleWizyty.Size = new System.Drawing.Size(117, 41);
             this.buttonPrzyszleWizyty.TabIndex = 25;
-            this.buttonPrzyszleWizyty.Text = "Odbyte Wizyty";
+            this.buttonPrzyszleWizyty.Text = "Zaplanowane";
             this.buttonPrzyszleWizyty.UseVisualStyleBackColor = false;
             this.buttonPrzyszleWizyty.Click += new System.EventHandler(this.buttonPrzyszleWizyty_Click_1);
             // 
@@ -909,7 +909,7 @@
             this.buttonPrzeszleWizyty.Name = "buttonPrzeszleWizyty";
             this.buttonPrzeszleWizyty.Size = new System.Drawing.Size(117, 41);
             this.buttonPrzeszleWizyty.TabIndex = 24;
-            this.buttonPrzeszleWizyty.Text = "Zaplanowane Wizyty";
+            this.buttonPrzeszleWizyty.Text = "Odbyte";
             this.buttonPrzeszleWizyty.UseVisualStyleBackColor = false;
             this.buttonPrzeszleWizyty.Click += new System.EventHandler(this.buttonPrzeszleWizyty_Click_1);
             // 
