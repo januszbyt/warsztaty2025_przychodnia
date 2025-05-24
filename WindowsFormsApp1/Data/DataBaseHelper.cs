@@ -634,6 +634,33 @@ namespace WindowsFormsApp1.Data
             }
         }
 
+        public void DodajRecepte(int pacjentId, int lekarzId, string kodRecepty, string leki, string uwagi)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    string query = @"INSERT INTO recepty (PacjentId, LekarzId, DataWystawienia, KodRecepty, Leki, Uwagi)
+                             VALUES (@PacjentId, @LekarzId, NOW(), @KodRecepty, @Leki, @Uwagi)";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@PacjentId", pacjentId);
+                        cmd.Parameters.AddWithValue("@LekarzId", lekarzId);
+                        cmd.Parameters.AddWithValue("@KodRecepty", kodRecepty);
+                        cmd.Parameters.AddWithValue("@Leki", leki);
+                        cmd.Parameters.AddWithValue("@Uwagi", uwagi);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd zapisu recepty: " + ex.Message);
+            }
+        }
+
 
         public DataTable PobierzWszystkichLekarzy()
         {

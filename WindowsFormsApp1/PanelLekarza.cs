@@ -296,45 +296,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void btnRecepta_Click_1(object sender, EventArgs e)
-        {
-            txtRecepta.Visible = true;
-            buttonZatwierdzRecepte.Visible = true;
-        }
-
-        private void buttonZatwierdzRecepte_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewPacjenci.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Wybierz pacjenta.");
-                return;
-            }
-
-            int pacjentId = Convert.ToInt32(dataGridViewPacjenci.SelectedRows[0].Cells["Id"].Value);
-            string leki = txtRecepta.Text;
-            string kod = Guid.NewGuid().ToString().Substring(0, 8);
-
-            try
-            {
-                _dbHelper.WystawRecepte(
-                    wizytaId: wybranaWizytaId,
-                    pacjentId: pacjentId,
-                    lekarzId: _lekarz.Id,
-                    leki: leki,
-                    uwagi: null,
-                    kodRecepty: kod
-                );
-
-                MessageBox.Show("Recepta wystawiona pomyślnie!");
-                txtRecepta.Text = "";
-                txtRecepta.Visible = false;
-                buttonZatwierdzRecepte.Visible = false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Błąd podczas wystawiania recepty: {ex.Message}");
-            }
-        }
+        
 
         private void btnSkierowanie_Click_1(object sender, EventArgs e)
         {
@@ -699,6 +661,55 @@ namespace WindowsFormsApp1
             catch (Exception ex)
             {
                 MessageBox.Show("Błąd podczas pobierania wizyt pacjenta: " + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnRecepta_Click_1(object sender, EventArgs e)
+        {
+            if (wybranyPacjentId <= 0)
+            {
+                MessageBox.Show("Wybierz pacjenta.");
+                return;
+            }
+
+            Form inputForm = new Form
+            {
+                Width = 400,
+                Height = 360,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = "Nowa Recepta",
+                StartPosition = FormStartPosition.CenterScreen
+            };
+
+            var labelKod = new System.Windows.Forms.Label() { Left = 20, Top = 20, Text = "Kod recepty:" };
+            var txtKod = new System.Windows.Forms.TextBox() { Left = 120, Top = 20, Width = 240 };
+
+            var labelLeki = new System.Windows.Forms.Label() { Left = 20, Top = 60, Text = "Leki:" };
+            var txtLeki = new System.Windows.Forms.TextBox() { Left = 120, Top = 60, Width = 240, Height = 80, Multiline = true };
+
+            var labelUwagi = new System.Windows.Forms.Label() { Left = 20, Top = 150, Text = "Uwagi:" };
+            var txtUwagi = new System.Windows.Forms.TextBox() { Left = 120, Top = 150, Width = 240, Height = 80, Multiline = true };
+
+            var btnZapisz = new System.Windows.Forms.Button() { Text = "Zapisz", Left = 280, Width = 80, Top = 250, DialogResult = DialogResult.OK };
+
+            inputForm.Controls.Add(labelKod);
+            inputForm.Controls.Add(txtKod);
+            inputForm.Controls.Add(labelLeki);
+            inputForm.Controls.Add(txtLeki);
+            inputForm.Controls.Add(labelUwagi);
+            inputForm.Controls.Add(txtUwagi);
+            inputForm.Controls.Add(btnZapisz);
+
+            inputForm.AcceptButton = btnZapisz;
+
+            if (inputForm.ShowDialog() == DialogResult.OK)
+            {
+                string kod = txtKod.Text.Trim();
+                string leki = txtLeki.Text.Trim();
+                string uwagi = txtUwagi.Text.Trim();
+
+                _dbHelper.DodajRecepte(wybranyPacjentId, lekarzId, kod, leki, uwagi);
+                MessageBox.Show("Recepta została zapisana.");
             }
         }
     }
