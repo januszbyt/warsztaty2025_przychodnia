@@ -726,12 +726,14 @@ namespace WindowsFormsApp1
             WczytajWizyty(); 
         }
 
-        private void buttonPrzeszleWizyty_Click(object sender, EventArgs e)
+      
+
+        private void buttonPrzeszleWizyty_Click_1(object sender, EventArgs e)
         {
             dataGridViewWizyty.DataSource = _dbHelper.PobierzWizyty(lekarzId, tylkoPrzeszle: true);
         }
 
-        private void buttonPrzyszleWizyty_Click(object sender, EventArgs e)
+        private void buttonPrzyszleWizyty_Click_1(object sender, EventArgs e)
         {
             dataGridViewWizyty.DataSource = _dbHelper.PobierzWizyty(lekarzId, null, tylkoPrzyszle: true);
         }
