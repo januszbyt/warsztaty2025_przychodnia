@@ -68,6 +68,10 @@
             this.button8 = new System.Windows.Forms.Button();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.tabPageEdycjaWizyty = new System.Windows.Forms.TabPage();
+            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.buttonZatwierdz = new System.Windows.Forms.Button();
@@ -92,18 +96,14 @@
             this.buttonSzukaj = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabPageWizyty = new System.Windows.Forms.TabPage();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.buttonAnulujWizyte = new System.Windows.Forms.Button();
+            this.buttonPrzyszleWizyty = new System.Windows.Forms.Button();
+            this.buttonPrzeszleWizyty = new System.Windows.Forms.Button();
             this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
             this.dataGridViewWizyty = new System.Windows.Forms.DataGridView();
             this.btnSzukaj = new System.Windows.Forms.Button();
             this.buttonPokazPacjentow = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.label16 = new System.Windows.Forms.Label();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.textBox14 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPageUstawienia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -164,7 +164,7 @@
             this.button5.BackColor = System.Drawing.Color.Silver;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button5.Location = new System.Drawing.Point(884, 474);
-            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(121, 67);
             this.button5.TabIndex = 0;
@@ -226,7 +226,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(116, 110);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(189, 26);
@@ -235,7 +235,7 @@
             // textBox12
             // 
             this.textBox12.Location = new System.Drawing.Point(116, 311);
-            this.textBox12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox12.Margin = new System.Windows.Forms.Padding(2);
             this.textBox12.Multiline = true;
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(189, 26);
@@ -244,7 +244,7 @@
             // textBox11
             // 
             this.textBox11.Location = new System.Drawing.Point(116, 283);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox11.Margin = new System.Windows.Forms.Padding(2);
             this.textBox11.Multiline = true;
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(189, 26);
@@ -253,7 +253,7 @@
             // textBox10
             // 
             this.textBox10.Location = new System.Drawing.Point(116, 254);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox10.Margin = new System.Windows.Forms.Padding(2);
             this.textBox10.Multiline = true;
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(189, 26);
@@ -262,7 +262,7 @@
             // textBox9
             // 
             this.textBox9.Location = new System.Drawing.Point(116, 226);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox9.Margin = new System.Windows.Forms.Padding(2);
             this.textBox9.Multiline = true;
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(189, 26);
@@ -271,7 +271,7 @@
             // textBox8
             // 
             this.textBox8.Location = new System.Drawing.Point(116, 197);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox8.Margin = new System.Windows.Forms.Padding(2);
             this.textBox8.Multiline = true;
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(189, 26);
@@ -280,7 +280,7 @@
             // textBox7
             // 
             this.textBox7.Location = new System.Drawing.Point(116, 167);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(2);
             this.textBox7.Multiline = true;
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(189, 26);
@@ -290,7 +290,7 @@
             // textBox6
             // 
             this.textBox6.Location = new System.Drawing.Point(116, 139);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(2);
             this.textBox6.Multiline = true;
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(189, 26);
@@ -299,7 +299,7 @@
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(116, 82);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(2);
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(189, 26);
@@ -308,7 +308,7 @@
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(116, 55);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(2);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(189, 26);
@@ -318,7 +318,7 @@
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(116, 24);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(189, 28);
@@ -330,7 +330,7 @@
             this.button3.BackColor = System.Drawing.Color.Silver;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button3.Location = new System.Drawing.Point(151, 374);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(118, 46);
             this.button3.TabIndex = 22;
@@ -564,6 +564,46 @@
             this.tabPageEdycjaWizyty.Size = new System.Drawing.Size(822, 803);
             this.tabPageEdycjaWizyty.TabIndex = 2;
             this.tabPageEdycjaWizyty.Text = "Edycja Wizyty";
+            // 
+            // textBox14
+            // 
+            this.textBox14.Location = new System.Drawing.Point(576, 250);
+            this.textBox14.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.textBox14.Multiline = true;
+            this.textBox14.Name = "textBox14";
+            this.textBox14.Size = new System.Drawing.Size(227, 174);
+            this.textBox14.TabIndex = 33;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label17.Location = new System.Drawing.Point(572, 223);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(103, 24);
+            this.label17.TabIndex = 32;
+            this.label17.Text = "Diagnoza:";
+            // 
+            // textBox13
+            // 
+            this.textBox13.Location = new System.Drawing.Point(297, 250);
+            this.textBox13.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.textBox13.Multiline = true;
+            this.textBox13.Name = "textBox13";
+            this.textBox13.Size = new System.Drawing.Size(250, 174);
+            this.textBox13.TabIndex = 31;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label16.Location = new System.Drawing.Point(293, 223);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(59, 24);
+            this.label16.TabIndex = 30;
+            this.label16.Text = "Opis:";
             // 
             // label9
             // 
@@ -827,9 +867,9 @@
             // tabPageWizyty
             // 
             this.tabPageWizyty.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.tabPageWizyty.Controls.Add(this.button7);
-            this.tabPageWizyty.Controls.Add(this.button6);
-            this.tabPageWizyty.Controls.Add(this.button4);
+            this.tabPageWizyty.Controls.Add(this.buttonAnulujWizyte);
+            this.tabPageWizyty.Controls.Add(this.buttonPrzyszleWizyty);
+            this.tabPageWizyty.Controls.Add(this.buttonPrzeszleWizyty);
             this.tabPageWizyty.Controls.Add(this.monthCalendar2);
             this.tabPageWizyty.Controls.Add(this.dataGridViewWizyty);
             this.tabPageWizyty.Controls.Add(this.btnSzukaj);
@@ -842,48 +882,50 @@
             this.tabPageWizyty.TabIndex = 0;
             this.tabPageWizyty.Text = "Wizyty";
             // 
-            // button7
+            // buttonAnulujWizyte
             // 
-            this.button7.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button7.Location = new System.Drawing.Point(25, 498);
-            this.button7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(176, 62);
-            this.button7.TabIndex = 26;
-            this.button7.Text = "Anuluj Wizytę ";
-            this.button7.UseVisualStyleBackColor = false;
+            this.buttonAnulujWizyte.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.buttonAnulujWizyte.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonAnulujWizyte.Location = new System.Drawing.Point(25, 498);
+            this.buttonAnulujWizyte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonAnulujWizyte.Name = "buttonAnulujWizyte";
+            this.buttonAnulujWizyte.Size = new System.Drawing.Size(176, 62);
+            this.buttonAnulujWizyte.TabIndex = 26;
+            this.buttonAnulujWizyte.Text = "Anuluj Wizytę ";
+            this.buttonAnulujWizyte.UseVisualStyleBackColor = false;
             // 
-            // button6
+            // buttonPrzyszleWizyty
             // 
-            this.button6.BackColor = System.Drawing.Color.Silver;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button6.Location = new System.Drawing.Point(25, 428);
-            this.button6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(176, 62);
-            this.button6.TabIndex = 25;
-            this.button6.Text = "Odbyte Wizyty";
-            this.button6.UseVisualStyleBackColor = false;
+            this.buttonPrzyszleWizyty.BackColor = System.Drawing.Color.Silver;
+            this.buttonPrzyszleWizyty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonPrzyszleWizyty.Location = new System.Drawing.Point(25, 428);
+            this.buttonPrzyszleWizyty.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonPrzyszleWizyty.Name = "buttonPrzyszleWizyty";
+            this.buttonPrzyszleWizyty.Size = new System.Drawing.Size(176, 62);
+            this.buttonPrzyszleWizyty.TabIndex = 25;
+            this.buttonPrzyszleWizyty.Text = "Przyszle wizyty";
+            this.buttonPrzyszleWizyty.UseVisualStyleBackColor = false;
+            this.buttonPrzyszleWizyty.Click += new System.EventHandler(this.buttonPrzyszleWizyty_Click);
             // 
-            // button4
+            // buttonPrzeszleWizyty
             // 
-            this.button4.BackColor = System.Drawing.Color.Silver;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button4.Location = new System.Drawing.Point(25, 358);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(176, 62);
-            this.button4.TabIndex = 24;
-            this.button4.Text = "Zaplanowane Wizyty";
-            this.button4.UseVisualStyleBackColor = false;
+            this.buttonPrzeszleWizyty.BackColor = System.Drawing.Color.Silver;
+            this.buttonPrzeszleWizyty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonPrzeszleWizyty.Location = new System.Drawing.Point(25, 358);
+            this.buttonPrzeszleWizyty.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonPrzeszleWizyty.Name = "buttonPrzeszleWizyty";
+            this.buttonPrzeszleWizyty.Size = new System.Drawing.Size(176, 62);
+            this.buttonPrzeszleWizyty.TabIndex = 24;
+            this.buttonPrzeszleWizyty.Text = "Przeszle Wizyty";
+            this.buttonPrzeszleWizyty.UseVisualStyleBackColor = false;
+            this.buttonPrzeszleWizyty.Click += new System.EventHandler(this.buttonPrzeszleWizyty_Click);
             // 
             // monthCalendar2
             // 
             this.monthCalendar2.AllowDrop = true;
             this.monthCalendar2.BackColor = System.Drawing.SystemColors.Highlight;
             this.monthCalendar2.Location = new System.Drawing.Point(19, 55);
-            this.monthCalendar2.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.monthCalendar2.Margin = new System.Windows.Forms.Padding(7);
             this.monthCalendar2.Name = "monthCalendar2";
             this.monthCalendar2.TabIndex = 23;
             this.monthCalendar2.TitleBackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -938,46 +980,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(830, 829);
             this.tabControl1.TabIndex = 23;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label16.Location = new System.Drawing.Point(293, 223);
-            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(59, 24);
-            this.label16.TabIndex = 30;
-            this.label16.Text = "Opis:";
-            // 
-            // textBox13
-            // 
-            this.textBox13.Location = new System.Drawing.Point(297, 250);
-            this.textBox13.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.textBox13.Multiline = true;
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(250, 174);
-            this.textBox13.TabIndex = 31;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label17.Location = new System.Drawing.Point(572, 223);
-            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(103, 24);
-            this.label17.TabIndex = 32;
-            this.label17.Text = "Diagnoza:";
-            // 
-            // textBox14
-            // 
-            this.textBox14.Location = new System.Drawing.Point(576, 250);
-            this.textBox14.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.textBox14.Multiline = true;
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(227, 174);
-            this.textBox14.TabIndex = 33;
             // 
             // PanelLekarza
             // 
@@ -1074,9 +1076,9 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button buttonPrzyszleWizyty;
+        private System.Windows.Forms.Button buttonPrzeszleWizyty;
+        private System.Windows.Forms.Button buttonAnulujWizyte;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.TextBox textBox2;

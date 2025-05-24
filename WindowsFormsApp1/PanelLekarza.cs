@@ -9,6 +9,7 @@ using MySql.Data.MySqlClient;
 using System.Diagnostics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Linq;
+using System.Globalization;
 // Users System.Windows.Forms; // TODO: Dawid Kotliński: odkomentować
 
 namespace WindowsFormsApp1
@@ -265,17 +266,8 @@ namespace WindowsFormsApp1
 
         private void btnSzukaj_Click(object sender, EventArgs e)
         {
-            // TODO: Dawid Kotlinski: Odkomentować, były problemy z dostępem do klasy TextBox.
-            // string imieNazwisko = ImieNazwiskoSzukajTextBox().Text.Trim();
-
-            // if (string.IsNullOrWhiteSpace(imieNazwisko))
-            // {
-            //     WczytajWizyty();
-            //     return;
-            // }
-
-            // var wyniki = _dbHelper.SzukajWizytPoImieniuNazwisku(_lekarz.Id, imieNazwisko);
-            // dataGridViewWizyty.DataSource = wyniki;
+            DateTime wybranaData = monthCalendar1.SelectionStart;
+            dataGridViewWizyty.DataSource = _dbHelper.PobierzWizyty(lekarzId, data: wybranaData);
         }
 
 
@@ -732,6 +724,16 @@ namespace WindowsFormsApp1
             txtZalecenia.Clear();
 
             WczytajWizyty(); 
+        }
+
+        private void buttonPrzeszleWizyty_Click(object sender, EventArgs e)
+        {
+            dataGridViewWizyty.DataSource = _dbHelper.PobierzWizyty(lekarzId, tylkoPrzeszle: true);
+        }
+
+        private void buttonPrzyszleWizyty_Click(object sender, EventArgs e)
+        {
+            dataGridViewWizyty.DataSource = _dbHelper.PobierzWizyty(lekarzId, null, tylkoPrzyszle: true);
         }
     }
 }

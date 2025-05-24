@@ -875,6 +875,52 @@ namespace WindowsFormsApp1.Data
         }
 
 
+        public DataTable PobierzWizyty(int lekarzId, DateTime? data = null, bool? tylkoPrzyszle = null, bool? tylkoPrzeszle = null)
+        {
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                string query = @"SELECT Id, DataWizyty, Status, PacjentId, Opis, Diagnoza, Zalecenia
+                         FROM wizyty
+                         WHERE LekarzId = @LekarzId";
+
+                if (data.HasValue)
+                {
+                    query += " AND DATE(DataWizyty) = @Data";
+                }
+                else if (tylkoPrzeszle == true)
+                {
+                    query += " AND Status = 'odbyta'";
+                }
+                else if (tylkoPrzyszle == true)
+                {
+                    query += " AND Status = 'zaplanowana'";
+                }
+
+                query += " ORDER BY DataWizyty";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@LekarzId", lekarzId);
+
+                    if (data.HasValue)
+                        cmd.Parameters.AddWithValue("@Data", data.Value.Date);
+
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(dt);
+                    }
+                }
+            }
+
+            return dt;
+        }
+
+
+
         public DataTable PobierzWszystkichPacjentow()
         {
             var table = new DataTable();
