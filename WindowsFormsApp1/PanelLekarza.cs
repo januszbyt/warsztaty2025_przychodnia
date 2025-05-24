@@ -713,14 +713,14 @@ namespace WindowsFormsApp1
                 return;
             }
 
-            string opis = textBox13.Text.Trim();
-            string diagnoza = textBox14.Text.Trim();
+            string opis = textBox15.Text.Trim();
+            string diagnoza = textBox16.Text.Trim();
             string zalecenia = txtZalecenia.Text.Trim();
 
             _dbHelper.ZatwierdzWizyteDlaPacjenta(wybranyPacjentId, lekarzId, opis, diagnoza, zalecenia);
 
-            textBox13.Clear();
-            textBox14.Clear();
+            textBox15.Clear();
+            textBox16.Clear();
             txtZalecenia.Clear();
 
             WczytajWizyty(); 

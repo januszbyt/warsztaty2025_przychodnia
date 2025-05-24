@@ -68,9 +68,6 @@
             this.button8 = new System.Windows.Forms.Button();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.tabPageEdycjaWizyty = new System.Windows.Forms.TabPage();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.textBox13 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -104,6 +101,10 @@
             this.btnSzukaj = new System.Windows.Forms.Button();
             this.buttonPokazPacjentow = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPageUstawienia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -539,9 +540,10 @@
             // tabPageEdycjaWizyty
             // 
             this.tabPageEdycjaWizyty.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.tabPageEdycjaWizyty.Controls.Add(this.textBox14);
             this.tabPageEdycjaWizyty.Controls.Add(this.label17);
-            this.tabPageEdycjaWizyty.Controls.Add(this.textBox13);
+            this.tabPageEdycjaWizyty.Controls.Add(this.label18);
+            this.tabPageEdycjaWizyty.Controls.Add(this.textBox16);
+            this.tabPageEdycjaWizyty.Controls.Add(this.textBox15);
             this.tabPageEdycjaWizyty.Controls.Add(this.label16);
             this.tabPageEdycjaWizyty.Controls.Add(this.label9);
             this.tabPageEdycjaWizyty.Controls.Add(this.label8);
@@ -564,30 +566,6 @@
             this.tabPageEdycjaWizyty.Size = new System.Drawing.Size(822, 803);
             this.tabPageEdycjaWizyty.TabIndex = 2;
             this.tabPageEdycjaWizyty.Text = "Edycja Wizyty";
-            // 
-            // textBox14
-            // 
-            this.textBox14.Location = new System.Drawing.Point(0, 0);
-            this.textBox14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(68, 20);
-            this.textBox14.TabIndex = 0;
-            // 
-            // label17
-            // 
-            this.label17.Location = new System.Drawing.Point(0, 0);
-            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(67, 15);
-            this.label17.TabIndex = 1;
-            // 
-            // textBox13
-            // 
-            this.textBox13.Location = new System.Drawing.Point(0, 0);
-            this.textBox13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(68, 20);
-            this.textBox13.TabIndex = 2;
             // 
             // label16
             // 
@@ -974,6 +952,46 @@
             this.tabControl1.Size = new System.Drawing.Size(830, 829);
             this.tabControl1.TabIndex = 23;
             // 
+            // textBox15
+            // 
+            this.textBox15.Location = new System.Drawing.Point(294, 250);
+            this.textBox15.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.textBox15.Multiline = true;
+            this.textBox15.Name = "textBox15";
+            this.textBox15.Size = new System.Drawing.Size(250, 175);
+            this.textBox15.TabIndex = 30;
+            // 
+            // textBox16
+            // 
+            this.textBox16.Location = new System.Drawing.Point(570, 250);
+            this.textBox16.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.textBox16.Multiline = true;
+            this.textBox16.Name = "textBox16";
+            this.textBox16.Size = new System.Drawing.Size(250, 175);
+            this.textBox16.TabIndex = 31;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label18.Location = new System.Drawing.Point(290, 223);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(59, 24);
+            this.label18.TabIndex = 32;
+            this.label18.Text = "Opis:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label17.Location = new System.Drawing.Point(566, 223);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(103, 24);
+            this.label17.TabIndex = 33;
+            this.label17.Text = "Diagnoza:";
+            // 
             // PanelLekarza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1079,8 +1097,9 @@
         private System.Windows.Forms.DataGridView dataGridViewWizytyhehe;
         private System.Windows.Forms.Button buttonPokazInformacje;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.TextBox textBox15;
     }
 }
