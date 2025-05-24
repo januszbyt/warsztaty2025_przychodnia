@@ -16,9 +16,7 @@ namespace WindowsFormsApp1.Forms
             _dbHelper = dbHelper;
             InitializeComponent();
 
-            comboBoxRola.Items.Add("Pacjent");
-            comboBoxRola.SelectedItem = "Pacjent";
-            comboBoxRola.Enabled = false;
+          
         }
 
 

@@ -80,5 +80,10 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void textBoxLoginAdmin_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

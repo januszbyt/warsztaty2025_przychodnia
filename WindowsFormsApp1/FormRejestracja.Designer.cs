@@ -44,7 +44,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.dtp_DataUrodzenia = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBoxRola = new System.Windows.Forms.ComboBox();
             this.Adres = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -214,15 +213,6 @@
             this.label7.TabIndex = 16;
             this.label7.Text = "Data urodzenia";
             // 
-            // comboBoxRola
-            // 
-            this.comboBoxRola.FormattingEnabled = true;
-            this.comboBoxRola.Location = new System.Drawing.Point(445, 168);
-            this.comboBoxRola.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBoxRola.Name = "comboBoxRola";
-            this.comboBoxRola.Size = new System.Drawing.Size(160, 24);
-            this.comboBoxRola.TabIndex = 17;
-            // 
             // Adres
             // 
             this.Adres.AutoSize = true;
@@ -304,7 +294,6 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.Adres);
-            this.Controls.Add(this.comboBoxRola);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dtp_DataUrodzenia);
             this.Controls.Add(this.label6);
@@ -350,7 +339,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dtp_DataUrodzenia;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBoxRola;
         private System.Windows.Forms.Label Adres;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
