@@ -606,7 +606,33 @@ namespace WindowsFormsApp1.Data
             return lista;
         }
 
+        public void DodajSkierowanie(int pacjentId, int lekarzId, string cel, string opis)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    string query = @"INSERT INTO skierowania (PacjentId, LekarzId, DataWystawienia, Typ, Cel, Uwagi)
+                             VALUES (@PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
 
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@PacjentId", pacjentId);
+                        cmd.Parameters.AddWithValue("@LekarzId", lekarzId);
+                        cmd.Parameters.AddWithValue("@Typ", "Inne"); 
+                        cmd.Parameters.AddWithValue("@Cel", cel);
+                        cmd.Parameters.AddWithValue("@Uwagi", opis); 
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd zapisu skierowania: " + ex.Message);
+            }
+        }
 
         public DataTable PobierzWszystkichLekarzy()
         {
@@ -1187,6 +1213,35 @@ namespace WindowsFormsApp1.Data
                     return table;
                 }
             }
+        }
+
+
+        public DataTable PobierzDzisiejszeWizyty(int lekarzId)
+        {
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
+            {
+                string query = @"
+            SELECT w.Id, u.Imie, u.Nazwisko, u.DateOfBirth AS DataUrodzenia,
+                   u.PhoneNumber AS NumerTelefonu, u.PESEL
+            FROM wizyty w
+            JOIN users u ON w.PacjentId = u.Id
+            WHERE DATE(w.DataWizyty) = CURDATE()
+              AND w.LekarzId = @LekarzId";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@LekarzId", lekarzId);
+
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                    {
+                        adapter.Fill(dt);
+                    }
+                }
+            }
+
+            return dt;
         }
 
 

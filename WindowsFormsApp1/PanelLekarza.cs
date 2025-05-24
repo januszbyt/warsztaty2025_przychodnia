@@ -35,6 +35,7 @@ namespace WindowsFormsApp1
 
             dataGridViewWizyty.AutoGenerateColumns = true;
             dataGridViewPacjenci.AutoGenerateColumns = true;
+            this.dataGridViewPacjenci.SelectionChanged += new System.EventHandler(this.dataGridViewPacjenci_SelectionChanged);
 
             WczytajWizyty();
             WczytajAktualneDaneLekarza();
@@ -42,6 +43,7 @@ namespace WindowsFormsApp1
 
             InitializeWizytyPacjentDataGridView();
             WczytajDaneLekarza();
+            WczytajDzisiejszeWizyty();
 
 
 
@@ -336,55 +338,56 @@ namespace WindowsFormsApp1
 
         private void btnSkierowanie_Click_1(object sender, EventArgs e)
         {
-            txtSkierowanie.Visible = true;
-            buttonZatwierdzSkierowanie.Visible = true;
-        }
-
-        private void buttonZatwierdzSkierowanie_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewPacjenci.SelectedRows.Count == 0)
+            if (wybranyPacjentId <= 0)
             {
                 MessageBox.Show("Wybierz pacjenta.");
                 return;
             }
 
-            if (wizytaId == -1) // TODO: wybranaWizytaId czy wizytId?
+            
+            Form inputForm = new Form
             {
-                MessageBox.Show("Wybierz wizytę.");
-                return;
-            }
+                Width = 400,
+                Height = 280,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = "Nowe Skierowanie",
+                StartPosition = FormStartPosition.CenterScreen
+            };
 
-            int pacjentId = Convert.ToInt32(dataGridViewPacjenci.SelectedRows[0].Cells["Id"].Value);
-            string cel = txtSkierowanie.Text.Trim();
+            Label labelCel = new Label() { Left = 20, Top = 20, Text = "Cel:" };
+            System.Windows.Forms.TextBox txtCel = new System.Windows.Forms.TextBox()
+            { Left = 80, Top = 20, Width = 280 };
 
-            if (string.IsNullOrEmpty(cel))
+            Label labelOpis = new Label() { Left = 20, Top = 60, Text = "Opis:" };
+            System.Windows.Forms.TextBox txtOpis = new System.Windows.Forms.TextBox() { Left = 80, Top = 60, Width = 280, Height = 100, Multiline = true };
+
+            System.Windows.Forms.Button btnZapisz = new System.Windows.Forms.Button()
+            { Text = "Zapisz", Left = 280, Width = 80, Top = 180, DialogResult = DialogResult.OK };
+
+            inputForm.Controls.Add(labelCel);
+            inputForm.Controls.Add(txtCel);
+            inputForm.Controls.Add(labelOpis);
+            inputForm.Controls.Add(txtOpis);
+            inputForm.Controls.Add(btnZapisz);
+            inputForm.AcceptButton = btnZapisz;
+
+            if (inputForm.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("Wprowadź cel skierowania.");
-                return;
+                string cel = txtCel.Text.Trim();
+                string opis = txtOpis.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(cel))
+                {
+                    MessageBox.Show("Wpisz cel skierowania.");
+                    return;
+                }
+
+                _dbHelper.DodajSkierowanie(wybranyPacjentId, lekarzId, cel, opis);
+                MessageBox.Show("Skierowanie zostało zapisane.");
             }
-
-            string specjalizacja = Microsoft.VisualBasic.Interaction.InputBox("Na jaką specjalizację?", "Specjalizacja");
-
-            if (string.IsNullOrEmpty(specjalizacja))
-            {
-                MessageBox.Show("Specjalizacja jest wymagana.");
-                return;
-            }
-
-            _dbHelper.WystawSkierowanie(
-                wizytaId: wizytaId, // TODO: wybranaWizytaId czy wizytId?
-                pacjentId: pacjentId,
-                lekarzId: _lekarz.Id,
-                typ: specjalizacja,
-                cel: cel,
-                uwagi: null
-            );
-
-            MessageBox.Show("Skierowanie zostało wystawione.");
-            txtSkierowanie.Clear();
-            txtSkierowanie.Visible = false;
-            buttonZatwierdzSkierowanie.Visible = false;
         }
+
+       
 
         private void buttonpokapacjentow_Click(object sender, EventArgs e)
         {
@@ -618,9 +621,35 @@ namespace WindowsFormsApp1
                 );
             }
 
+
+
           
           
         }
+
+        private void dataGridViewPacjenci_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewPacjenci.SelectedRows.Count > 0)
+            {
+                var row = dataGridViewPacjenci.SelectedRows[0];
+                try
+                {
+                    wybranyPacjentId = Convert.ToInt32(row.Cells["Id"].Value);
+                }
+                catch
+                {
+                    MessageBox.Show("Nie można odczytać ID pacjenta.");
+                }
+            }
+        }
+
+
+        private void WczytajDzisiejszeWizyty()
+        {
+            DataBaseHelper db = new DataBaseHelper();
+            dataGridViewPacjenci.DataSource = db.PobierzDzisiejszeWizyty(lekarzId);
+        }
+
         private void WczytajDaneLekarza()
         {
             var lekarz = _dbHelper.PobierzDaneLekarza(_lekarz.Id);

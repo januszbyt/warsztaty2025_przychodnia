@@ -587,7 +587,7 @@
             this.buttonZatwierdzSkierowanie.TabIndex = 26;
             this.buttonZatwierdzSkierowanie.Text = "Zatwierdz";
             this.buttonZatwierdzSkierowanie.UseVisualStyleBackColor = false;
-            this.buttonZatwierdzSkierowanie.Click += new System.EventHandler(this.buttonZatwierdzSkierowanie_Click);
+            
             // 
             // buttonZatwierdzRecepte
             // 
