@@ -70,7 +70,7 @@
             this.tabPageEdycjaWizyty = new System.Windows.Forms.TabPage();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.buttonZatwierdzSkierowanie = new System.Windows.Forms.Button();
+            this.buttonZatwierdz = new System.Windows.Forms.Button();
             this.buttonZatwierdzRecepte = new System.Windows.Forms.Button();
             this.dataGridViewPacjenci = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
@@ -100,6 +100,10 @@
             this.btnSzukaj = new System.Windows.Forms.Button();
             this.buttonPokazPacjentow = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBox14 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPageUstawienia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -535,9 +539,13 @@
             // tabPageEdycjaWizyty
             // 
             this.tabPageEdycjaWizyty.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.tabPageEdycjaWizyty.Controls.Add(this.textBox14);
+            this.tabPageEdycjaWizyty.Controls.Add(this.label17);
+            this.tabPageEdycjaWizyty.Controls.Add(this.textBox13);
+            this.tabPageEdycjaWizyty.Controls.Add(this.label16);
             this.tabPageEdycjaWizyty.Controls.Add(this.label9);
             this.tabPageEdycjaWizyty.Controls.Add(this.label8);
-            this.tabPageEdycjaWizyty.Controls.Add(this.buttonZatwierdzSkierowanie);
+            this.tabPageEdycjaWizyty.Controls.Add(this.buttonZatwierdz);
             this.tabPageEdycjaWizyty.Controls.Add(this.buttonZatwierdzRecepte);
             this.tabPageEdycjaWizyty.Controls.Add(this.dataGridViewPacjenci);
             this.tabPageEdycjaWizyty.Controls.Add(this.label2);
@@ -572,24 +580,25 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label8.Location = new System.Drawing.Point(254, 307);
+            this.label8.Location = new System.Drawing.Point(18, 223);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(102, 24);
+            this.label8.Size = new System.Drawing.Size(108, 24);
             this.label8.TabIndex = 28;
-            this.label8.Text = "Zalecenia";
+            this.label8.Text = "Zalecenia:";
             // 
-            // buttonZatwierdzSkierowanie
+            // buttonZatwierdz
             // 
-            this.buttonZatwierdzSkierowanie.BackColor = System.Drawing.Color.Silver;
-            this.buttonZatwierdzSkierowanie.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonZatwierdzSkierowanie.Location = new System.Drawing.Point(22, 459);
-            this.buttonZatwierdzSkierowanie.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.buttonZatwierdzSkierowanie.Name = "buttonZatwierdzSkierowanie";
-            this.buttonZatwierdzSkierowanie.Size = new System.Drawing.Size(166, 54);
-            this.buttonZatwierdzSkierowanie.TabIndex = 26;
-            this.buttonZatwierdzSkierowanie.Text = "Zatwierdz";
-            this.buttonZatwierdzSkierowanie.UseVisualStyleBackColor = false;
+            this.buttonZatwierdz.BackColor = System.Drawing.Color.Silver;
+            this.buttonZatwierdz.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonZatwierdz.Location = new System.Drawing.Point(22, 459);
+            this.buttonZatwierdz.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.buttonZatwierdz.Name = "buttonZatwierdz";
+            this.buttonZatwierdz.Size = new System.Drawing.Size(166, 54);
+            this.buttonZatwierdz.TabIndex = 26;
+            this.buttonZatwierdz.Text = "Zatwierdz";
+            this.buttonZatwierdz.UseVisualStyleBackColor = false;
+            this.buttonZatwierdz.Click += new System.EventHandler(this.buttonZatwierdz_Click);
             // 
             // buttonZatwierdzRecepte
             // 
@@ -609,7 +618,7 @@
             this.dataGridViewPacjenci.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.dataGridViewPacjenci.Name = "dataGridViewPacjenci";
             this.dataGridViewPacjenci.RowHeadersWidth = 51;
-            this.dataGridViewPacjenci.Size = new System.Drawing.Size(555, 212);
+            this.dataGridViewPacjenci.Size = new System.Drawing.Size(555, 145);
             this.dataGridViewPacjenci.TabIndex = 24;
             // 
             // label2
@@ -660,11 +669,11 @@
             // 
             // txtSkierowanie
             // 
-            this.txtSkierowanie.Location = new System.Drawing.Point(248, 342);
+            this.txtSkierowanie.Location = new System.Drawing.Point(22, 250);
             this.txtSkierowanie.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txtSkierowanie.Multiline = true;
             this.txtSkierowanie.Name = "txtSkierowanie";
-            this.txtSkierowanie.Size = new System.Drawing.Size(556, 175);
+            this.txtSkierowanie.Size = new System.Drawing.Size(250, 174);
             this.txtSkierowanie.TabIndex = 14;
             // 
             // btnZapisz
@@ -930,12 +939,52 @@
             this.tabControl1.Size = new System.Drawing.Size(830, 829);
             this.tabControl1.TabIndex = 23;
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label16.Location = new System.Drawing.Point(293, 223);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(59, 24);
+            this.label16.TabIndex = 30;
+            this.label16.Text = "Opis:";
+            // 
+            // textBox13
+            // 
+            this.textBox13.Location = new System.Drawing.Point(297, 250);
+            this.textBox13.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.textBox13.Multiline = true;
+            this.textBox13.Name = "textBox13";
+            this.textBox13.Size = new System.Drawing.Size(250, 174);
+            this.textBox13.TabIndex = 31;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label17.Location = new System.Drawing.Point(572, 223);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(103, 24);
+            this.label17.TabIndex = 32;
+            this.label17.Text = "Diagnoza:";
+            // 
+            // textBox14
+            // 
+            this.textBox14.Location = new System.Drawing.Point(576, 250);
+            this.textBox14.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.textBox14.Multiline = true;
+            this.textBox14.Name = "textBox14";
+            this.textBox14.Size = new System.Drawing.Size(227, 174);
+            this.textBox14.TabIndex = 33;
+            // 
             // PanelLekarza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(913, 487);
+            this.ClientSize = new System.Drawing.Size(1040, 598);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.tabControl1);
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -979,7 +1028,7 @@
         private System.Windows.Forms.TabPage tabPagePowiadomienia;
         private System.Windows.Forms.TabPage tabPageEdycjaWizyty;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button buttonZatwierdzSkierowanie;
+        private System.Windows.Forms.Button buttonZatwierdz;
         private System.Windows.Forms.Button buttonZatwierdzRecepte;
         private System.Windows.Forms.DataGridView dataGridViewPacjenci;
         private System.Windows.Forms.Label label2;
@@ -1034,5 +1083,9 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DataGridView dataGridViewWizytyhehe;
         private System.Windows.Forms.Button buttonPokazInformacje;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox textBox13;
     }
 }

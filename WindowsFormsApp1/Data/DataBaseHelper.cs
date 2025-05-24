@@ -662,6 +662,7 @@ namespace WindowsFormsApp1.Data
         }
 
 
+
         public DataTable PobierzWszystkichLekarzy()
         {
             using (var connection = new MySqlConnection(_connectionString))
@@ -816,6 +817,61 @@ namespace WindowsFormsApp1.Data
             }
 
             return table;
+        }
+
+        public void ZatwierdzWizyteDlaPacjenta(int pacjentId, int lekarzId, string opis, string diagnoza, string zalecenia)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(_connectionString))
+                {
+                    conn.Open();
+
+                    
+                    string selectQuery = @"SELECT Id FROM wizyty
+                                   WHERE PacjentId = @PacjentId AND LekarzId = @LekarzId AND Status != 'odbyta'
+                                   ORDER BY DataWizyty ASC
+                                   LIMIT 1";
+
+                    int? wizytaId = null;
+
+                    using (MySqlCommand selectCmd = new MySqlCommand(selectQuery, conn))
+                    {
+                        selectCmd.Parameters.AddWithValue("@PacjentId", pacjentId);
+                        selectCmd.Parameters.AddWithValue("@LekarzId", lekarzId);
+
+                        var result = selectCmd.ExecuteScalar();
+                        if (result != null)
+                            wizytaId = Convert.ToInt32(result);
+                    }
+
+                    if (wizytaId == null)
+                    {
+                        MessageBox.Show("Brak nieodbytej wizyty dla tego pacjenta.");
+                        return;
+                    }
+
+                    
+                    string updateQuery = @"UPDATE wizyty
+                                   SET Opis = @Opis, Diagnoza = @Diagnoza, Zalecenia = @Zalecenia, Status = 'odbyta'
+                                   WHERE Id = @WizytaId";
+
+                    using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, conn))
+                    {
+                        updateCmd.Parameters.AddWithValue("@Opis", opis);
+                        updateCmd.Parameters.AddWithValue("@Diagnoza", diagnoza);
+                        updateCmd.Parameters.AddWithValue("@Zalecenia", zalecenia);
+                        updateCmd.Parameters.AddWithValue("@WizytaId", wizytaId.Value);
+                        updateCmd.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Wizyta została zatwierdzona.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd: " + ex.Message);
+            }
         }
 
 

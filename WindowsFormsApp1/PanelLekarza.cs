@@ -712,6 +712,27 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Recepta została zapisana.");
             }
         }
+
+        private void buttonZatwierdz_Click(object sender, EventArgs e)
+        {
+            if (wybranyPacjentId <= 0)
+            {
+                MessageBox.Show("Wybierz pacjenta.");
+                return;
+            }
+
+            string opis = textBox13.Text.Trim();
+            string diagnoza = textBox14.Text.Trim();
+            string zalecenia = txtZalecenia.Text.Trim();
+
+            _dbHelper.ZatwierdzWizyteDlaPacjenta(wybranyPacjentId, lekarzId, opis, diagnoza, zalecenia);
+
+            textBox13.Clear();
+            textBox14.Clear();
+            txtZalecenia.Clear();
+
+            WczytajWizyty(); 
+        }
     }
 }
 
