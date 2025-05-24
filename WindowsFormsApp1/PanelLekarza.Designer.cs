@@ -854,39 +854,39 @@
             // 
             // buttonAnulujWizyte
             // 
-            this.button7.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button7.Location = new System.Drawing.Point(25, 498);
-            this.button7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(176, 62);
-            this.button7.TabIndex = 26;
-            this.button7.Text = "Anuluj Wizytę ";
-            this.button7.UseVisualStyleBackColor = false;
+            this.buttonAnulujWizyte.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.buttonAnulujWizyte.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonAnulujWizyte.Location = new System.Drawing.Point(25, 498);
+            this.buttonAnulujWizyte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonAnulujWizyte.Name = "button7";
+            this.buttonAnulujWizyte.Size = new System.Drawing.Size(176, 62);
+            this.buttonAnulujWizyte.TabIndex = 26;
+            this.buttonAnulujWizyte.Text = "Anuluj Wizytę ";
+            this.buttonAnulujWizyte.UseVisualStyleBackColor = false;
             // 
             // buttonPrzyszleWizyty
             // 
-            this.button6.BackColor = System.Drawing.Color.Silver;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button6.Location = new System.Drawing.Point(25, 428);
-            this.button6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(176, 62);
-            this.button6.TabIndex = 25;
-            this.button6.Text = "Odbyte Wizyty";
-            this.button6.UseVisualStyleBackColor = false;
+            this.buttonPrzyszleWizyty.BackColor = System.Drawing.Color.Silver;
+            this.buttonPrzyszleWizyty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonPrzyszleWizyty.Location = new System.Drawing.Point(25, 428);
+            this.buttonPrzyszleWizyty.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonPrzyszleWizyty.Name = "button6";
+            this.buttonPrzyszleWizyty.Size = new System.Drawing.Size(176, 62);
+            this.buttonPrzyszleWizyty.TabIndex = 25;
+            this.buttonPrzyszleWizyty.Text = "Odbyte Wizyty";
+            this.buttonPrzyszleWizyty.UseVisualStyleBackColor = false;
             // 
             // buttonPrzeszleWizyty
             // 
-            this.button4.BackColor = System.Drawing.Color.Silver;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button4.Location = new System.Drawing.Point(25, 358);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(176, 62);
-            this.button4.TabIndex = 24;
-            this.button4.Text = "Zaplanowane Wizyty";
-            this.button4.UseVisualStyleBackColor = false;
+            this.buttonPrzeszleWizyty.BackColor = System.Drawing.Color.Silver;
+            this.buttonPrzeszleWizyty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonPrzeszleWizyty.Location = new System.Drawing.Point(25, 358);
+            this.buttonPrzeszleWizyty.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonPrzeszleWizyty.Name = "button4";
+            this.buttonPrzeszleWizyty.Size = new System.Drawing.Size(176, 62);
+            this.buttonPrzeszleWizyty.TabIndex = 24;
+            this.buttonPrzeszleWizyty.Text = "Zaplanowane Wizyty";
+            this.buttonPrzeszleWizyty.UseVisualStyleBackColor = false;
             // 
             // monthCalendar2
             // 
