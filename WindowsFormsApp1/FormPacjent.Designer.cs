@@ -32,6 +32,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPageDanePacjenta = new System.Windows.Forms.TabPage();
+            this.textBoxImie = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.textBoxHaslo = new System.Windows.Forms.TextBox();
@@ -50,7 +51,6 @@
             this.textBoxPesel = new System.Windows.Forms.TextBox();
             this.textBoxAdres = new System.Windows.Forms.TextBox();
             this.textBoxNazwisko = new System.Windows.Forms.TextBox();
-            this.textBoxImie = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -119,7 +119,7 @@
             // 
             // tabPageDanePacjenta
             // 
-            this.tabPageDanePacjenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.tabPageDanePacjenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.tabPageDanePacjenta.Controls.Add(this.textBoxImie);
             this.tabPageDanePacjenta.Controls.Add(this.button5);
             this.tabPageDanePacjenta.Controls.Add(this.dateTimePicker1);
@@ -152,6 +152,15 @@
             this.tabPageDanePacjenta.Size = new System.Drawing.Size(1957, 983);
             this.tabPageDanePacjenta.TabIndex = 0;
             this.tabPageDanePacjenta.Text = "Dane Pacjenta";
+            // 
+            // textBoxImie
+            // 
+            this.textBoxImie.Location = new System.Drawing.Point(157, 36);
+            this.textBoxImie.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxImie.Name = "textBoxImie";
+            this.textBoxImie.Size = new System.Drawing.Size(241, 22);
+            this.textBoxImie.TabIndex = 0;
+            this.textBoxImie.TextChanged += new System.EventHandler(this.textBoxImie_TextChanged);
             // 
             // button5
             // 
@@ -332,15 +341,6 @@
             this.textBoxNazwisko.TabIndex = 1;
             this.textBoxNazwisko.TextChanged += new System.EventHandler(this.textBoxNazwisko_TextChanged);
             // 
-            // textBoxImie
-            // 
-            this.textBoxImie.Location = new System.Drawing.Point(157, 36);
-            this.textBoxImie.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxImie.Name = "textBoxImie";
-            this.textBoxImie.Size = new System.Drawing.Size(241, 22);
-            this.textBoxImie.TabIndex = 0;
-            this.textBoxImie.TextChanged += new System.EventHandler(this.textBoxImie_TextChanged);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -412,7 +412,7 @@
             // 
             // tabPageWizyty
             // 
-            this.tabPageWizyty.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.tabPageWizyty.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.tabPageWizyty.Controls.Add(this.button11);
             this.tabPageWizyty.Controls.Add(this.button10);
             this.tabPageWizyty.Controls.Add(this.label22);
@@ -550,7 +550,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.tabPage1.Controls.Add(this.label18);
             this.tabPage1.Controls.Add(this.label17);
             this.tabPage1.Controls.Add(this.label16);
@@ -678,7 +678,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.tabPage2.Controls.Add(this.dataGridView1);
             this.tabPage2.Controls.Add(this.label23);
             this.tabPage2.Controls.Add(this.button9);

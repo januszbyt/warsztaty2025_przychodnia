@@ -316,5 +316,10 @@ namespace WindowsFormsApp1
         {
             SendNotifications(cbNotificationType.SelectedItem.ToString());
         }
+
+        private void cbNotificationType_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
