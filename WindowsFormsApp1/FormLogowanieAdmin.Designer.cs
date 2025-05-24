@@ -50,20 +50,20 @@
             // 
             // textBoxLoginAdmin
             // 
-            this.textBoxLoginAdmin.Location = new System.Drawing.Point(128, 75);
+            this.textBoxLoginAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBoxLoginAdmin.Location = new System.Drawing.Point(128, 69);
             this.textBoxLoginAdmin.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxLoginAdmin.Multiline = true;
             this.textBoxLoginAdmin.Name = "textBoxLoginAdmin";
-            this.textBoxLoginAdmin.Size = new System.Drawing.Size(205, 27);
-            this.textBoxLoginAdmin.TabIndex = 3;
+            this.textBoxLoginAdmin.Size = new System.Drawing.Size(205, 37);
+            this.textBoxLoginAdmin.TabIndex = 5;
             // 
             // textBoxHasloAdmin
             // 
+            this.textBoxHasloAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBoxHasloAdmin.Location = new System.Drawing.Point(128, 127);
             this.textBoxHasloAdmin.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxHasloAdmin.Multiline = true;
             this.textBoxHasloAdmin.Name = "textBoxHasloAdmin";
-            this.textBoxHasloAdmin.Size = new System.Drawing.Size(205, 27);
+            this.textBoxHasloAdmin.Size = new System.Drawing.Size(205, 37);
             this.textBoxHasloAdmin.TabIndex = 4;
             // 
             // checkBoxHasloAdmin
