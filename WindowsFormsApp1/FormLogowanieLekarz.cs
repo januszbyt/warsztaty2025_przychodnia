@@ -22,6 +22,9 @@ namespace WindowsFormsApp1.Forms
 
             textBoxHasloLekarz.PasswordChar = '•';
             checkBox1.Checked = false;
+            this.AcceptButton = this.buttonZaloguj;
+
+
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
