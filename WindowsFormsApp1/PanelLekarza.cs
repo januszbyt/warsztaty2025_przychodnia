@@ -37,7 +37,7 @@ namespace WindowsFormsApp1
             dataGridViewWizyty.AutoGenerateColumns = true;
             dataGridViewPacjenci.AutoGenerateColumns = true;
             this.dataGridViewPacjenci.SelectionChanged += new System.EventHandler(this.dataGridViewPacjenci_SelectionChanged);
-
+            this.FormClosed += new FormClosedEventHandler(FormPanelLekarza_FormClosed);
             WczytajWizyty();
             WczytajAktualneDaneLekarza();
             WczytajPacjentow();
@@ -746,6 +746,11 @@ namespace WindowsFormsApp1
         private void textBox11_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void FormPanelLekarza_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

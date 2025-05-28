@@ -20,6 +20,7 @@ namespace WindowsFormsApp1
         private string _wybranyPlik;
 
 
+
         public FormPacjent(DataBaseHelper dbHelper, int patientId = 0)
         {
             InitializeComponent();
@@ -33,6 +34,7 @@ namespace WindowsFormsApp1
             WczytajHistorieWizyt(_pacjentId);
             WczytajDokumenty();
             WczytajDanePacjenta();
+            this.FormClosed += new FormClosedEventHandler(FormPacjent_FormClosed);
 
 
         }
@@ -593,6 +595,11 @@ namespace WindowsFormsApp1
         private void label20_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void FormPacjent_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

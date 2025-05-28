@@ -28,6 +28,7 @@ namespace WindowsFormsApp1
             cbNotificationType.SelectedIndexChanged += CbNotificationType_SelectedIndexChanged;
             btnSendNotifications.Click += BtnSendNotifications_Click;
             
+
         }
 
         private void LoadDataGridView(string notificationType)

@@ -15,6 +15,7 @@ namespace WindowsFormsApp1
             InitializeComponent();
             _dbHelper = dbHelper ?? throw new ArgumentNullException(nameof(dbHelper));
             textBoxHasloAdmin.PasswordChar = '•';
+            this.FormClosed += new FormClosedEventHandler(FormLogowanieAdmin_FormClosed);
 
             textBoxLoginAdmin.Text = "Admin";
             textBoxHasloAdmin.Focus();
@@ -87,6 +88,11 @@ namespace WindowsFormsApp1
         private void textBoxLoginAdmin_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void FormLogowanieAdmin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

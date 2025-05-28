@@ -17,6 +17,7 @@ namespace WindowsFormsApp1
             _dbHelper = dbHelper ?? throw new ArgumentNullException(nameof(_dbHelper));
             textBoxHasloPacjent.PasswordChar = '•';
             checkBoxPokazHaslo.Checked = false;
+            this.FormClosed += new FormClosedEventHandler(FormLogowaniePacjent_FormClosed);
         }
 
         public FormLogowaniePacjent()
@@ -113,6 +114,11 @@ namespace WindowsFormsApp1
         private void FormLogowaniePacjent_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void FormLogowaniePacjent_FormClosed(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

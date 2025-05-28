@@ -16,6 +16,7 @@ namespace WindowsFormsApp1.Forms
         {
             InitializeComponent();
             this._dbHelper = dbHelper;
+            this.FormClosed += new FormClosedEventHandler(FormLogowanieLekarz_FormClosed);
 
             _dbHelper = new DataBaseHelper();
 
@@ -88,6 +89,11 @@ namespace WindowsFormsApp1.Forms
             {
                 MessageBox.Show($"Błąd: {ex.Message}");
             }
+        }
+
+        private void FormLogowanieLekarz_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -22,7 +22,8 @@ namespace WindowsFormsApp1
         public PanelAdmina()
         {
             InitializeComponent();
-            
+            this.FormClosed += new FormClosedEventHandler(FormPanelAdmina_FormClosed);
+
             try
             {
                 _dbHelper = new DataBaseHelper();
@@ -296,6 +297,11 @@ namespace WindowsFormsApp1
                 return;
             }
             
+        }
+
+        private void FormPanelAdmina_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
 
        

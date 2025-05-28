@@ -15,8 +15,9 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             _dbHelper = dbHelper ?? throw new ArgumentNullException(nameof(dbHelper));
+            this.FormClosed += new FormClosedEventHandler(FormLogowanieRola_FormClosed);
 
-            
+
             comboBox1.Items.AddRange(new[] { "Pacjent", "Lekarz", "Administrator" });
             comboBox1.SelectedIndex = 0;
         }
@@ -85,6 +86,11 @@ namespace WindowsFormsApp1
         private void FormLogowanieRola_Validated(object sender, EventArgs e)
         {
 
+        }
+
+        private void FormLogowanieRola_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit(); 
         }
     }
 }
