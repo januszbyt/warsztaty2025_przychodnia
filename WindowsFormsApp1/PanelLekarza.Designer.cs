@@ -51,7 +51,6 @@
             this.buttonZmienHaslo = new System.Windows.Forms.Button();
             this.txtHaslo = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.label15 = new System.Windows.Forms.Label();
@@ -108,7 +107,6 @@
             label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPageUstawienia.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPagePowiadomienia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.tabPageEdycjaWizyty.SuspendLayout();
@@ -204,7 +202,6 @@
             this.tabPageUstawienia.Controls.Add(this.buttonZmienHaslo);
             this.tabPageUstawienia.Controls.Add(this.txtHaslo);
             this.tabPageUstawienia.Controls.Add(this.txtEmail);
-            this.tabPageUstawienia.Controls.Add(this.pictureBox1);
             this.tabPageUstawienia.Controls.Add(this.dateTimePicker);
             this.tabPageUstawienia.Controls.Add(this.monthCalendar1);
             this.tabPageUstawienia.Controls.Add(this.label15);
@@ -228,7 +225,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(197, 161);
+            this.textBox2.Location = new System.Drawing.Point(197, 163);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
@@ -302,7 +299,7 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(198, 108);
+            this.textBox5.Location = new System.Drawing.Point(198, 110);
             this.textBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
@@ -311,7 +308,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(197, 53);
+            this.textBox4.Location = new System.Drawing.Point(197, 56);
             this.textBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
@@ -321,7 +318,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(198, 2);
+            this.textBox3.Location = new System.Drawing.Point(198, 6);
             this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
@@ -368,16 +365,6 @@
             this.txtEmail.Size = new System.Drawing.Size(132, 22);
             this.txtEmail.TabIndex = 12;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.imagebadge;
-            this.pictureBox1.Location = new System.Drawing.Point(643, 16);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(359, 236);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // dateTimePicker
             // 
             this.dateTimePicker.Location = new System.Drawing.Point(1171, 183);
@@ -388,7 +375,7 @@
             // 
             // monthCalendar1
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(643, 293);
+            this.monthCalendar1.Location = new System.Drawing.Point(692, 36);
             this.monthCalendar1.Margin = new System.Windows.Forms.Padding(12, 11, 12, 11);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 11;
@@ -1016,7 +1003,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPageUstawienia.ResumeLayout(false);
             this.tabPageUstawienia.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPagePowiadomienia.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.tabPageEdycjaWizyty.ResumeLayout(false);
@@ -1043,7 +1029,6 @@
         private System.Windows.Forms.Button buttonZmienHaslo;
         private System.Windows.Forms.TextBox txtHaslo;
         private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.Label labelLekarzImieNazwisko;
