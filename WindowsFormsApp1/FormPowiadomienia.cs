@@ -27,7 +27,8 @@ namespace WindowsFormsApp1
             btnUpdateSmtp.Click += BtnUpdateSmtp_Click;
             cbNotificationType.SelectedIndexChanged += CbNotificationType_SelectedIndexChanged;
             btnSendNotifications.Click += BtnSendNotifications_Click;
-            
+            this.FormClosed += new FormClosedEventHandler(FormPowiadomienia_FormClosed);
+
 
         }
 
@@ -324,6 +325,11 @@ namespace WindowsFormsApp1
         private void cbNotificationType_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void FormPowiadomienia_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
