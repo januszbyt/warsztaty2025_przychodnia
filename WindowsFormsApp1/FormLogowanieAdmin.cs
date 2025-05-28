@@ -5,6 +5,8 @@ using MySql.Data.MySqlClient;
 
 namespace WindowsFormsApp1
 {
+
+
     public partial class FormLogowanieAdmin : Form
     {
         private readonly DataBaseHelper _dbHelper;
@@ -16,6 +18,7 @@ namespace WindowsFormsApp1
 
             textBoxLoginAdmin.Text = "Admin";
             textBoxHasloAdmin.Focus();
+            this.AcceptButton = this.button1;
         }
 
    
