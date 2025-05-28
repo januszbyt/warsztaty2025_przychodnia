@@ -737,6 +737,16 @@ namespace WindowsFormsApp1
         {
             dataGridViewWizyty.DataSource = _dbHelper.PobierzWizyty(lekarzId, null, tylkoPrzyszle: true);
         }
+
+        private void tabPageUstawienia_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox11_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
