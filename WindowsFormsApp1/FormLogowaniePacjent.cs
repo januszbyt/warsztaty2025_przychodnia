@@ -17,12 +17,18 @@ namespace WindowsFormsApp1
             _dbHelper = dbHelper ?? throw new ArgumentNullException(nameof(_dbHelper));
             textBoxHasloPacjent.PasswordChar = '•';
             checkBoxPokazHaslo.Checked = false;
+            this.AcceptButton = this.buttonZalogujPacjent;
+
+
         }
 
         public FormLogowaniePacjent()
         {
             InitializeComponent();
+            this.AcceptButton = this.buttonZalogujPacjent;
         }
+
+       
 
         private void checkBoxPokazHaslo_CheckedChanged(object sender, EventArgs e)
         {
@@ -31,6 +37,7 @@ namespace WindowsFormsApp1
 
         private void buttonZalogujPacjent_Click(object sender, EventArgs e)
         {
+
             try
             {
                 string email = textBoxLoginPacjent.Text.Trim();
@@ -60,6 +67,8 @@ namespace WindowsFormsApp1
                 var formPacjent = new FormPacjent(_dbHelper, users.Id);
                 formPacjent.Closed += (s, args) => this.Close();
                 formPacjent.Show();
+                
+
             }
             catch (Exception ex)
             {
@@ -101,6 +110,7 @@ namespace WindowsFormsApp1
             var formLogowanieRola = new FormLogowanieRola(_dbHelper);
             formLogowanieRola.Closed += (s, args) => Close();
             formLogowanieRola.Show();
+            this.AcceptButton = this.button3;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -108,6 +118,7 @@ namespace WindowsFormsApp1
             FormRejestracja formRejestracja = new FormRejestracja(_dbHelper);
             formRejestracja.Show();
             this.Hide();
+
         }
 
         private void FormLogowaniePacjent_Load(object sender, EventArgs e)
