@@ -50,7 +50,7 @@
             this.buttonWyswierlLekarzy.BackColor = System.Drawing.Color.Silver;
             this.buttonWyswierlLekarzy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonWyswierlLekarzy.Location = new System.Drawing.Point(16, 16);
-            this.buttonWyswierlLekarzy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonWyswierlLekarzy.Margin = new System.Windows.Forms.Padding(4);
             this.buttonWyswierlLekarzy.Name = "buttonWyswierlLekarzy";
             this.buttonWyswierlLekarzy.Size = new System.Drawing.Size(209, 59);
             this.buttonWyswierlLekarzy.TabIndex = 0;
@@ -63,7 +63,7 @@
             this.buttonWyswietlPacjentow.BackColor = System.Drawing.Color.Silver;
             this.buttonWyswietlPacjentow.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonWyswietlPacjentow.Location = new System.Drawing.Point(16, 98);
-            this.buttonWyswietlPacjentow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonWyswietlPacjentow.Margin = new System.Windows.Forms.Padding(4);
             this.buttonWyswietlPacjentow.Name = "buttonWyswietlPacjentow";
             this.buttonWyswietlPacjentow.Size = new System.Drawing.Size(209, 59);
             this.buttonWyswietlPacjentow.TabIndex = 1;
@@ -76,7 +76,7 @@
             this.buttonNadajUprawienia.BackColor = System.Drawing.Color.Silver;
             this.buttonNadajUprawienia.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonNadajUprawienia.Location = new System.Drawing.Point(16, 183);
-            this.buttonNadajUprawienia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonNadajUprawienia.Margin = new System.Windows.Forms.Padding(4);
             this.buttonNadajUprawienia.Name = "buttonNadajUprawienia";
             this.buttonNadajUprawienia.Size = new System.Drawing.Size(209, 59);
             this.buttonNadajUprawienia.TabIndex = 2;
@@ -89,7 +89,7 @@
             this.buttonZabierzUprawnienia.BackColor = System.Drawing.Color.Silver;
             this.buttonZabierzUprawnienia.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonZabierzUprawnienia.Location = new System.Drawing.Point(16, 269);
-            this.buttonZabierzUprawnienia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonZabierzUprawnienia.Margin = new System.Windows.Forms.Padding(4);
             this.buttonZabierzUprawnienia.Name = "buttonZabierzUprawnienia";
             this.buttonZabierzUprawnienia.Size = new System.Drawing.Size(209, 59);
             this.buttonZabierzUprawnienia.TabIndex = 3;
@@ -102,7 +102,7 @@
             this.buttonUsunRekordy.BackColor = System.Drawing.Color.Silver;
             this.buttonUsunRekordy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonUsunRekordy.Location = new System.Drawing.Point(16, 441);
-            this.buttonUsunRekordy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonUsunRekordy.Margin = new System.Windows.Forms.Padding(4);
             this.buttonUsunRekordy.Name = "buttonUsunRekordy";
             this.buttonUsunRekordy.Size = new System.Drawing.Size(209, 59);
             this.buttonUsunRekordy.TabIndex = 4;
@@ -116,7 +116,7 @@
             this.buttonUsunWszystko.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonUsunWszystko.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonUsunWszystko.Location = new System.Drawing.Point(16, 519);
-            this.buttonUsunWszystko.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonUsunWszystko.Margin = new System.Windows.Forms.Padding(4);
             this.buttonUsunWszystko.Name = "buttonUsunWszystko";
             this.buttonUsunWszystko.Size = new System.Drawing.Size(209, 59);
             this.buttonUsunWszystko.TabIndex = 7;
@@ -128,7 +128,7 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(252, 14);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(629, 486);
@@ -139,7 +139,7 @@
             this.WylogujAdmin.BackColor = System.Drawing.Color.Silver;
             this.WylogujAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.WylogujAdmin.Location = new System.Drawing.Point(914, 16);
-            this.WylogujAdmin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.WylogujAdmin.Margin = new System.Windows.Forms.Padding(4);
             this.WylogujAdmin.Name = "WylogujAdmin";
             this.WylogujAdmin.Size = new System.Drawing.Size(179, 62);
             this.WylogujAdmin.TabIndex = 15;
@@ -151,7 +151,7 @@
             // 
             this.textBoxSpecjalizacjaUprawnienia.BackColor = System.Drawing.SystemColors.HighlightText;
             this.textBoxSpecjalizacjaUprawnienia.Location = new System.Drawing.Point(894, 288);
-            this.textBoxSpecjalizacjaUprawnienia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxSpecjalizacjaUprawnienia.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxSpecjalizacjaUprawnienia.Name = "textBoxSpecjalizacjaUprawnienia";
             this.textBoxSpecjalizacjaUprawnienia.Size = new System.Drawing.Size(199, 22);
             this.textBoxSpecjalizacjaUprawnienia.TabIndex = 32;
@@ -221,7 +221,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(1109, 593);
+            this.ClientSize = new System.Drawing.Size(1122, 598);
             this.Controls.Add(this.ResetHasla);
             this.Controls.Add(this.buttonResetujHaslo);
             this.Controls.Add(this.label2);
@@ -236,7 +236,7 @@
             this.Controls.Add(this.buttonNadajUprawienia);
             this.Controls.Add(this.buttonWyswietlPacjentow);
             this.Controls.Add(this.buttonWyswierlLekarzy);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "PanelAdmina";
             this.Text = "PanelAdmina";
             this.Load += new System.EventHandler(this.PanelAdmina_Load);
