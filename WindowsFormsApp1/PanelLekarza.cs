@@ -480,14 +480,18 @@ namespace WindowsFormsApp1
 
             var allVisits = _dbHelper.PobierzWizytyLekarza(_lekarz.Id);
 
-            var filteredVisits = allVisits.AsEnumerable()
-                .Where(row => row.Field<DateTime>("DataWizyty").Date == selectedDate)
-                .CopyToDataTable();
+            var filteredRows = allVisits.AsEnumerable()
+                .Where(row => row.Field<DateTime>("DataWizyty").Date == selectedDate);
 
-            dataGridViewWizyty.DataSource = filteredVisits;
+            if (filteredRows.Any())
+            {
+                dataGridViewWizyty.DataSource = filteredRows.CopyToDataTable(); ;
 
-            if (dataGridViewWizyty.Columns["Id"] != null)
-                dataGridViewWizyty.Columns["Id"].Visible = false;
+                if (dataGridViewWizyty.Columns["Id"] != null)
+                {
+                    dataGridViewWizyty.Columns["Id"].Visible = false;
+                }
+            }
         }
 
         private void buttonSzukaj_Click(object sender, EventArgs e)
