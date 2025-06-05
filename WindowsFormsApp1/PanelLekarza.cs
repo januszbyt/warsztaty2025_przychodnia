@@ -499,6 +499,10 @@ namespace WindowsFormsApp1
                     dataGridViewWizyty.Columns["Id"].Visible = false;
                 }
             }
+            else
+            {
+                dataGridViewWizyty.DataSource = allVisits.Clone();
+            }
         }
 
         private void buttonSzukaj_Click(object sender, EventArgs e)
