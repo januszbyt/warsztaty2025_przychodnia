@@ -874,6 +874,53 @@ namespace WindowsFormsApp1.Data
             }
         }
 
+        public Wizyta PobierzJednaWizyte(int wizytaId)
+        {
+            Wizyta wizyta = null;
+
+            using (MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                var query = @"
+                    SELECT Id, DataWizyty, Status, PacjentId, Opis, Diagnoza, Zalecenia
+                    FROM wizyty
+                    WHERE Id = @WizytaId
+                ";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@WizytaId", wizytaId);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            wizyta = new Wizyta
+                            {
+                                Id = reader.GetInt32("Id"),
+                                LekarzId = reader.GetInt32("LekarzId"),
+                                PacjentId = reader.GetInt32("PacjentId"),
+                                DataWizyty = reader.GetDateTime("DataWizyty"),
+                                Status = reader.GetString("Status"),
+                                Opis = reader.GetString("Opis"),
+                                Diagnoza = reader.GetString("Diagnoza"),
+                                Zalecenia = reader.GetString("Zalecenia"),
+                                Specjalizacja = reader.GetString("Specjalizacja"),
+                                Lekarz = reader.GetString("Lekarz")
+                            };
+                        }
+                    }
+                }
+            }
+
+            if (wizyta == null)
+            {
+                throw new Exception("Wizyta nie znaleziona");
+            }
+
+            return wizyta;
+        }
 
         public DataTable PobierzWizyty(int lekarzId, DateTime? data = null, bool? tylkoPrzyszle = null, bool? tylkoPrzeszle = null)
         {

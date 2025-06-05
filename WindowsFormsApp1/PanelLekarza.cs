@@ -610,7 +610,9 @@ namespace WindowsFormsApp1
                 try
                 {
                     // TODO: Dawid Kotlinski: "ID" to ID wizyty, trzeba pobrać wizytę i z niej wziąć pole PacjentId.
-                    wybranyPacjentId = Convert.ToInt32(row.Cells["Id"].Value);
+                    var wizytaId = Convert.ToInt32(row.Cells["Id"].Value);
+                    Wizyta wizyta = _dbHelper.PobierzJednaWizyte(wizytaId);
+                    wybranyPacjentId = wizyta.PacjentId;
                 }
                 catch
                 {
