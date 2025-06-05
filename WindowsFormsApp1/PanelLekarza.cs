@@ -470,9 +470,9 @@ namespace WindowsFormsApp1
 
         }
 
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        private void monthCalendar2_ValueChanged(object sender, EventArgs e)
         {
-            DateTime selectedDate = dateTimePicker2.Value.Date;
+            DateTime selectedDate = monthCalendar2.Value.Date;
 
             var allVisits = _dbHelper.PobierzWizytyLekarza(_lekarz.Id);
 
