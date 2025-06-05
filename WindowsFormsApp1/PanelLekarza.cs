@@ -180,7 +180,7 @@ namespace WindowsFormsApp1
             }
         }
 
- 
+
 
 
         private void buttonWizyty_Click(object sender, EventArgs e)
@@ -288,7 +288,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        
+
 
         private void btnSkierowanie_Click_1(object sender, EventArgs e)
         {
@@ -298,7 +298,7 @@ namespace WindowsFormsApp1
                 return;
             }
 
-            
+
             Form inputForm = new Form
             {
                 Width = 400,
@@ -341,7 +341,7 @@ namespace WindowsFormsApp1
             }
         }
 
-       
+
 
         private void buttonpokapacjentow_Click(object sender, EventArgs e)
         {
@@ -365,7 +365,7 @@ namespace WindowsFormsApp1
             Application.Exit();
         }
 
-      
+
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
@@ -412,7 +412,7 @@ namespace WindowsFormsApp1
 
         }
 
-        
+
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -447,7 +447,7 @@ namespace WindowsFormsApp1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void textBox7_TextChanged(object sender, EventArgs e)
@@ -472,13 +472,15 @@ namespace WindowsFormsApp1
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            // TODO: Dawid Kotliński: Wykarzacza LINQ
-            var wizyty = _dbHelper.PobierzWizytyLekarza(_lekarz.Id);
-            //    .AsEnumerable()
-            //    .Where(row => row.Field<DateTime>("DataWizyty").Date == PanelLekarza_GetSelectedDate())
-            //    .ToList();
+            DateTime selectedDate = dateTimePicker2.Value.Date;
 
-            dataGridViewWizyty.DataSource = wizyty;
+            var allVisits = _dbHelper.PobierzWizytyLekarza(_lekarz.Id);
+
+            var filteredVisits = allVisits.AsEnumerable()
+                .Where(row => row.Field<DateTime>("DataWizyty").Date == selectedDate)
+                .CopyToDataTable();
+
+            dataGridViewWizyty.DataSource = filteredVisits;
 
             if (dataGridViewWizyty.Columns["Id"] != null)
                 dataGridViewWizyty.Columns["Id"].Visible = false;
@@ -503,18 +505,18 @@ namespace WindowsFormsApp1
                 return;
             }
 
-            
+
             dataGridView2.AutoGenerateColumns = true;
             dataGridView2.DataSource = pacjenci;
 
-           
+
             string[] kolumnyDoWyswietlenia = { "Imie", "Nazwisko", "DateOfBirth", "PESEL", "Miasto", "Adres", "PhoneNumber" };
 
             foreach (DataGridViewColumn column in dataGridView2.Columns)
             {
                 column.Visible = kolumnyDoWyswietlenia.Contains(column.Name);
 
-                
+
                 switch (column.Name)
                 {
                     case "DateOfBirth":
@@ -529,13 +531,13 @@ namespace WindowsFormsApp1
                 }
             }
 
-            
+
             if (dataGridView2.Columns["DateOfBirth"] != null)
             {
                 dataGridView2.Columns["DateOfBirth"].DefaultCellStyle.Format = "dd.MM.yyyy";
             }
 
-            
+
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
         }
@@ -548,22 +550,22 @@ namespace WindowsFormsApp1
                 return;
             }
 
-           
+
             DataGridViewRow selectedRow = dataGridView2.SelectedRows[0];
 
-           
+
             int pacjentId = Convert.ToInt32(selectedRow.Cells["Id"].Value);
 
-            
+
             var wizyty = _dbHelper.PobierzWizytyPacjentaZSzczegolami(pacjentId);
 
-          
+
             dataGridViewWizyty.Rows.Clear();
 
-            
+
             foreach (var wizyta in wizyty)
             {
-                dynamic w = wizyta; 
+                dynamic w = wizyta;
 
                 dataGridViewWizyty.Rows.Add(
                     w.Data,
@@ -577,8 +579,8 @@ namespace WindowsFormsApp1
 
 
 
-          
-          
+
+
         }
 
         private void dataGridViewPacjenci_SelectionChanged(object sender, EventArgs e)
@@ -638,14 +640,14 @@ namespace WindowsFormsApp1
 
             try
             {
-                
+
                 DataGridViewRow selectedRow = dataGridView2.SelectedRows[0];
                 int pacjentId = Convert.ToInt32(selectedRow.Cells["Id"].Value);
 
-                
+
                 var wizyty = _dbHelper.PobierzWizytyPacjentaZSzczegolami(pacjentId);
 
-                
+
                 dataGridViewWizytyhehe.AutoGenerateColumns = true;
                 dataGridViewWizytyhehe.DataSource = null;
                 dataGridViewWizytyhehe.DataSource = wizyty;
@@ -723,10 +725,10 @@ namespace WindowsFormsApp1
             textBox16.Clear();
             txtZalecenia.Clear();
 
-            WczytajWizyty(); 
+            WczytajWizyty();
         }
 
-      
+
 
         private void buttonPrzeszleWizyty_Click_1(object sender, EventArgs e)
         {
