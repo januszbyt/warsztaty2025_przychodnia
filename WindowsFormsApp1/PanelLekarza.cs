@@ -609,6 +609,7 @@ namespace WindowsFormsApp1
                 var row = dataGridViewPacjenci.SelectedRows[0];
                 try
                 {
+                    // TODO: Dawid Kotlinski: "ID" to ID wizyty, trzeba pobrać wizytę i z niej wziąć pole PacjentId.
                     wybranyPacjentId = Convert.ToInt32(row.Cells["Id"].Value);
                 }
                 catch
