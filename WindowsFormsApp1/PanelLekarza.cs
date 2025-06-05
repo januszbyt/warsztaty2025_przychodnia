@@ -472,7 +472,7 @@ namespace WindowsFormsApp1
 
         private void monthCalendar2_ValueChanged(object sender, EventArgs e)
         {
-            DateTime selectedDate = monthCalendar2.Value.Date;
+            DateTime selectedDate = monthCalendar2.SelectionStart;
 
             var allVisits = _dbHelper.PobierzWizytyLekarza(_lekarz.Id);
 
