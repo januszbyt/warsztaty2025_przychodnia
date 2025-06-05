@@ -83,7 +83,6 @@
             this.txtRecepta = new System.Windows.Forms.TextBox();
             this.txtZalecenia = new System.Windows.Forms.TextBox();
             this.txtSkierowanie = new System.Windows.Forms.TextBox();
-            this.btnZapisz = new System.Windows.Forms.Button();
             this.btnSkierowanie = new System.Windows.Forms.Button();
             this.btnRecepta = new System.Windows.Forms.Button();
             this.tabPagePacjenci = new System.Windows.Forms.TabPage();
@@ -118,6 +117,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWizyty)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            label4.Location = new System.Drawing.Point(37, 274);
+            label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(66, 22);
+            label4.TabIndex = 20;
+            label4.Text = "Pesel:";
             // 
             // label5
             // 
@@ -456,17 +466,6 @@
             this.label10.TabIndex = 23;
             this.label10.Text = "Nr. Telefonu:";
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            label4.Location = new System.Drawing.Point(37, 274);
-            label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(66, 22);
-            label4.TabIndex = 20;
-            label4.Text = "Pesel:";
-            // 
             // labelLekarzId
             // 
             this.labelLekarzId.AutoSize = true;
@@ -531,7 +530,7 @@
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Location = new System.Drawing.Point(40, 82);
-            this.dataGridView3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView3.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.RowTemplate.Height = 24;
@@ -557,7 +556,6 @@
             this.tabPageEdycjaWizyty.Controls.Add(this.txtRecepta);
             this.tabPageEdycjaWizyty.Controls.Add(this.txtZalecenia);
             this.tabPageEdycjaWizyty.Controls.Add(this.txtSkierowanie);
-            this.tabPageEdycjaWizyty.Controls.Add(this.btnZapisz);
             this.tabPageEdycjaWizyty.Controls.Add(this.btnSkierowanie);
             this.tabPageEdycjaWizyty.Controls.Add(this.btnRecepta);
             this.tabPageEdycjaWizyty.Location = new System.Drawing.Point(4, 25);
@@ -666,6 +664,7 @@
             this.dataGridViewPacjenci.RowHeadersWidth = 51;
             this.dataGridViewPacjenci.Size = new System.Drawing.Size(740, 178);
             this.dataGridViewPacjenci.TabIndex = 24;
+            this.dataGridViewPacjenci.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPacjenci_CellContentClick);
             // 
             // label2
             // 
@@ -724,18 +723,6 @@
             this.txtSkierowanie.Name = "txtSkierowanie";
             this.txtSkierowanie.Size = new System.Drawing.Size(332, 214);
             this.txtSkierowanie.TabIndex = 14;
-            // 
-            // btnZapisz
-            // 
-            this.btnZapisz.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.btnZapisz.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnZapisz.Location = new System.Drawing.Point(916, 668);
-            this.btnZapisz.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnZapisz.Name = "btnZapisz";
-            this.btnZapisz.Size = new System.Drawing.Size(155, 52);
-            this.btnZapisz.TabIndex = 17;
-            this.btnZapisz.Text = "Zapisz";
-            this.btnZapisz.UseVisualStyleBackColor = false;
             // 
             // btnSkierowanie
             // 
@@ -1045,7 +1032,6 @@
         private System.Windows.Forms.TextBox txtRecepta;
         private System.Windows.Forms.TextBox txtZalecenia;
         private System.Windows.Forms.TextBox txtSkierowanie;
-        private System.Windows.Forms.Button btnZapisz;
         private System.Windows.Forms.Button btnSkierowanie;
         private System.Windows.Forms.Button btnRecepta;
         private System.Windows.Forms.TabPage tabPagePacjenci;

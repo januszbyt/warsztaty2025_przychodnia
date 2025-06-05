@@ -827,11 +827,12 @@ namespace WindowsFormsApp1.Data
                 {
                     conn.Open();
 
-                    
                     string selectQuery = @"SELECT Id FROM wizyty
-                                   WHERE PacjentId = @PacjentId AND LekarzId = @LekarzId AND Status != 'odbyta'
-                                   ORDER BY DataWizyty ASC
-                                   LIMIT 1";
+                       WHERE PacjentId = @PacjentId 
+                       AND LekarzId = @LekarzId 
+                       AND Status = 'zaplanowana'
+                       ORDER BY DataWizyty ASC
+                       LIMIT 1";
 
                     int? wizytaId = null;
 
@@ -845,15 +846,44 @@ namespace WindowsFormsApp1.Data
                             wizytaId = Convert.ToInt32(result);
                     }
 
+                    //  Diagnostyka przy braku wizyty
                     if (wizytaId == null)
                     {
-                        MessageBox.Show("Brak nieodbytej wizyty dla tego pacjenta.");
+                        // Dodajemy diagnostyczne zapytanie
+                        string debugQuery = @"SELECT Id, DataWizyty, Status FROM wizyty 
+                                      WHERE PacjentId = @PacjentId AND LekarzId = @LekarzId";
+                        using (MySqlCommand debugCmd = new MySqlCommand(debugQuery, conn))
+                        {
+                            debugCmd.Parameters.AddWithValue("@PacjentId", pacjentId);
+                            debugCmd.Parameters.AddWithValue("@LekarzId", lekarzId);
+
+                            using (MySqlDataReader reader = debugCmd.ExecuteReader())
+                            {
+                                if (!reader.HasRows)
+                                {
+                                    MessageBox.Show("Brak jakichkolwiek wizyt dla tego pacjenta i lekarza.");
+                                }
+                                else
+                                {
+                                    string raport = "Znalezione wizyty:\n";
+                                    while (reader.Read())
+                                    {
+                                        string data = reader["DataWizyty"].ToString();
+                                        string status = reader["Status"]?.ToString() ?? "NULL";
+                                        raport += $"- {data}, Status: {status}\n";
+                                    }
+
+                                    MessageBox.Show("Brak nieodbytej wizyty.\n\n" + raport);
+                                }
+                            }
+                        }
+
                         return;
                     }
 
-                    
+                    // 👇 Aktualizacja wizyty
                     string updateQuery = @"UPDATE wizyty
-                                   SET Opis = @Opis, Diagnoza = @Diagnoza, Zalecenia = @Zalecenia, Status = 'odbyta'
+                                   SET Opis = @Opis, Diagnoza = @Diagnoza, Zalecenia = @Zalecenia,
                                    WHERE Id = @WizytaId";
 
                     using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, conn))
@@ -873,6 +903,7 @@ namespace WindowsFormsApp1.Data
                 MessageBox.Show("Błąd: " + ex.Message);
             }
         }
+
 
 
         public DataTable PobierzWizyty(int lekarzId, DateTime? data = null, bool? tylkoPrzyszle = null, bool? tylkoPrzeszle = null)

@@ -752,6 +752,11 @@ namespace WindowsFormsApp1
         {
             Application.Exit();
         }
+
+        private void dataGridViewPacjenci_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
 
