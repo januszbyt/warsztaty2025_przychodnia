@@ -38,6 +38,10 @@ namespace WindowsFormsApp1
             dataGridViewPacjenci.AutoGenerateColumns = true;
             this.dataGridViewPacjenci.SelectionChanged += new System.EventHandler(this.dataGridViewPacjenci_SelectionChanged);
             this.FormClosed += new FormClosedEventHandler(FormPanelLekarza_FormClosed);
+
+            // Add event handlers for date controls
+            monthCalendar2.DateChanged += new DateRangeEventHandler(this.monthCalendar2_DateChanged);
+
             WczytajWizyty();
             WczytajAktualneDaneLekarza();
             WczytajPacjentow();
@@ -470,7 +474,7 @@ namespace WindowsFormsApp1
 
         }
 
-        private void monthCalendar2_ValueChanged(object sender, EventArgs e)
+        private void monthCalendar2_DateChanged(object sender, DateRangeEventArgs e)
         {
             DateTime selectedDate = monthCalendar2.SelectionStart;
 
