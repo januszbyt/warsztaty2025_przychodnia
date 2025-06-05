@@ -524,7 +524,7 @@ namespace WindowsFormsApp1.Data
 
         //Nowe dla lekarza 
 
-       
+
 
         public List<Users> SzukajPacjentowLekarza(int lekarzId, string imieNazwisko)
         {
@@ -620,9 +620,9 @@ namespace WindowsFormsApp1.Data
                     {
                         cmd.Parameters.AddWithValue("@PacjentId", pacjentId);
                         cmd.Parameters.AddWithValue("@LekarzId", lekarzId);
-                        cmd.Parameters.AddWithValue("@Typ", "Inne"); 
+                        cmd.Parameters.AddWithValue("@Typ", "Inne");
                         cmd.Parameters.AddWithValue("@Cel", cel);
-                        cmd.Parameters.AddWithValue("@Uwagi", opis); 
+                        cmd.Parameters.AddWithValue("@Uwagi", opis);
 
                         cmd.ExecuteNonQuery();
                     }
@@ -734,7 +734,7 @@ namespace WindowsFormsApp1.Data
                 {
                     try
                     {
-                        
+
                         var queryUsers = @"
                     UPDATE Users SET
                         Imie = @Imie,
@@ -827,7 +827,7 @@ namespace WindowsFormsApp1.Data
                 {
                     conn.Open();
 
-                    
+
                     string selectQuery = @"SELECT Id FROM wizyty
                                    WHERE PacjentId = @PacjentId AND LekarzId = @LekarzId AND Status != 'odbyta'
                                    ORDER BY DataWizyty ASC
@@ -851,7 +851,7 @@ namespace WindowsFormsApp1.Data
                         return;
                     }
 
-                    
+
                     string updateQuery = @"UPDATE wizyty
                                    SET Opis = @Opis, Diagnoza = @Diagnoza, Zalecenia = @Zalecenia, Status = 'odbyta'
                                    WHERE Id = @WizytaId";
@@ -1008,7 +1008,7 @@ namespace WindowsFormsApp1.Data
                             currentRole = checkCommand.ExecuteScalar()?.ToString();
                         }
 
-                       
+
                         if (currentRole != "Lekarz")
                         {
                             var updateRoleQuery = @"UPDATE Users SET Rola = 'Lekarz' WHERE Id = @UserId";
@@ -1340,7 +1340,7 @@ namespace WindowsFormsApp1.Data
             using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
                 string query = @"
-                                SELECT w.Id, w.DataWizyty, w.Status, u.Imie + ' ' + u.Nazwisko AS Pacjent, u.Id AS PacjentId
+                                SELECT w.Id, w.DataWizyty, w.Status, CONCAT(u.Imie, ' ', u.Nazwisko) AS Pacjent, u.Id AS PacjentId
                                 FROM Wizyty w
                                 JOIN Users u ON u.Id = w.PacjentId
                                 WHERE w.LekarzId = @LekarzId
@@ -1661,7 +1661,7 @@ namespace WindowsFormsApp1.Data
         }
 
 
-        
+
 
         public Patient PobierzDanePacjenta(int patientId)
         {
@@ -1906,7 +1906,7 @@ namespace WindowsFormsApp1.Data
             }
         }
 
-    
+
 
         public DataTable PobierzWizytyDlaLekarza(int lekarzId, DateTime data)
         {
