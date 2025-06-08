@@ -18,7 +18,7 @@ namespace WindowsFormsApp1
         private readonly DataBaseHelper _dbHelper;
         private int _pacjentId;
         private string _wybranyPlik;
-
+        private bool isDarkMode;
 
 
         public FormPacjent(DataBaseHelper dbHelper, int patientId = 0)
@@ -35,6 +35,7 @@ namespace WindowsFormsApp1
             WczytajDokumenty();
             WczytajDanePacjenta();
             this.FormClosed += new FormClosedEventHandler(FormPacjent_FormClosed);
+            LoadTheme();
 
 
         }
@@ -600,6 +601,37 @@ namespace WindowsFormsApp1
         private void FormPacjent_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void LoadTheme()
+        {
+            isDarkMode = Properties.Settings.Default.IsDarkMode;
+            ApplyTheme(isDarkMode);
+        }
+
+        private void ApplyTheme(bool darkMode)
+        {
+            if (darkMode)
+                ApplyThemeToControls(this, Color.FromArgb(30, 30, 30), Color.White);
+            else
+                ApplyThemeToControls(this, Color.White, Color.Black);
+        }
+        private void ApplyThemeToControls(Control control, Color backColor, Color foreColor)
+        {
+            control.BackColor = backColor;
+            control.ForeColor = foreColor;
+
+            foreach (Control child in control.Controls)
+            {
+                ApplyThemeToControls(child, backColor, foreColor);
+            }
+        }
+        private void buttonToggleTheme_Click(object sender, EventArgs e)
+        {
+            isDarkMode = !isDarkMode;
+            ApplyTheme(isDarkMode);
+            Properties.Settings.Default.IsDarkMode = isDarkMode;
+            Properties.Settings.Default.Save();
         }
     }
 }

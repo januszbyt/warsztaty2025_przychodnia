@@ -1,23 +1,26 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using WindowsFormsApp1.Data;
 using WindowsFormsApp1.Models;
 using MySql.Data.MySqlClient;
 using WindowsFormsApp1.Forms;
-
 namespace WindowsFormsApp1
 {
     public partial class FormLogowaniePacjent : Form
     {
         private readonly DataBaseHelper _dbHelper;
+        private bool isDarkMode;
 
         public FormLogowaniePacjent(DataBaseHelper dbHelper)
         {
             InitializeComponent();
-            _dbHelper = dbHelper ?? throw new ArgumentNullException(nameof(_dbHelper));
+            _dbHelper = dbHelper ?? throw new ArgumentNullException(nameof(dbHelper));
             textBoxHasloPacjent.PasswordChar = '•';
             checkBoxPokazHaslo.Checked = false;
+
             this.FormClosed += new FormClosedEventHandler(FormLogowaniePacjent_FormClosed);
+            LoadTheme();
         }
 
         public FormLogowaniePacjent()
@@ -26,8 +29,6 @@ namespace WindowsFormsApp1
             this.AcceptButton = this.buttonZalogujPacjent;
         }
 
-       
-
         private void checkBoxPokazHaslo_CheckedChanged(object sender, EventArgs e)
         {
             textBoxHasloPacjent.PasswordChar = checkBoxPokazHaslo.Checked ? '\0' : '•';
@@ -35,7 +36,6 @@ namespace WindowsFormsApp1
 
         private void buttonZalogujPacjent_Click(object sender, EventArgs e)
         {
-
             try
             {
                 string email = textBoxLoginPacjent.Text.Trim();
@@ -65,13 +65,11 @@ namespace WindowsFormsApp1
                 var formPacjent = new FormPacjent(_dbHelper, users.Id);
                 formPacjent.Closed += (s, args) => this.Close();
                 formPacjent.Show();
-                
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Błąd logowania: {ex.Message}\n\nSzczegóły: {ex.StackTrace}",
-                              "blad jak ciul",
+                              "Błąd",
                               MessageBoxButtons.OK,
                               MessageBoxIcon.Error);
             }
@@ -81,7 +79,7 @@ namespace WindowsFormsApp1
         {
             if (string.IsNullOrEmpty(email))
             {
-                MessageBox.Show("Email jest wymagany!", "powazny blad panie kolego",
+                MessageBox.Show("Email jest wymagany!", "Uwaga",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textBoxLoginPacjent.Focus();
                 return false;
@@ -89,7 +87,7 @@ namespace WindowsFormsApp1
 
             if (string.IsNullOrEmpty(haslo))
             {
-                MessageBox.Show("Hasło jest wymagane!", "powazny blad panie kolego",
+                MessageBox.Show("Hasło jest wymagane!", "Uwaga",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textBoxHasloPacjent.Focus();
                 return false;
@@ -97,10 +95,6 @@ namespace WindowsFormsApp1
 
             return true;
         }
-
-        
-
-       
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -116,17 +110,48 @@ namespace WindowsFormsApp1
             FormRejestracja formRejestracja = new FormRejestracja(_dbHelper);
             formRejestracja.Show();
             this.Hide();
-
         }
 
         private void FormLogowaniePacjent_Load(object sender, EventArgs e)
         {
-
         }
 
         private void FormLogowaniePacjent_FormClosed(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void LoadTheme()
+        {
+            isDarkMode = Properties.Settings.Default.IsDarkMode;
+            ApplyTheme(isDarkMode);
+        }
+
+        private void ApplyTheme(bool darkMode)
+        {
+            if (darkMode)
+                ApplyThemeToControls(this, Color.FromArgb(30, 30, 30), Color.White);
+            else
+                ApplyThemeToControls(this, Color.White, Color.Black);
+        }
+
+        private void ApplyThemeToControls(Control control, Color backColor, Color foreColor)
+        {
+            control.BackColor = backColor;
+            control.ForeColor = foreColor;
+
+            foreach (Control child in control.Controls)
+            {
+                ApplyThemeToControls(child, backColor, foreColor);
+            }
+        }
+
+        private void buttonToggleTheme_Click(object sender, EventArgs e)
+        {
+            isDarkMode = !isDarkMode;
+            ApplyTheme(isDarkMode);
+            Properties.Settings.Default.IsDarkMode = isDarkMode;
+            Properties.Settings.Default.Save();
         }
     }
 }

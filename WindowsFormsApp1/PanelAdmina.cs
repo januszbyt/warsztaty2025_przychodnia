@@ -7,6 +7,7 @@ using WindowsFormsApp1.Data;
 using WindowsFormsApp1.Forms;
 using WindowsFormsApp1.Models;
 using MySql.Data.MySqlClient;
+using System.Drawing;
 
 
 namespace WindowsFormsApp1
@@ -16,6 +17,7 @@ namespace WindowsFormsApp1
         
         private int selectedUserId;
         private DataBaseHelper _dbHelper;
+        private bool isDarkMode = false; 
 
         private bool oczekujeNaSpecjalizacje = false;
         
@@ -41,6 +43,8 @@ namespace WindowsFormsApp1
             textBox1.Visible = false;
             label2.Visible = false;
             buttonResetujHaslo.Visible = false;
+
+            LoadTheme();
         }
 
         
@@ -304,6 +308,37 @@ namespace WindowsFormsApp1
             Application.Exit();
         }
 
-       
+        private void LoadTheme()
+        {
+            isDarkMode = Properties.Settings.Default.IsDarkMode;
+            ApplyTheme(isDarkMode);
+        }
+
+        private void ApplyTheme(bool darkMode)
+        {
+            if (darkMode)
+                ApplyThemeToControls(this, Color.FromArgb(30, 30, 30), Color.White);
+            else
+                ApplyThemeToControls(this, Color.White, Color.Black);
+        }
+
+        private void ApplyThemeToControls(Control control, Color backColor, Color foreColor)
+        {
+            control.BackColor = backColor;
+            control.ForeColor = foreColor;
+
+            foreach (Control child in control.Controls)
+            {
+                ApplyThemeToControls(child, backColor, foreColor);
+            }
+        }
+
+        private void buttonToggleThema_Click(object sender, EventArgs e)
+        {
+            isDarkMode = !isDarkMode;
+            ApplyTheme(isDarkMode);
+            Properties.Settings.Default.IsDarkMode = isDarkMode;
+            Properties.Settings.Default.Save();
+        }
     }
 }

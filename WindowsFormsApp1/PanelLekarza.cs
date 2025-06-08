@@ -14,6 +14,8 @@ using System.Globalization;
 
 namespace WindowsFormsApp1
 {
+
+    
     public partial class PanelLekarza : Form
     {
         private readonly DataBaseHelper _dbHelper;
@@ -22,6 +24,7 @@ namespace WindowsFormsApp1
         private int wybranyPacjentId = -1;
         private int lekarzId;
         private int wizytaId;
+        private bool isDarkMode = false;
 
 
         public PanelLekarza(Lekarz lekarz, DataBaseHelper dbHelper)
@@ -45,6 +48,7 @@ namespace WindowsFormsApp1
             InitializeWizytyPacjentDataGridView();
             WczytajDaneLekarza();
             WczytajDzisiejszeWizyty();
+            LoadTheme();
 
 
 
@@ -756,6 +760,39 @@ namespace WindowsFormsApp1
         private void dataGridViewPacjenci_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void LoadTheme()
+        {
+            isDarkMode = Properties.Settings.Default.IsDarkMode;
+            ApplyTheme(isDarkMode);
+        }
+
+        private void ApplyTheme(bool darkMode)
+        {
+            if (darkMode)
+                ApplyThemeToControls(this, Color.FromArgb(30, 30, 30), Color.White);
+            else
+                ApplyThemeToControls(this, Color.White, Color.Black);
+        }
+
+        private void ApplyThemeToControls(Control control, Color backColor, Color foreColor)
+        {
+            control.BackColor = backColor;
+            control.ForeColor = foreColor;
+
+            foreach (Control child in control.Controls)
+            {
+                ApplyThemeToControls(child, backColor, foreColor);
+            }
+        }
+
+        private void buttonToggleTheme_Click(object sender, EventArgs e)
+        {
+            isDarkMode = !isDarkMode;
+            ApplyTheme(isDarkMode);
+            Properties.Settings.Default.IsDarkMode = isDarkMode;
+            Properties.Settings.Default.Save();
         }
     }
 }
