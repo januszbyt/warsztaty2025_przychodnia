@@ -146,7 +146,7 @@ namespace WindowsFormsApp1
             "skierowanie",
             "dokument",
             "opinia"});
-            this.cbNotificationType.Location = new System.Drawing.Point(235, 207);
+            this.cbNotificationType.Location = new System.Drawing.Point(286, 207);
             this.cbNotificationType.Name = "cbNotificationType";
             this.cbNotificationType.Size = new System.Drawing.Size(200, 24);
             this.cbNotificationType.TabIndex = 9;
