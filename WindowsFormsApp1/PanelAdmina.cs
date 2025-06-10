@@ -340,5 +340,13 @@ namespace WindowsFormsApp1
             Properties.Settings.Default.IsDarkMode = isDarkMode;
             Properties.Settings.Default.Save();
         }
+
+        private void buttonPowiadomienia_Click(object sender, EventArgs e)
+        {
+            FormPowiadomienia formPowiadomienia = new FormPowiadomienia();
+
+            
+            formPowiadomienia.Show();
+        }
     }
 }

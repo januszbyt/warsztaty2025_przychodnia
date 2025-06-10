@@ -12,18 +12,18 @@ namespace WindowsFormsApp1
 {
     public partial class FormPowiadomienia : Form
     {
-        private string connectionString = ConfigurationManager.ConnectionStrings["PrzychodniaConnection"].ConnectionString;
+        private string connectionString = "Server=localhost;Database=przychodnia;Uid=root;Pwd=;";
         private string smtpHost = "";
         private int smtpPort = 0;
         private string smtpUser = "";
         private string smtpPassword = "";
         private readonly DataBaseHelper _dbHelper;
-
+        
         public FormPowiadomienia()
         {
             InitializeComponent();
-            LoadDataGridView("wizyta"); // Domyślnie ładuje wizyty
-            // Powiązanie zdarzeń
+            LoadDataGridView("wizyta"); 
+            
             btnUpdateSmtp.Click += BtnUpdateSmtp_Click;
             cbNotificationType.SelectedIndexChanged += CbNotificationType_SelectedIndexChanged;
             btnSendNotifications.Click += BtnSendNotifications_Click;
@@ -330,6 +330,11 @@ namespace WindowsFormsApp1
         private void FormPowiadomienia_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void FormPowiadomienia_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

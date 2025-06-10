@@ -209,6 +209,7 @@ namespace WindowsFormsApp1
             this.MinimizeBox = false;
             this.Name = "FormPowiadomienia";
             this.Text = "FormPowiadomienia";
+            this.Load += new System.EventHandler(this.FormPowiadomienia_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
