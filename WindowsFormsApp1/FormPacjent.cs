@@ -52,7 +52,7 @@ namespace WindowsFormsApp1
             dateTimePickerWizyta.MinDate = DateTime.Today.AddDays(1);
 
 
-            buttonDodajWizyte.Click += buttonDodajWizyte_Click;
+            //buttonDodajWizyte.Click += buttonDodajWizyte_Click;
             buttonWybierzPlik.Click += ButtonWybierzPlik_Click;
 
 

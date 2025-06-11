@@ -91,7 +91,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.textBoxObjawy = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.tabPageDanePacjenta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -108,7 +107,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(1855, 15);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(111, 33);
             this.button1.TabIndex = 1;
@@ -149,9 +148,9 @@
             this.tabPageDanePacjenta.Controls.Add(this.pictureBox1);
             this.errorProvider.SetIconAlignment(this.tabPageDanePacjenta, System.Windows.Forms.ErrorIconAlignment.BottomLeft);
             this.tabPageDanePacjenta.Location = new System.Drawing.Point(4, 25);
-            this.tabPageDanePacjenta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageDanePacjenta.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageDanePacjenta.Name = "tabPageDanePacjenta";
-            this.tabPageDanePacjenta.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageDanePacjenta.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageDanePacjenta.Size = new System.Drawing.Size(1957, 983);
             this.tabPageDanePacjenta.TabIndex = 0;
             this.tabPageDanePacjenta.Text = "Dane Pacjenta";
@@ -159,7 +158,7 @@
             // buttonToggleTheme
             // 
             this.buttonToggleTheme.Location = new System.Drawing.Point(1184, 532);
-            this.buttonToggleTheme.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonToggleTheme.Margin = new System.Windows.Forms.Padding(4);
             this.buttonToggleTheme.Name = "buttonToggleTheme";
             this.buttonToggleTheme.Size = new System.Drawing.Size(100, 28);
             this.buttonToggleTheme.TabIndex = 29;
@@ -170,7 +169,7 @@
             // textBoxImie
             // 
             this.textBoxImie.Location = new System.Drawing.Point(157, 36);
-            this.textBoxImie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxImie.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxImie.Name = "textBoxImie";
             this.textBoxImie.Size = new System.Drawing.Size(241, 22);
             this.textBoxImie.TabIndex = 0;
@@ -181,7 +180,7 @@
             this.button5.BackColor = System.Drawing.Color.Silver;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button5.Location = new System.Drawing.Point(303, 418);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(219, 49);
             this.button5.TabIndex = 28;
@@ -222,7 +221,7 @@
             this.buttonZmienDane.BackColor = System.Drawing.Color.Silver;
             this.buttonZmienDane.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonZmienDane.Location = new System.Drawing.Point(43, 418);
-            this.buttonZmienDane.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonZmienDane.Margin = new System.Windows.Forms.Padding(4);
             this.buttonZmienDane.Name = "buttonZmienDane";
             this.buttonZmienDane.Size = new System.Drawing.Size(219, 49);
             this.buttonZmienDane.TabIndex = 24;
@@ -290,7 +289,7 @@
             this.checkBoxAktywny.AutoSize = true;
             this.checkBoxAktywny.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.checkBoxAktywny.Location = new System.Drawing.Point(445, 30);
-            this.checkBoxAktywny.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxAktywny.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxAktywny.Name = "checkBoxAktywny";
             this.checkBoxAktywny.Size = new System.Drawing.Size(135, 24);
             this.checkBoxAktywny.TabIndex = 17;
@@ -300,7 +299,7 @@
             // textBoxEmail
             // 
             this.textBoxEmail.Location = new System.Drawing.Point(157, 261);
-            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(241, 22);
             this.textBoxEmail.TabIndex = 16;
@@ -309,7 +308,7 @@
             // 
             this.textBoxKodPocztowy.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.textBoxKodPocztowy.Location = new System.Drawing.Point(157, 230);
-            this.textBoxKodPocztowy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxKodPocztowy.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxKodPocztowy.Name = "textBoxKodPocztowy";
             this.textBoxKodPocztowy.Size = new System.Drawing.Size(241, 22);
             this.textBoxKodPocztowy.TabIndex = 15;
@@ -317,7 +316,7 @@
             // textBoxMiasto
             // 
             this.textBoxMiasto.Location = new System.Drawing.Point(157, 199);
-            this.textBoxMiasto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxMiasto.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxMiasto.Name = "textBoxMiasto";
             this.textBoxMiasto.Size = new System.Drawing.Size(241, 22);
             this.textBoxMiasto.TabIndex = 14;
@@ -325,7 +324,7 @@
             // textBoxTelefon
             // 
             this.textBoxTelefon.Location = new System.Drawing.Point(157, 167);
-            this.textBoxTelefon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxTelefon.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxTelefon.Name = "textBoxTelefon";
             this.textBoxTelefon.Size = new System.Drawing.Size(241, 22);
             this.textBoxTelefon.TabIndex = 13;
@@ -333,7 +332,7 @@
             // textBoxPesel
             // 
             this.textBoxPesel.Location = new System.Drawing.Point(157, 133);
-            this.textBoxPesel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxPesel.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxPesel.Name = "textBoxPesel";
             this.textBoxPesel.Size = new System.Drawing.Size(241, 22);
             this.textBoxPesel.TabIndex = 6;
@@ -341,7 +340,7 @@
             // textBoxAdres
             // 
             this.textBoxAdres.Location = new System.Drawing.Point(157, 101);
-            this.textBoxAdres.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxAdres.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxAdres.Name = "textBoxAdres";
             this.textBoxAdres.Size = new System.Drawing.Size(241, 22);
             this.textBoxAdres.TabIndex = 2;
@@ -349,7 +348,7 @@
             // textBoxNazwisko
             // 
             this.textBoxNazwisko.Location = new System.Drawing.Point(157, 69);
-            this.textBoxNazwisko.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxNazwisko.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxNazwisko.Name = "textBoxNazwisko";
             this.textBoxNazwisko.Size = new System.Drawing.Size(241, 22);
             this.textBoxNazwisko.TabIndex = 1;
@@ -403,7 +402,7 @@
             // 
             this.pictureBox1.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.imagebadge;
             this.pictureBox1.Location = new System.Drawing.Point(544, 90);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(368, 204);
             this.pictureBox1.TabIndex = 8;
@@ -418,7 +417,7 @@
             this.tabControlPanelLekarza.Cursor = System.Windows.Forms.Cursors.Hand;
             this.errorProvider.SetIconAlignment(this.tabControlPanelLekarza, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
             this.tabControlPanelLekarza.Location = new System.Drawing.Point(16, 15);
-            this.tabControlPanelLekarza.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControlPanelLekarza.Margin = new System.Windows.Forms.Padding(4);
             this.tabControlPanelLekarza.Name = "tabControlPanelLekarza";
             this.tabControlPanelLekarza.SelectedIndex = 0;
             this.tabControlPanelLekarza.Size = new System.Drawing.Size(1965, 1012);
@@ -427,7 +426,6 @@
             // tabPageWizyty
             // 
             this.tabPageWizyty.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tabPageWizyty.Controls.Add(this.textBoxObjawy);
             this.tabPageWizyty.Controls.Add(this.button11);
             this.tabPageWizyty.Controls.Add(this.button10);
             this.tabPageWizyty.Controls.Add(this.label22);
@@ -439,9 +437,9 @@
             this.tabPageWizyty.Controls.Add(this.dataGridViewLekarze);
             this.tabPageWizyty.Controls.Add(this.buttonDodajWizyte);
             this.tabPageWizyty.Location = new System.Drawing.Point(4, 25);
-            this.tabPageWizyty.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageWizyty.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageWizyty.Name = "tabPageWizyty";
-            this.tabPageWizyty.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageWizyty.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageWizyty.Size = new System.Drawing.Size(1957, 983);
             this.tabPageWizyty.TabIndex = 6;
             this.tabPageWizyty.Text = "Wizyty";
@@ -451,7 +449,7 @@
             this.button11.BackColor = System.Drawing.Color.Silver;
             this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button11.Location = new System.Drawing.Point(855, 549);
-            this.button11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button11.Margin = new System.Windows.Forms.Padding(4);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(197, 63);
             this.button11.TabIndex = 34;
@@ -464,7 +462,7 @@
             this.button10.BackColor = System.Drawing.Color.Silver;
             this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button10.Location = new System.Drawing.Point(592, 551);
-            this.button10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button10.Margin = new System.Windows.Forms.Padding(4);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(197, 63);
             this.button10.TabIndex = 33;
@@ -498,7 +496,7 @@
             this.button2.BackColor = System.Drawing.Color.Silver;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button2.Location = new System.Drawing.Point(325, 549);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(197, 63);
             this.button2.TabIndex = 30;
@@ -511,7 +509,7 @@
             this.button6.BackColor = System.Drawing.Color.Silver;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button6.Location = new System.Drawing.Point(1192, 549);
-            this.button6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(197, 62);
             this.button6.TabIndex = 29;
@@ -523,7 +521,7 @@
             // 
             this.dataGridViewHistoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewHistoria.Location = new System.Drawing.Point(592, 95);
-            this.dataGridViewHistoria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewHistoria.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewHistoria.Name = "dataGridViewHistoria";
             this.dataGridViewHistoria.RowHeadersWidth = 51;
             this.dataGridViewHistoria.Size = new System.Drawing.Size(501, 383);
@@ -533,7 +531,7 @@
             // dateTimePickerWizyta
             // 
             this.dateTimePickerWizyta.Location = new System.Drawing.Point(77, 503);
-            this.dateTimePickerWizyta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerWizyta.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerWizyta.Name = "dateTimePickerWizyta";
             this.dateTimePickerWizyta.Size = new System.Drawing.Size(265, 22);
             this.dateTimePickerWizyta.TabIndex = 5;
@@ -543,7 +541,7 @@
             // 
             this.dataGridViewLekarze.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewLekarze.Location = new System.Drawing.Point(31, 95);
-            this.dataGridViewLekarze.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewLekarze.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewLekarze.Name = "dataGridViewLekarze";
             this.dataGridViewLekarze.RowHeadersWidth = 51;
             this.dataGridViewLekarze.Size = new System.Drawing.Size(348, 383);
@@ -555,7 +553,7 @@
             this.buttonDodajWizyte.BackColor = System.Drawing.Color.Silver;
             this.buttonDodajWizyte.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonDodajWizyte.Location = new System.Drawing.Point(77, 551);
-            this.buttonDodajWizyte.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDodajWizyte.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDodajWizyte.Name = "buttonDodajWizyte";
             this.buttonDodajWizyte.Size = new System.Drawing.Size(197, 63);
             this.buttonDodajWizyte.TabIndex = 3;
@@ -577,9 +575,9 @@
             this.tabPage1.Controls.Add(this.textBoxUwagiDokument);
             this.tabPage1.Controls.Add(this.comboBoxTypDokumentu);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(1957, 983);
             this.tabPage1.TabIndex = 7;
             this.tabPage1.Text = "Dokumentacja Medyczna";
@@ -620,7 +618,7 @@
             this.button7.BackColor = System.Drawing.Color.Silver;
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button7.Location = new System.Drawing.Point(928, 53);
-            this.button7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(219, 49);
             this.button7.TabIndex = 29;
@@ -641,7 +639,7 @@
             // 
             this.dataGridViewDocuments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDocuments.Location = new System.Drawing.Point(147, 53);
-            this.dataGridViewDocuments.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewDocuments.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewDocuments.Name = "dataGridViewDocuments";
             this.dataGridViewDocuments.RowHeadersWidth = 51;
             this.dataGridViewDocuments.Size = new System.Drawing.Size(621, 188);
@@ -653,7 +651,7 @@
             this.buttonDodajDocument.BackColor = System.Drawing.Color.Silver;
             this.buttonDodajDocument.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonDodajDocument.Location = new System.Drawing.Point(348, 596);
-            this.buttonDodajDocument.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDodajDocument.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDodajDocument.Name = "buttonDodajDocument";
             this.buttonDodajDocument.Size = new System.Drawing.Size(181, 54);
             this.buttonDodajDocument.TabIndex = 3;
@@ -666,7 +664,7 @@
             this.buttonWybierzPlik.BackColor = System.Drawing.Color.Silver;
             this.buttonWybierzPlik.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonWybierzPlik.Location = new System.Drawing.Point(147, 596);
-            this.buttonWybierzPlik.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonWybierzPlik.Margin = new System.Windows.Forms.Padding(4);
             this.buttonWybierzPlik.Name = "buttonWybierzPlik";
             this.buttonWybierzPlik.Size = new System.Drawing.Size(181, 54);
             this.buttonWybierzPlik.TabIndex = 2;
@@ -676,7 +674,7 @@
             // textBoxUwagiDokument
             // 
             this.textBoxUwagiDokument.Location = new System.Drawing.Point(147, 350);
-            this.textBoxUwagiDokument.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxUwagiDokument.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxUwagiDokument.Multiline = true;
             this.textBoxUwagiDokument.Name = "textBoxUwagiDokument";
             this.textBoxUwagiDokument.Size = new System.Drawing.Size(461, 207);
@@ -686,7 +684,7 @@
             // 
             this.comboBoxTypDokumentu.FormattingEnabled = true;
             this.comboBoxTypDokumentu.Location = new System.Drawing.Point(348, 262);
-            this.comboBoxTypDokumentu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxTypDokumentu.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxTypDokumentu.Name = "comboBoxTypDokumentu";
             this.comboBoxTypDokumentu.Size = new System.Drawing.Size(160, 24);
             this.comboBoxTypDokumentu.TabIndex = 0;
@@ -716,7 +714,7 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(93, 86);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(561, 153);
@@ -737,7 +735,7 @@
             this.button9.BackColor = System.Drawing.Color.Silver;
             this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button9.Location = new System.Drawing.Point(93, 528);
-            this.button9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button9.Margin = new System.Windows.Forms.Padding(4);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(219, 49);
             this.button9.TabIndex = 37;
@@ -805,7 +803,7 @@
             this.button8.BackColor = System.Drawing.Color.Silver;
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button8.Location = new System.Drawing.Point(773, 528);
-            this.button8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(219, 49);
             this.button8.TabIndex = 29;
@@ -817,16 +815,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // textBoxObjawy
-            // 
-            this.textBoxObjawy.Location = new System.Drawing.Point(357, 378);
-            this.textBoxObjawy.Multiline = true;
-            this.textBoxObjawy.Name = "textBoxObjawy";
-            this.textBoxObjawy.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxObjawy.Size = new System.Drawing.Size(275, 100);
-            this.textBoxObjawy.TabIndex = 35;
-            this.textBoxObjawy.Text = "Opisz swoje objawy";
-            // 
             // FormPacjent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -834,7 +822,7 @@
             this.ClientSize = new System.Drawing.Size(1461, 706);
             this.Controls.Add(this.tabControlPanelLekarza);
             this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormPacjent";
             this.Text = "FormPacjent";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
@@ -928,6 +916,5 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button buttonToggleTheme;
-        private System.Windows.Forms.TextBox textBoxObjawy;
     }
 }
