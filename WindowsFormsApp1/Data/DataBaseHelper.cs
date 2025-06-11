@@ -685,12 +685,11 @@ namespace WindowsFormsApp1.Data
                 conn.Open();
 
                 string query = @"
-            SELECT u.Id, u.Imie, u.Nazwisko, u.Adres, u.PESEL, u.PhoneNumber,
-                   u.Miasto, u.KodPocztowy, u.Email, u.Haslo,
-                   d.Specjalizacja
-            FROM Users u
-            LEFT JOIN Doctors d ON u.Id = d.UserId
-            WHERE u.Id = @Id";
+            select d.Id,d.Imie,d.Nazwisko,d.Specjalizacja,u.Email,u.haslo,u.DateOfBirth,
+            u.Pesel,u.PhoneNumber, u.Adres,u.Miasto,u.KodPocztowy 
+            from doctors d left join users u on d.UserID = u.Id 
+            WHERE d.Id = @Id";
+
 
                 using (var cmd = new MySqlCommand(query, conn))
                 {
