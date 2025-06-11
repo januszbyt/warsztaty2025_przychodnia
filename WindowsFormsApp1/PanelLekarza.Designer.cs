@@ -100,7 +100,6 @@
             this.buttonPrzeszleWizyty = new System.Windows.Forms.Button();
             this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
             this.dataGridViewWizyty = new System.Windows.Forms.DataGridView();
-            this.btnSzukaj = new System.Windows.Forms.Button();
             this.buttonPokazPacjentow = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.buttonToggleTheme = new System.Windows.Forms.Button();
@@ -123,9 +122,10 @@
             // 
             label4.AutoSize = true;
             label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            label4.Location = new System.Drawing.Point(28, 223);
+            label4.Location = new System.Drawing.Point(37, 274);
+            label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(55, 18);
+            label4.Size = new System.Drawing.Size(66, 22);
             label4.TabIndex = 20;
             label4.Text = "Pesel:";
             // 
@@ -520,7 +520,8 @@
             // dataGridView3
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(30, 67);
+            this.dataGridView3.Location = new System.Drawing.Point(40, 82);
+            this.dataGridView3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.RowTemplate.Height = 24;
@@ -861,7 +862,6 @@
             this.tabPageWizyty.Controls.Add(this.buttonPrzeszleWizyty);
             this.tabPageWizyty.Controls.Add(this.monthCalendar2);
             this.tabPageWizyty.Controls.Add(this.dataGridViewWizyty);
-            this.tabPageWizyty.Controls.Add(this.btnSzukaj);
             this.tabPageWizyty.Controls.Add(this.buttonPokazPacjentow);
             this.tabPageWizyty.Location = new System.Drawing.Point(4, 22);
             this.tabPageWizyty.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -875,8 +875,8 @@
             // 
             this.buttonAnulujWizyte.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.buttonAnulujWizyte.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonAnulujWizyte.Location = new System.Drawing.Point(13, 448);
-            this.buttonAnulujWizyte.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonAnulujWizyte.Location = new System.Drawing.Point(17, 551);
+            this.buttonAnulujWizyte.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonAnulujWizyte.Name = "buttonAnulujWizyte";
             this.buttonAnulujWizyte.Size = new System.Drawing.Size(154, 41);
             this.buttonAnulujWizyte.TabIndex = 26;
@@ -887,8 +887,8 @@
             // 
             this.buttonPrzyszleWizyty.BackColor = System.Drawing.Color.Silver;
             this.buttonPrzyszleWizyty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonPrzyszleWizyty.Location = new System.Drawing.Point(13, 382);
-            this.buttonPrzyszleWizyty.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonPrzyszleWizyty.Location = new System.Drawing.Point(17, 470);
+            this.buttonPrzyszleWizyty.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonPrzyszleWizyty.Name = "buttonPrzyszleWizyty";
             this.buttonPrzyszleWizyty.Size = new System.Drawing.Size(154, 43);
             this.buttonPrzyszleWizyty.TabIndex = 25;
@@ -900,8 +900,8 @@
             // 
             this.buttonPrzeszleWizyty.BackColor = System.Drawing.Color.Silver;
             this.buttonPrzeszleWizyty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonPrzeszleWizyty.Location = new System.Drawing.Point(13, 311);
-            this.buttonPrzeszleWizyty.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonPrzeszleWizyty.Location = new System.Drawing.Point(17, 383);
+            this.buttonPrzeszleWizyty.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonPrzeszleWizyty.Name = "buttonPrzeszleWizyty";
             this.buttonPrzeszleWizyty.Size = new System.Drawing.Size(154, 43);
             this.buttonPrzeszleWizyty.TabIndex = 24;
@@ -935,10 +935,10 @@
             // 
             this.btnSzukaj.BackColor = System.Drawing.Color.Silver;
             this.btnSzukaj.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnSzukaj.Location = new System.Drawing.Point(13, 242);
-            this.btnSzukaj.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSzukaj.Location = new System.Drawing.Point(17, 298);
+            this.btnSzukaj.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSzukaj.Name = "btnSzukaj";
-            this.btnSzukaj.Size = new System.Drawing.Size(154, 44);
+            this.btnSzukaj.Size = new System.Drawing.Size(205, 54);
             this.btnSzukaj.TabIndex = 19;
             this.btnSzukaj.Text = "Szukaj Wizyty";
             this.btnSzukaj.UseVisualStyleBackColor = false;
@@ -1048,7 +1048,6 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.TabPage tabPageWizyty;
         private System.Windows.Forms.DataGridView dataGridViewWizyty;
-        private System.Windows.Forms.Button btnSzukaj;
         private System.Windows.Forms.Button buttonPokazPacjentow;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.MonthCalendar monthCalendar2;

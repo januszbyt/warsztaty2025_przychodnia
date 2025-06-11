@@ -524,7 +524,7 @@ namespace WindowsFormsApp1.Data
 
         //Nowe dla lekarza 
 
-       
+
 
         public List<Users> SzukajPacjentowLekarza(int lekarzId, string imieNazwisko)
         {
@@ -620,9 +620,9 @@ namespace WindowsFormsApp1.Data
                     {
                         cmd.Parameters.AddWithValue("@PacjentId", pacjentId);
                         cmd.Parameters.AddWithValue("@LekarzId", lekarzId);
-                        cmd.Parameters.AddWithValue("@Typ", "Inne"); 
+                        cmd.Parameters.AddWithValue("@Typ", "Inne");
                         cmd.Parameters.AddWithValue("@Cel", cel);
-                        cmd.Parameters.AddWithValue("@Uwagi", opis); 
+                        cmd.Parameters.AddWithValue("@Uwagi", opis);
 
                         cmd.ExecuteNonQuery();
                     }
@@ -734,7 +734,7 @@ namespace WindowsFormsApp1.Data
                 {
                     try
                     {
-                        
+
                         var queryUsers = @"
                     UPDATE Users SET
                         Imie = @Imie,
@@ -827,6 +827,7 @@ namespace WindowsFormsApp1.Data
                 {
                     conn.Open();
 
+
                     string selectQuery = @"SELECT Id FROM wizyty
                        WHERE PacjentId = @PacjentId 
                        AND LekarzId = @LekarzId 
@@ -881,7 +882,7 @@ namespace WindowsFormsApp1.Data
                         return;
                     }
 
-                    // 👇 Aktualizacja wizyty
+
                     string updateQuery = @"UPDATE wizyty
                                    SET Opis = @Opis, Diagnoza = @Diagnoza, Zalecenia = @Zalecenia,
                                    WHERE Id = @WizytaId";
@@ -892,7 +893,11 @@ namespace WindowsFormsApp1.Data
                         updateCmd.Parameters.AddWithValue("@Diagnoza", diagnoza);
                         updateCmd.Parameters.AddWithValue("@Zalecenia", zalecenia);
                         updateCmd.Parameters.AddWithValue("@WizytaId", wizytaId.Value);
-                        updateCmd.ExecuteNonQuery();
+                        var rowsAffected = updateCmd.ExecuteNonQuery();
+                        if (rowsAffected <= 0)
+                        {
+                            MessageBox.Show("KRYTYCZNE: Zaden wiersz nie zostal zmieniony!");
+                        }
                     }
 
                     MessageBox.Show("Wizyta została zatwierdzona.");
@@ -904,7 +909,73 @@ namespace WindowsFormsApp1.Data
             }
         }
 
+        public Wizyta PobierzJednaWizyte(int wizytaId)
+        {
+            Wizyta wizyta = null;
 
+            using (MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                var query = @"
+                    SELECT Id, LekarzId, PacjentId, DataWizyty, Status, Opis, Diagnoza, Zalecenia, Specjalizacja
+                    FROM wizyty
+                    WHERE Id = @WizytaId
+                ";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@WizytaId", wizytaId);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            wizyta = new Wizyta
+                            {
+                                Id = reader.GetInt32("Id"),
+                                LekarzId = reader.GetInt32("LekarzId"),
+                                PacjentId = reader.GetInt32("PacjentId"),
+                                DataWizyty = reader.GetDateTime("DataWizyty"),
+                                Status = reader.GetString("Status"),
+                                Opis = null,
+                                Diagnoza = null,
+                                Zalecenia = null,
+                                Specjalizacja = null,
+                                Lekarz = "[[[imie lekarza]]]"
+                            };
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("Opis")))
+                            {
+                                wizyta.Opis = reader.GetString("Opis");
+                            }
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("Diagnoza")))
+                            {
+                                wizyta.Opis = reader.GetString("Diagnoza");
+                            }
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("Zalecenia")))
+                            {
+                                wizyta.Opis = reader.GetString("Zalecenia");
+                            }
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("Specjalizacja")))
+                            {
+                                wizyta.Opis = reader.GetString("Specjalizacja");
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (wizyta == null)
+            {
+                throw new Exception("Wizyta nie znaleziona");
+            }
+
+            return wizyta;
+        }
 
         public DataTable PobierzWizyty(int lekarzId, DateTime? data = null, bool? tylkoPrzyszle = null, bool? tylkoPrzeszle = null)
         {
@@ -1039,7 +1110,7 @@ namespace WindowsFormsApp1.Data
                             currentRole = checkCommand.ExecuteScalar()?.ToString();
                         }
 
-                       
+
                         if (currentRole != "Lekarz")
                         {
                             var updateRoleQuery = @"UPDATE Users SET Rola = 'Lekarz' WHERE Id = @UserId";
@@ -1371,7 +1442,7 @@ namespace WindowsFormsApp1.Data
             using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
                 string query = @"
-                                SELECT w.Id, w.DataWizyty, w.Status, u.Imie + ' ' + u.Nazwisko AS Pacjent, u.Id AS PacjentId
+                                SELECT w.Id, w.DataWizyty, w.Status, CONCAT(u.Imie, ' ', u.Nazwisko) AS Pacjent, u.Id AS PacjentId
                                 FROM Wizyty w
                                 JOIN Users u ON u.Id = w.PacjentId
                                 WHERE w.LekarzId = @LekarzId
@@ -1692,7 +1763,7 @@ namespace WindowsFormsApp1.Data
         }
 
 
-        
+
 
         public Patient PobierzDanePacjenta(int patientId)
         {
@@ -1937,7 +2008,7 @@ namespace WindowsFormsApp1.Data
             }
         }
 
-    
+
 
         public DataTable PobierzWizytyDlaLekarza(int lekarzId, DateTime data)
         {
