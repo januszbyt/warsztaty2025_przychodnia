@@ -862,7 +862,11 @@ namespace WindowsFormsApp1.Data
                         updateCmd.Parameters.AddWithValue("@Diagnoza", diagnoza);
                         updateCmd.Parameters.AddWithValue("@Zalecenia", zalecenia);
                         updateCmd.Parameters.AddWithValue("@WizytaId", wizytaId.Value);
-                        updateCmd.ExecuteNonQuery();
+                        var rowsAffected = updateCmd.ExecuteNonQuery();
+                        if (rowsAffected <= 0)
+                        {
+                            MessageBox.Show("KRYTYCZNE: Zaden wiersz nie zostal zmieniony!");
+                        }
                     }
 
                     MessageBox.Show("Wizyta została zatwierdzona.");
@@ -883,7 +887,7 @@ namespace WindowsFormsApp1.Data
                 conn.Open();
 
                 var query = @"
-                    SELECT Id, DataWizyty, Status, PacjentId, Opis, Diagnoza, Zalecenia
+                    SELECT Id, LekarzId, PacjentId, DataWizyty, Status, Opis, Diagnoza, Zalecenia, Specjalizacja
                     FROM wizyty
                     WHERE Id = @WizytaId
                 ";
@@ -903,12 +907,32 @@ namespace WindowsFormsApp1.Data
                                 PacjentId = reader.GetInt32("PacjentId"),
                                 DataWizyty = reader.GetDateTime("DataWizyty"),
                                 Status = reader.GetString("Status"),
-                                Opis = reader.GetString("Opis"),
-                                Diagnoza = reader.GetString("Diagnoza"),
-                                Zalecenia = reader.GetString("Zalecenia"),
-                                Specjalizacja = reader.GetString("Specjalizacja"),
-                                Lekarz = reader.GetString("Lekarz")
+                                Opis = null,
+                                Diagnoza = null,
+                                Zalecenia = null,
+                                Specjalizacja = null,
+                                Lekarz = "[[[imie lekarza]]]"
                             };
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("Opis")))
+                            {
+                                wizyta.Opis = reader.GetString("Opis");
+                            }
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("Diagnoza")))
+                            {
+                                wizyta.Opis = reader.GetString("Diagnoza");
+                            }
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("Zalecenia")))
+                            {
+                                wizyta.Opis = reader.GetString("Zalecenia");
+                            }
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("Specjalizacja")))
+                            {
+                                wizyta.Opis = reader.GetString("Specjalizacja");
+                            }
                         }
                     }
                 }
