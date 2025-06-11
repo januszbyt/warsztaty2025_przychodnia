@@ -933,16 +933,7 @@
             // 
             // btnSzukaj
             // 
-            this.btnSzukaj.BackColor = System.Drawing.Color.Silver;
-            this.btnSzukaj.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnSzukaj.Location = new System.Drawing.Point(17, 298);
-            this.btnSzukaj.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnSzukaj.Name = "btnSzukaj";
-            this.btnSzukaj.Size = new System.Drawing.Size(205, 54);
-            this.btnSzukaj.TabIndex = 19;
-            this.btnSzukaj.Text = "Szukaj Wizyty";
-            this.btnSzukaj.UseVisualStyleBackColor = false;
-            this.btnSzukaj.Click += new System.EventHandler(this.btnSzukaj_Click);
+            
             // 
             // buttonPokazPacjentow
             // 
