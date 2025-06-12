@@ -27,6 +27,7 @@ namespace WindowsFormsApp1
             _dbHelper = dbHelper;
             _pacjentId = patientId;
 
+            
 
             UstawFormularz();
             WczytajDanePacjenta();
@@ -39,6 +40,9 @@ namespace WindowsFormsApp1
 
 
         }
+        
+
+
 
         private void UstawFormularz()
         {
@@ -634,6 +638,14 @@ namespace WindowsFormsApp1
             ApplyTheme(isDarkMode);
             Properties.Settings.Default.IsDarkMode = isDarkMode;
             Properties.Settings.Default.Save();
+        }
+
+        private void FormPacjent_Load(object sender, EventArgs e)
+        {
+            dataGridViewLekarze.DefaultCellStyle.ForeColor = Color.Red;
+            dataGridViewHistoria.DefaultCellStyle.ForeColor = Color.Red;
+            dataGridViewDocuments.DefaultCellStyle.ForeColor = Color.Red;
+            dataGridView1.DefaultCellStyle.ForeColor = Color.Red;
         }
     }
 }

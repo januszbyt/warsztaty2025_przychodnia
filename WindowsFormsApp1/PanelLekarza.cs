@@ -58,6 +58,17 @@ namespace WindowsFormsApp1
 
 
 
+
+
+        }
+
+        private void FormPanelLekarza_Load(object sender, EventArgs e)
+        {
+            dataGridViewWizyty.DefaultCellStyle.ForeColor = Color.Red;
+            dataGridView2.DefaultCellStyle.ForeColor = Color.Red;
+            dataGridViewWizytyhehe.DefaultCellStyle.ForeColor = Color.Red;
+            dataGridViewPacjenci.DefaultCellStyle.ForeColor = Color.Red;
+            dataGridView3.DefaultCellStyle.ForeColor = Color.Red;
         }
 
         private void InitializeWizytyPacjentDataGridView()
@@ -824,13 +835,13 @@ namespace WindowsFormsApp1
 
         private void buttonAnulujWizyte_Click(object sender, EventArgs e)
         {
-            if (dataGridViewPacjenci.SelectedRows.Count == 0)
+            if (dataGridViewWizyty.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Proszę zaznaczyć wizytę do anulowania.");
                 return;
             }
 
-            var selectedRow = dataGridViewPacjenci.SelectedRows[0];
+            var selectedRow = dataGridViewWizyty.SelectedRows[0];
             if (!int.TryParse(selectedRow.Cells["Id"].Value?.ToString(), out int wizytaId))
             {
                 MessageBox.Show("Nieprawidłowy identyfikator wizyty.");
@@ -856,7 +867,7 @@ namespace WindowsFormsApp1
                 }
 
                 MessageBox.Show("Wizyta została anulowana.");
-                //WczytajHistorieWizyt(_pacjentId);
+                
             }
             catch (Exception ex)
             {
@@ -864,7 +875,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        
+       
     }
     }
 

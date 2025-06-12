@@ -237,7 +237,7 @@ namespace WindowsFormsApp1
        
         private void PanelAdmina_Load(object sender, EventArgs e)
         {
-
+            dataGridView1.DefaultCellStyle.ForeColor = Color.Red;
         }
 
         private void textBoxSpecjalizacjaUprawnienia_TextChanged(object sender, EventArgs e)
