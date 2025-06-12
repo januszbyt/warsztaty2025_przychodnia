@@ -75,14 +75,14 @@ namespace WindowsFormsApp1
         {
             dataGridViewWizyty.Columns.Clear();
 
-            dataGridViewWizyty.Columns.Add("Data", "Data");
-            dataGridViewWizyty.Columns.Add("Status", "Status");
-            dataGridViewWizyty.Columns.Add("Opis", "Opis");
-            dataGridViewWizyty.Columns.Add("Diagnoza", "Diagnoza");
-            dataGridViewWizyty.Columns.Add("Zalecenia", "Zalecenia");
-            dataGridViewWizyty.Columns.Add("Recepta", "Recepta");
+            //dataGridViewWizyty.Columns.Add("Data", "Data");
+            //dataGridViewWizyty.Columns.Add("Status", "Status");
+            //dataGridViewWizyty.Columns.Add("Opis", "Opis");
+            //dataGridViewWizyty.Columns.Add("Diagnoza", "Diagnoza");
+            //dataGridViewWizyty.Columns.Add("Zalecenia", "Zalecenia");
+            //dataGridViewWizyty.Columns.Add("Recepta", "Recepta");
 
-            dataGridViewWizyty.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //dataGridViewWizyty.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewWizyty.ReadOnly = true;
             dataGridViewWizyty.AllowUserToAddRows = false;
         }
