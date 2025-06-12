@@ -10,6 +10,7 @@ using System.Xml.Linq;
 using System.Diagnostics;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Bcpg;
+using System.Linq;
 
 namespace WindowsFormsApp1
 {
@@ -646,6 +647,29 @@ namespace WindowsFormsApp1
             dataGridViewHistoria.DefaultCellStyle.ForeColor = Color.Red;
             dataGridViewDocuments.DefaultCellStyle.ForeColor = Color.Red;
             dataGridView1.DefaultCellStyle.ForeColor = Color.Red;
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Wybierz lekarza.");
+                return;
+            }
+
+            var wybranyLekarz = (Lekarz)dataGridView1.SelectedRows[0].DataBoundItem;
+            int lekarzId = wybranyLekarz.Id;
+
+            var opinie = _dbHelper.PobierzOpinieDlaLekarza(lekarzId);
+
+            if (opinie.Count == 0)
+            {
+                MessageBox.Show("Brak opinii dla wybranego lekarza.");
+                return;
+            }
+
+            string wynik = string.Join("\n---------------------\n", opinie.Select(o => o.ToString()));
+            MessageBox.Show(wynik, $"Opinie dla: {wybranyLekarz.Imie} {wybranyLekarz.Nazwisko}");
         }
     }
 }

@@ -187,6 +187,7 @@
     <Compile Include="Models\Dokument.cs" />
     <Compile Include="Models\DokumentPacjenta.cs" />
     <Compile Include="Models\Lekarz.cs" />
+    <Compile Include="Models\Opinia.cs" />
     <Compile Include="Models\Pacjent.cs" />
     <Compile Include="Models\Recepte.cs" />
     <Compile Include="Models\Role.cs" />

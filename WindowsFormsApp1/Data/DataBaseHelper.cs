@@ -2089,6 +2089,42 @@ namespace WindowsFormsApp1.Data
             }
         }
 
+        public List<Opinia> PobierzOpinieDlaLekarza(int lekarzId)
+        {
+            var opinie = new List<Opinia>();
+
+            using (var connection = new MySqlConnection(ConnectionString))
+            {
+                connection.Open();
+                string query = @"SELECT o.Ocena, o.Komentarz, o.DataDodania, u.Imie, u.Nazwisko
+                         FROM opinie o
+                         JOIN users u ON o.PacjentId = u.Id
+                         WHERE o.LekarzId = @lekarzId
+                         ORDER BY o.DataDodania DESC";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@lekarzId", lekarzId);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            opinie.Add(new Opinia
+                            {
+                                Ocena = reader.GetInt32("Ocena"),
+                                Komentarz = reader.IsDBNull(reader.GetOrdinal("Komentarz")) ? "" : reader.GetString("Komentarz"),
+                                DataDodania = reader.GetDateTime("DataDodania"),
+                                ImiePacjenta = reader.GetString("Imie"),
+                                NazwiskoPacjenta = reader.GetString("Nazwisko")
+                            });
+                        }
+                    }
+                }
+            }
+
+            return opinie;
+        }
+
         public DataTable PobierzLekarzy()
         {
             var dt = new DataTable();
