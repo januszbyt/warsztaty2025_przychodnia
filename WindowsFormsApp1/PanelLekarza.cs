@@ -327,15 +327,16 @@ namespace WindowsFormsApp1
                 StartPosition = FormStartPosition.CenterScreen
             };
 
-            Label labelCel = new Label() { Left = 20, Top = 20, Text = "Cel:" };
+            Label labelCel = new Label() { Left = 20, Top = 20, Text = "Cel:", AutoSize = true };
             System.Windows.Forms.TextBox txtCel = new System.Windows.Forms.TextBox()
             { Left = 80, Top = 20, Width = 280 };
 
-            Label labelOpis = new Label() { Left = 20, Top = 60, Text = "Opis:" };
-            System.Windows.Forms.TextBox txtOpis = new System.Windows.Forms.TextBox() { Left = 80, Top = 60, Width = 280, Height = 100, Multiline = true };
+            Label labelOpis = new Label() { Left = 20, Top = 60, Text = "Opis:", AutoSize = true };
+            System.Windows.Forms.TextBox txtOpis = new System.Windows.Forms.TextBox()
+            { Left = 80, Top = 80, Width = 280, Height = 100, Multiline = true };
 
             System.Windows.Forms.Button btnZapisz = new System.Windows.Forms.Button()
-            { Text = "Zapisz", Left = 280, Width = 80, Top = 180, DialogResult = DialogResult.OK };
+            { Text = "Zapisz", Left = 280, Width = 80, Top = 200, DialogResult = DialogResult.OK };
 
             inputForm.Controls.Add(labelCel);
             inputForm.Controls.Add(txtCel);
@@ -757,13 +758,13 @@ namespace WindowsFormsApp1
 
             string opis = textBox15.Text.Trim();
             string diagnoza = textBox16.Text.Trim();
-            string zalecenia = txtZalecenia.Text.Trim();
+            string zalecenia = txtSkierowanie.Text.Trim();
 
             _dbHelper.ZatwierdzWizyteDlaPacjenta(wybranyPacjentId, lekarzId, opis, diagnoza, zalecenia);
 
             textBox15.Clear();
             textBox16.Clear();
-            txtZalecenia.Clear();
+            txtSkierowanie.Clear();
 
             WczytajWizyty();
         }

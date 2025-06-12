@@ -883,7 +883,7 @@ namespace WindowsFormsApp1.Data
 
 
                     string updateQuery = @"UPDATE wizyty
-                                   SET Opis = @Opis, Diagnoza = @Diagnoza, Zalecenia = @Zalecenia,
+                                   SET Opis = @Opis, Diagnoza = @Diagnoza, Zalecenia = @Zalecenia, Status = 'odbyta'
                                    WHERE Id = @WizytaId";
 
                     using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, conn))
