@@ -153,5 +153,44 @@ namespace WindowsFormsApp1
             Properties.Settings.Default.IsDarkMode = isDarkMode;
             Properties.Settings.Default.Save();
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string email = textBoxLoginPacjent.Text.Trim();
+
+            if (string.IsNullOrEmpty(email))
+            {
+                MessageBox.Show("Najpierw wpisz email, aby zmienić hasło.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            
+            var user = _dbHelper.ZnajdzUzytkownikaPoEmailu(email);
+            if (user == null)
+            {
+                MessageBox.Show("Nie znaleziono użytkownika o tym adresie email.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            
+            string noweHaslo = Microsoft.VisualBasic.Interaction.InputBox("Wprowadź nowe hasło:", "Zmiana hasła", "", -1, -1);
+            string potwierdzHaslo = Microsoft.VisualBasic.Interaction.InputBox("Potwierdź nowe hasło:", "Zmiana hasła", "", -1, -1);
+
+            if (noweHaslo != potwierdzHaslo)
+            {
+                MessageBox.Show("Nowe hasła nie są takie same!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(noweHaslo))
+            {
+                MessageBox.Show("Hasło nie może być puste!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            
+            _dbHelper.ZmienHaslo(user.Id, noweHaslo);
+            MessageBox.Show("Hasło zostało zmienione.", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

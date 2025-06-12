@@ -25,7 +25,7 @@ namespace WindowsFormsApp1
         private int lekarzId;
         private int wizytaId;
         private bool isDarkMode = false;
-
+        private object _pacjentId;
 
         public PanelLekarza(Lekarz lekarz, DataBaseHelper dbHelper)
         {
@@ -821,6 +821,51 @@ namespace WindowsFormsApp1
             Properties.Settings.Default.IsDarkMode = isDarkMode;
             Properties.Settings.Default.Save();
         }
+
+        private void buttonAnulujWizyte_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewPacjenci.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Proszę zaznaczyć wizytę do anulowania.");
+                return;
+            }
+
+            var selectedRow = dataGridViewPacjenci.SelectedRows[0];
+            if (!int.TryParse(selectedRow.Cells["Id"].Value?.ToString(), out int wizytaId))
+            {
+                MessageBox.Show("Nieprawidłowy identyfikator wizyty.");
+                return;
+            }
+
+            var potwierdzenie = MessageBox.Show("Czy na pewno chcesz anulować wizytę?", "Potwierdzenie", MessageBoxButtons.YesNo);
+            if (potwierdzenie != DialogResult.Yes)
+                return;
+
+            try
+            {
+                using (var connection = new MySql.Data.MySqlClient.MySqlConnection(_dbHelper.ConnectionString))
+                {
+                    connection.Open();
+                    string zapytanie = "UPDATE wizyty SET status = 'Anulowana' WHERE id = @id";
+
+                    using (var cmd = new MySql.Data.MySqlClient.MySqlCommand(zapytanie, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@id", wizytaId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Wizyta została anulowana.");
+                //WczytajHistorieWizyt(_pacjentId);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd podczas anulowania wizyty: " + ex.Message);
+            }
+        }
+
+        
     }
-}
+    }
+
 

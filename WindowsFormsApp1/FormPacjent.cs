@@ -81,6 +81,7 @@ namespace WindowsFormsApp1
             textBoxKodPocztowy.Text = pacjent.KodPocztowy;
             textBoxTelefon.Text = pacjent.PhoneNumber;
             textBoxEmail.Text = pacjent.Email;
+            textBoxHaslo.Text = pacjent.Haslo;
             checkBoxAktywny.Checked = pacjent.IsActive;
         }
 
@@ -128,6 +129,7 @@ namespace WindowsFormsApp1
                 textBoxKodPocztowy.Text = pacjent.KodPocztowy;
                 textBoxTelefon.Text = pacjent.PhoneNumber;
                 textBoxEmail.Text = pacjent.Email;
+                textBoxHaslo.Text = pacjent.Haslo;
                 checkBoxAktywny.Checked = pacjent.IsActive;
             }
             else

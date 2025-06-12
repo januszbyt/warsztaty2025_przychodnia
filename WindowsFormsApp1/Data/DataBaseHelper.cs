@@ -1789,6 +1789,7 @@ namespace WindowsFormsApp1.Data
                                 KodPocztowy = reader.IsDBNull(reader.GetOrdinal("KodPocztowy")) ? null : reader.GetString("KodPocztowy"),
                                 PhoneNumber = reader.IsDBNull(reader.GetOrdinal("PhoneNumber")) ? null : reader.GetString("PhoneNumber"),
                                 Email = reader.IsDBNull(reader.GetOrdinal("Email")) ? null : reader.GetString("Email"),
+                                Haslo = reader.IsDBNull(reader.GetOrdinal("Haslo")) ? null : reader.GetString("Haslo")
 
                             };
                         }
@@ -2238,6 +2239,31 @@ namespace WindowsFormsApp1.Data
                 var result = cmd.ExecuteScalar();
                 return result != null ? Convert.ToInt32(result) : -1;
             }
+        }
+
+        public Users ZnajdzUzytkownikaPoEmailu(string email)
+        {
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+                var cmd = new MySqlCommand("SELECT * FROM Users WHERE Email = @Email", connection);
+                cmd.Parameters.AddWithValue("@Email", email);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return new Users
+                        {
+                            Id = reader.GetInt32("Id"),
+                            Email = reader.GetString("Email"),
+                            Haslo = reader.GetString("Haslo")
+                        };
+                    }
+                }
+            }
+
+            return null;
         }
 
     }

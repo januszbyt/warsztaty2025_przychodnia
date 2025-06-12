@@ -45,30 +45,44 @@
             buttonToggleTheme = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
+            // buttonToggleTheme
+            // 
+            buttonToggleTheme.Location = new System.Drawing.Point(35, 420);
+            buttonToggleTheme.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            buttonToggleTheme.Name = "buttonToggleTheme";
+            buttonToggleTheme.Size = new System.Drawing.Size(99, 39);
+            buttonToggleTheme.TabIndex = 21;
+            buttonToggleTheme.Text = "Tryb jasny";
+            buttonToggleTheme.UseVisualStyleBackColor = true;
+            buttonToggleTheme.Click += new System.EventHandler(this.buttonToggleTheme_Click);
+            // 
             // textBoxLoginPacjent
             // 
             this.textBoxLoginPacjent.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxLoginPacjent.Location = new System.Drawing.Point(109, 84);
+            this.textBoxLoginPacjent.Location = new System.Drawing.Point(145, 103);
+            this.textBoxLoginPacjent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxLoginPacjent.Multiline = true;
             this.textBoxLoginPacjent.Name = "textBoxLoginPacjent";
-            this.textBoxLoginPacjent.Size = new System.Drawing.Size(147, 33);
+            this.textBoxLoginPacjent.Size = new System.Drawing.Size(195, 40);
             this.textBoxLoginPacjent.TabIndex = 4;
             // 
             // textBoxHasloPacjent
             // 
             this.textBoxHasloPacjent.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxHasloPacjent.Location = new System.Drawing.Point(109, 144);
+            this.textBoxHasloPacjent.Location = new System.Drawing.Point(145, 177);
+            this.textBoxHasloPacjent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxHasloPacjent.Multiline = true;
             this.textBoxHasloPacjent.Name = "textBoxHasloPacjent";
-            this.textBoxHasloPacjent.Size = new System.Drawing.Size(147, 33);
+            this.textBoxHasloPacjent.Size = new System.Drawing.Size(195, 40);
             this.textBoxHasloPacjent.TabIndex = 5;
             // 
             // checkBoxPokazHaslo
             // 
             this.checkBoxPokazHaslo.AutoSize = true;
-            this.checkBoxPokazHaslo.Location = new System.Drawing.Point(376, 136);
+            this.checkBoxPokazHaslo.Location = new System.Drawing.Point(501, 167);
+            this.checkBoxPokazHaslo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBoxPokazHaslo.Name = "checkBoxPokazHaslo";
-            this.checkBoxPokazHaslo.Size = new System.Drawing.Size(86, 17);
+            this.checkBoxPokazHaslo.Size = new System.Drawing.Size(106, 20);
             this.checkBoxPokazHaslo.TabIndex = 7;
             this.checkBoxPokazHaslo.Text = "Pokaż hasło";
             this.checkBoxPokazHaslo.UseVisualStyleBackColor = true;
@@ -77,9 +91,10 @@
             // buttonZalogujPacjent
             // 
             this.buttonZalogujPacjent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonZalogujPacjent.Location = new System.Drawing.Point(376, 84);
+            this.buttonZalogujPacjent.Location = new System.Drawing.Point(501, 103);
+            this.buttonZalogujPacjent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonZalogujPacjent.Name = "buttonZalogujPacjent";
-            this.buttonZalogujPacjent.Size = new System.Drawing.Size(107, 38);
+            this.buttonZalogujPacjent.Size = new System.Drawing.Size(143, 47);
             this.buttonZalogujPacjent.TabIndex = 8;
             this.buttonZalogujPacjent.Text = "Zaloguj";
             this.buttonZalogujPacjent.UseVisualStyleBackColor = true;
@@ -90,9 +105,10 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(165, 16);
+            this.label3.Location = new System.Drawing.Point(220, 20);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(235, 26);
+            this.label3.Size = new System.Drawing.Size(289, 32);
             this.label3.TabIndex = 9;
             this.label3.Text = "WITAMY W KLINICE";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -102,10 +118,9 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(35, 94);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(47, 116);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 17);
+            this.label2.Size = new System.Drawing.Size(77, 20);
             this.label2.TabIndex = 10;
             this.label2.Text = "E-MAIL:";
             // 
@@ -114,51 +129,49 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Location = new System.Drawing.Point(35, 151);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(47, 186);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 17);
+            this.label1.Size = new System.Drawing.Size(78, 20);
             this.label1.TabIndex = 14;
             this.label1.Text = "HASŁO:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(306, 166);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(408, 204);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(137, 13);
+            this.label4.Size = new System.Drawing.Size(173, 16);
             this.label4.TabIndex = 15;
             this.label4.Text = "Nie możesz się zalogować?";
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(440, 165);
-            this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel1.Location = new System.Drawing.Point(587, 203);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(66, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(83, 16);
             this.linkLabel1.TabIndex = 16;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Zmień hasło";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label5.Location = new System.Drawing.Point(152, 240);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(203, 295);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(259, 17);
+            this.label5.Size = new System.Drawing.Size(306, 20);
             this.label5.TabIndex = 17;
             this.label5.Text = "BRAK KONTA? ZAREJESTRUJ SIĘ";
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button2.Location = new System.Drawing.Point(206, 261);
+            this.button2.Location = new System.Drawing.Point(275, 321);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(125, 42);
+            this.button2.Size = new System.Drawing.Size(167, 52);
             this.button2.TabIndex = 18;
             this.button2.Text = "REJESTRACJA";
             this.button2.UseVisualStyleBackColor = true;
@@ -168,40 +181,30 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.Location = new System.Drawing.Point(152, 319);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(203, 393);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(267, 17);
+            this.label6.Size = new System.Drawing.Size(313, 20);
             this.label6.TabIndex = 19;
             this.label6.Text = "PONOWNY WYBÓR UŻYTKOWNIKA";
             // 
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button3.Location = new System.Drawing.Point(206, 341);
+            this.button3.Location = new System.Drawing.Point(275, 420);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(125, 38);
+            this.button3.Size = new System.Drawing.Size(167, 47);
             this.button3.TabIndex = 20;
             this.button3.Text = "<< COFNIJ";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // buttonToggleTheme
-            // 
-            buttonToggleTheme.Location = new System.Drawing.Point(26, 341);
-            buttonToggleTheme.Name = "buttonToggleTheme";
-            buttonToggleTheme.Size = new System.Drawing.Size(74, 32);
-            buttonToggleTheme.TabIndex = 21;
-            buttonToggleTheme.Text = "Tryb jasny";
-            buttonToggleTheme.UseVisualStyleBackColor = true;
-            buttonToggleTheme.Click += new System.EventHandler(this.buttonToggleTheme_Click);
-            // 
             // FormLogowaniePacjent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(535, 407);
+            this.ClientSize = new System.Drawing.Size(713, 501);
             this.Controls.Add(buttonToggleTheme);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label6);
@@ -216,6 +219,7 @@
             this.Controls.Add(this.checkBoxPokazHaslo);
             this.Controls.Add(this.textBoxHasloPacjent);
             this.Controls.Add(this.textBoxLoginPacjent);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormLogowaniePacjent";
             this.Text = "Logowanie Pacjent";
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
