@@ -10,7 +10,7 @@ namespace WindowsFormsApp1
     public partial class FormLogowaniePacjent : Form
     {
         private readonly DataBaseHelper _dbHelper;
-        private bool isDarkMode;
+        
 
         public FormLogowaniePacjent(DataBaseHelper dbHelper)
         {
@@ -123,8 +123,7 @@ namespace WindowsFormsApp1
 
         private void LoadTheme()
         {
-            isDarkMode = Properties.Settings.Default.IsDarkMode;
-            ApplyTheme(isDarkMode);
+           
         }
 
         private void ApplyTheme(bool darkMode)
@@ -148,10 +147,7 @@ namespace WindowsFormsApp1
 
         private void buttonToggleTheme_Click(object sender, EventArgs e)
         {
-            isDarkMode = !isDarkMode;
-            ApplyTheme(isDarkMode);
-            Properties.Settings.Default.IsDarkMode = isDarkMode;
-            Properties.Settings.Default.Save();
+           
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
