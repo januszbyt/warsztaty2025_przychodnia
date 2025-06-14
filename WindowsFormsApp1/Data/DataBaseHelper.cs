@@ -1191,7 +1191,7 @@ VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
             }
         }
 
-        public void ZabierzUprawnieniaLekarza(int userId)
+        public void ZabierzUprawnieniaLekarza(int LekarzId, int UserId)
         {
             using (var connection = new MySqlConnection(_connectionString))
             {
@@ -1205,7 +1205,7 @@ VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
 
                         using (var checkCmd = new MySqlCommand(checkRoleQuery, connection, transaction))
                         {
-                            checkCmd.Parameters.AddWithValue("@UserId", userId);
+                            checkCmd.Parameters.AddWithValue("@UserId", UserId);
                             maRoleLekarza = Convert.ToInt32(checkCmd.ExecuteScalar()) > 0;
                         }
 
@@ -1214,11 +1214,11 @@ VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
                             throw new Exception("Użytkownik nie ma przypisanej roli 'lekarz'.");
                         }
 
-                        var deleteDoctorQuery = "DELETE FROM Doctors WHERE Id = @UserId";
+                        var deleteDoctorQuery = "DELETE FROM Doctors WHERE Id = @Id";
                         int affectedRows;
                         using (var doctorCmd = new MySqlCommand(deleteDoctorQuery, connection, transaction))
                         {
-                            doctorCmd.Parameters.AddWithValue("@UserId", userId);
+                            doctorCmd.Parameters.AddWithValue("Id", LekarzId);
                             affectedRows = doctorCmd.ExecuteNonQuery();
                         }
 
@@ -1230,7 +1230,7 @@ VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
                         var updateRoleQuery = "UPDATE users SET Rola = 'Pacjent' WHERE Id = @UserId";
                         using (var roleCmd = new MySqlCommand(updateRoleQuery, connection, transaction))
                         {
-                            roleCmd.Parameters.AddWithValue("@UserId", userId);
+                            roleCmd.Parameters.AddWithValue("@UserId", UserId);
                             roleCmd.ExecuteNonQuery();
                         }
 

@@ -136,6 +136,7 @@ namespace WindowsFormsApp1
             }
 
             int userId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["UserId"].Value);
+            int Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
 
             try
             {
@@ -149,7 +150,7 @@ namespace WindowsFormsApp1
 
                 if (potwierdzenie == DialogResult.Yes)
                 {
-                    _dbHelper.ZabierzUprawnieniaLekarza(userId);
+                    _dbHelper.ZabierzUprawnieniaLekarza(Id, userId);
                     MessageBox.Show("Pomyślnie odebrano uprawnienia lekarza.", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     RefreshGrid();
                 }
