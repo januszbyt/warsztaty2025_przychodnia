@@ -989,7 +989,7 @@ VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
 
                 string query = @"SELECT Id, DataWizyty, Status, PacjentId, Opis, Diagnoza, Zalecenia
                          FROM wizyty
-                         WHERE LekarzId = @LekarzId";
+                         WHERE LekarzId = @LekarzId and status = 'zaplanowana'";
 
                 if (data.HasValue)
                 {
@@ -1476,7 +1476,7 @@ VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
             FROM wizyty w
             JOIN users u ON w.PacjentId = u.Id
             WHERE DATE(w.DataWizyty) = CURDATE()
-              AND w.LekarzId = @LekarzId";
+              AND w.LekarzId = @LekarzId and status = 'zaplanowana'";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {

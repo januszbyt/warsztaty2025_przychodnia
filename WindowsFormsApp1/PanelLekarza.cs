@@ -45,7 +45,7 @@ namespace WindowsFormsApp1
             // Add event handlers for date controls
             monthCalendar2.DateChanged += new DateRangeEventHandler(this.monthCalendar2_DateChanged);
 
-            WczytajWizyty();
+            //WczytajWizyty();
             WczytajAktualneDaneLekarza();
             WczytajPacjentow();
 
@@ -105,15 +105,20 @@ namespace WindowsFormsApp1
 
         private void WczytajWizyty()
         {
-            // TODO: Dawid Kotliński: Wykarzacza LINQ
-            var wizyty = _dbHelper.PobierzWizytyLekarza(_lekarz.Id);
-            // .AsEnumerable()
-            // .Where(row => row.Field<DateTime>("DataWizyty").Date == PanelLekarza_GetSelectedDate())
-            // .ToList();
+            this.WczytajDzisiejszeWizyty();
 
-            dataGridViewWizyty.DataSource = wizyty;
-            if (dataGridViewWizyty.Columns["Id"] != null)
-                dataGridViewWizyty.Columns["Id"].Visible = false;
+            if (false)
+            {
+                // TODO: Dawid Kotliński: Wykarzacza LINQ
+                var wizyty = _dbHelper.PobierzWizytyLekarza(_lekarz.Id);
+                // .AsEnumerable()
+                // .Where(row => row.Field<DateTime>("DataWizyty").Date == PanelLekarza_GetSelectedDate())
+                // .ToList();
+
+                dataGridViewWizyty.DataSource = wizyty;
+                if (dataGridViewWizyty.Columns["Id"] != null)
+                    dataGridViewWizyty.Columns["Id"].Visible = false;
+            }
         }
 
         // TODO: Dawid Kotlinski: ODkomentować, były problemy z dostępem do klasy TextBox.
@@ -773,6 +778,10 @@ namespace WindowsFormsApp1
             textBox15.Clear();
             textBox16.Clear();
             txtSkierowanie.Clear();
+
+            //this.Refresh();
+            Invalidate();
+            Update();
 
             WczytajWizyty();
         }
