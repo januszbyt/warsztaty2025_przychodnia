@@ -135,7 +135,7 @@ namespace WindowsFormsApp1
                 return;
             }
 
-            int userId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
+            int userId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["UserId"].Value);
 
             try
             {
