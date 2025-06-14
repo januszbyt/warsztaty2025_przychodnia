@@ -606,18 +606,20 @@ namespace WindowsFormsApp1.Data
             return lista;
         }
 
-        public void DodajSkierowanie(int pacjentId, int lekarzId, string cel, string opis)
+        public void DodajSkierowanie(int pacjentId, int lekarzId, string cel, string opis, int WizytaId)
         {
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(_connectionString))
                 {
                     conn.Open();
-                    string query = @"INSERT INTO skierowania (PacjentId, LekarzId, DataWystawienia, Typ, Cel, Uwagi)
-                             VALUES (@PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
+                    string query = @"
+INSERT INTO skierowania (WizytaId, PacjentId, LekarzId, DataWystawienia, Typ, Cel, Uwagi)
+VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
+                        cmd.Parameters.AddWithValue("@WizytaId", WizytaId);
                         cmd.Parameters.AddWithValue("@PacjentId", pacjentId);
                         cmd.Parameters.AddWithValue("@LekarzId", lekarzId);
                         cmd.Parameters.AddWithValue("@Typ", "Inne");
@@ -634,18 +636,19 @@ namespace WindowsFormsApp1.Data
             }
         }
 
-        public void DodajRecepte(int pacjentId, int lekarzId, string kodRecepty, string leki, string uwagi)
+        public void DodajRecepte(int pacjentId, int lekarzId, string kodRecepty, string leki, string uwagi, int WizytaId)
         {
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(_connectionString))
                 {
                     conn.Open();
-                    string query = @"INSERT INTO recepty (PacjentId, LekarzId, DataWystawienia, KodRecepty, Leki, Uwagi)
-                             VALUES (@PacjentId, @LekarzId, NOW(), @KodRecepty, @Leki, @Uwagi)";
+                    string query = @"INSERT INTO recepty (WizytaId, PacjentId, LekarzId, DataWystawienia, KodRecepty, Leki, Uwagi)
+                             VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @KodRecepty, @Leki, @Uwagi)";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
+                        cmd.Parameters.AddWithValue("@WizytaId", WizytaId);
                         cmd.Parameters.AddWithValue("@PacjentId", pacjentId);
                         cmd.Parameters.AddWithValue("@LekarzId", lekarzId);
                         cmd.Parameters.AddWithValue("@KodRecepty", kodRecepty);

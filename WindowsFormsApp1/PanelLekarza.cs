@@ -241,6 +241,8 @@ namespace WindowsFormsApp1
                 return;
             }
 
+
+
             string kodRecepty = Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
             string leki = Microsoft.VisualBasic.Interaction.InputBox("Wprowadź leki:", "Recepta");
 
@@ -317,6 +319,9 @@ namespace WindowsFormsApp1
                 return;
             }
 
+            var row = dataGridViewPacjenci.SelectedRows[0];
+            var wizytaId = Convert.ToInt32(row.Cells["Id"].Value);
+
 
             Form inputForm = new Form
             {
@@ -356,7 +361,7 @@ namespace WindowsFormsApp1
                     return;
                 }
 
-                _dbHelper.DodajSkierowanie(wybranyPacjentId, lekarzId, cel, opis);
+                _dbHelper.DodajSkierowanie(wybranyPacjentId, lekarzId, cel, opis, wizytaId);
                 MessageBox.Show("Skierowanie zostało zapisane.");
             }
         }
@@ -707,6 +712,9 @@ namespace WindowsFormsApp1
                 return;
             }
 
+            var row = dataGridViewPacjenci.SelectedRows[0];
+            var wizytaId = Convert.ToInt32(row.Cells["Id"].Value);
+
             Form inputForm = new Form
             {
                 Width = 400,
@@ -743,7 +751,7 @@ namespace WindowsFormsApp1
                 string leki = txtLeki.Text.Trim();
                 string uwagi = txtUwagi.Text.Trim();
 
-                _dbHelper.DodajRecepte(wybranyPacjentId, lekarzId, kod, leki, uwagi);
+                _dbHelper.DodajRecepte(wybranyPacjentId, lekarzId, kod, leki, uwagi, wizytaId);
                 MessageBox.Show("Recepta została zapisana.");
             }
         }
