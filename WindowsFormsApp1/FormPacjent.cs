@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
         private readonly DataBaseHelper _dbHelper;
         private int _pacjentId;
         private string _wybranyPlik;
-        private bool isDarkMode;
+
 
 
         public FormPacjent(DataBaseHelper dbHelper, int patientId = 0)
@@ -612,8 +612,7 @@ namespace WindowsFormsApp1
 
         private void LoadTheme()
         {
-            isDarkMode = Properties.Settings.Default.IsDarkMode;
-            ApplyTheme(isDarkMode);
+            
         }
 
         private void ApplyTheme(bool darkMode)
@@ -635,10 +634,7 @@ namespace WindowsFormsApp1
         }
         private void buttonToggleTheme_Click(object sender, EventArgs e)
         {
-            isDarkMode = !isDarkMode;
-            ApplyTheme(isDarkMode);
-            Properties.Settings.Default.IsDarkMode = isDarkMode;
-            Properties.Settings.Default.Save();
+           
         }
 
         private void FormPacjent_Load(object sender, EventArgs e)

@@ -42,7 +42,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.buttonResetujHaslo = new System.Windows.Forms.Button();
             this.ResetHasla = new System.Windows.Forms.Button();
-            this.buttonToggleThema = new System.Windows.Forms.Button();
             this.buttonPowiadomienia = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -51,10 +50,10 @@
             // 
             this.buttonWyswierlLekarzy.BackColor = System.Drawing.Color.Silver;
             this.buttonWyswierlLekarzy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonWyswierlLekarzy.Location = new System.Drawing.Point(16, 16);
-            this.buttonWyswierlLekarzy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonWyswierlLekarzy.Location = new System.Drawing.Point(18, 20);
+            this.buttonWyswierlLekarzy.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonWyswierlLekarzy.Name = "buttonWyswierlLekarzy";
-            this.buttonWyswierlLekarzy.Size = new System.Drawing.Size(209, 59);
+            this.buttonWyswierlLekarzy.Size = new System.Drawing.Size(235, 74);
             this.buttonWyswierlLekarzy.TabIndex = 0;
             this.buttonWyswierlLekarzy.Text = "Wyswietl Lekarzy";
             this.buttonWyswierlLekarzy.UseVisualStyleBackColor = false;
@@ -64,10 +63,10 @@
             // 
             this.buttonWyswietlPacjentow.BackColor = System.Drawing.Color.Silver;
             this.buttonWyswietlPacjentow.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonWyswietlPacjentow.Location = new System.Drawing.Point(16, 98);
-            this.buttonWyswietlPacjentow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonWyswietlPacjentow.Location = new System.Drawing.Point(18, 122);
+            this.buttonWyswietlPacjentow.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonWyswietlPacjentow.Name = "buttonWyswietlPacjentow";
-            this.buttonWyswietlPacjentow.Size = new System.Drawing.Size(209, 59);
+            this.buttonWyswietlPacjentow.Size = new System.Drawing.Size(235, 74);
             this.buttonWyswietlPacjentow.TabIndex = 1;
             this.buttonWyswietlPacjentow.Text = "Wyświetl Pacjentow";
             this.buttonWyswietlPacjentow.UseVisualStyleBackColor = false;
@@ -77,10 +76,10 @@
             // 
             this.buttonNadajUprawienia.BackColor = System.Drawing.Color.Silver;
             this.buttonNadajUprawienia.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonNadajUprawienia.Location = new System.Drawing.Point(16, 183);
-            this.buttonNadajUprawienia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonNadajUprawienia.Location = new System.Drawing.Point(18, 229);
+            this.buttonNadajUprawienia.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonNadajUprawienia.Name = "buttonNadajUprawienia";
-            this.buttonNadajUprawienia.Size = new System.Drawing.Size(209, 59);
+            this.buttonNadajUprawienia.Size = new System.Drawing.Size(235, 74);
             this.buttonNadajUprawienia.TabIndex = 2;
             this.buttonNadajUprawienia.Text = "Nadaj Uprawnienia";
             this.buttonNadajUprawienia.UseVisualStyleBackColor = false;
@@ -90,10 +89,10 @@
             // 
             this.buttonZabierzUprawnienia.BackColor = System.Drawing.Color.Silver;
             this.buttonZabierzUprawnienia.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonZabierzUprawnienia.Location = new System.Drawing.Point(16, 270);
-            this.buttonZabierzUprawnienia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonZabierzUprawnienia.Location = new System.Drawing.Point(18, 338);
+            this.buttonZabierzUprawnienia.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonZabierzUprawnienia.Name = "buttonZabierzUprawnienia";
-            this.buttonZabierzUprawnienia.Size = new System.Drawing.Size(209, 59);
+            this.buttonZabierzUprawnienia.Size = new System.Drawing.Size(235, 74);
             this.buttonZabierzUprawnienia.TabIndex = 3;
             this.buttonZabierzUprawnienia.Text = "Zabierz Uprawnienia";
             this.buttonZabierzUprawnienia.UseVisualStyleBackColor = false;
@@ -103,10 +102,10 @@
             // 
             this.buttonUsunRekordy.BackColor = System.Drawing.Color.Silver;
             this.buttonUsunRekordy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonUsunRekordy.Location = new System.Drawing.Point(16, 441);
-            this.buttonUsunRekordy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonUsunRekordy.Location = new System.Drawing.Point(18, 551);
+            this.buttonUsunRekordy.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonUsunRekordy.Name = "buttonUsunRekordy";
-            this.buttonUsunRekordy.Size = new System.Drawing.Size(209, 59);
+            this.buttonUsunRekordy.Size = new System.Drawing.Size(235, 74);
             this.buttonUsunRekordy.TabIndex = 4;
             this.buttonUsunRekordy.Text = "Usun Uzytkownika";
             this.buttonUsunRekordy.UseVisualStyleBackColor = false;
@@ -117,10 +116,10 @@
             this.buttonUsunWszystko.BackColor = System.Drawing.Color.Red;
             this.buttonUsunWszystko.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonUsunWszystko.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonUsunWszystko.Location = new System.Drawing.Point(16, 519);
-            this.buttonUsunWszystko.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonUsunWszystko.Location = new System.Drawing.Point(18, 649);
+            this.buttonUsunWszystko.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonUsunWszystko.Name = "buttonUsunWszystko";
-            this.buttonUsunWszystko.Size = new System.Drawing.Size(209, 59);
+            this.buttonUsunWszystko.Size = new System.Drawing.Size(235, 74);
             this.buttonUsunWszystko.TabIndex = 7;
             this.buttonUsunWszystko.Text = "Usun wszystko z bazy";
             this.buttonUsunWszystko.UseVisualStyleBackColor = false;
@@ -129,21 +128,21 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(252, 14);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Location = new System.Drawing.Point(284, 18);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(629, 486);
+            this.dataGridView1.Size = new System.Drawing.Size(708, 608);
             this.dataGridView1.TabIndex = 14;
             // 
             // WylogujAdmin
             // 
             this.WylogujAdmin.BackColor = System.Drawing.Color.Silver;
             this.WylogujAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.WylogujAdmin.Location = new System.Drawing.Point(915, 16);
-            this.WylogujAdmin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.WylogujAdmin.Location = new System.Drawing.Point(1029, 20);
+            this.WylogujAdmin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.WylogujAdmin.Name = "WylogujAdmin";
-            this.WylogujAdmin.Size = new System.Drawing.Size(179, 62);
+            this.WylogujAdmin.Size = new System.Drawing.Size(201, 78);
             this.WylogujAdmin.TabIndex = 15;
             this.WylogujAdmin.Text = "Wyloguj";
             this.WylogujAdmin.UseVisualStyleBackColor = false;
@@ -152,10 +151,10 @@
             // textBoxSpecjalizacjaUprawnienia
             // 
             this.textBoxSpecjalizacjaUprawnienia.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.textBoxSpecjalizacjaUprawnienia.Location = new System.Drawing.Point(893, 288);
-            this.textBoxSpecjalizacjaUprawnienia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxSpecjalizacjaUprawnienia.Location = new System.Drawing.Point(1005, 360);
+            this.textBoxSpecjalizacjaUprawnienia.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxSpecjalizacjaUprawnienia.Name = "textBoxSpecjalizacjaUprawnienia";
-            this.textBoxSpecjalizacjaUprawnienia.Size = new System.Drawing.Size(199, 22);
+            this.textBoxSpecjalizacjaUprawnienia.Size = new System.Drawing.Size(223, 26);
             this.textBoxSpecjalizacjaUprawnienia.TabIndex = 32;
             this.textBoxSpecjalizacjaUprawnienia.TextChanged += new System.EventHandler(this.textBoxSpecjalizacjaUprawnienia_TextChanged);
             // 
@@ -163,10 +162,10 @@
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(889, 208);
+            this.label1.Location = new System.Drawing.Point(1000, 260);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(187, 70);
+            this.label1.Size = new System.Drawing.Size(210, 88);
             this.label1.TabIndex = 33;
             this.label1.Text = "Nadawanie Specjalizacji Lekarzowi";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -174,19 +173,19 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(905, 414);
+            this.textBox1.Location = new System.Drawing.Point(1018, 518);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(148, 22);
+            this.textBox1.Size = new System.Drawing.Size(166, 26);
             this.textBox1.TabIndex = 34;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(901, 347);
+            this.label2.Location = new System.Drawing.Point(1014, 434);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(167, 58);
+            this.label2.Size = new System.Drawing.Size(188, 72);
             this.label2.TabIndex = 35;
             this.label2.Text = "Reset Hasła             Wpisz nowe Hasło";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -195,10 +194,10 @@
             // 
             this.buttonResetujHaslo.BackColor = System.Drawing.Color.DarkGray;
             this.buttonResetujHaslo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonResetujHaslo.Location = new System.Drawing.Point(919, 519);
+            this.buttonResetujHaslo.Location = new System.Drawing.Point(1034, 649);
             this.buttonResetujHaslo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonResetujHaslo.Name = "buttonResetujHaslo";
-            this.buttonResetujHaslo.Size = new System.Drawing.Size(149, 47);
+            this.buttonResetujHaslo.Size = new System.Drawing.Size(168, 59);
             this.buttonResetujHaslo.TabIndex = 36;
             this.buttonResetujHaslo.Text = "Reset";
             this.buttonResetujHaslo.UseVisualStyleBackColor = false;
@@ -208,32 +207,22 @@
             // 
             this.ResetHasla.BackColor = System.Drawing.Color.Silver;
             this.ResetHasla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ResetHasla.Location = new System.Drawing.Point(16, 352);
+            this.ResetHasla.Location = new System.Drawing.Point(18, 440);
             this.ResetHasla.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ResetHasla.Name = "ResetHasla";
-            this.ResetHasla.Size = new System.Drawing.Size(209, 66);
+            this.ResetHasla.Size = new System.Drawing.Size(235, 82);
             this.ResetHasla.TabIndex = 37;
             this.ResetHasla.Text = "Reset Hasła";
             this.ResetHasla.UseMnemonic = false;
             this.ResetHasla.UseVisualStyleBackColor = false;
             this.ResetHasla.Click += new System.EventHandler(this.ResetHasla_Click);
             // 
-            // buttonToggleThema
-            // 
-            this.buttonToggleThema.Location = new System.Drawing.Point(639, 537);
-            this.buttonToggleThema.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.buttonToggleThema.Name = "buttonToggleThema";
-            this.buttonToggleThema.Size = new System.Drawing.Size(100, 28);
-            this.buttonToggleThema.TabIndex = 38;
-            this.buttonToggleThema.Text = "Tryb Jasny";
-            this.buttonToggleThema.UseVisualStyleBackColor = true;
-            this.buttonToggleThema.Click += new System.EventHandler(this.buttonToggleThema_Click);
-            // 
             // buttonPowiadomienia
             // 
-            this.buttonPowiadomienia.Location = new System.Drawing.Point(313, 519);
+            this.buttonPowiadomienia.Location = new System.Drawing.Point(352, 649);
+            this.buttonPowiadomienia.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonPowiadomienia.Name = "buttonPowiadomienia";
-            this.buttonPowiadomienia.Size = new System.Drawing.Size(200, 47);
+            this.buttonPowiadomienia.Size = new System.Drawing.Size(225, 59);
             this.buttonPowiadomienia.TabIndex = 39;
             this.buttonPowiadomienia.Text = "Panel Powiadomień";
             this.buttonPowiadomienia.UseVisualStyleBackColor = true;
@@ -241,12 +230,11 @@
             // 
             // PanelAdmina
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(1123, 598);
+            this.ClientSize = new System.Drawing.Size(1263, 748);
             this.Controls.Add(this.buttonPowiadomienia);
-            this.Controls.Add(this.buttonToggleThema);
             this.Controls.Add(this.ResetHasla);
             this.Controls.Add(this.buttonResetujHaslo);
             this.Controls.Add(this.label2);
@@ -261,7 +249,7 @@
             this.Controls.Add(this.buttonNadajUprawienia);
             this.Controls.Add(this.buttonWyswietlPacjentow);
             this.Controls.Add(this.buttonWyswierlLekarzy);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "PanelAdmina";
             this.Text = "PanelAdmina";
             this.Load += new System.EventHandler(this.PanelAdmina_Load);
@@ -287,7 +275,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonResetujHaslo;
         private System.Windows.Forms.Button ResetHasla;
-        private System.Windows.Forms.Button buttonToggleThema;
         private System.Windows.Forms.Button buttonPowiadomienia;
     }
 }

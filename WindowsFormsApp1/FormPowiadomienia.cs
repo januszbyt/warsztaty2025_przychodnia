@@ -336,5 +336,10 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void btnSendNotifications_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

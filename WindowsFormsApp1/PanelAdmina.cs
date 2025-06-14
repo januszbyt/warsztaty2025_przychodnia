@@ -17,7 +17,6 @@ namespace WindowsFormsApp1
         
         private int selectedUserId;
         private DataBaseHelper _dbHelper;
-        private bool isDarkMode = false; 
 
         private bool oczekujeNaSpecjalizacje = false;
         
@@ -311,8 +310,7 @@ namespace WindowsFormsApp1
 
         private void LoadTheme()
         {
-            isDarkMode = Properties.Settings.Default.IsDarkMode;
-            ApplyTheme(isDarkMode);
+           
         }
 
         private void ApplyTheme(bool darkMode)
@@ -336,10 +334,7 @@ namespace WindowsFormsApp1
 
         private void buttonToggleThema_Click(object sender, EventArgs e)
         {
-            isDarkMode = !isDarkMode;
-            ApplyTheme(isDarkMode);
-            Properties.Settings.Default.IsDarkMode = isDarkMode;
-            Properties.Settings.Default.Save();
+           
         }
 
         private void buttonPowiadomienia_Click(object sender, EventArgs e)

@@ -24,7 +24,6 @@ namespace WindowsFormsApp1
         private int wybranyPacjentId = -1;
         private int lekarzId;
         private int wizytaId;
-        private bool isDarkMode = false;
         private object _pacjentId;
 
         public PanelLekarza(Lekarz lekarz, DataBaseHelper dbHelper)
@@ -820,8 +819,7 @@ namespace WindowsFormsApp1
 
         private void LoadTheme()
         {
-            isDarkMode = Properties.Settings.Default.IsDarkMode;
-            ApplyTheme(isDarkMode);
+         
         }
 
         private void ApplyTheme(bool darkMode)
@@ -845,10 +843,7 @@ namespace WindowsFormsApp1
 
         private void buttonToggleTheme_Click(object sender, EventArgs e)
         {
-            isDarkMode = !isDarkMode;
-            ApplyTheme(isDarkMode);
-            Properties.Settings.Default.IsDarkMode = isDarkMode;
-            Properties.Settings.Default.Save();
+            
         }
 
         private void buttonAnulujWizyte_Click(object sender, EventArgs e)
