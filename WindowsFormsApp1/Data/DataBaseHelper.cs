@@ -1211,7 +1211,7 @@ VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
 
                         if (!maRoleLekarza)
                         {
-                            throw new Exception("Użytkownik nie ma przypisanej roli 'lekarz'.");
+                            throw new Exception("Użytkownik nie ma przypisanej roli 'lekarz'.");//
                         }
 
                         var deleteDoctorQuery = "DELETE FROM Doctors WHERE Id = @Id";
