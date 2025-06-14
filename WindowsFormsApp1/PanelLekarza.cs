@@ -15,7 +15,7 @@ using System.Globalization;
 namespace WindowsFormsApp1
 {
 
-    
+
     public partial class PanelLekarza : Form
     {
         private readonly DataBaseHelper _dbHelper;
@@ -25,6 +25,7 @@ namespace WindowsFormsApp1
         private int lekarzId;
         private int wizytaId;
         private object _pacjentId;
+        private bool ciemnyTryb = false;
 
         public PanelLekarza(Lekarz lekarz, DataBaseHelper dbHelper)
         {
@@ -53,7 +54,7 @@ namespace WindowsFormsApp1
             WczytajDzisiejszeWizyty();
             LoadTheme();
 
-
+            UstawTryb();
 
 
 
@@ -819,7 +820,7 @@ namespace WindowsFormsApp1
 
         private void LoadTheme()
         {
-         
+
         }
 
         private void ApplyTheme(bool darkMode)
@@ -843,7 +844,7 @@ namespace WindowsFormsApp1
 
         private void buttonToggleTheme_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void buttonAnulujWizyte_Click(object sender, EventArgs e)
@@ -880,7 +881,7 @@ namespace WindowsFormsApp1
                 }
 
                 MessageBox.Show("Wizyta została anulowana.");
-                
+
             }
             catch (Exception ex)
             {
@@ -888,8 +889,79 @@ namespace WindowsFormsApp1
             }
         }
 
-       
+        private void btnToggleTheme_Click(object sender, EventArgs e)
+        {
+            ciemnyTryb = !ciemnyTryb;
+            UstawTryb();
+        }
+        private void UstawTryb()
+        {
+            Color tloFormularza, kolorTekstu, kolorTabPage;
+            string napisPrzycisku;
+
+            if (ciemnyTryb)
+            {
+                tloFormularza = Color.FromArgb(64, 64, 64);       // ciemny szary
+                kolorTabPage = Color.FromArgb(64, 64, 64);       // dopasowany do ciemnego
+                kolorTekstu = Color.White;
+                napisPrzycisku = "Tryb jasny";
+            }
+            else
+            {
+                tloFormularza = Color.FromArgb(255, 192, 192);     // jasny róż
+                kolorTabPage = Color.FromArgb(255, 224, 192);     // brzoskwiniowy
+                kolorTekstu = Color.Black;
+                napisPrzycisku = "Tryb ciemny";
+            }
+
+            this.BackColor = tloFormularza;
+            this.ForeColor = kolorTekstu;
+            btnToggleTheme.Text = napisPrzycisku;
+
+            // Zastosuj kolory do wszystkich kontrolek na formularzu
+            foreach (Control ctrl in this.Controls)
+            {
+                ZastosujTrybDoKontrolki(ctrl, tloFormularza, kolorTekstu, kolorTabPage);
+            }
+        }
+
+        private void ZastosujTrybDoKontrolki(Control ctrl, Color tlo, Color tekst, Color kolorTabPage)
+        {
+            if (ctrl is System.Windows.Forms.TextBox)
+            {
+                ctrl.BackColor = Color.White;
+                ctrl.ForeColor = Color.Black;
+            }
+            else if (ctrl is TabControl tabControl)
+            {
+                foreach (TabPage tab in tabControl.TabPages)
+                {
+                    tab.BackColor = kolorTabPage;
+                    tab.ForeColor = tekst;
+
+                    foreach (Control child in tab.Controls)
+                    {
+                        ZastosujTrybDoKontrolki(child, tlo, tekst, kolorTabPage);
+                    }
+                }
+
+                tabControl.BackColor = tlo;
+                tabControl.ForeColor = tekst;
+            }
+            else
+            {
+                ctrl.BackColor = tlo;
+                ctrl.ForeColor = tekst;
+
+                // Jeśli kontrolka zawiera inne (np. Panel, GroupBox itp.)
+                foreach (Control child in ctrl.Controls)
+                {
+                    ZastosujTrybDoKontrolki(child, tlo, tekst, kolorTabPage);
+                }
+            }
+        }
     }
-    }
+    
+}
 
 

@@ -4,19 +4,21 @@ using System.Windows.Forms;
 using WindowsFormsApp1.Data;
 using WindowsFormsApp1.Models;
 using MySql.Data.MySqlClient;
+using System.Drawing;
 
 namespace WindowsFormsApp1.Forms
 {
     public partial class FormRejestracja : Form
     {
         private DataBaseHelper _dbHelper;
+        private bool ciemnyTryb = false;
 
         public FormRejestracja(DataBaseHelper dbHelper)
         {
             _dbHelper = dbHelper;
             InitializeComponent();
+            UstawTryb();
 
-          
         }
 
 
@@ -87,6 +89,49 @@ namespace WindowsFormsApp1.Forms
         private void FormRejestracja_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnToggleTheme_Click(object sender, EventArgs e)
+        {
+            ciemnyTryb = !ciemnyTryb;
+            UstawTryb();
+        }
+
+        private void UstawTryb()
+        {
+            Color tloFormularza, kolorTekstu;
+            string napisPrzycisku;
+
+            if (ciemnyTryb)
+            {
+                tloFormularza = Color.FromArgb(64, 64, 64);
+                kolorTekstu = Color.White;
+                napisPrzycisku = "Tryb jasny";
+            }
+            else
+            {
+                tloFormularza = Color.FromArgb(255, 192, 192); 
+                kolorTekstu = Color.Black;
+                napisPrzycisku = "Tryb ciemny";
+            }
+
+            this.BackColor = tloFormularza;
+            this.ForeColor = kolorTekstu;
+            btnToggleTheme.Text = napisPrzycisku;
+
+            foreach (Control ctrl in this.Controls)
+            {
+                if (ctrl is TextBox)
+                {
+                    ctrl.BackColor = Color.White;
+                    ctrl.ForeColor = Color.Black;
+                }
+                else
+                {
+                    ctrl.BackColor = tloFormularza;
+                    ctrl.ForeColor = kolorTekstu;
+                }
+            }
         }
     }
 }

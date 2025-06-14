@@ -14,12 +14,13 @@ namespace WindowsFormsApp1
 {
     public partial class PanelAdmina : Form
     {
-        
+
         private int selectedUserId;
         private DataBaseHelper _dbHelper;
 
         private bool oczekujeNaSpecjalizacje = false;
-        
+        private bool ciemnyTryb = false;
+
         public PanelAdmina()
         {
             InitializeComponent();
@@ -46,7 +47,7 @@ namespace WindowsFormsApp1
             LoadTheme();
         }
 
-        
+
 
         private void buttonWyswietlPacjentow_Click(object sender, EventArgs e)
         {
@@ -63,7 +64,7 @@ namespace WindowsFormsApp1
             label2.Visible = false;
             buttonResetujHaslo.Visible = false;
         }
-        
+
         private void buttonWyswierlLekarzy_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = _dbHelper.PobierzWszystkichLekarzy();
@@ -97,7 +98,7 @@ namespace WindowsFormsApp1
                 textBoxSpecjalizacjaUprawnienia.Focus();
                 oczekujeNaSpecjalizacje = true;
                 //TEGO NIE TRZEBA CHYBA ŻE CHCECIE
-               // MessageBox.Show("Podaj specjalizację, zanim nadasz uprawnienia.", "Brak danych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // MessageBox.Show("Podaj specjalizację, zanim nadasz uprawnienia.", "Brak danych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -124,7 +125,7 @@ namespace WindowsFormsApp1
             }
         }
 
-       
+
 
         private void buttonZabierzUprawnienia_Click(object sender, EventArgs e)
         {
@@ -160,7 +161,7 @@ namespace WindowsFormsApp1
             }
         }
 
-      
+
 
         private void buttonUsunRekordy_Click(object sender, EventArgs e)
         {
@@ -202,7 +203,7 @@ namespace WindowsFormsApp1
 
         private void RefreshGrid()
         {
-            
+
             dataGridView1.DataSource = _dbHelper.PobierzWszystkichLekarzy();
             dataGridView1.Refresh();
 
@@ -211,7 +212,7 @@ namespace WindowsFormsApp1
 
         }
 
-        
+
 
         private void buttonUsunWszystko_Click(object sender, EventArgs e)
         {
@@ -231,10 +232,10 @@ namespace WindowsFormsApp1
             this.Close();
         }
 
-     
-        
 
-       
+
+
+
         private void PanelAdmina_Load(object sender, EventArgs e)
         {
             dataGridView1.DefaultCellStyle.ForeColor = Color.Red;
@@ -242,7 +243,7 @@ namespace WindowsFormsApp1
 
         private void textBoxSpecjalizacjaUprawnienia_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -290,7 +291,7 @@ namespace WindowsFormsApp1
         }
 
         //przycisk wyświetlający reset hasla
-       
+
         private void ResetHasla_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBox1.Text))
@@ -300,7 +301,7 @@ namespace WindowsFormsApp1
                 buttonResetujHaslo.Visible = true;
                 return;
             }
-            
+
         }
 
         private void FormPanelAdmina_FormClosed(object sender, FormClosedEventArgs e)
@@ -310,7 +311,7 @@ namespace WindowsFormsApp1
 
         private void LoadTheme()
         {
-           
+
         }
 
         private void ApplyTheme(bool darkMode)
@@ -334,15 +335,58 @@ namespace WindowsFormsApp1
 
         private void buttonToggleThema_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void buttonPowiadomienia_Click(object sender, EventArgs e)
         {
             FormPowiadomienia formPowiadomienia = new FormPowiadomienia();
 
-            
+
             formPowiadomienia.Show();
+        }
+
+        private void btnToggleTheme_Click(object sender, EventArgs e)
+        {
+            ciemnyTryb = !ciemnyTryb;
+            UstawTryb();
+        }
+
+        private void UstawTryb()
+        {
+            Color tloFormularza, kolorTekstu;
+            string napisPrzycisku;
+
+            if (ciemnyTryb)
+            {
+                tloFormularza = Color.FromArgb(64, 64, 64);
+                kolorTekstu = Color.White;
+                napisPrzycisku = "Tryb jasny";
+            }
+            else
+            {
+                tloFormularza = Color.FromArgb(255, 192, 192);
+                kolorTekstu = Color.Black;
+                napisPrzycisku = "Tryb ciemny";
+            }
+
+            this.BackColor = tloFormularza;
+            this.ForeColor = kolorTekstu;
+            btnToggleTheme.Text = napisPrzycisku;
+
+            foreach (Control ctrl in this.Controls)
+            {
+                if (ctrl is TextBox)
+                {
+                    ctrl.BackColor = Color.White;
+                    ctrl.ForeColor = Color.Black;
+                }
+                else
+                {
+                    ctrl.BackColor = tloFormularza;
+                    ctrl.ForeColor = kolorTekstu;
+                }
+            }
         }
     }
 }
