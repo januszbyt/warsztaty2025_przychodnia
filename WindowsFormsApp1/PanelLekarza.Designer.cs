@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.Label label4;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -104,6 +104,9 @@
             this.buttonPokazPacjentow = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.btnToggleTheme = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.buttonUsun = new System.Windows.Forms.Button();
+            this.buttonWczytaj = new System.Windows.Forms.Button();
             label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPageUstawienia.SuspendLayout();
@@ -117,6 +120,7 @@
             this.tabPageWizyty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWizyty)).BeginInit();
             this.tabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label4
@@ -198,6 +202,9 @@
             // tabPageUstawienia
             // 
             this.tabPageUstawienia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.tabPageUstawienia.Controls.Add(this.buttonWczytaj);
+            this.tabPageUstawienia.Controls.Add(this.buttonUsun);
+            this.tabPageUstawienia.Controls.Add(this.pictureBox1);
             this.tabPageUstawienia.Controls.Add(this.textBox2);
             this.tabPageUstawienia.Controls.Add(this.textBox12);
             this.tabPageUstawienia.Controls.Add(this.textBox11);
@@ -925,14 +932,14 @@
             // dataGridViewWizyty
             // 
             this.dataGridViewWizyty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewWizyty.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewWizyty.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewWizyty.Location = new System.Drawing.Point(298, 55);
             this.dataGridViewWizyty.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.dataGridViewWizyty.Name = "dataGridViewWizyty";
@@ -977,6 +984,40 @@
             this.btnToggleTheme.UseVisualStyleBackColor = true;
             this.btnToggleTheme.Click += new System.EventHandler(this.btnToggleTheme_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(549, 233);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(209, 190);
+            this.pictureBox1.TabIndex = 41;
+            this.pictureBox1.TabStop = false;
+            // 
+            // buttonUsun
+            // 
+            this.buttonUsun.BackColor = System.Drawing.Color.Silver;
+            this.buttonUsun.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonUsun.Location = new System.Drawing.Point(668, 443);
+            this.buttonUsun.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.buttonUsun.Name = "buttonUsun";
+            this.buttonUsun.Size = new System.Drawing.Size(90, 31);
+            this.buttonUsun.TabIndex = 43;
+            this.buttonUsun.Text = "Usun";
+            this.buttonUsun.UseVisualStyleBackColor = false;
+            this.buttonUsun.Click += new System.EventHandler(this.buttonUsun_Click);
+            // 
+            // buttonWczytaj
+            // 
+            this.buttonWczytaj.BackColor = System.Drawing.Color.Silver;
+            this.buttonWczytaj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonWczytaj.Location = new System.Drawing.Point(549, 443);
+            this.buttonWczytaj.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.buttonWczytaj.Name = "buttonWczytaj";
+            this.buttonWczytaj.Size = new System.Drawing.Size(90, 31);
+            this.buttonWczytaj.TabIndex = 44;
+            this.buttonWczytaj.Text = "Wczytaj";
+            this.buttonWczytaj.UseVisualStyleBackColor = false;
+            this.buttonWczytaj.Click += new System.EventHandler(this.buttonWczytaj_Click);
+            // 
             // PanelLekarza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1005,6 +1046,7 @@
             this.tabPageWizyty.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWizyty)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1084,5 +1126,8 @@
         private System.Windows.Forms.TextBox textBox16;
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.Button btnToggleTheme;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button buttonWczytaj;
+        private System.Windows.Forms.Button buttonUsun;
     }
 }

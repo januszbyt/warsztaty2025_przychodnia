@@ -9,40 +9,35 @@ namespace WindowsFormsApp1.Forms
 {
     public partial class FormLogowanieLekarz : Form
     {
-
-        private DataBaseHelper _dbHelper;
+        private readonly DataBaseHelper _dbHelper;
 
         public FormLogowanieLekarz(DataBaseHelper dbHelper)
         {
             InitializeComponent();
-            this._dbHelper = dbHelper;
-            this.FormClosed += new FormClosedEventHandler(FormLogowanieLekarz_FormClosed);
-
-            _dbHelper = new DataBaseHelper();
+            _dbHelper = dbHelper ?? throw new ArgumentNullException(nameof(dbHelper));
 
             textBoxHasloLekarz.PasswordChar = '•';
             checkBox1.Checked = false;
-            this.AcceptButton = this.buttonZaloguj;
-
-
+            this.AcceptButton = buttonZaloguj;
+            this.FormClosed += FormLogowanieLekarz_FormClosed;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
+            if (checkBox1 == null) return;
             textBoxHasloLekarz.PasswordChar = checkBox1.Checked ? '\0' : '•';
         }
 
         private void buttonZamknij_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            FormLogowanieRola formrola = new FormLogowanieRola(_dbHelper);
+            var formRola = new FormLogowanieRola(_dbHelper);
             this.Hide();
-            formrola.ShowDialog();
-
+            formRola.ShowDialog();
         }
 
         private void buttonZaloguj_Click_1(object sender, EventArgs e)
@@ -51,53 +46,62 @@ namespace WindowsFormsApp1.Forms
             {
                 if (_dbHelper == null)
                 {
-                    MessageBox.Show("nie loncze z bazom");
+                    MessageBox.Show("Błąd połączenia z bazą danych", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                string email = textBoxLoginLekarz.Text.Trim();
-                string haslo = textBoxHasloLekarz.Text.Trim();
+                string email = textBoxLoginLekarz?.Text?.Trim() ?? string.Empty;
+                string haslo = textBoxHasloLekarz?.Text?.Trim() ?? string.Empty;
 
-                if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(haslo))
+                if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(haslo))
                 {
-                    MessageBox.Show("Proszę wprowadzić email i hasło.");
+                    MessageBox.Show("Proszę wprowadzić email i hasło", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 var uzytkownik = _dbHelper.ZalogujUzytkownika(email, haslo);
-
                 if (uzytkownik == null)
                 {
-                    MessageBox.Show("Nieprawidłowe dane logowania lub brak przypisanej roli.");
+                    MessageBox.Show("Nieprawidłowe dane logowania", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                if (!uzytkownik.Rola.Nazwa.Equals("Lekarz", StringComparison.OrdinalIgnoreCase))
+                if (!uzytkownik.Rola?.Nazwa?.Equals("Lekarz", StringComparison.OrdinalIgnoreCase) ?? true)
                 {
-                    MessageBox.Show("Brak uprawnień lekarza.");
+                    MessageBox.Show("Brak uprawnień lekarza", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                var doctor = _dbHelper.PobierzLekarza(uzytkownik.Id);
-                if (doctor == null)
+                var lekarz = _dbHelper.PobierzDaneLekarza(uzytkownik.Id);
+                if (lekarz == null)
                 {
-                    MessageBox.Show("Brak danych lekarza.");
+                    MessageBox.Show("Nie znaleziono danych lekarza", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
+                
+                lekarz.Email = uzytkownik.Email;
+                lekarz.Haslo = haslo; 
 
                 this.Hide();
-                new PanelLekarza(doctor, _dbHelper).Show();
+                var panelLekarza = new PanelLekarza(lekarz, _dbHelper);
+                panelLekarza.Show();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Błąd: {ex.Message}");
+                MessageBox.Show($"Wystąpił błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+#if DEBUG
+                Console.WriteLine(ex.ToString());
+#endif
             }
         }
 
         private void FormLogowanieLekarz_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            if (Application.OpenForms.Count == 0)
+            {
+                Application.Exit();
+            }
         }
     }
 }
-

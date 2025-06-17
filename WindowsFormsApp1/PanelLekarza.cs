@@ -10,6 +10,8 @@ using System.Diagnostics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Linq;
 using System.Globalization;
+using System.IO;
+using System.Drawing.Imaging;
 // Users System.Windows.Forms; // TODO: Dawid Kotliński: odkomentować
 
 namespace WindowsFormsApp1
@@ -26,6 +28,8 @@ namespace WindowsFormsApp1
         private int wizytaId;
         private object _pacjentId;
         private bool ciemnyTryb = false;
+
+        private Lekarz zalogowanyLekarz;
 
         public PanelLekarza(Lekarz lekarz, DataBaseHelper dbHelper)
         {
@@ -57,8 +61,12 @@ namespace WindowsFormsApp1
             UstawTryb();
 
 
-
-
+            if (!string.IsNullOrEmpty(zalogowanyLekarz.ZdjecieProfilowe) &&
+        File.Exists(zalogowanyLekarz.ZdjecieProfilowe))
+            {
+                pictureBox1.Image = Image.FromFile(zalogowanyLekarz.ZdjecieProfilowe);
+                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            }
 
         }
 
@@ -901,14 +909,14 @@ namespace WindowsFormsApp1
 
             if (ciemnyTryb)
             {
-                tloFormularza = Color.FromArgb(64, 64, 64);       // ciemny szary
-                kolorTabPage = Color.FromArgb(64, 64, 64);       // dopasowany do ciemnego
+                tloFormularza = Color.FromArgb(64, 64, 64);       
+                kolorTabPage = Color.FromArgb(64, 64, 64);       
                 kolorTekstu = Color.White;
                 napisPrzycisku = "Tryb jasny";
             }
             else
             {
-                tloFormularza = Color.FromArgb(255, 192, 192);     // jasny róż
+                tloFormularza = Color.FromArgb(255, 192, 192);     
                 kolorTabPage = Color.FromArgb(255, 224, 192);     // brzoskwiniowy
                 kolorTekstu = Color.Black;
                 napisPrzycisku = "Tryb ciemny";
@@ -959,6 +967,88 @@ namespace WindowsFormsApp1
                     ZastosujTrybDoKontrolki(child, tlo, tekst, kolorTabPage);
                 }
             }
+        }
+
+        private void ZapiszSkompresowaneZdjecie(string sciezkaWejsciowa, string sciezkaDocelowa, int jakosc){
+            using (Image image = Image.FromFile(sciezkaWejsciowa))
+            {
+                ImageCodecInfo jpegEncoder = GetEncoder(ImageFormat.Jpeg);
+                EncoderParameters encoderParams = new EncoderParameters(1);
+                encoderParams.Param[0] = new EncoderParameter(Encoder.Quality, jakosc);
+
+                image.Save(sciezkaDocelowa, jpegEncoder, encoderParams);
+            }
+        }
+
+        private ImageCodecInfo GetEncoder(ImageFormat format)
+        {
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+            foreach (ImageCodecInfo codec in codecs)
+            {
+                if (codec.FormatID == format.Guid)
+                    return codec;
+            }
+            return null;
+        }
+        private void buttonWczytaj_Click(object sender, EventArgs e)
+        {
+            if (zalogowanyLekarz == null)
+            {
+                MessageBox.Show("Nie wybrano lekarza. Zaloguj się ponownie.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            using (OpenFileDialog dialog = new OpenFileDialog())
+            {
+                dialog.Title = "Wybierz zdjęcie";
+                dialog.Filter = "Pliki graficzne|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        string folder = Path.Combine(Application.StartupPath, "UserImages");
+                        Directory.CreateDirectory(folder);
+
+                        string rozszerzenie = Path.GetExtension(dialog.FileName);
+                        string nazwaPliku = $"lekarz_{zalogowanyLekarz.Id}{rozszerzenie}"; // Używamy Id zamiast Login
+                        string sciezkaDocelowa = Path.Combine(folder, nazwaPliku);
+
+                        // Sprawdź ponownie przed kopiowaniem
+                        if (zalogowanyLekarz != null)
+                        {
+                            // Usuń stare zdjęcie jeśli istnieje
+                            if (!string.IsNullOrEmpty(zalogowanyLekarz.ZdjecieProfilowe) &&
+                                File.Exists(zalogowanyLekarz.ZdjecieProfilowe))
+                            {
+                                File.Delete(zalogowanyLekarz.ZdjecieProfilowe);
+                            }
+
+                            File.Copy(dialog.FileName, sciezkaDocelowa, true);
+
+                            pictureBox1.Image = Image.FromFile(sciezkaDocelowa);
+                            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+
+                            zalogowanyLekarz.ZdjecieProfilowe = sciezkaDocelowa;
+                            _dbHelper.AktualizujZdjecieLekarzaWBazie(zalogowanyLekarz.Id, sciezkaDocelowa);
+
+                            MessageBox.Show("Zdjęcie zostało zapisane.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Błąd: " + ex.Message);
+                    }
+                }
+            }
+        }
+            
+
+        private void buttonUsun_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Image = null;
+            Properties.Settings.Default.SciezkaZdjecia = string.Empty;
+            Properties.Settings.Default.Save();
         }
     }
     

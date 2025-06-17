@@ -68,255 +68,7 @@ namespace WindowsFormsApp1.Data
             }
         }
 
-        // // Dawid Kotlinski
-        // public string LosoweImie()
-        // {
-        //     var imiona = new List<string> { "Jan", "Adam", "Marek", "Piotr", "Krzysztof", "Andrzej", "Marcin", "Kamil", "Maciej", "Sebastian" };
-        //     return imiona[new Random().Next(imiona.Count)];
-        // }
 
-        // // Dawid Kotlinski
-        // public string LosoweNazwisko()
-        // {
-        //     var nazwiska = new List<string> { "Kowalski", "Nowak", "Wiśniewski", "Kowalczyk", "Kowalska", "Nowak", "Wiśniewska", "Kowalczyk", "Kowalska", "Nowak" };
-        //     return nazwiska[new Random().Next(nazwiska.Count)];
-        // }
-
-        // // Dawid Kotlinski
-        // public string LosowyEmail(string imie, string nazwisko)
-        // {
-        //     var domeny = new List<string> { "gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "example.com" };
-        //     return $"{imie}.{nazwisko}@{domeny[new Random().Next(domeny.Count)]}";
-        // }
-
-        // // Dawid Kotlinski
-        // public string LosoweHaslo()
-        // {
-        //     var hasla = new List<string> { "haslo123", "password", "qwerty", "admin", "user" };
-        //     return hasla[new Random().Next(hasla.Count)];
-        // }
-
-        // // Dawid Kotlinski
-        // public string LosowyPESEL()
-        // {
-        //     var pesele = new List<string> { "12345678901", "12345678902", "12345678903", "12345678904", "12345678905" };
-        //     return pesele[new Random().Next(pesele.Count)];
-        // }
-
-        // // Dawid Kotlinski
-        // public string LosowyTelefon()
-        // {
-        //     var telefony = new List<string> { "1234567890", "12345678901", "12345678902", "12345678903", "12345678904" };
-        //     return telefony[new Random().Next(telefony.Count)];
-        // }
-
-        // // Dawid Kotlinski
-        // public string LosowyAdres()
-        // {
-        //     var adresy = new List<string> { "ul. Sikorskiego", "ul. Długa", "ul. Szeroka", "ul. Krótka", "ul. Wąska" };
-        //     return adresy[new Random().Next(adresy.Count)];
-        // }
-
-        // // Dawid Kotlinski
-        // public string LosoweMiasto()
-        // {
-        //     var miasta = new List<string> { "Warszawa", "Krakow", "Wroclaw", "Gdansk", "Poznan" };
-        //     return miasta[new Random().Next(miasta.Count)];
-        // }
-
-        // // Dawid Kotlinski
-        // public string LosowyKodPocztowy()
-        // {
-        //     var kodyPocztowe = new List<string> { "00-000", "11-111", "22-222", "33-333", "44-444" };
-        //     return kodyPocztowe[new Random().Next(kodyPocztowe.Count)];
-        // }
-
-        // public string LosowaRola()
-        // {
-        //     var role = new List<string> { "Pacjent", "Lekarz", "Admin" };
-        //     return role[new Random().Next(role.Count)];
-        // }
-
-        // public DateTime LosowaDataUrodzenia()
-        // {
-        //     var rok = new Random().Next(1900, 2025);
-        //     var miesiac = new Random().Next(1, 13);
-        //     var dzien = new Random().Next(1, 32);
-        //     return new DateTime(rok, miesiac, dzien);
-        // }
-
-
-
-        // // Dawid Kotlinski
-        // public void DodajLosoweUzytkownika()
-        // {
-        //     using (var conn = new MySqlConnection(_connectionString))
-        //     {
-        //         conn.Open();
-
-        //         var imie = LosoweImie();
-        //         var nazwisko = LosoweNazwisko();
-        //         var email = LosowyEmail(imie, nazwisko);
-        //         var haslo = LosoweHaslo();
-        //         var pesel = LosowyPESEL();
-        //         var telefon = LosowyTelefon();
-        //         var adres = LosowyAdres();
-        //         var miasto = LosoweMiasto();
-        //         var kodPocztowy = LosowyKodPocztowy();
-        //         var rola = LosowaRola();
-        //         var dataUrodzenia = LosowaDataUrodzenia();
-        //         int? userId = null;
-
-        //         {
-        //             var query = "INSERT INTO Users (Imie, Nazwisko, Email, Rola, DateOfBirth, PESEL, PhoneNumber, Adres, Miasto, KodPocztowy) VALUES (@Imie, @Nazwisko, @Email, @Rola, @DateOfBirth, @PESEL, @PhoneNumber, @Adres, @Miasto, @KodPocztowy)";
-
-        //             using (var cmd = new MySqlCommand(query, conn))
-        //             {
-        //                 cmd.Parameters.AddWithValue("@Imie", imie);
-        //                 cmd.Parameters.AddWithValue("@Nazwisko", nazwisko);
-        //                 cmd.Parameters.AddWithValue("@Email", email);
-        //                 cmd.Parameters.AddWithValue("@Rola", rola);
-        //                 cmd.Parameters.AddWithValue("@PESEL", pesel);
-        //                 cmd.Parameters.AddWithValue("@PhoneNumber", telefon);
-        //                 cmd.Parameters.AddWithValue("@Adres", adres);
-        //                 cmd.Parameters.AddWithValue("@Miasto", miasto);
-        //                 cmd.Parameters.AddWithValue("@KodPocztowy", kodPocztowy);
-        //                 cmd.Parameters.AddWithValue("@DateOfBirth", dataUrodzenia);
-
-        //                 cmd.ExecuteNonQuery();
-        //                 userId = (int)cmd.LastInsertedId;
-        //             }
-        //         }
-
-        //         Debug.Assert(userId != null);
-
-        //         if (rola == "Pacjent")
-        //         {
-        //             var query = "INSERT INTO Patients (UserId, PESEL, PhoneNumber, Adres, Miasto, KodPocztowy, DateOfBirth, Imie, Nazwisko, Email, Haslo, IsActive) VALUES (@UserId, @PESEL, @PhoneNumber, @Adres, @Miasto, @KodPocztowy, @DateOfBirth, @Imie, @Nazwisko, @Email, @Haslo, @IsActive)";
-        //             using (var cmd = new MySqlCommand(query, conn))
-        //             {
-        //                 cmd.Parameters.AddWithValue("@UserId", userId);
-        //                 cmd.Parameters.AddWithValue("@PESEL", pesel);
-        //                 cmd.Parameters.AddWithValue("@PhoneNumber", telefon);
-        //                 cmd.Parameters.AddWithValue("@Adres", adres);
-        //                 cmd.Parameters.AddWithValue("@Miasto", miasto);
-        //                 cmd.Parameters.AddWithValue("@KodPocztowy", kodPocztowy);
-        //                 cmd.Parameters.AddWithValue("@DateOfBirth", dataUrodzenia);
-        //                 cmd.Parameters.AddWithValue("@Imie", imie);
-        //                 cmd.Parameters.AddWithValue("@Nazwisko", nazwisko);
-        //                 cmd.Parameters.AddWithValue("@Email", email);
-        //                 cmd.Parameters.AddWithValue("@Haslo", haslo);
-        //                 cmd.Parameters.AddWithValue("@IsActive", true);
-        //                 cmd.ExecuteNonQuery();
-        //             }
-        //         }
-        //         else if (rola == "Lekarz")
-        //         {
-        //             var query = "INSERT INTO Doctors (UserId, Specialization, IsActive) VALUES (@UserId, @Specialization, @IsActive)";
-        //             using (var cmd = new MySqlCommand(query, conn))
-        //             {
-        //                 cmd.Parameters.AddWithValue("@UserId", userId);
-        //                 cmd.Parameters.AddWithValue("@Specialization", "Testowa specjalizacja");
-        //                 cmd.Parameters.AddWithValue("@IsActive", true);
-        //                 cmd.ExecuteNonQuery();
-        //             }
-        //         }
-
-        //         {
-        //             var query = "INSERT INTO UserRoles (UserId, RoleName) VALUES (@UserId, @RoleName)";
-        //             using (var cmd = new MySqlCommand(query, conn))
-        //             {
-        //                 cmd.Parameters.AddWithValue("@UserId", userId);
-        //                 cmd.Parameters.AddWithValue("@RoleName", rola);
-        //                 cmd.ExecuteNonQuery();
-        //             }
-        //         }
-        //     }
-        // }
-
-        // // Dawid Kotlinski
-        // public void SprawdzIntegralnoscDanych()
-        // {
-        //     using (var conn = new MySqlConnection(_connectionString))
-        //     {
-        //         conn.Open();
-
-        //         // Sprawdz userów
-        //         foreach (var user in WyliczUzytkownikow())
-        //         {
-        //             // Sprawdź hasło
-        //             if (user.Haslo == null || user.Haslo == "")
-        //             {
-        //                 MessageBox.Show($"Użytkownik {user.Id} nie ma hasła");
-        //             }
-        //             // Sprawdź mail
-        //             if (user.Email == null || user.Email == "")
-        //             {
-        //                 MessageBox.Show($"Użytkownik {user.Id} nie ma adresu email");
-        //             }
-        //             if (user.Rola.Nazwa == null || user.Rola.Nazwa == "")
-        //             {
-        //                 MessageBox.Show($"Użytkownik {user.Id} nie ma przypisanej roli");
-        //             }
-        //             if (user.Rola.Nazwa != "Pacjent" && user.Rola.Nazwa != "Lekarz" && user.Rola.Nazwa != "Admin")
-        //             {
-        //                 MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową rolę");
-        //             }
-        //             if (user.Imie == null || user.Imie == "")
-        //             {
-        //                 MessageBox.Show($"Użytkownik {user.Id} nie ma imienia");
-        //             }
-        //             if (user.Nazwisko == null || user.Nazwisko == "")
-        //             {
-        //                 MessageBox.Show($"Użytkownik {user.Id} nie ma nazwiska");
-        //             }
-        //             if (user.PESEL == null || user.PESEL == "")
-        //             {
-        //                 MessageBox.Show($"Użytkownik {user.Id} nie ma numeru PESEL");
-        //             }
-        //             if (user.PESEL.Length != 11)
-        //             {
-        //                 MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową długość numeru PESEL");
-        //             }
-        //             // if (user.PESEL.Any(c => !char.IsDigit(c)))
-        //             // {
-        //             //     MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy numer PESEL (powinien zawierać tylko cyfry)");
-        //             // }
-        //             if (user.PhoneNumber == null || user.PhoneNumber == "")
-        //             {
-        //                 MessageBox.Show($"Użytkownik {user.Id} nie ma numeru telefonu");
-        //             }
-        //             if (user.PhoneNumber.Length != 9)
-        //             {
-        //                 MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową długość numeru telefonu");
-        //             }
-        //             // if (user.PhoneNumber.Any(c => !char.IsDigit(c)))
-        //             // {
-        //             //     MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy numer telefonu (powinien zawierać tylko cyfry)");
-        //             // }
-        //             if (user.Adres == null || user.Adres == "")
-        //             {
-        //                 MessageBox.Show($"Użytkownik {user.Id} nie ma adresu");
-        //             }
-        //             if (user.Miasto == null || user.Miasto == "")
-        //             {
-        //                 MessageBox.Show($"Użytkownik {user.Id} nie ma miasta");
-        //             }
-        //             if (user.KodPocztowy == null || user.KodPocztowy == "")
-        //             {
-        //                 MessageBox.Show($"Użytkownik {user.Id} nie ma kodu pocztowego");
-        //             }
-        //             if (user.KodPocztowy.Length != 6)
-        //             {
-        //                 MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłową długość kodu pocztowego");
-        //             }
-        //             // if (user.KodPocztowy.Any(c => !char.IsDigit(c)))
-        //             // {
-        //             //     MessageBox.Show($"Użytkownik {user.Id} ma nieprawidłowy kod pocztowy (powinien zawierać tylko cyfry)");
-        //             // }
-        //         }
-        //     }
-        // }
         public bool TestConnection()
         {
             try
@@ -393,42 +145,6 @@ namespace WindowsFormsApp1.Data
             }
         }
 
-        // Dawid Kotlinski
-        // public Users PobierzUzytkownika(int userId)
-        // {
-        //     using (var connection = new MySqlConnection(_connectionString))
-        //     {
-        //         connection.Open();
-
-        //         var query = "SELECT Id, Imie, Nazwisko, Email, Rola, DateOfBirth, PESEL, PhoneNumber, Adres, Miasto, KodPocztowy, Haslo FROM Users WHERE Id = @UserId";
-        //         using (var command = new MySqlCommand(query, connection))
-        //         {
-        //             command.Parameters.AddWithValue("@UserId", userId);
-        //             using (var reader = command.ExecuteReader())
-        //             {
-        //                 if (reader.Read())
-        //                 {
-        //                     return new Users
-        //                     {
-        //                         Id = reader.GetInt32(0),
-        //                         Imie = reader.GetString(1),
-        //                         Nazwisko = reader.GetString(2),
-        //                         Email = reader.GetString(3),
-        //                         Rola = new Role { Nazwa = reader.GetString(4) },
-        //                         DateOfBirth = reader.GetDateTime(5),
-        //                         PESEL = reader.GetString(6),
-        //                         PhoneNumber = reader.GetString(7),
-        //                         Adres = reader.GetString(8),
-        //                         Miasto = reader.GetString(9),
-        //                         KodPocztowy = reader.GetString(10),
-        //                         Haslo = reader.GetString(11),
-        //                     };
-        //                 }
-        //             }
-        //         }
-        //     }
-        //     return null;
-        // }
 
         public Lekarz PobierzLekarza(int userId)
         {
@@ -460,6 +176,8 @@ namespace WindowsFormsApp1.Data
             }
             return null;
         }
+
+
 
         public Users ZalogujUzytkownika(string email, string Haslo)
         {
@@ -614,8 +332,8 @@ namespace WindowsFormsApp1.Data
                 {
                     conn.Open();
                     string query = @"
-INSERT INTO skierowania (WizytaId, PacjentId, LekarzId, DataWystawienia, Typ, Cel, Uwagi)
-VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
+                    INSERT INTO skierowania (WizytaId, PacjentId, LekarzId, DataWystawienia, Typ, Cel, Uwagi)
+                    VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -688,11 +406,13 @@ VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
                 conn.Open();
 
                 string query = @"
-            select d.Id,d.Imie,d.Nazwisko,d.Specjalizacja,u.Email,u.haslo,u.DateOfBirth,
-            u.Pesel,u.PhoneNumber, u.Adres,u.Miasto,u.KodPocztowy 
-            from doctors d left join users u on d.UserID = u.Id 
+            SELECT d.Id, d.Imie, d.Nazwisko, d.Specjalizacja, 
+                   u.Email, u.haslo, u.DateOfBirth, u.Pesel, 
+                   u.PhoneNumber, u.Adres, u.Miasto, u.KodPocztowy,
+                   u.zdjecie_profilowe
+            FROM doctors d 
+            LEFT JOIN users u ON d.UserID = u.Id 
             WHERE d.Id = @Id";
-
 
                 using (var cmd = new MySqlCommand(query, conn))
                 {
@@ -716,13 +436,15 @@ VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
                                 Haslo = reader.GetString("Haslo"),
                                 Specjalizacja = reader.IsDBNull(reader.GetOrdinal("Specjalizacja"))
                                     ? ""
-                                    : reader.GetString("Specjalizacja")
+                                    : reader.GetString("Specjalizacja"),
+                                ZdjecieProfilowe = reader.IsDBNull(reader.GetOrdinal("zdjecie_profilowe"))
+                                    ? null
+                                    : reader.GetString("zdjecie_profilowe")
                             };
                         }
                     }
                 }
             }
-
             return null;
         }
 
@@ -736,18 +458,18 @@ VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
                 {
                     try
                     {
-
                         var queryUsers = @"
                     UPDATE Users SET
-                        Imie = @Imie,
-                        Nazwisko = @Nazwisko,
-                        Adres = @Adres,
-                        PESEL = @PESEL,
-                        PhoneNumber = @Telefon,
-                        Miasto = @Miasto,
-                        KodPocztowy = @KodPocztowy,
-                        Email = @Email,
-                        Haslo = @Haslo
+                    Imie = @Imie,
+                    Nazwisko = @Nazwisko,
+                    Adres = @Adres,
+                    PESEL = @PESEL,
+                    PhoneNumber = @Telefon,
+                    Miasto = @Miasto,
+                    KodPocztowy = @KodPocztowy,
+                    Email = @Email,
+                    Haslo = @Haslo,
+                    zdjecie_profilowe = @ZdjecieProfilowe
                     WHERE Id = @Id";
 
                         using (var cmdUsers = new MySqlCommand(queryUsers, conn, tran))
@@ -761,21 +483,25 @@ VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
                             cmdUsers.Parameters.AddWithValue("@KodPocztowy", lekarz.KodPocztowy);
                             cmdUsers.Parameters.AddWithValue("@Email", lekarz.Email);
                             cmdUsers.Parameters.AddWithValue("@Haslo", lekarz.Haslo);
+                            cmdUsers.Parameters.AddWithValue("@ZdjecieProfilowe",
+                                string.IsNullOrEmpty(lekarz.ZdjecieProfilowe) ?
+                                DBNull.Value : (object)lekarz.ZdjecieProfilowe);
                             cmdUsers.Parameters.AddWithValue("@Id", lekarz.Id);
 
                             cmdUsers.ExecuteNonQuery();
                         }
 
-
                         var queryDoctors = @"
-                          UPDATE Doctors
-                          SET Specjalizacja = @Specjalizacja
-                          WHERE UserId = @UserId";
+                        UPDATE Doctors
+                        SET Specjalizacja = @Specjalizacja
+                        WHERE UserId = @UserId";
 
                         using (var cmdDoctors = new MySqlCommand(queryDoctors, conn, tran))
                         {
                             cmdDoctors.Parameters.AddWithValue("@UserId", lekarz.Id);
-                            cmdDoctors.Parameters.AddWithValue("@Specjalizacja", lekarz.Specjalizacja);
+                            cmdDoctors.Parameters.AddWithValue("@Specjalizacja",
+                                string.IsNullOrEmpty(lekarz.Specjalizacja) ?
+                                DBNull.Value : (object)lekarz.Specjalizacja);
                             cmdDoctors.ExecuteNonQuery();
                         }
 
@@ -1245,10 +971,6 @@ VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
                 }
             }
         }
-
-
-
-
 
         public string SprawdzStatusLekarza(int userId)
         {
@@ -2280,6 +2002,22 @@ VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
             }
         }
 
+        public void AktualizujZdjecieLekarzaWBazie(int idLekarza, string sciezka)
+        {
+            using (var conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+                string query = "UPDATE users SET zdjecie_profilowe = @sciezka WHERE id = @id";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@sciezka", sciezka ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@id", idLekarza);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         public Users ZnajdzUzytkownikaPoEmailu(string email)
         {
             using (var connection = new MySqlConnection(_connectionString))
@@ -2304,7 +2042,6 @@ VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
 
             return null;
         }
-
     }
 }
 

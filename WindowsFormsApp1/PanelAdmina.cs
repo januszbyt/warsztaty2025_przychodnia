@@ -20,7 +20,7 @@ namespace WindowsFormsApp1
 
         private bool oczekujeNaSpecjalizacje = false;
         private bool ciemnyTryb = false;
-
+        public event EventHandler Wylogowano;
         public PanelAdmina()
         {
             InitializeComponent();
@@ -226,10 +226,9 @@ namespace WindowsFormsApp1
 
         private void WylogujAdmin_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            var formLogowanie = new FormLogowanieRola(_dbHelper);
-            formLogowanie.ShowDialog();
+            Wylogowano?.Invoke(this, EventArgs.Empty); // Powiadom o wylogowaniu
             this.Close();
+
         }
 
 
@@ -306,7 +305,7 @@ namespace WindowsFormsApp1
 
         private void FormPanelAdmina_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+           // Application.Exit();
         }
 
         private void LoadTheme()

@@ -34,5 +34,17 @@ namespace WindowsFormsApp1.Properties {
                 this["IsDarkMode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SciezkaZdjecia {
+            get {
+                return ((string)(this["SciezkaZdjecia"]));
+            }
+            set {
+                this["SciezkaZdjecia"] = value;
+            }
+        }
     }
 }

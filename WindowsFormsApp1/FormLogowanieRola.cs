@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using WindowsFormsApp1.Data;
 using WindowsFormsApp1.Forms;
-using MySql.Data.MySqlClient;
 
 namespace WindowsFormsApp1
 {
@@ -10,13 +9,11 @@ namespace WindowsFormsApp1
     {
         private readonly DataBaseHelper _dbHelper;
 
-       
         public FormLogowanieRola(DataBaseHelper dbHelper)
         {
             InitializeComponent();
             _dbHelper = dbHelper ?? throw new ArgumentNullException(nameof(dbHelper));
             this.FormClosed += new FormClosedEventHandler(FormLogowanieRola_FormClosed);
-
 
             comboBox1.Items.AddRange(new[] { "Pacjent", "Lekarz", "Administrator" });
             comboBox1.SelectedIndex = 0;
@@ -27,13 +24,11 @@ namespace WindowsFormsApp1
             if (comboBox1.SelectedItem == null)
             {
                 MessageBox.Show("Proszę wybrać rolę!", "Błąd",
-                              MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             string wybranaRola = comboBox1.SelectedItem.ToString();
-
-            
             this.Hide();
 
             try
@@ -42,25 +37,25 @@ namespace WindowsFormsApp1
                 {
                     case "Pacjent":
                         var formPacjent = new FormLogowaniePacjent(_dbHelper);
-                        formPacjent.Closed += (s, args) => this.Close();
+                        formPacjent.FormClosed += (s, args) => this.Show();
                         formPacjent.Show();
                         break;
 
                     case "Lekarz":
                         var formLekarz = new FormLogowanieLekarz(_dbHelper);
-                        formLekarz.Closed += (s, args) => this.Close();
+                        formLekarz.FormClosed += (s, args) => this.Show();
                         formLekarz.Show();
                         break;
 
                     case "Administrator":
                         var formAdmin = new FormLogowanieAdmin(_dbHelper);
-                        formAdmin.Closed += (s, args) => this.Close();
+                        formAdmin.FormClosed += (s, args) => this.Show();
                         formAdmin.Show();
                         break;
 
                     default:
                         MessageBox.Show("Nieznana rola!", "Błąd",
-                                      MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                         this.Show();
                         break;
                 }
@@ -68,8 +63,8 @@ namespace WindowsFormsApp1
             catch (Exception ex)
             {
                 MessageBox.Show($"Błąd podczas otwierania formularza: {ex.Message}", "Błąd",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Show(); 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Show();
             }
         }
 
@@ -78,19 +73,9 @@ namespace WindowsFormsApp1
             this.Close();
         }
 
-        private void FormLogowanieRola_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FormLogowanieRola_Validated(object sender, EventArgs e)
-        {
-
-        }
-
         private void FormLogowanieRola_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit(); 
+            Application.Exit(); // na wypadek gdyby ktoś zamknął to okno ręcznie
         }
     }
 }

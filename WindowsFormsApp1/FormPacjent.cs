@@ -19,7 +19,8 @@ namespace WindowsFormsApp1
         private readonly DataBaseHelper _dbHelper;
         private int _pacjentId;
         private string _wybranyPlik;
-
+        private bool ciemnyTryb = false;
+        private string loginUzytkownika;
 
 
         public FormPacjent(DataBaseHelper dbHelper, int patientId = 0)
@@ -38,8 +39,27 @@ namespace WindowsFormsApp1
             WczytajDanePacjenta();
             this.FormClosed += new FormClosedEventHandler(FormPacjent_FormClosed);
             LoadTheme();
+            UstawTryb();
 
+            string folder = Path.Combine(Application.StartupPath, "UserImages");
+            string[] rozszerzenia = new[] { ".jpg", ".jpeg", ".png", ".bmp", ".gif" };
 
+            foreach (string ext in rozszerzenia)
+            {
+                string sciezka = Path.Combine(folder, loginUzytkownika + ext);
+                if (File.Exists(sciezka))
+                {
+                    try
+                    {
+                        pictureBox.Image = Image.FromFile(sciezka);
+                        break;
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Nie udało się załadować zdjęcia użytkownika.");
+                    }
+                }
+            }
         }
         
 
@@ -57,7 +77,7 @@ namespace WindowsFormsApp1
             dateTimePickerWizyta.MinDate = DateTime.Today.AddDays(1);
 
 
-            //buttonDodajWizyte.Click += buttonDodajWizyte_Click;
+         
             buttonWybierzPlik.Click += ButtonWybierzPlik_Click;
 
 
@@ -667,6 +687,119 @@ namespace WindowsFormsApp1
             string wynik = string.Join("\n---------------------\n", opinie.Select(o => o.ToString()));
             MessageBox.Show(wynik, $"Opinie dla: {wybranyLekarz.Imie} {wybranyLekarz.Nazwisko}");
         }
+
+        private void btnToggleTheme_Click(object sender, EventArgs e)
+        {
+            ciemnyTryb = !ciemnyTryb;
+            UstawTryb();
+        }
+
+        private void UstawTryb()
+        {
+            Color tloFormularza, kolorTekstu, kolorTabPage;
+            string napisPrzycisku;
+
+            if (ciemnyTryb)
+            {
+                tloFormularza = Color.FromArgb(64, 64, 64);       
+                kolorTabPage = Color.FromArgb(64, 64, 64);       
+                kolorTekstu = Color.White;
+                napisPrzycisku = "Tryb jasny";
+            }
+            else
+            {
+                tloFormularza = Color.FromArgb(255, 192, 192);     
+                kolorTabPage = Color.FromArgb(255, 224, 192);     
+                kolorTekstu = Color.Black;
+                napisPrzycisku = "Tryb ciemny";
+            }
+
+            this.BackColor = tloFormularza;
+            this.ForeColor = kolorTekstu;
+            btnToggleTheme.Text = napisPrzycisku;
+
+            
+            foreach (Control ctrl in this.Controls)
+            {
+                ZastosujTrybDoKontrolki(ctrl, tloFormularza, kolorTekstu, kolorTabPage);
+            }
+        }
+
+        private void ZastosujTrybDoKontrolki(Control ctrl, Color tlo, Color tekst, Color kolorTabPage)
+        {
+            if (ctrl is System.Windows.Forms.TextBox)
+            {
+                ctrl.BackColor = Color.White;
+                ctrl.ForeColor = Color.Black;
+            }
+            else if (ctrl is TabControl tabControl)
+            {
+                foreach (TabPage tab in tabControl.TabPages)
+                {
+                    tab.BackColor = kolorTabPage;
+                    tab.ForeColor = tekst;
+
+                    foreach (Control child in tab.Controls)
+                    {
+                        ZastosujTrybDoKontrolki(child, tlo, tekst, kolorTabPage);
+                    }
+                }
+
+                tabControl.BackColor = tlo;
+                tabControl.ForeColor = tekst;
+            }
+            else
+            {
+                ctrl.BackColor = tlo;
+                ctrl.ForeColor = tekst;
+
+               
+                foreach (Control child in ctrl.Controls)
+                {
+                    ZastosujTrybDoKontrolki(child, tlo, tekst, kolorTabPage);
+                }
+            }
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog dialog = new OpenFileDialog())
+            {
+                dialog.Title = "Wybierz zdjęcie";
+                dialog.Filter = "Pliki graficzne|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        string folder = Path.Combine(Application.StartupPath, "UserImages");
+                        Directory.CreateDirectory(folder); // utwórz jeśli nie istnieje
+
+                        string rozszerzenie = Path.GetExtension(dialog.FileName);
+                        string sciezkaDocelowa = Path.Combine(folder, loginUzytkownika + rozszerzenie);
+
+                        // Skopiuj zdjęcie użytkownika do folderu aplikacji
+                        File.Copy(dialog.FileName, sciezkaDocelowa, true);
+
+                        // Wyświetl
+                        pictureBox.Image = Image.FromFile(sciezkaDocelowa);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Błąd podczas wczytywania zdjęcia: " + ex.Message);
+                    }
+                }
+            }
+        }
+
+        private void buttonUsun_Click(object sender, EventArgs e)
+        {
+
+            pictureBox.Image = null;
+            Properties.Settings.Default.SciezkaZdjecia = string.Empty;
+            Properties.Settings.Default.Save();
+        }
+
     }
 }
 
