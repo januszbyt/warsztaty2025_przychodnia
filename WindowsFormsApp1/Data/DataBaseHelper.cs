@@ -2002,21 +2002,7 @@ namespace WindowsFormsApp1.Data
             }
         }
 
-        public void AktualizujZdjecieLekarzaWBazie(int idLekarza, string sciezka)
-        {
-            using (var conn = new MySqlConnection(_connectionString))
-            {
-                conn.Open();
-                string query = "UPDATE users SET zdjecie_profilowe = @sciezka WHERE id = @id";
-
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@sciezka", sciezka ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@id", idLekarza);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
+      
 
         public Users ZnajdzUzytkownikaPoEmailu(string email)
         {

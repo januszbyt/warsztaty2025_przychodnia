@@ -20,7 +20,7 @@ namespace WindowsFormsApp1
         private int _pacjentId;
         private string _wybranyPlik;
         private bool ciemnyTryb = false;
-        private string loginUzytkownika;
+       
 
 
         public FormPacjent(DataBaseHelper dbHelper, int patientId = 0)
@@ -41,25 +41,7 @@ namespace WindowsFormsApp1
             LoadTheme();
             UstawTryb();
 
-            string folder = Path.Combine(Application.StartupPath, "UserImages");
-            string[] rozszerzenia = new[] { ".jpg", ".jpeg", ".png", ".bmp", ".gif" };
-
-            foreach (string ext in rozszerzenia)
-            {
-                string sciezka = Path.Combine(folder, loginUzytkownika + ext);
-                if (File.Exists(sciezka))
-                {
-                    try
-                    {
-                        pictureBox.Image = Image.FromFile(sciezka);
-                        break;
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Nie udało się załadować zdjęcia użytkownika.");
-                    }
-                }
-            }
+            
         }
         
 
@@ -761,44 +743,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void button13_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog dialog = new OpenFileDialog())
-            {
-                dialog.Title = "Wybierz zdjęcie";
-                dialog.Filter = "Pliki graficzne|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
-
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    try
-                    {
-                        string folder = Path.Combine(Application.StartupPath, "UserImages");
-                        Directory.CreateDirectory(folder); // utwórz jeśli nie istnieje
-
-                        string rozszerzenie = Path.GetExtension(dialog.FileName);
-                        string sciezkaDocelowa = Path.Combine(folder, loginUzytkownika + rozszerzenie);
-
-                        // Skopiuj zdjęcie użytkownika do folderu aplikacji
-                        File.Copy(dialog.FileName, sciezkaDocelowa, true);
-
-                        // Wyświetl
-                        pictureBox.Image = Image.FromFile(sciezkaDocelowa);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Błąd podczas wczytywania zdjęcia: " + ex.Message);
-                    }
-                }
-            }
-        }
-
-        private void buttonUsun_Click(object sender, EventArgs e)
-        {
-
-            pictureBox.Image = null;
-            Properties.Settings.Default.SciezkaZdjecia = string.Empty;
-            Properties.Settings.Default.Save();
-        }
+       
 
     }
 }

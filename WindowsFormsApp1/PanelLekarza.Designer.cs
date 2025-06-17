@@ -1003,7 +1003,7 @@
             this.buttonUsun.TabIndex = 43;
             this.buttonUsun.Text = "Usun";
             this.buttonUsun.UseVisualStyleBackColor = false;
-            this.buttonUsun.Click += new System.EventHandler(this.buttonUsun_Click);
+            
             // 
             // buttonWczytaj
             // 
@@ -1016,7 +1016,7 @@
             this.buttonWczytaj.TabIndex = 44;
             this.buttonWczytaj.Text = "Wczytaj";
             this.buttonWczytaj.UseVisualStyleBackColor = false;
-            this.buttonWczytaj.Click += new System.EventHandler(this.buttonWczytaj_Click);
+            
             // 
             // PanelLekarza
             // 

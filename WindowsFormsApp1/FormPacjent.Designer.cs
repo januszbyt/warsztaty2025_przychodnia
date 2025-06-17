@@ -32,6 +32,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPageDanePacjenta = new System.Windows.Forms.TabPage();
+            this.btnToggleTheme = new System.Windows.Forms.Button();
             this.textBoxImie = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -91,9 +92,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnToggleTheme = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.buttonUsun = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.tabPageDanePacjenta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -123,8 +121,6 @@
             // tabPageDanePacjenta
             // 
             this.tabPageDanePacjenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tabPageDanePacjenta.Controls.Add(this.buttonUsun);
-            this.tabPageDanePacjenta.Controls.Add(this.button13);
             this.tabPageDanePacjenta.Controls.Add(this.btnToggleTheme);
             this.tabPageDanePacjenta.Controls.Add(this.textBoxImie);
             this.tabPageDanePacjenta.Controls.Add(this.button5);
@@ -153,10 +149,20 @@
             this.errorProvider.SetIconAlignment(this.tabPageDanePacjenta, System.Windows.Forms.ErrorIconAlignment.BottomLeft);
             this.tabPageDanePacjenta.Location = new System.Drawing.Point(4, 22);
             this.tabPageDanePacjenta.Name = "tabPageDanePacjenta";
-            this.tabPageDanePacjenta.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageDanePacjenta.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageDanePacjenta.Size = new System.Drawing.Size(1466, 796);
             this.tabPageDanePacjenta.TabIndex = 0;
             this.tabPageDanePacjenta.Text = "Dane Pacjenta";
+            // 
+            // btnToggleTheme
+            // 
+            this.btnToggleTheme.Location = new System.Drawing.Point(609, 279);
+            this.btnToggleTheme.Name = "btnToggleTheme";
+            this.btnToggleTheme.Size = new System.Drawing.Size(75, 23);
+            this.btnToggleTheme.TabIndex = 29;
+            this.btnToggleTheme.Text = "Tryb Jasny";
+            this.btnToggleTheme.UseVisualStyleBackColor = true;
+            this.btnToggleTheme.Click += new System.EventHandler(this.btnToggleTheme_Click);
             // 
             // textBoxImie
             // 
@@ -181,7 +187,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(95, 300);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(204, 20);
             this.dateTimePicker1.TabIndex = 27;
@@ -189,7 +195,7 @@
             // textBoxHaslo
             // 
             this.textBoxHaslo.Location = new System.Drawing.Point(118, 237);
-            this.textBoxHaslo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxHaslo.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxHaslo.Name = "textBoxHaslo";
             this.textBoxHaslo.Size = new System.Drawing.Size(182, 20);
             this.textBoxHaslo.TabIndex = 26;
@@ -409,7 +415,7 @@
             this.tabPageWizyty.Controls.Add(this.buttonDodajWizyte);
             this.tabPageWizyty.Location = new System.Drawing.Point(4, 22);
             this.tabPageWizyty.Name = "tabPageWizyty";
-            this.tabPageWizyty.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageWizyty.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageWizyty.Size = new System.Drawing.Size(1466, 796);
             this.tabPageWizyty.TabIndex = 6;
             this.tabPageWizyty.Text = "Wizyty";
@@ -540,7 +546,7 @@
             this.tabPage1.Controls.Add(this.comboBoxTypDokumentu);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1466, 796);
             this.tabPage1.TabIndex = 7;
             this.tabPage1.Text = "Dokumentacja Medyczna";
@@ -662,9 +668,9 @@
             this.tabPage2.Controls.Add(this.label10);
             this.tabPage2.Controls.Add(this.button8);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage2.Size = new System.Drawing.Size(1466, 796);
             this.tabPage2.TabIndex = 8;
             this.tabPage2.Text = "Opinie";
@@ -715,7 +721,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(70, 238);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(422, 130);
@@ -743,7 +749,7 @@
             "4",
             "5"});
             this.comboBox3.Location = new System.Drawing.Point(661, 46);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox3.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(84, 21);
             this.comboBox3.TabIndex = 34;
@@ -785,36 +791,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // btnToggleTheme
-            // 
-            this.btnToggleTheme.Location = new System.Drawing.Point(609, 388);
-            this.btnToggleTheme.Name = "btnToggleTheme";
-            this.btnToggleTheme.Size = new System.Drawing.Size(75, 23);
-            this.btnToggleTheme.TabIndex = 29;
-            this.btnToggleTheme.Text = "Tryb Jasny";
-            this.btnToggleTheme.UseVisualStyleBackColor = true;
-            this.btnToggleTheme.Click += new System.EventHandler(this.btnToggleTheme_Click);
-            // 
-            // button13
-            // 
-            this.button13.Location = new System.Drawing.Point(435, 255);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 23);
-            this.button13.TabIndex = 30;
-            this.button13.Text = "Wczytaj";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
-            // buttonUsun
-            // 
-            this.buttonUsun.Location = new System.Drawing.Point(564, 255);
-            this.buttonUsun.Name = "buttonUsun";
-            this.buttonUsun.Size = new System.Drawing.Size(75, 23);
-            this.buttonUsun.TabIndex = 31;
-            this.buttonUsun.Text = "Usun";
-            this.buttonUsun.UseVisualStyleBackColor = true;
-            this.buttonUsun.Click += new System.EventHandler(this.buttonUsun_Click);
             // 
             // FormPacjent
             // 
@@ -918,7 +894,5 @@
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button btnToggleTheme;
-        private System.Windows.Forms.Button buttonUsun;
-        private System.Windows.Forms.Button button13;
     }
 }
