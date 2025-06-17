@@ -61,12 +61,7 @@ namespace WindowsFormsApp1
             UstawTryb();
 
 
-            if (!string.IsNullOrEmpty(zalogowanyLekarz.ZdjecieProfilowe) &&
-        File.Exists(zalogowanyLekarz.ZdjecieProfilowe))
-            {
-                pictureBox1.Image = Image.FromFile(zalogowanyLekarz.ZdjecieProfilowe);
-                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            }
+           
 
         }
 
