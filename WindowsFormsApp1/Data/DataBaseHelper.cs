@@ -408,8 +408,8 @@ namespace WindowsFormsApp1.Data
                 string query = @"
             SELECT d.Id, d.Imie, d.Nazwisko, d.Specjalizacja, 
                    u.Email, u.haslo, u.DateOfBirth, u.Pesel, 
-                   u.PhoneNumber, u.Adres, u.Miasto, u.KodPocztowy,
-                   u.zdjecie_profilowe
+                   u.PhoneNumber, u.Adres, u.Miasto, u.KodPocztowy
+                   
             FROM doctors d 
             LEFT JOIN users u ON d.UserID = u.Id 
             WHERE d.Id = @Id";
@@ -436,10 +436,8 @@ namespace WindowsFormsApp1.Data
                                 Haslo = reader.GetString("Haslo"),
                                 Specjalizacja = reader.IsDBNull(reader.GetOrdinal("Specjalizacja"))
                                     ? ""
-                                    : reader.GetString("Specjalizacja"),
-                                ZdjecieProfilowe = reader.IsDBNull(reader.GetOrdinal("zdjecie_profilowe"))
-                                    ? null
-                                    : reader.GetString("zdjecie_profilowe")
+                                    : reader.GetString("Specjalizacja")
+                                
                             };
                         }
                     }
@@ -468,8 +466,7 @@ namespace WindowsFormsApp1.Data
                     Miasto = @Miasto,
                     KodPocztowy = @KodPocztowy,
                     Email = @Email,
-                    Haslo = @Haslo,
-                    zdjecie_profilowe = @ZdjecieProfilowe
+                    Haslo = @Haslo
                     WHERE Id = @Id";
 
                         using (var cmdUsers = new MySqlCommand(queryUsers, conn, tran))
@@ -483,9 +480,6 @@ namespace WindowsFormsApp1.Data
                             cmdUsers.Parameters.AddWithValue("@KodPocztowy", lekarz.KodPocztowy);
                             cmdUsers.Parameters.AddWithValue("@Email", lekarz.Email);
                             cmdUsers.Parameters.AddWithValue("@Haslo", lekarz.Haslo);
-                            cmdUsers.Parameters.AddWithValue("@ZdjecieProfilowe",
-                                string.IsNullOrEmpty(lekarz.ZdjecieProfilowe) ?
-                                DBNull.Value : (object)lekarz.ZdjecieProfilowe);
                             cmdUsers.Parameters.AddWithValue("@Id", lekarz.Id);
 
                             cmdUsers.ExecuteNonQuery();
