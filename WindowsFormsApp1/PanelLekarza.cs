@@ -10,6 +10,8 @@ using System.Diagnostics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Linq;
 using System.Globalization;
+using System.IO;
+using System.Drawing.Imaging;
 // Users System.Windows.Forms; // TODO: Dawid Kotliński: odkomentować
 
 namespace WindowsFormsApp1
@@ -26,6 +28,8 @@ namespace WindowsFormsApp1
         private int wizytaId;
         private object _pacjentId;
         private bool ciemnyTryb = false;
+
+        private Lekarz zalogowanyLekarz;
 
         public PanelLekarza(Lekarz lekarz, DataBaseHelper dbHelper)
         {
@@ -57,8 +61,7 @@ namespace WindowsFormsApp1
             UstawTryb();
 
 
-
-
+           
 
         }
 
@@ -901,14 +904,14 @@ namespace WindowsFormsApp1
 
             if (ciemnyTryb)
             {
-                tloFormularza = Color.FromArgb(64, 64, 64);       // ciemny szary
-                kolorTabPage = Color.FromArgb(64, 64, 64);       // dopasowany do ciemnego
+                tloFormularza = Color.FromArgb(64, 64, 64);       
+                kolorTabPage = Color.FromArgb(64, 64, 64);       
                 kolorTekstu = Color.White;
                 napisPrzycisku = "Tryb jasny";
             }
             else
             {
-                tloFormularza = Color.FromArgb(255, 192, 192);     // jasny róż
+                tloFormularza = Color.FromArgb(255, 192, 192);     
                 kolorTabPage = Color.FromArgb(255, 224, 192);     // brzoskwiniowy
                 kolorTekstu = Color.Black;
                 napisPrzycisku = "Tryb ciemny";
@@ -960,6 +963,29 @@ namespace WindowsFormsApp1
                 }
             }
         }
+
+        private void ZapiszSkompresowaneZdjecie(string sciezkaWejsciowa, string sciezkaDocelowa, int jakosc){
+            using (Image image = Image.FromFile(sciezkaWejsciowa))
+            {
+                ImageCodecInfo jpegEncoder = GetEncoder(ImageFormat.Jpeg);
+                EncoderParameters encoderParams = new EncoderParameters(1);
+                encoderParams.Param[0] = new EncoderParameter(Encoder.Quality, jakosc);
+
+                image.Save(sciezkaDocelowa, jpegEncoder, encoderParams);
+            }
+        }
+
+        private ImageCodecInfo GetEncoder(ImageFormat format)
+        {
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+            foreach (ImageCodecInfo codec in codecs)
+            {
+                if (codec.FormatID == format.Guid)
+                    return codec;
+            }
+            return null;
+        }
+       
     }
     
 }

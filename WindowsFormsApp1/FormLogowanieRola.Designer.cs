@@ -93,8 +93,8 @@
             this.Name = "FormLogowanieRola";
             this.Text = "Wybór użytkownika";
             this.MinimumSizeChanged += new System.EventHandler(this.buttonZatwierdz_Click);
-            this.Load += new System.EventHandler(this.FormLogowanieRola_Load);
-            this.Validated += new System.EventHandler(this.FormLogowanieRola_Validated);
+            
+            
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -57,7 +57,7 @@
             this.textBoxLoginAdmin.Name = "textBoxLoginAdmin";
             this.textBoxLoginAdmin.Size = new System.Drawing.Size(230, 44);
             this.textBoxLoginAdmin.TabIndex = 5;
-            this.textBoxLoginAdmin.TextChanged += new System.EventHandler(this.textBoxLoginAdmin_TextChanged);
+         
             // 
             // textBoxHasloAdmin
             // 
@@ -92,7 +92,7 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "WITAMY W KLINICE";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+          
             // 
             // label2
             // 
@@ -157,7 +157,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormLogowanieAdmin";
             this.Text = "Logowanie Admin";
-            this.Load += new System.EventHandler(this.FormLogowanieAdmin_Load);
+          
             this.ResumeLayout(false);
             this.PerformLayout();
 
