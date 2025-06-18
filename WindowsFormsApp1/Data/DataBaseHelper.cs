@@ -570,10 +570,10 @@ namespace WindowsFormsApp1.Data
                             wizytaId = Convert.ToInt32(result);
                     }
 
-                    //  Diagnostyka przy braku wizyty
+                    
                     if (wizytaId == null)
                     {
-                        // Dodajemy diagnostyczne zapytanie
+                        
                         string debugQuery = @"SELECT Id, DataWizyty, Status FROM wizyty 
                                       WHERE PacjentId = @PacjentId AND LekarzId = @LekarzId";
                         using (MySqlCommand debugCmd = new MySqlCommand(debugQuery, conn))
