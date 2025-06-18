@@ -18,6 +18,8 @@ namespace WindowsFormsApp1.Models
         public string Zalecenia { get; set; }
         public string Specjalizacja { get; set; }
 
+        public string Objawy {  get; set; }
+
         public string Lekarz { get; set; }
     }
 }

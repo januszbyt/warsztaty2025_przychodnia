@@ -575,7 +575,7 @@ namespace WindowsFormsApp1.Data
 
                 string query = @"
             SELECT 
-            w.DataWizyty, w.Status, w.Opis, w.Diagnoza, w.Zalecenia,
+            w.DataWizyty, w.Status, w.Opis, w.Diagnoza, w.Zalecenia, w.Objawy,
             r.Leki AS ReceptaLeki
             FROM wizyty w
             LEFT JOIN recepty r ON r.WizytaId = w.Id
@@ -596,7 +596,8 @@ namespace WindowsFormsApp1.Data
                                 Opis = reader["Opis"]?.ToString(),
                                 Diagnoza = reader["Diagnoza"]?.ToString(),
                                 Zalecenia = reader["Zalecenia"]?.ToString(),
-                                Recepta = reader["ReceptaLeki"]?.ToString()
+                                Recepta = reader["ReceptaLeki"]?.ToString(),
+                                Objawy = reader["Objawy"]?.ToString(),
                             });
                         }
                     }
@@ -1444,7 +1445,7 @@ VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
             using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
                 string query = @"
-                                SELECT w.Id, w.DataWizyty, w.Status, CONCAT(u.Imie, ' ', u.Nazwisko) AS Pacjent, u.Id AS PacjentId
+                                SELECT w.Id, w.DataWizyty, w.Objawy, w.Status, CONCAT(u.Imie, ' ', u.Nazwisko) AS Pacjent, u.Id AS PacjentId
                                 FROM Wizyty w
                                 JOIN Users u ON u.Id = w.PacjentId
                                 WHERE w.LekarzId = @LekarzId
@@ -1868,8 +1869,8 @@ VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
             {
                 connection.Open();
                 string query = @"INSERT INTO Wizyty 
-                (LekarzId, PacjentId, DataWizyty, Status, Opis, Diagnoza, Zalecenia, Specjalizacja)
-                VALUES (@LekarzId, @PacjentId, @DataWizyty, @Status, @Opis, @Diagnoza, @Zalecenia, @Specjalizacja);
+                (LekarzId, PacjentId, DataWizyty, Status, Opis, Diagnoza, Zalecenia, Specjalizacja, Objawy)
+                VALUES (@LekarzId, @PacjentId, @DataWizyty, @Status, @Opis, @Diagnoza, @Zalecenia, @Specjalizacja, @Objawy);
                 SELECT LAST_INSERT_ID();";
 
                 using (var command = new MySqlCommand(query, connection))
@@ -1882,6 +1883,7 @@ VALUES (@WizytaId, @PacjentId, @LekarzId, NOW(), @Typ, @Cel, @Uwagi)";
                     command.Parameters.AddWithValue("@Diagnoza", string.IsNullOrEmpty(wizyta.Diagnoza) ? (object)DBNull.Value : wizyta.Diagnoza);
                     command.Parameters.AddWithValue("@Zalecenia", string.IsNullOrEmpty(wizyta.Zalecenia) ? (object)DBNull.Value : wizyta.Zalecenia);
                     command.Parameters.AddWithValue("@Specjalizacja", string.IsNullOrEmpty(wizyta.Specjalizacja) ? (object)DBNull.Value : wizyta.Specjalizacja);
+                    command.Parameters.AddWithValue("@Objawy",string.IsNullOrEmpty(wizyta.Objawy) ? (object)DBNull.Value :wizyta.Objawy);
 
 
                     object result = command.ExecuteScalar();

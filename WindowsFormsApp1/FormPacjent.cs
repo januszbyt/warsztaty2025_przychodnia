@@ -166,25 +166,65 @@ namespace WindowsFormsApp1
             var lekarz = (Lekarz)dataGridViewLekarze.SelectedRows[0].DataBoundItem;
             var data = dateTimePickerWizyta.Value;
 
-
             if (!_dbHelper.CzyLekarzMaWolnyTermin(lekarz.Id, data))
             {
                 MessageBox.Show("Lekarz nie ma wolnego terminu.");
                 return;
             }
 
-            var wizyta = new Wizyta
+            
+            Form inputForm = new Form
             {
-                PacjentId = _pacjentId,
-                LekarzId = lekarz.Id,
-                DataWizyty = data,
-                Status = "Zaplanowana",
-                Specjalizacja = lekarz.Specjalizacja
+                Width = 400,
+                Height = 250,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = "Nowa Wizyta - Objawy",
+                StartPosition = FormStartPosition.CenterScreen
             };
 
-            _dbHelper.DodajWizyte(wizyta);
-            MessageBox.Show("Dodano wizytę.");
-            WczytajHistorieWizyt(_pacjentId);
+            Label labelObjawy = new Label() { Left = 20, Top = 20, Text = "Objawy:", AutoSize = true };
+            TextBox txtObjawy = new TextBox()
+            {
+                Left = 20,
+                Top = 50,
+                Width = 340,
+                Height = 100,
+                Multiline = true,
+                ScrollBars = ScrollBars.Vertical
+            };
+
+            Button btnZapisz = new Button()
+            {
+                Text = "Zapisz",
+                Left = 270,
+                Width = 90,
+                Top = 160,
+                DialogResult = DialogResult.OK
+            };
+
+            inputForm.Controls.Add(labelObjawy);
+            inputForm.Controls.Add(txtObjawy);
+            inputForm.Controls.Add(btnZapisz);
+            inputForm.AcceptButton = btnZapisz;
+
+            if (inputForm.ShowDialog() == DialogResult.OK)
+            {
+                string objawy = txtObjawy.Text.Trim();
+
+                var wizyta = new Wizyta
+                {
+                    PacjentId = _pacjentId,
+                    LekarzId = lekarz.Id,
+                    DataWizyty = data,
+                    Status = "Zaplanowana",
+                    Specjalizacja = lekarz.Specjalizacja,
+                    Objawy = objawy
+                };
+
+                _dbHelper.DodajWizyte(wizyta);
+                MessageBox.Show("Dodano wizytę.");
+                WczytajHistorieWizyt(_pacjentId);
+            }
         }
 
         private void WczytajHistorieWizyt(int _pacjentId)
